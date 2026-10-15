@@ -101,12 +101,17 @@ Each target needs independent fresh-install, first-boot identity generation, enc
 
 > **Publication safety:** Do not upload live credentials, keys, sensitive system inventories, private network configurations, identifying host metadata, or unredacted operational reports. Publish only sanitized evidence that you have reviewed.
 
-## Project author and contact
+## Project Author & Contact
 
 **Yuhisern Navaratnam**  
 Cybersecurity Engineer · Founder & Project Architect  
-**ELITE CYBERSECURITY SPECIALIST**  
-Malaysia · Business registration **202403184091 (MA0319303-P)**  
+**ELITE CYBERSECURITY SPECIALIST**
+
+**Country:** Malaysia  
+**Business Registration:** 202403184091 (MA0319303-P)
+
+**Email:** [yuhisern@protonmail.com](mailto:yuhisern@protonmail.com)  
+**Phone / WhatsApp:** [+60 17-279 1717](https://wa.me/60172791717)  
 **TikTok:** [@Yuhisern](https://www.tiktok.com/@Yuhisern)
 
 ---
