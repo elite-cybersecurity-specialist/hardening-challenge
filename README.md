@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/Hardening-Challenge.jpg" alt="KHAHP Open Cybersecurity Hardening Challenge" width="100%">
+</p>
+
 # KHAHP — Kicksecure High-Assurance Hardening Project
 
 ## Open Cybersecurity Hardening Challenge
