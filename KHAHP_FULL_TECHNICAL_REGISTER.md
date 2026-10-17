@@ -1,5118 +1,3503 @@
-# KHAHP — Full Technical Hardening and Verification Register
+# KHAHP — Open Cybersecurity Hardening Challenge
+## Public Technical Evidence, Remediation & Product Roadmap
 
-**Source:** `CYBERSECURITY-CHALLENGE.pdf`, *KHAHP Master Implementation & Evidence Challenge*, version 1.6, 15 October 2026 (107 pages). Converted into GitHub Markdown while retaining the technical family/checkpoint terminology and source-report references.
+**ELITE CYBERSECURITY SPECIALIST · Malaysia**
+**Kicksecure High-Assurance Hardening Project (KHAHP)**
+**Public Consolidated Release v3.0 · 17 October 2026 · Work in progress**
 
-**Company:** ELITE CYBERSECURITY SPECIALIST · Malaysia · 202403184091 (MA0319303-P)  
-**Project architect:** Yuhisern Navaratnam · Cybersecurity Engineer  
-**Project:** Kicksecure High-Assurance Hardening Project (KHAHP) · **Open Cybersecurity Hardening Challenge**  
-**Engineering effort:** Over 120 hours and counting  
-**Project stage:** Ongoing implementation and acceptance
+> **Open challenge:** Can another cybersecurity specialist demonstrate a stronger defensive operating-system hardening result using traceable evidence, controlled negative tests, compatibility analysis, reproducible builds and independently reviewable acceptance criteria?
 
-> This register documents **security weakness and hardening checkpoints**, not 984 demonstrated exploitable bugs or an already completed implementation. Historical evidence is retained as reported; any unverified state remains unverified. The final commercial release tests are proposals, not completed tests.
+> **PUBLICATION STATUS — PROVISIONAL:** Sections **01–34** have completed documentation baselines and historical security observations, **not 714 accepted security checks**. Sections **35–44 are being completed**. This document records what is supported, what remains to be demonstrated, and where a genuine fix *might* be needed. It does not certify the OS, expose private laptop evidence, or represent a shipping commercial image.
 
-[← Return to repository overview](README.md)
-
-## Project rationale and challenge
-
-KHAHP demonstrates systematic OS security engineering: identify attack surfaces, document vulnerabilities and hardening opportunities, preserve controls already enforced, remediate confirmed gaps and test the effectiveness and persistence of every applicable protection. The project invites other cybersecurity specialists to demonstrate stronger, more reproducible results under transparent test constraints.
-
-**Why Kicksecure:** Its Debian-based, security-oriented architecture and USER/SYSMAINT separation provide a promising base for deep kernel restrictions, mandatory access control, network privacy, audits, integrity monitoring and disciplined recovery. Anonymity and data confidentiality still depend on deployment-specific configuration and operational practices.
-
-**Standards orientation:** CIS Debian Linux 13 Level 2 Workstation, STIG-oriented benchmark references, applicable DISA GPOS SRG objectives and KSPP. These references are **not claims of official certification**.
-
-**Measurement:** 44 × 7 families × 3 A/B/C checks = **924 core checkpoints**, plus 60 commercial-release tests = **984 planned checks**.
-
-## Implementation stage map
-
-| Stage | Focus | Sections |
-|:--|:--|:--|
-| S0 | Safety and controlled change | Prerequisite |
-| S1 | Application confinement and filesystem exposure | 15, 17, 37 |
-| S2 | Disk, boot, kernel, firmware and memory | 06–14, 24–25, 39 |
-| S3 | Accounts, privileges, services and peripherals | 01–05, 16, 18–23, 26, 38 |
-| S4 | Network, DNS, firewall, Tor and browser privacy | 27–36 |
-| S5 | Audit, integrity and persistence | 40–41 |
-| S6 | Secrets, backup and restore | 42 |
-| S7 | CIS / STIG-oriented / KSPP evidence closure | 43 |
-| S8 | Final acceptance and sign-off | 44 |
-| R0–R3 | Commercial release — clean-image common, physical ISO, QCOW2 and OVA | 60 tests |
-
-## Core register — 44 categories / 924 checkpoints
-
-For each family, the **A/B/C checkpoints** are tracked separately: **A** configuration/provenance, **B** runtime enforcement, and **C** persistence/negative/recovery. The source report references are archive filenames, not URLs to a public evidence archive.
-
-## 01 — Platform / OS / Hardware Baseline
-
-**Scope:** 7 control families · 21 A/B/C checkpoints.
-
-### 01.01 — Operating-system identity and Debian/Kicksecure release baseline
-
-**Stage / source classification:** `S3 / P2`
-
-**Historical evidence:** Positive observations identified in original report; family-specific A/B/C sign-off not demonstrated by aggregate review.
-
-**Identified weakness / gap:** Specific assertion acceptance is not documented.
-
-**Implementation task:** Preserve recorded protections and link A/B/C evidence to the report before sign-off.
-
-**Core checkpoints:** `KHAHP-01.01A`, `KHAHP-01.01B`, `KHAHP-01.01C`
-
-**Source / evidence status:** 01-platform-baseline-20261012-094204.txt | HISTORICAL EVIDENCE REVIEWED; NO PATCH DEMONSTRATED
-
-### 01.02 — Kernel release, architecture and build identity
-
-**Stage / source classification:** `S3 / P2`
-
-**Historical evidence:** Positive observations identified in original report; family-specific A/B/C sign-off not demonstrated by aggregate review.
-
-**Identified weakness / gap:** Specific assertion acceptance is not documented.
-
-**Implementation task:** Preserve recorded protections and link A/B/C evidence to the report before sign-off.
-
-**Core checkpoints:** `KHAHP-01.02A`, `KHAHP-01.02B`, `KHAHP-01.02C`
-
-**Source / evidence status:** 01-platform-baseline-20261012-094204.txt | HISTORICAL EVIDENCE REVIEWED; NO PATCH DEMONSTRATED
-
-### 01.03 — CPU model, topology and virtualization capability
-
-**Stage / source classification:** `S3 / P2`
-
-**Historical evidence:** Positive observations identified in original report; family-specific A/B/C sign-off not demonstrated by aggregate review.
-
-**Identified weakness / gap:** Specific assertion acceptance is not documented.
-
-**Implementation task:** Preserve recorded protections and link A/B/C evidence to the report before sign-off.
-
-**Core checkpoints:** `KHAHP-01.03A`, `KHAHP-01.03B`, `KHAHP-01.03C`
-
-**Source / evidence status:** 01-platform-baseline-20261012-094204.txt | HISTORICAL EVIDENCE REVIEWED; NO PATCH DEMONSTRATED
-
-### 01.04 — Physical memory and swap capacity baseline
-
-**Stage / source classification:** `S3 / P2`
-
-**Historical evidence:** Positive observations identified in original report; family-specific A/B/C sign-off not demonstrated by aggregate review.
-
-**Identified weakness / gap:** Specific assertion acceptance is not documented.
-
-**Implementation task:** Preserve recorded protections and link A/B/C evidence to the report before sign-off.
-
-**Core checkpoints:** `KHAHP-01.04A`, `KHAHP-01.04B`, `KHAHP-01.04C`
-
-**Source / evidence status:** 01-platform-baseline-20261012-094204.txt | HISTORICAL EVIDENCE REVIEWED; NO PATCH DEMONSTRATED
-
-### 01.05 — Storage controller, disk and filesystem topology
-
-**Stage / source classification:** `S3 / P2`
-
-**Historical evidence:** Positive observations identified in original report; family-specific A/B/C sign-off not demonstrated by aggregate review.
-
-**Identified weakness / gap:** Specific assertion acceptance is not documented.
-
-**Implementation task:** Preserve recorded protections and link A/B/C evidence to the report before sign-off.
-
-**Core checkpoints:** `KHAHP-01.05A`, `KHAHP-01.05B`, `KHAHP-01.05C`
-
-**Source / evidence status:** 01-platform-baseline-20261012-094204.txt | HISTORICAL EVIDENCE REVIEWED; NO PATCH DEMONSTRATED
-
-### 01.06 — UEFI/bare-metal/virtualization platform state
-
-**Stage / source classification:** `S3 / P2`
-
-**Historical evidence:** Positive observations identified in original report; family-specific A/B/C sign-off not demonstrated by aggregate review.
-
-**Identified weakness / gap:** Specific assertion acceptance is not documented.
-
-**Implementation task:** Preserve recorded protections and link A/B/C evidence to the report before sign-off.
-
-**Core checkpoints:** `KHAHP-01.06A`, `KHAHP-01.06B`, `KHAHP-01.06C`
-
-**Source / evidence status:** 01-platform-baseline-20261012-094204.txt | HISTORICAL EVIDENCE REVIEWED; NO PATCH DEMONSTRATED
-
-### 01.07 — Failed-unit, uptime, boot-time and baseline health state
-
-**Stage / source classification:** `S3 / P2`
-
-**Historical evidence:** Positive observations identified in original report; family-specific A/B/C sign-off not demonstrated by aggregate review.
-
-**Identified weakness / gap:** Specific assertion acceptance is not documented.
-
-**Implementation task:** Preserve recorded protections and link A/B/C evidence to the report before sign-off.
-
-**Core checkpoints:** `KHAHP-01.07A`, `KHAHP-01.07B`, `KHAHP-01.07C`
-
-**Source / evidence status:** 01-platform-baseline-20261012-094204.txt | HISTORICAL EVIDENCE REVIEWED; NO PATCH DEMONSTRATED
+**Public repository:** https://github.com/elite-cybersecurity-specialist/hardening-challenge
 
 ---
 
-## 02 — Kicksecure Package Provenance
+## Contents
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
-
-### 02.01 — Core Kicksecure package installation and exact versions
-
-**Stage / source classification:** `S3 / P2`
-
-**Historical evidence:** Positive observations identified in original report; family-specific A/B/C sign-off not demonstrated by aggregate review.
-
-**Identified weakness / gap:** Specific assertion acceptance is not documented.
-
-**Implementation task:** Preserve recorded protections and link A/B/C evidence to the report before sign-off.
-
-**Core checkpoints:** `KHAHP-02.01A`, `KHAHP-02.01B`, `KHAHP-02.01C`
-
-**Source / evidence status:** 02-kicksecure-package-provenance-20261012-115518.txt | HISTORICAL EVIDENCE REVIEWED; NO PATCH DEMONSTRATED
-
-### 02.02 — Supporting security-package installation and exact versions
-
-**Stage / source classification:** `S3 / P2`
-
-**Historical evidence:** Positive observations identified in original report; family-specific A/B/C sign-off not demonstrated by aggregate review.
-
-**Identified weakness / gap:** Specific assertion acceptance is not documented.
-
-**Implementation task:** Preserve recorded protections and link A/B/C evidence to the report before sign-off.
-
-**Core checkpoints:** `KHAHP-02.02A`, `KHAHP-02.02B`, `KHAHP-02.02C`
-
-**Source / evidence status:** 02-kicksecure-package-provenance-20261012-115518.txt | HISTORICAL EVIDENCE REVIEWED; NO PATCH DEMONSTRATED
-
-### 02.03 — APT source files and repository configuration
-
-**Stage / source classification:** `S3 / P2`
-
-**Historical evidence:** Positive observations identified in original report; family-specific A/B/C sign-off not demonstrated by aggregate review.
-
-**Identified weakness / gap:** Specific assertion acceptance is not documented.
-
-**Implementation task:** Preserve recorded protections and link A/B/C evidence to the report before sign-off.
-
-**Core checkpoints:** `KHAHP-02.03A`, `KHAHP-02.03B`, `KHAHP-02.03C`
-
-**Source / evidence status:** 02-kicksecure-package-provenance-20261012-115518.txt | HISTORICAL EVIDENCE REVIEWED; NO PATCH DEMONSTRATED
-
-### 02.04 — APT policy and repository origin attribution
-
-**Stage / source classification:** `S3 / P2`
-
-**Historical evidence:** Positive observations identified in original report; family-specific A/B/C sign-off not demonstrated by aggregate review.
-
-**Identified weakness / gap:** Specific assertion acceptance is not documented.
-
-**Implementation task:** Preserve recorded protections and link A/B/C evidence to the report before sign-off.
-
-**Core checkpoints:** `KHAHP-02.04A`, `KHAHP-02.04B`, `KHAHP-02.04C`
-
-**Source / evidence status:** 02-kicksecure-package-provenance-20261012-115518.txt | HISTORICAL EVIDENCE REVIEWED; NO PATCH DEMONSTRATED
-
-### 02.05 — Package ownership of security-critical configuration files
-
-**Stage / source classification:** `S3 / P2`
-
-**Historical evidence:** Positive observations identified in original report; family-specific A/B/C sign-off not demonstrated by aggregate review.
-
-**Identified weakness / gap:** Specific assertion acceptance is not documented.
-
-**Implementation task:** Preserve recorded protections and link A/B/C evidence to the report before sign-off.
-
-**Core checkpoints:** `KHAHP-02.05A`, `KHAHP-02.05B`, `KHAHP-02.05C`
-
-**Source / evidence status:** 02-kicksecure-package-provenance-20261012-115518.txt | HISTORICAL EVIDENCE REVIEWED; NO PATCH DEMONSTRATED
-
-### 02.06 — Package holds, partial installs and dpkg database health
-
-**Stage / source classification:** `S3 / P2`
-
-**Historical evidence:** Positive observations identified in original report; family-specific A/B/C sign-off not demonstrated by aggregate review.
-
-**Identified weakness / gap:** Specific assertion acceptance is not documented.
-
-**Implementation task:** Preserve recorded protections and link A/B/C evidence to the report before sign-off.
-
-**Core checkpoints:** `KHAHP-02.06A`, `KHAHP-02.06B`, `KHAHP-02.06C`
-
-**Source / evidence status:** 02-kicksecure-package-provenance-20261012-115518.txt | HISTORICAL EVIDENCE REVIEWED; NO PATCH DEMONSTRATED
-
-### 02.07 — Local modifications versus package-owned baseline
-
-**Stage / source classification:** `S3 / P2`
-
-**Historical evidence:** Positive observations identified in original report; family-specific A/B/C sign-off not demonstrated by aggregate review.
-
-**Identified weakness / gap:** Specific assertion acceptance is not documented.
-
-**Implementation task:** Preserve recorded protections and link A/B/C evidence to the report before sign-off.
-
-**Core checkpoints:** `KHAHP-02.07A`, `KHAHP-02.07B`, `KHAHP-02.07C`
-
-**Source / evidence status:** 02-kicksecure-package-provenance-20261012-115518.txt | HISTORICAL EVIDENCE REVIEWED; NO PATCH DEMONSTRATED
+1. Executive scope and public challenge
+2. Commercial roadmap — KHAHP Premium Hardened OS (USD $1,250)
+3. Evidence standard, vocabulary, and publication safety
+4. Documentation release reconciliation — Sections 01–44
+5. Proven implementation and historical observations — Sections 01–34
+6. Public evidence-to-action register — outstanding fixes and proof
+7. Complete 44-section evidence orientation
+8. Master technical control register — all 308 families and 924 gates
+9. Future implementation and evidence publication process
+10. Proposed commercial-image release test suite — all 60 tests
+11. Open challenge: independent review criteria
+12. Source bibliography, limits and revision policy
 
 ---
 
-## 03 — USER / SYSMAINT Privilege Architecture
+## 1. Executive scope and public challenge
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+KHAHP is an evidence-driven, high-assurance defensive-security engineering project built on Kicksecure, a Debian-derived operating system. It uses a separated **USER** daily-operation context and **SYSMAINT** administrative context and evaluates privileges, encryption, kernel hardening, networking, service isolation, auditing, privacy and disaster recovery in the correct role.
 
-### 03.01 — USER, SYSMAINT and root account separation
+The challenge is not to claim perfect security. It is to demonstrate **which controls exist, what they actually do, whether they survive reboots or updates, and what defects or exceptions remain**. Appropriate participants include defensive-security engineers, operating-system specialists, red/blue teams, academic researchers, and authorized security reviewers. Potential uses include government/law-enforcement work, investigative journalism and source protection, finance, critical infrastructure, executive security and other sensitive deployments, subject to each organization’s own rules and assessments.
 
-**Stage / source classification:** `S3 / P2`
+| Defined scope | Quantity | Meaning |
+|---|---:|---|
+| Security sections | **44** | Seven families per section |
+| Control families | **308** | Stable identifiers 01.01 through 44.07 |
+| A/B/C acceptance gates | **924** | Source/provenance, runtime enforcement, persistence/negative/recovery |
+| Proposed product release tests | **60** | Clean build, physical media, KVM and VirtualBox |
+| Combined planned verification scope | **984** | **Not** 984 exploited vulnerabilities or 984 completed patches |
 
-**Historical evidence:** Positive observations identified in original report; family-specific A/B/C sign-off not demonstrated by aggregate review.
+The original challenge recorded **over 120 engineering hours** in its October 2026 publication; this was a dated historical statement, not a current live hour counter. New evidence has been added since that initial publication.
 
-**Identified weakness / gap:** Specific assertion acceptance is not documented.
+## 2. Commercial roadmap — KHAHP Premium Hardened OS
 
-**Implementation task:** Preserve recorded protections and link A/B/C evidence to the report before sign-off.
+### Proposed price: **USD $1,250**
 
-**Core checkpoints:** `KHAHP-03.01A`, `KHAHP-03.01B`, `KHAHP-03.01C`
+**The proposed KHAHP Premium Hardened OS price remains USD $1,250.** This is a development-stage commercial proposition—not an available, fully certified product or a guarantee of security, anonymity, hardware compatibility or availability. The planned product must pass the release gates and documented owner acceptance before shipping.
 
-**Source / evidence status:** 03-user-sysmaint-privilege-architecture-20261012-125417.txt | HISTORICAL EVIDENCE REVIEWED; NO PATCH DEMONSTRATED
+| Planned edition | Target format | Primary acceptance concerns |
+|---|---|---|
+| **Physical** | Bootable ISO / USB pendrive | Fresh encrypted installation, Secure Boot, firmware limits, peripheral safety, recovery |
+| **KVM** | QCOW2 / QEMU-KVM | Host/guest isolation, fresh cloned identities, virtual TPM, snapshots, network policy |
+| **VirtualBox** | OVA virtual appliance | Unique identity on import, disabled risky integrations, virtual network/USB handling, restore |
 
-### 03.02 — Distinct UID/GID and home-directory boundaries
+Commercial release must use a **clean reproducible image build**, never a direct clone of the development laptop. Every customer instance needs unique credentials/host keys and independently demonstrated recovery behavior. The 60 proposed tests are preserved in Section 10.
 
-**Stage / source classification:** `S3 / P2`
+## 3. Evidence standard, vocabulary, and publication safety
 
-**Historical evidence:** Positive observations identified in original report; family-specific A/B/C sign-off not demonstrated by aggregate review.
+| Gate | Acceptance meaning | Evidence required |
+|---|---|---|
+| **A — Source** | Package ownership, configuration provenance, intended security policy | Approved source/config delta and supporting references |
+| **B — Runtime** | Live implementation works as intended | Correct-role observations plus appropriate authorized negative tests |
+| **C — Persistence** | Protection survives expected lifecycle and safe recovery | Controlled reboot, service restart, network change, patch update, or approved exception |
 
-**Identified weakness / gap:** Specific assertion acceptance is not documented.
+**Status vocabulary**: `DOCUMENTED` means an independently authored dossier exists; `OBSERVED` means a narrowly defined test recorded a fact; `REVIEW` means insufficient interpretation or an unexpected observation; `NOT_TESTED` means no appropriate test was performed; `EXC` means an exception requiring rationale; `CHG` means a documented actual change. None means a complete A/B/C family pass. All **924** formal gate approvals remain **OPEN / NOT SIGNED OFF** in this public baseline; evidence for individual gates can nevertheless be useful.
 
-**Implementation task:** Preserve recorded protections and link A/B/C evidence to the report before sign-off.
+**Public/private division:** This release deliberately excludes raw log lines, hostnames, usernames, private/local IP addresses, MAC addresses, device serials, machine UUIDs, real recovery identifiers, secrets, SSH keys, full firewall rules, browser history, uploaded private reports and sensitive system-specific configuration paths. Sanitized summaries describe test outcomes and required next evidence. Private, timestamped, checksummed reports remain in restricted project custody.
 
-**Core checkpoints:** `KHAHP-03.02A`, `KHAHP-03.02B`, `KHAHP-03.02C`
+**Risk handling:** A missing demonstration is not a vulnerability. A package-owned exception is not automatically a defect. A negative finding is escalated to a patch only after authorized reproduction, source ownership, impact analysis, tested rollback and explicit owner approval. Unsupported absolute claims such as "unhackable," "fully anonymous," or "DISA-certified" are not used.
 
-**Source / evidence status:** 03-user-sysmaint-privilege-architecture-20261012-125417.txt | HISTORICAL EVIDENCE REVIEWED; NO PATCH DEMONSTRATED
+**Reference frameworks:** CIS Debian Linux 13 Level 2 Workstation, applicable DISA GPOS SRG objectives, historical STIG-oriented guidance and KSPP self-protection principles are mapping aids, not certification or proof of full compliance.
 
-### 03.03 — user-sysmaint-split package and owned policy files
+## 4. Documentation release reconciliation — Sections 01–44
 
-**Stage / source classification:** `S3 / P2`
+| Tranche | Sections | Families | Gates | What is actually complete | What remains |
+|---|---:|---:|---:|---|---|
+| A | 01–14 | 98 | 294 | Technical dossier v1.0; source reviews; one targeted /tmp improvement with USER reboot evidence | Remaining controlled negative/recovery tests and final A/B/C approvals |
+| B | 15–24 | 70 | 210 | Technical dossier v1.0; source reconciliation; 22 categorized follow-up records | Formal gate review, manual/policy exceptions and authorized post-change regressions |
+| C | 25–34 | 70 | 210 | Technical documentation v1.0; 520 indexed historical observations and newer v6.1 target runs | 23 outstanding issues including effective USB/DNS/Tor/LAN enforcement and provenance |
+| D | 35–44 | 70 | 210 | Historical evidence review; read-only verifier source passed offline QA | Actual target-run verification, evidence reconciliation, real backup/restore and Section 44 sign-off |
+| **Total** | **01–44** | **308** | **924** | **34 sections documented; final assurance ongoing** | **All formal gates remain open until review** |
 
-**Historical evidence:** Positive observations identified in original report; family-specific A/B/C sign-off not demonstrated by aggregate review.
+**Critical source limitation:** The Sections 15–24 documentation archive indexes original evidence filenames/hashes but does not contain every underlying report body. The Sections 35–44 review documents historical findings but its latest grand verifier has not been shown running on the production laptop; no executed Section 44 report is present. These source limitations must not be filled with assumptions.
 
-**Identified weakness / gap:** Specific assertion acceptance is not documented.
+## 5. Proven implementation and historical observations — Sections 01–34
 
-**Implementation task:** Preserve recorded protections and link A/B/C evidence to the report before sign-off.
+The following high-level observations are supported by the privately held engineering dossiers. Their publication does **not** reveal exact per-host rules or identifiers and does **not** close any unreviewed acceptance gates.
 
-**Core checkpoints:** `KHAHP-03.03A`, `KHAHP-03.03B`, `KHAHP-03.03C`
+| Scope | Observed/documented implementation evidence | Boundary of proof |
+|---|---|---|
+| 01–05 | Kicksecure/OS inventory, USER/SYSMAINT privilege restrictions, account and package-provenance reviews | Device-specific and post-upgrade properties require dated verification |
+| 06–08 | Encrypted root and swap ancestry, bootloader policy; temporary-filesystem hardening applied and observed after ordinary USER reboot | Recovery, physical boot bypass and SYSMAINT post-reboot evidence pending |
+| 09–14 | CPU mitigations, IOMMU, sysctl and module policy; later Secure Boot and signed DKMS observations | Kernel build truth, firmware protection and lifecycle regressions still open |
+| 15–19 | AppArmor active for selected services, privilege executable inventory, PAM hardening, restricted network SSH | Firefox confinement, vendor permission exception, policy and negative tests remain |
+| 20–24 | Role-aware services, existing sandboxing, core-dump suppression, journal integrity and guarded recovery state | Service drift, retention design and safe recovery tests remain |
+| 25–29 | Memory-initialization flags, USBGuard policy inventory, randomized Wi-Fi setting, IPv6-disable observation, local Unbound | Physical enforcement, over-air identity and DNS transition behavior require proof |
+| 30–34 | DNSSEC positive/negative results, configured DoT forwarding, firewall base-chain policy, active Tor and secure-time services | Authenticated DoT, DNS egress verdicts, LAN peer tests, selective Tor and time chronology remain unproven |
 
-**Source / evidence status:** 03-user-sysmaint-privilege-architecture-20261012-125417.txt | HISTORICAL EVIDENCE REVIEWED; NO PATCH DEMONSTRATED
+### Historical correction examples
 
-### 03.04 — sudo binary ownership, mode and SYSMAINT-only execution
+- **CHG-07-01:** A real targeted /tmp mount hardening change was documented, with a backup, immediate runtime result and subsequent ordinary USER reboot evidence. This is not a blanket acceptance of every filesystem policy.
+- **Secure Boot / DKMS:** An older disabled Secure Boot snapshot was superseded by later enabled-state and signed-module evidence. Old and new observations have different dates and are not mutually contradictory.
+- **Vendor AppArmor and permissions:** Firefox confinement and a package-maintained writable status cache are known design/compatibility reviews, not instructions to overwrite vendor-owned files blindly.
+- **USB recovery medium:** An owned removable Kicksecure installation medium was authorized and detected as a block device. Its installer-format filesystem not being auto-mounted is not proof USBGuard malfunctioned.
 
-**Stage / source classification:** `S3 / P2`
+## 6. Public evidence-to-action register — what still needs fixing or proving
 
-**Historical evidence:** Positive observations identified in original report; family-specific A/B/C sign-off not demonstrated by aggregate review.
+**Reading rule:** Each line is an engineering evidence gap or a documented exception. Words such as **needs work** mean remediation *or further evidence*, not necessarily an exploitable defect. Every record is unapproved for automatic patching.
 
-**Identified weakness / gap:** Specific assertion acceptance is not documented.
+### 6A. Sections 01–14: source-derived change and review ledger
 
-**Implementation task:** Preserve recorded protections and link A/B/C evidence to the report before sign-off.
+| ID | Area | Type | Public evidence | What is needed before acceptance or patch |
+|---|---|---|---|---|
+| CHG-07-01 | 07 | Verified improvement | The temporary filesystem gained restrictive mount flags and the change was observed after an ordinary USER reboot. | Preserve the approved backup and confirm SYSMAINT reboot and application compatibility; no automatic reapply. |
+| EXC-07-01 | 07 | Compatibility exception | Executing files from shared temporary filesystems remains a documented compatibility trade-off. | Review applications before considering a noexec change; do not force a global restriction. |
+| EXC-07-02 | 07 | Unresolved review | A broader fstab check reported an ordering concern unrelated to the verified temporary-filesystem change. | Review boot ordering separately and test only with a recovery procedure. |
+| REV-02-01 | 02 | Provenance discrepancy | The presence of a package-managed hardening policy differed from a simplistic package-name probe. | Attribute the actual files to installed packages before labeling a missing tool or recommending installation. |
+| REV-05-01 | 05 | Classification review | A low-privilege system account and its locked authentication state needed context-sensitive interpretation. | Verify account purpose and acceptable shell behavior without changing accounts blindly. |
+| REV-09-12 | 09 | Unverified mitigation claim | Some historical kernel command-line tokens were not enough to prove the intended hardening mechanisms activated. | Confirm kernel build support and effective runtime behavior before claiming CFI/KCFI or equivalent. |
+| REV-13-01 | 13 | Applicability review | Module inspection had ambiguity between built-in and dynamically loadable components. | Resolve module applicability without actually loading a disallowed module. |
+| REV-14-01 | 14 | Role-specific reconciliation | An earlier restricted-user DKMS warning conflicted with more authoritative privileged evidence of signed installed builds. | Retain both timestamps; verify signing and kernel-update regression without re-enrolling keys for an old warning. |
+| MAN-08 | 08 | Manual test pending | Bootloader protection was observed by source inspection, not by a supervised physical edit-denial test. | Require an approved supervised recovery-capable physical test. |
+| MAN-06 | 06 | Manual test pending | Encrypted root and on-disk swap ancestry have evidence, but secret recovery and restore were not demonstrated. | Perform isolated authorized recovery exercises; never publish recovery material. |
+| MAN-10 | 10 | Manual test pending | DMA mitigation observations do not establish all preboot hardware behavior. | Evaluate firmware/IOMMU applicability in an owned safe test environment. |
+| MAN-01-14 | 01–14 | Acceptance gap | A USER reboot verified a narrow change; the complete two-role multi-control signoff remains unfinished. | Complete per-family A/B/C evidence review, compatibility tests, and role-matched persistence verification. |
 
-**Core checkpoints:** `KHAHP-03.04A`, `KHAHP-03.04B`, `KHAHP-03.04C`
+### 6B. Sections 15–24: all 22 tracked evidence, exception and policy items
 
-**Source / evidence status:** 03-user-sysmaint-privilege-architecture-20261012-125417.txt | HISTORICAL EVIDENCE REVIEWED; NO PATCH DEMONSTRATED
+| Tracking ID | Section | Concern | Evidence-backed finding (sanitized) | Required work |
+|---|---:|---|---|---|
+| I15-001 | 15 | Strict Firefox AppArmor confinement is not established | Firefox was observed without strict AppArmor confinement in the historical USER snapshot; package profile semantics need review. | Design complete browser profile in isolated test build; verify compat before enforce; do not aa-enforce the placeholder. |
+| I15-002 | 15 | AppArmor service policy and denial regression | Key system services appeared under enforced AppArmor profiles, but comprehensive deny/compatibility regressions are incomplete. | Gather role-matched current labels and sanitized denial counts; validate intentional exception handling. |
+| I15-003 | 15 | USER versus SYSMAINT browser-label persistence | Browser confinement evidence exists in USER, not SYSMAINT; a role-specific persistence comparison is missing. | Confirm expected role separation after approved boot/browser update. |
+| I15-004 | 16 | Privileged binary provenance/drift review | Privileged executable inventories were package-attributed; drift after upgrades remains to be reviewed. | Compare later package-owned SUID/SGID inventory to baseline; investigate only new paths. |
+| I15-005 | 16 | gst-ptp-helper capability policy/compatibility | A package-provided multimedia helper carried capabilities; compatibility and least-privilege exceptions need review. | Record package version, capability purpose and risk acceptance; no blind setcap/strip. |
+| I15-006 | 17 | setup-dist status-files 0777 exception monitoring | A vendor-maintained status directory is deliberately world-writable; blanket chmod would conflict with package behavior. | Verify package origin/upgrade behavior, threat acceptance and app compatibility before any proposed restriction. |
+| I15-007 | 17 | Sensitive directory/ACL/umask and tmpfs drift | Restrictive umask and the documented temporary-filesystem protection were observed; broader permission and ACL drift needs monitoring. | Test effective modes, ACLs and /tmp semantics after package upgrades/reboot; do not recreate Section 01–14 patch. |
+| I15-008 | 18 | faillock recovery and self-lockout policy | A restrictive faillock lockout policy was observed; self-lockout recovery and safety requirements need approval. | Define documented emergency recovery and owner-approved threshold change criteria without password guessing. |
+| I15-009 | 18 | Passphrase/aging policy ownership | Yescrypt was observed; independent minimum passphrase and aging policy decisions remain outstanding. | Decide policy on minimum passphrase length, compromise reset and password aging; never collect passwords. |
+| I15-010 | 18 | PAM USER/SYSMAINT interaction regression | Privileged USER/SYSMAINT authentication boundaries were observed; approved login-regression evidence remains limited. | Record authorized login/su/polkit behavior by boot role after package updates; avoid intentional lockouts. |
+| I15-011 | 19 | Network SSH masking and listener persistence | Network-facing SSH listener was absent and SSH services masked in the inspected state; future updates need role-aware persistence checks. | Check paired-role listener and masking after reboot/update without enabling SSH. |
+| I15-012 | 19 | Local SSH AF_UNIX socket and client key policy | A local-only SSH socket exception and SSH client key-handling requirements need explicit ongoing review. | Preserve socket; review known-hosts, private-key permissions and crypto policy locally without exporting secrets. |
+| I15-013 | 20 | Role-specific systemd service drift and listening sockets | The two boot roles have different expected services; isolated snapshots cannot certify service persistence after updates. | Capture expected-role service activation and listener ownership after approved reboot/upgrade. |
+| I15-014 | 20 | Classify unexpected/unused services safely | Required vendor services must be attributed before suggesting removal or disablement. | Make owner-approved exception/disable plan only after attribution and compatibility analysis. |
+| I15-015 | 21 | Unbound systemd exposure score needs design decision | A systemd exposure score for the local DNS resolver does not itself demonstrate exploitable exposure; sandbox changes need lab testing. | Design optional hardening in test environment with DNS resolution and boot-role regression. |
+| I15-016 | 21 | Service sandbox capability regression | Services have existing hardening settings; further capability restrictions require per-service regression. | Check package unit changes and test service behavior before any additional restrictions. |
+| I15-017 | 22 | Core dump/pstore suppression drift | Crash-dump suppression controls were observed; repeatable drift verification is needed after kernel and package updates. | Verify effective sources and runtime after kernel upgrade/reboot; never generate a core or panic as part of audit. |
+| I15-018 | 22 | Crash-forensics versus privacy trade-off | Reducing retained crash artifacts improves privacy but limits forensics; the trade-off remains a documented policy decision. | Document privacy/forensics exception and non-sensitive alternatives for incident response. |
+| I15-019 | 23 | Journal retention, permissions and rotation policy | Journal integrity passed in an inspected context; retention, storage budgets and access policy still need owner review. | Approve retention bounds, storage budget, forwarding scope and log access without disabling journald. |
+| I15-020 | 23 | sdwdate time and journal chronology after reboot | Secure-time usage is documented, but reboot-to-journal chronology needs a role-aware check. | Record role-matched service chronology and post-boot time/log consistency safely. |
+| I15-021 | 24 | Owner-approved panic/recovery policy and escape paths | Emergency shell restrictions and vendor panic policy were observed; availability-versus-integrity trade-offs require approval. | Decide availability versus integrity policy and written recovery procedure without injecting panic/failed boot. |
+| I15-022 | 24 | Emergency shutdown and controlled recovery evidence | Emergency shutdown was observed; destructive failure-mode testing has not been performed on the production laptop. | Use authorized isolated recovery scenario, boot media and rollback evidence only after explicit safety approval. |
 
-### 03.05 — sudoers syntax and user-sysmaint- split policy
+**Interpretation:** The private 15–24 dossier describes its ten sections as technically *reconciled/closed*, not the 210 A/B/C acceptance gates as signed. Several findings are vendor exceptions or policy questions, not discovered vulnerabilities. The tracker contains **zero approved patch changes**.
 
-**Stage / source classification:** `S3 / P2`
+### 6C. Sections 25–34: all 23 follow-up records
 
-**Historical evidence:** Positive observations identified in original report; family-specific A/B/C sign-off not demonstrated by aggregate review.
+| ID | Section | Priority | Evidence-backed concern | Needed verification / controlled action |
+|---|---:|---|---|---|
+| I-001 | 26 | HIGH | Operator typed “allowed” in USB guide; functional keystroke confirmation and matching logs unavailable. | Verify physical typing and first matching authorized rule locally; do not reload policy. |
+| I-002 | 26 | MEDIUM | 6 allow/26 reject rule verbs seen; device precedence and phone/Ethernet adapter untested. | Controlled per-device hotplug, current rule precedence and post-reboot results. |
+| I-003 | 25 | MEDIUM | SYSMAINT one active swap file; B1 reported LUKS backing; role/time differences. | Private mapping of underlying crypto parent + key lifecycle, no sensitive key export. |
+| I-004 | 25 | MEDIUM | Kernel alloc/free flags active; hook execution and cold-boot scope unresolved. | Inspect package hook/normal shutdown chronology; record risk exception. |
+| I-005 | 27 | MEDIUM | Profile random configured; runtime/permanent comparison unknown. | Supervised local comparison and radio/peer observation. |
+| I-006 | 27 | MEDIUM | DHCP client-ID unspecified; emitted identifier not inspected. | Controlled reconnection on owned network without uploading identifiers. |
+| I-007 | 28 | LOW | Kernel disabled across USER reboot, but other profiles and AF_INET6 sockets not independently validated. | Review alternate profile/listeners and browser regression; confirm policy remains disablement. |
+| I-008 | 29 | MEDIUM | Service and localhost resolver observed; transition behavior missing. | Controlled network-change and resolver fallback check with console recovery. |
+| I-009 | 30 | HIGH | TLS forward-zone declared; socket sightings cannot prove process-bound authenticated certificate checking. | Correlate Unbound-owned session, trusted name and chain with approved upstream diagnostics. |
+| I-010 | 30 | HIGH | Authorized external resolver absent; outbound nft rules appear to target port 53 but verdict unknown. | Construct approved owned controlled responder and test UDP and TCP separately; counters required. |
+| I-011 | 30 | MEDIUM | One Firefox pref file mode 5; active profile and Tor Browser behavior not independently confirmed. | USER browser runtime and profile-specific DNS inspection. |
+| I-012 | 31 | HIGH | Output policy accept, 2 candidate port53 drop/reject rules; actual packet verdict unobserved. | Review nft rule order/protocol selectors and authorized packet/counter correlation; preserve rollback. |
+| I-013 | 31 | MEDIUM | B2 supports service active across reboot, not identical ruleset. | Compare normalized loaded nft state across approved USER boots. |
+| I-014 | 32 | MEDIUM | Four protocol outcomes all inconclusive in LAN guide. | Capture or observe protocol-specific replies from owned peer with protocol labels. |
+| I-015 | 33 | MEDIUM | Tor active; no designated browser-specific enforcement check completed. | Define scoped applications and test Tor Browser proxy/DNS safely; no global Tor stop. |
+| I-016 | 34 | MEDIUM | sdwdate/time sanity/boot randomization active with zero error keywords; actual one-shot steps unclear. | Review unit type/journals across boot/resume; VM-only jump simulation. |
+| I-017 | 25 | MEDIUM | Most uploaded code is verifier logic; original applying script/commit unavailable. | Gather original change artifacts, package metadata and redacted configuration diffs before claiming reproducibility. |
+| I-018 | 26 | LOW | ISO9660 Kicksecure installation medium allowed/detected but not auto-mounted. | No fix unless normal removable data storage is a requirement; preserve installation/recovery USB. |
+| I-019 | 28 | MEDIUM | Past plans contemplated advanced IPv6 privacy, current system uses ipv6.disable=1. | Make a written decision on disabled vs dual-stack policy before any future implementation. |
+| I-020 | 29 | MEDIUM | Unbound active in USER, intentionally may differ in SYSMAINT. | Record explicit service-role matrix; prevent cross-role false failures. |
+| I-021 | 30 | MEDIUM | Repeated B3.1 DNSSEC response statuses observed; no assertion review signed. | Review source IDs and negative-test methodology before acceptance. |
+| I-022 | 32 | LOW | Static service inventory does not establish multicast behavior. | Map per-service listeners and observed peer traffic. |
+| I-023 | 34 | LOW | Clock rollback or secure-time attack simulation inappropriate on current laptop. | Reserve disposable VM and document expected outcome / residual risk. |
 
-**Identified weakness / gap:** Specific assertion acceptance is not documented.
+**Latest v6.1 interpretation:** USER and SYSMAINT diagnostic runs completed with checksummed summaries, but they did not fully execute every A/B/C gate. The supervised LAN guide recorded *inconclusive* peer observations. A spare USB keyboard was operator-reported "allowed" despite an intended deny rule; functionality was not independently proven, so this remains a **potential** policy deviation. The USB installation medium was detected and authorized as intended. No external DNS egress test was run without a controlled authorized endpoint.
 
-**Implementation task:** Preserve recorded protections and link A/B/C evidence to the report before sign-off.
+### 6D. Sections 35–44: provisional acceptance and future work plan
 
-**Core checkpoints:** `KHAHP-03.05A`, `KHAHP-03.05B`, `KHAHP-03.05C`
+| Section | Historical evidence available | Required future evidence, action or decision | Current disposition |
+|---|---|---|---|
+| 35 — Entropy / RNG | Historical entropy/rng evidence and seed-management policy reviewed; target-side current run unavailable. | Record early-boot quality, seed handling, package choices and role-matched persistence. | PROVISIONAL — TARGET TEST / SIGN-OFF PENDING |
+| 36 — Browser DoH / WebRTC / Telemetry | Historical browser preference source restrictions; effective runtime prefs were not conclusively established. | Run USER browser checks for DNS-over-HTTPS, WebRTC leakage, telemetry and upgrades. | PROVISIONAL — TARGET TEST / SIGN-OFF PENDING |
+| 37 — Application / File / Metadata Privacy | Historical metadata/indexing and synthetic sanitization observations reported. | Revisit app caches, thumbnails, history retention and runtime confinement. | PROVISIONAL — TARGET TEST / SIGN-OFF PENDING |
+| 38 — Camera / Microphone / Power / Screen Lock | Historical USER camera/mic access denial, screen-lock configuration noted. | Prove actual idle lock, lid/suspend/resume authentication and hotplug behavior. | PROVISIONAL — TARGET TEST / SIGN-OFF PENDING |
+| 39 — Firmware / BIOS / Secure Boot / TPM | Historical Secure Boot/MOK and TPM observations; fwupd HSI:1! needs interpretation. | Owner-controlled firmware/DMA/boot policy inspection; no blind MOK re-enrollment. | PROVISIONAL — TARGET TEST / SIGN-OFF PENDING |
+| 40 — Auditd / AIDE / Integrity Monitoring | Five USER audit rule keys and existing AIDE evidence described historically. | Verify permitted audit event retrieval, AIDE alert lifecycle and retention; do not reinitialize AIDE. | PROVISIONAL — TARGET TEST / SIGN-OFF PENDING |
+| 41 — Cron / Timers / Persistence / Supply Chain | Historical timer/cron and dpkg provenance checks exist. | Establish desktop autostart provenance, signing sources and two-boot drift. | PROVISIONAL — TARGET TEST / SIGN-OFF PENDING |
+| 42 — Credentials / SSH Keys / Secrets / Backup | SSH restricted, disposable backup/crypto fixture documented; production restore not shown. | Complete actual encrypted backup, isolated restore and release-secret exclusion. | PROVISIONAL — TARGET TEST / SIGN-OFF PENDING |
+| 43 — CIS / DISA GPOS / KSPP Mapping | Preliminary CIS/DISA/KSPP mapping undertaken; many entries need evidence review. | Confirm applicability and source mapping one by one; no certification claim. | PROVISIONAL — TARGET TEST / SIGN-OFF PENDING |
+| 44 — Final Acceptance / Evidence / Scoring | No completed archived Section 44 execution report. | Complete two-role/two-boot regressions, negative tests, recovery and final owner sign-off. | PROVISIONAL — TARGET TEST / SIGN-OFF PENDING |
 
-**Source / evidence status:** 03-user-sysmaint-privilege-architecture-20261012-125417.txt | HISTORICAL EVIDENCE REVIEWED; NO PATCH DEMONSTRATED
+**Historical caution:** The old Section 39 MOK-warning classification and Section 40 AIDE argument error were resolved or reinterpreted by later evidence. Do not invent new key enrollment or initialize a fresh integrity baseline solely to clear those old diagnostic warnings. Section 43 historical "evidence review" recommendations are not a tally of proven vulnerabilities. Section 44 remains a formal acceptance gate, not a performed security assessment.
 
-### 03.06 — USER negative sudo/root acquisition probe
+## 7. Complete 44-section evidence orientation
 
-**Stage / source classification:** `S3 / P2`
+The following section summaries indicate which implementation evidence exists and the exact *kind of proof still required*. This makes the register useful for external reviewers without releasing private target logs.
 
-**Historical evidence:** Positive observations identified in original report; family-specific A/B/C sign-off not demonstrated by aggregate review.
+### 01 — Platform / OS / Hardware Baseline
 
-**Identified weakness / gap:** Specific assertion acceptance is not documented.
+**Disposition:** DOCUMENTATION BASELINE COMPLETE; FORMAL A/B/C REVIEW OPEN.
 
-**Implementation task:** Preserve recorded protections and link A/B/C evidence to the report before sign-off.
+**Documented/observed:** Platform and OS baseline documented in 01–14 technical dossier.
 
-**Core checkpoints:** `KHAHP-03.06A`, `KHAHP-03.06B`, `KHAHP-03.06C`
+**What still needs evidence or action:** Refresh actual hardware/OS scope before translating source-only observations into accepted controls.
 
-**Source / evidence status:** 03-user-sysmaint-privilege-architecture-20261012-125417.txt | HISTORICAL EVIDENCE REVIEWED; NO PATCH DEMONSTRATED
-
-### 03.07 — Login-shell and boot-role separation behavior
-
-**Stage / source classification:** `S3 / P2`
-
-**Historical evidence:** Positive observations identified in original report; family-specific A/B/C sign-off not demonstrated by aggregate review.
-
-**Identified weakness / gap:** Specific assertion acceptance is not documented.
-
-**Implementation task:** Preserve recorded protections and link A/B/C evidence to the report before sign-off.
-
-**Core checkpoints:** `KHAHP-03.07A`, `KHAHP-03.07B`, `KHAHP-03.07C`
-
-**Source / evidence status:** 03-user-sysmaint-privilege-architecture-20261012-125417.txt | HISTORICAL EVIDENCE REVIEWED; NO PATCH DEMONSTRATED
+**Seven registered families:** `01.01` Operating-system identity and Debian/Kicksecure release baseline; `01.02` Kernel release, architecture and build identity; `01.03` CPU model, topology and virtualization capability; `01.04` Physical memory and swap capacity baseline; `01.05` Storage controller, disk and filesystem topology; `01.06` UEFI/bare-metal/virtualization platform state; `01.07` Failed-unit, uptime, boot-time and baseline health state.
 
 ---
 
-## 04 — SYSMAINT Target / Boot Role
+### 02 — Kicksecure Package Provenance
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** DOCUMENTATION BASELINE COMPLETE; FORMAL A/B/C REVIEW OPEN.
 
-### 04.01 — boot-role=sysmaint kernel marker
+**Documented/observed:** Kicksecure package provenance recorded; a package-classifier discrepancy was documented.
 
-**Stage / source classification:** `S3 / P2`
+**What still needs evidence or action:** Reconcile exact package ownership and versions; do not prescribe installing absent packages based on heuristic names.
 
-**Historical evidence:** Positive observations identified in original report; family-specific A/B/C sign-off not demonstrated by aggregate review.
-
-**Identified weakness / gap:** Specific assertion acceptance is not documented.
-
-**Implementation task:** Preserve recorded protections and link A/B/C evidence to the report before sign-off.
-
-**Core checkpoints:** `KHAHP-04.01A`, `KHAHP-04.01B`, `KHAHP-04.01C`
-
-**Source / evidence status:** 04-sysmaint-target-boot-role-20261012-124800.txt | HISTORICAL EVIDENCE REVIEWED; NO PATCH DEMONSTRATED
-
-### 04.02 — systemd.unit=sysmaint-boot.target marker
-
-**Stage / source classification:** `S3 / P2`
-
-**Historical evidence:** Positive observations identified in original report; family-specific A/B/C sign-off not demonstrated by aggregate review.
-
-**Identified weakness / gap:** Specific assertion acceptance is not documented.
-
-**Implementation task:** Preserve recorded protections and link A/B/C evidence to the report before sign-off.
-
-**Core checkpoints:** `KHAHP-04.02A`, `KHAHP-04.02B`, `KHAHP-04.02C`
-
-**Source / evidence status:** 04-sysmaint-target-boot-role-20261012-124800.txt | HISTORICAL EVIDENCE REVIEWED; NO PATCH DEMONSTRATED
-
-### 04.03 — sysmaint-boot.target package provenance and unit content
-
-**Stage / source classification:** `S3 / P2`
-
-**Historical evidence:** Positive observations identified in original report; family-specific A/B/C sign-off not demonstrated by aggregate review.
-
-**Identified weakness / gap:** Specific assertion acceptance is not documented.
-
-**Implementation task:** Preserve recorded protections and link A/B/C evidence to the report before sign-off.
-
-**Core checkpoints:** `KHAHP-04.03A`, `KHAHP-04.03B`, `KHAHP-04.03C`
-
-**Source / evidence status:** 04-sysmaint-target-boot-role-20261012-124800.txt | HISTORICAL EVIDENCE REVIEWED; NO PATCH DEMONSTRATED
-
-### 04.04 — Required SYSMAINT dependencies and wanted units
-
-**Stage / source classification:** `S3 / P2`
-
-**Historical evidence:** Positive observations identified in original report; family-specific A/B/C sign-off not demonstrated by aggregate review.
-
-**Identified weakness / gap:** Specific assertion acceptance is not documented.
-
-**Implementation task:** Preserve recorded protections and link A/B/C evidence to the report before sign-off.
-
-**Core checkpoints:** `KHAHP-04.04A`, `KHAHP-04.04B`, `KHAHP-04.04C`
-
-**Source / evidence status:** 04-sysmaint-target-boot-role-20261012-124800.txt | HISTORICAL EVIDENCE REVIEWED; NO PATCH DEMONSTRATED
-
-### 04.05 — Intentionally omitted USER-only or incompatible hardeners
-
-**Stage / source classification:** `S3 / P2`
-
-**Historical evidence:** Positive observations identified in original report; family-specific A/B/C sign-off not demonstrated by aggregate review.
-
-**Identified weakness / gap:** Specific assertion acceptance is not documented.
-
-**Implementation task:** Preserve recorded protections and link A/B/C evidence to the report before sign-off.
-
-**Core checkpoints:** `KHAHP-04.05A`, `KHAHP-04.05B`, `KHAHP-04.05C`
-
-**Source / evidence status:** 04-sysmaint-target-boot-role-20261012-124800.txt | HISTORICAL EVIDENCE REVIEWED; NO PATCH DEMONSTRATED
-
-### 04.06 — Conflicting USER/graphical boot-role negative checks
-
-**Stage / source classification:** `S3 / P2`
-
-**Historical evidence:** Positive observations identified in original report; family-specific A/B/C sign-off not demonstrated by aggregate review.
-
-**Identified weakness / gap:** Specific assertion acceptance is not documented.
-
-**Implementation task:** Preserve recorded protections and link A/B/C evidence to the report before sign-off.
-
-**Core checkpoints:** `KHAHP-04.06A`, `KHAHP-04.06B`, `KHAHP-04.06C`
-
-**Source / evidence status:** 04-sysmaint-target-boot-role-20261012-124800.txt | HISTORICAL EVIDENCE REVIEWED; NO PATCH DEMONSTRATED
-
-### 04.07 — Failed units and SYSMAINT boot health
-
-**Stage / source classification:** `S3 / P2`
-
-**Historical evidence:** Positive observations identified in original report; family-specific A/B/C sign-off not demonstrated by aggregate review.
-
-**Identified weakness / gap:** Specific assertion acceptance is not documented.
-
-**Implementation task:** Preserve recorded protections and link A/B/C evidence to the report before sign-off.
-
-**Core checkpoints:** `KHAHP-04.07A`, `KHAHP-04.07B`, `KHAHP-04.07C`
-
-**Source / evidence status:** 04-sysmaint-target-boot-role-20261012-124800.txt | HISTORICAL EVIDENCE REVIEWED; NO PATCH DEMONSTRATED
+**Seven registered families:** `02.01` Core Kicksecure package installation and exact versions; `02.02` Supporting security-package installation and exact versions; `02.03` APT source files and repository configuration; `02.04` APT policy and repository origin attribution; `02.05` Package ownership of security-critical configuration files; `02.06` Package holds, partial installs and dpkg database health; `02.07` Local modifications versus package-owned baseline.
 
 ---
 
-## 05 — Accounts / UID / GID / Local Identity
+### 03 — USER / SYSMAINT Privilege Architecture
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** DOCUMENTATION BASELINE COMPLETE; FORMAL A/B/C REVIEW OPEN.
 
-### 05.01 — root, USER and SYSMAINT account identity
+**Documented/observed:** Privilege separation and USER execution restrictions observed.
 
-**Stage / source classification:** `S3 / P2`
+**What still needs evidence or action:** Verify boot-role and upgrade regressions without weakening SYSMAINT boundaries.
 
-**Historical evidence:** Positive observations identified in original report; family-specific A/B/C sign-off not demonstrated by aggregate review.
-
-**Identified weakness / gap:** Specific assertion acceptance is not documented.
-
-**Implementation task:** Preserve recorded protections and link A/B/C evidence to the report before sign-off.
-
-**Core checkpoints:** `KHAHP-05.01A`, `KHAHP-05.01B`, `KHAHP-05.01C`
-
-**Source / evidence status:** 05-accounts-uid-gid-local-identity-20261012-130203.txt | HISTORICAL EVIDENCE REVIEWED; NO PATCH DEMONSTRATED
-
-### 05.02 — Duplicate UID and duplicate GID detection
-
-**Stage / source classification:** `S3 / P2`
-
-**Historical evidence:** Positive observations identified in original report; family-specific A/B/C sign-off not demonstrated by aggregate review.
-
-**Identified weakness / gap:** Specific assertion acceptance is not documented.
-
-**Implementation task:** Preserve recorded protections and link A/B/C evidence to the report before sign-off.
-
-**Core checkpoints:** `KHAHP-05.02A`, `KHAHP-05.02B`, `KHAHP-05.02C`
-
-**Source / evidence status:** 05-accounts-uid-gid-local-identity-20261012-130203.txt | HISTORICAL EVIDENCE REVIEWED; NO PATCH DEMONSTRATED
-
-### 05.03 — UID 0 exclusivity and privileged- account review
-
-**Stage / source classification:** `S3 / P2`
-
-**Historical evidence:** Positive observations identified in original report; family-specific A/B/C sign-off not demonstrated by aggregate review.
-
-**Identified weakness / gap:** Specific assertion acceptance is not documented.
-
-**Implementation task:** Preserve recorded protections and link A/B/C evidence to the report before sign-off.
-
-**Core checkpoints:** `KHAHP-05.03A`, `KHAHP-05.03B`, `KHAHP-05.03C`
-
-**Source / evidence status:** 05-accounts-uid-gid-local-identity-20261012-130203.txt | HISTORICAL EVIDENCE REVIEWED; NO PATCH DEMONSTRATED
-
-### 05.04 — Low-UID service-account shell classification
-
-**Stage / source classification:** `S3 / P2`
-
-**Historical evidence:** Positive observations identified in original report; family-specific A/B/C sign-off not demonstrated by aggregate review.
-
-**Identified weakness / gap:** Specific assertion acceptance is not documented.
-
-**Implementation task:** Preserve recorded protections and link A/B/C evidence to the report before sign-off.
-
-**Core checkpoints:** `KHAHP-05.04A`, `KHAHP-05.04B`, `KHAHP-05.04C`
-
-**Source / evidence status:** 05-accounts-uid-gid-local-identity-20261012-130203.txt | HISTORICAL EVIDENCE REVIEWED; NO PATCH DEMONSTRATED
-
-### 05.05 — Home-directory ownership and permissions
-
-**Stage / source classification:** `S3 / P2`
-
-**Historical evidence:** Positive observations identified in original report; family-specific A/B/C sign-off not demonstrated by aggregate review.
-
-**Identified weakness / gap:** Specific assertion acceptance is not documented.
-
-**Implementation task:** Preserve recorded protections and link A/B/C evidence to the report before sign-off.
-
-**Core checkpoints:** `KHAHP-05.05A`, `KHAHP-05.05B`, `KHAHP-05.05C`
-
-**Source / evidence status:** 05-accounts-uid-gid-local-identity-20261012-130203.txt | HISTORICAL EVIDENCE REVIEWED; NO PATCH DEMONSTRATED
-
-### 05.06 — shadow/gshadow/passwd/group ownership and modes
-
-**Stage / source classification:** `S3 / P2`
-
-**Historical evidence:** Positive observations identified in original report; family-specific A/B/C sign-off not demonstrated by aggregate review.
-
-**Identified weakness / gap:** Specific assertion acceptance is not documented.
-
-**Implementation task:** Preserve recorded protections and link A/B/C evidence to the report before sign-off.
-
-**Core checkpoints:** `KHAHP-05.06A`, `KHAHP-05.06B`, `KHAHP-05.06C`
-
-**Source / evidence status:** 05-accounts-uid-gid-local-identity-20261012-130203.txt | HISTORICAL EVIDENCE REVIEWED; NO PATCH DEMONSTRATED
-
-### 05.07 — NSS identity source configuration and root lock state
-
-**Stage / source classification:** `S3 / P2`
-
-**Historical evidence:** Positive observations identified in original report; family-specific A/B/C sign-off not demonstrated by aggregate review.
-
-**Identified weakness / gap:** Specific assertion acceptance is not documented.
-
-**Implementation task:** Preserve recorded protections and link A/B/C evidence to the report before sign-off.
-
-**Core checkpoints:** `KHAHP-05.07A`, `KHAHP-05.07B`, `KHAHP-05.07C`
-
-**Source / evidence status:** 05-accounts-uid-gid-local-identity-20261012-130203.txt | HISTORICAL EVIDENCE REVIEWED; NO PATCH DEMONSTRATED
+**Seven registered families:** `03.01` USER, SYSMAINT and root account separation; `03.02` Distinct UID/GID and home-directory boundaries; `03.03` user-sysmaint-split package and owned policy files; `03.04` sudo binary ownership, mode and SYSMAINT-only execution; `03.05` sudoers syntax and user-sysmaint- split policy; `03.06` USER negative sudo/root acquisition probe; `03.07` Login-shell and boot-role separation behavior.
 
 ---
 
-## 06 — LUKS / Disk / Swap Encryption
+### 04 — SYSMAINT Boot Role
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** DOCUMENTATION BASELINE COMPLETE; FORMAL A/B/C REVIEW OPEN.
 
-### 06.01 — Root filesystem source and dm-crypt mapping
+**Documented/observed:** Dedicated administrative boot markers and expected unit separation documented.
 
-**Stage / source classification:** `S2 / P2`
+**What still needs evidence or action:** Validate appropriate services in each boot role and persistence following updates.
 
-**Historical evidence:** Runtime demonstrated: / is ext4 over /dev/mapper/luks-…; root source resolves to dm-crypt.
-
-**Identified weakness / gap:** No patch shown necessary; confirm unchanged at image installation.
-
-**Implementation task:** No patch shown necessary; confirm unchanged at image installation.
-
-**Core checkpoints:** `KHAHP-06.01A`, `KHAHP-06.01B`, `KHAHP-06.01C`
-
-**Source / evidence status:** 06-luks-disk-swap-encryption-20261012-133453.txt | Runtime demonstrated
-
-### 06.02 — LUKS2 backing partition and cryptsetup status
-
-**Stage / source classification:** `S2 / P2`
-
-**Historical evidence:** Runtime demonstrated: Active cryptsetup mapping reports LUKS2, aes-xts-plain64 and backing partition of crypto_LUKS type.
-
-**Identified weakness / gap:** Preserve mapping; no keyslot changes from this evidence.
-
-**Implementation task:** Preserve mapping; no keyslot changes from this evidence.
-
-**Core checkpoints:** `KHAHP-06.02A`, `KHAHP-06.02B`, `KHAHP-06.02C`
-
-**Source / evidence status:** 06-luks-disk-swap-encryption-20261012-133453.txt | Runtime demonstrated
-
-### 06.03 — LUKS header metadata without key- material disclosure
-
-**Stage / source classification:** `S2 / P2`
-
-**Historical evidence:** Metadata demonstrated: LUKS header Version 2 and cipher read; keyslot/token/digest material withheld.
-
-**Identified weakness / gap:** Passphrase quality, key custody and recovery remain untested, not assumed passed.
-
-**Implementation task:** Passphrase quality, key custody and recovery remain untested, not assumed passed.
-
-**Core checkpoints:** `KHAHP-06.03A`, `KHAHP-06.03B`, `KHAHP-06.03C`
-
-**Source / evidence status:** 06-luks-disk-swap-encryption-20261012-133453.txt | Metadata demonstrated
-
-### 06.04 — Root encryption chain from block device to mountpoint
-
-**Stage / source classification:** `S2 / P2`
-
-**Historical evidence:** Runtime demonstrated: Report records backing partition →dm-crypt mapper →/ and marks chain PASS.
-
-**Identified weakness / gap:** No correction indicated.
-
-**Implementation task:** No correction indicated.
-
-**Core checkpoints:** `KHAHP-06.04A`, `KHAHP-06.04B`, `KHAHP-06.04C`
-
-**Source / evidence status:** 06-luks-disk-swap-encryption-20261012-133453.txt | Runtime demonstrated
-
-### 06.05 — Active swap inventory and encrypted placement
-
-**Stage / source classification:** `S2 / P2`
-
-**Historical evidence:** Runtime demonstrated: Active /var/swapfile under the encrypted root; no unencrypted active swap discovered.
-
-**Identified weakness / gap:** No correction indicated for present swap placement.
-
-**Implementation task:** No correction indicated for present swap placement.
-
-**Core checkpoints:** `KHAHP-06.05A`, `KHAHP-06.05B`, `KHAHP-06.05C`
-
-**Source / evidence status:** 06-luks-disk-swap-encryption-20261012-133453.txt | Runtime demonstrated
-
-### 06.06 — swapfile ownership, mode and containing filesystem
-
-**Stage / source classification:** `S2 / P2`
-
-**Historical evidence:** Runtime demonstrated: /var/swapfile is root:root 0600 and located on encrypted ext4 root.
-
-**Identified weakness / gap:** No permission or storage patch indicated.
-
-**Implementation task:** No permission or storage patch indicated.
-
-**Core checkpoints:** `KHAHP-06.06A`, `KHAHP-06.06B`, `KHAHP-06.06C`
-
-**Source / evidence status:** 06-luks-disk-swap-encryption-20261012-133453.txt | Runtime demonstrated
-
-### 06.07 — crypttab/fstab encryption persistence and boot mapping
-
-**Stage / source classification:** `S2 / P2`
-
-**Historical evidence:** Configuration demonstrated; recovery not tested: crypttab maps LUKS UUID; fstab mounts encrypted mapper at /.
-
-**Identified weakness / gap:** Normal-boot recovery/key-restoration effectiveness not tested in this report; do not modify mapping blindly.
-
-**Implementation task:** Normal-boot recovery/key-restoration effectiveness not tested in this report; do not modify mapping blindly.
-
-**Core checkpoints:** `KHAHP-06.07A`, `KHAHP-06.07B`, `KHAHP-06.07C`
-
-**Source / evidence status:** 06-luks-disk-swap-encryption-20261012-133453.txt | Configuration demonstrated; recovery not tested
+**Seven registered families:** `04.01` boot-role=sysmaint kernel marker; `04.02` systemd.unit=sysmaint-boot.target marker; `04.03` sysmaint-boot.target package provenance and unit content; `04.04` Required SYSMAINT dependencies and wanted units; `04.05` Intentionally omitted USER-only or incompatible hardeners; `04.06` Conflicting USER/graphical boot-role negative checks; `04.07` Failed units and SYSMAINT boot health.
 
 ---
 
-## 07 — Filesystem / Mount Security
+### 05 — Accounts / UID / GID / Local Identity
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** DOCUMENTATION BASELINE COMPLETE; FORMAL A/B/C REVIEW OPEN.
 
-### 07.01 — Effective mount table and filesystem inventory
+**Documented/observed:** Account inventory and root-lock evidence documented.
 
-**Stage / source classification:** `S2 / P2`
+**What still needs evidence or action:** Resolve role/service-account classification and verify policy compatibility.
 
-**Historical evidence:** Inventory demonstrated: Mounted filesystem table and disk usage recorded.
-
-**Identified weakness / gap:** Mount capture does not itself establish all security options.
-
-**Implementation task:** Mount capture does not itself establish all security options.
-
-**Core checkpoints:** `KHAHP-07.01A`, `KHAHP-07.01B`, `KHAHP-07.01C`
-
-**Source / evidence status:** 07-filesystem-mount-security-20261012-134148.txt | Inventory demonstrated
-
-### 07.02 — Root mount source, filesystem and options
-
-**Stage / source classification:** `S2 / P2`
-
-**Historical evidence:** Runtime demonstrated; policy review: Root is encrypted ext4 with rw,relatime; root not nodev/nosuid.
-
-**Identified weakness / gap:** Root generally needs device and setuid semantics; do not add flags to / indiscriminately.
-
-**Implementation task:** Root generally needs device and setuid semantics; do not add flags to / indiscriminately.
-
-**Core checkpoints:** `KHAHP-07.02A`, `KHAHP-07.02B`, `KHAHP-07.02C`
-
-**Source / evidence status:** 07-filesystem-mount-security-20261012-134148.txt | Runtime demonstrated; policy review
-
-### 07.03 — /boot and /boot/efi separation, ownership and exposure
-
-**Stage / source classification:** `S2 / P2`
-
-**Historical evidence:** Runtime demonstrated; integrity limitation: Separate ext4 /boot and FAT EFI; /boot root:root 0700; /boot/efi 0755.
-
-**Identified weakness / gap:** Review boot-chain trust with Section 39; unencrypted /boot not magically protected by GRUB password.
-
-**Implementation task:** Review boot-chain trust with Section 39; unencrypted /boot not magically protected by GRUB password.
-
-**Core checkpoints:** `KHAHP-07.03A`, `KHAHP-07.03B`, `KHAHP-07.03C`
-
-**Source / evidence status:** 07-filesystem-mount-security-20261012-134148.txt | Runtime demonstrated; integrity limitation
-
-### 07.04 — /tmp tmpfs, sticky bit and mount- option review
-
-**Stage / source classification:** `S2 / P2`
-
-**Historical evidence:** Hardening candidate: /tmp is tmpfs mode 1777 but lacks nodev, nosuid and noexec on runtime mount.
-
-**Identified weakness / gap:** Prioritize compatibility review: nodev/nosuid candidate; noexec only after Kicksecure/installer tests and rollback.
-
-**Implementation task:** Prioritize compatibility review: nodev/nosuid candidate; noexec only after Kicksecure/installer tests and rollback.
-
-**Core checkpoints:** `KHAHP-07.04A`, `KHAHP-07.04B`, `KHAHP-07.04C`
-
-**Source / evidence status:** 07-filesystem-mount-security-20261012-134148.txt | Hardening candidate
-
-### 07.05 — /var/tmp sticky-bit and separate- mount review
-
-**Stage / source classification:** `S2 / P2`
-
-**Historical evidence:** Partition-policy review: /var/tmp is mode 1777 but not a separate mount.
-
-**Identified weakness / gap:** Consider isolating via compatible bind/mount policy if a real threat-model need; no blind repartitioning.
-
-**Implementation task:** Consider isolating via compatible bind/mount policy if a real threat-model need; no blind repartitioning.
-
-**Core checkpoints:** `KHAHP-07.05A`, `KHAHP-07.05B`, `KHAHP-07.05C`
-
-**Source / evidence status:** 07-filesystem-mount-security-20261012-134148.txt | Partition-policy review
-
-### 07.06 — /home containment, ownership and inherited options
-
-**Stage / source classification:** `S2 / P2`
-
-**Historical evidence:** Partition-policy review: /home resides on encrypted root; USER and SYSMAINT home directories are owned by their corresponding accounts, both mode 0750.
-
-**Identified weakness / gap:** Separate /home and nodev/nosuid options remain a design decision; test Kicksecure compatibility before migration.
-
-**Implementation task:** Verify /home account ownership and mode 0750; assess separation and mount options only after Kicksecure compatibility and recovery planning.
-
-**Core checkpoints:** `KHAHP-07.06A`, `KHAHP-07.06B`, `KHAHP-07.06C`
-
-**Source / evidence status:** 07-filesystem-mount-security-20261012-134148.txt | Partition-policy review
-
-### 07.07 — Writable mountpoints, fstab and remount-secure review
-
-**Stage / source classification:** `S2 / P2`
-
-**Historical evidence:** Source present; enforcement incomplete: /tmp fstab entry is explicit; remount-secure.service file present; four reviewed mountpoint directories had no missing sticky bit.
-
-**Identified weakness / gap:** Service presence does not prove activation or effective remounts; assess /dev/shm noexec and mount flags.
-
-**Implementation task:** Service presence does not prove activation or effective remounts; assess /dev/shm noexec and mount flags.
-
-**Core checkpoints:** `KHAHP-07.07A`, `KHAHP-07.07B`, `KHAHP-07.07C`
-
-**Source / evidence status:** 07-filesystem-mount-security-20261012-134148.txt | Source present; enforcement incomplete
+**Seven registered families:** `05.01` root, USER and SYSMAINT account identity; `05.02` Duplicate UID and duplicate GID detection; `05.03` UID 0 exclusivity and privileged- account review; `05.04` Low-UID service-account shell classification; `05.05` Home-directory ownership and permissions; `05.06` shadow/gshadow/passwd/group ownership and modes; `05.07` NSS identity source configuration and root lock state.
 
 ---
 
-## 08 — GRUB / Bootloader Protection
+### 06 — LUKS / Disk / Swap Encryption
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** DOCUMENTATION BASELINE COMPLETE; FORMAL A/B/C REVIEW OPEN.
 
-### 08.01 — GRUB package baseline and generated grub.cfg
+**Documented/observed:** LUKS2 encrypted root with encrypted-root-backed swap was documented.
 
-**Stage / source classification:** `S2 / P2`
+**What still needs evidence or action:** Validate key-recovery and restore evidence privately; do not publish secrets.
 
-**Historical evidence:** Configuration demonstrated: GRUB EFI packages installed; /boot/grub/grub.cfg generated and populated.
-
-**Identified weakness / gap:** Installed versions are dated snapshot, not ongoing patch freshness.
-
-**Implementation task:** Installed versions are dated snapshot, not ongoing patch freshness.
-
-**Core checkpoints:** `KHAHP-08.01A`, `KHAHP-08.01B`, `KHAHP-08.01C`
-
-**Source / evidence status:** 08-grub-bootloader-protection-20261012-135756.txt | Configuration demonstrated
-
-### 08.02 — grub.cfg ownership, permissions and menu entries
-
-**Stage / source classification:** `S2 / P2`
-
-**Historical evidence:** Permissions demonstrated: grub.cfg root:root 0600, with boot menu entries.
-
-**Identified weakness / gap:** No filesystem-permission patch indicated.
-
-**Implementation task:** No filesystem-permission patch indicated.
-
-**Core checkpoints:** `KHAHP-08.02A`, `KHAHP-08.02B`, `KHAHP-08.02C`
-
-**Source / evidence status:** 08-grub-bootloader-protection-20261012-135756.txt | Permissions demonstrated
-
-### 08.03 — GRUB password_pbkdf2 and superusers directives
-
-**Stage / source classification:** `S2 / P2`
-
-**Historical evidence:** Configuration demonstrated; negative test absent: Both directives detected in source and generated configuration.
-
-**Identified weakness / gap:** Actual unauthorized interactive GRUB-edit rejection not tested; no password/hash disclosure.
-
-**Implementation task:** Actual unauthorized interactive GRUB-edit rejection not tested; no password/hash disclosure.
-
-**Core checkpoints:** `KHAHP-08.03A`, `KHAHP-08.03B`, `KHAHP-08.03C`
-
-**Source / evidence status:** 08-grub-bootloader-protection-20261012-135756.txt | Configuration demonstrated; negative test absent
-
-### 08.04 — Kicksecure CPU/kernel/ram-wipe/remount/signed -module fragments
-
-**Stage / source classification:** `S2 / P2`
-
-**Historical evidence:** Source attribution demonstrated: CPU mitigations, kernel hardening, ram wipe, remount-secure, module signing fragments package-attributed.
-
-**Identified weakness / gap:** Runtime enforcement belongs to dedicated sections; package ownership alone is not an effective-state proof.
-
-**Implementation task:** Runtime enforcement belongs to dedicated sections; package ownership alone is not an effective- state proof.
-
-**Core checkpoints:** `KHAHP-08.04A`, `KHAHP-08.04B`, `KHAHP-08.04C`
-
-**Source / evidence status:** 08-grub-bootloader-protection-20261012-135756.txt | Source attribution demonstrated
-
-### 08.05 — Quiet-boot and recovery-restriction fragments
-
-**Stage / source classification:** `S2 / P2`
-
-**Historical evidence:** Configuration demonstrated: Recovery-restriction fragment sets GRUB_DISABLE_RECOVERY and rd.emergency=halt / rd.shell=0.
-
-**Identified weakness / gap:** No live rescue-mode bypass attempt; disabling recovery has availability tradeoffs.
-
-**Implementation task:** No live rescue-mode bypass attempt; disabling recovery has availability tradeoffs.
-
-**Core checkpoints:** `KHAHP-08.05A`, `KHAHP-08.05B`, `KHAHP-08.05C`
-
-**Source / evidence status:** 08-grub-bootloader-protection-20261012-135756.txt | Configuration demonstrated
-
-### 08.06 — Effective boot command-line correlation
-
-**Stage / source classification:** `S2 / P2`
-
-**Historical evidence:** Runtime tokens demonstrated: /proc/cmdline contains many selected hardening flags corresponding to sources.
-
-**Identified weakness / gap:** Tokens do not guarantee kernel recognizes them; see Section 09 unknown-parameter log.
-
-**Implementation task:** Tokens do not guarantee kernel recognizes them; see Section 09 unknown-parameter log.
-
-**Core checkpoints:** `KHAHP-08.06A`, `KHAHP-08.06B`, `KHAHP-08.06C`
-
-**Source / evidence status:** 08-grub-bootloader-protection-20261012-135756.txt | Runtime tokens demonstrated
-
-### 08.07 — /boot and EFI exposure versus cryptographic integrity limits
-
-**Stage / source classification:** `S2 / P2`
-
-**Historical evidence:** Risk recorded; later positive evidence: /boot and EFI distinct and unencrypted; report disclaims GRUB password as integrity proof.
-
-**Identified weakness / gap:** Later Section 39 Secure Boot/MOK signs/enrolls modules; boot-file coverage and physical attack recovery remain nuanced.
-
-**Implementation task:** Later Section 39 Secure Boot/MOK signs/enrolls modules; boot-file coverage and physical attack recovery remain nuanced.
-
-**Core checkpoints:** `KHAHP-08.07A`, `KHAHP-08.07B`, `KHAHP-08.07C`
-
-**Source / evidence status:** 08-grub-bootloader-protection-20261012-135756.txt | Risk recorded; later positive evidence
+**Seven registered families:** `06.01` Root filesystem source and dm-crypt mapping; `06.02` LUKS2 backing partition and cryptsetup status; `06.03` LUKS header metadata without key- material disclosure; `06.04` Root encryption chain from block device to mountpoint; `06.05` Active swap inventory and encrypted placement; `06.06` swapfile ownership, mode and containing filesystem; `06.07` crypttab/fstab encryption persistence and boot mapping.
 
 ---
 
-## 09 — CPU Vulnerability Mitigations
+### 07 — Filesystem / Mount Security
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** DOCUMENTATION BASELINE COMPLETE; FORMAL A/B/C REVIEW OPEN.
 
-### 09.01 — CPU identity, vendor and mitigation- capability baseline
+**Documented/observed:** A targeted temporary-filesystem mount hardening change was applied and verified after USER reboot.
 
-**Stage / source classification:** `S2 / P2`
+**What still needs evidence or action:** Resolve separate boot-mount ordering and compatibility exceptions; SYSMAINT corroboration remains.
 
-**Historical evidence:** Inventory demonstrated: Intel Core i5-10210U; 4 online cores, 8 logical possible; VT-x support recorded.
-
-**Identified weakness / gap:** Hardware-specific; must revalidate on each customer target.
-
-**Implementation task:** Hardware-specific; must revalidate on each customer target.
-
-**Core checkpoints:** `KHAHP-09.01A`, `KHAHP-09.01B`, `KHAHP-09.01C`
-
-**Source / evidence status:** 09-cpu-vulnerability-mitigations-20261012-141547.txt | Inventory demonstrated
-
-### 09.02 — SMT/Hyper-Threading disablement and topology
-
-**Stage / source classification:** `S2 / P2`
-
-**Historical evidence:** Runtime demonstrated: smt/active=0, control=forceoff; one thread/core; nosmt=force live.
-
-**Identified weakness / gap:** Already hardened on laptop; assess VM or different hardware separately.
-
-**Implementation task:** Already hardened on laptop; assess VM or different hardware separately.
-
-**Core checkpoints:** `KHAHP-09.02A`, `KHAHP-09.02B`, `KHAHP-09.02C`
-
-**Source / evidence status:** 09-cpu-vulnerability-mitigations-20261012-141547.txt | Runtime demonstrated
-
-### 09.03 — Runtime microcode revision and package baseline
-
-**Stage / source classification:** `S2 / P2`
-
-**Historical evidence:** Runtime and package demonstrated: Microcode revision 0x100; intel-microcode package installed; kernel log says early updated from 0xde.
-
-**Identified weakness / gap:** Security update freshness not established by installed-version presence alone.
-
-**Implementation task:** Security update freshness not established by installed-version presence alone.
-
-**Core checkpoints:** `KHAHP-09.03A`, `KHAHP-09.03B`, `KHAHP-09.03C`
-
-**Source / evidence status:** 09-cpu-vulnerability-mitigations-20261012-141547.txt | Runtime and package demonstrated
-
-### 09.04 — Kernel vulnerability-interface enumeration
-
-**Stage / source classification:** `S2 / P2`
-
-**Historical evidence:** Runtime demonstrated: 17 /sys/devices/system/cpu/vulnerabilities entries examined; no reported unmitigated finding in selected test.
-
-**Identified weakness / gap:** Keep as dated kernel interpretation, not proof against all future vulnerabilities.
-
-**Implementation task:** Keep as dated kernel interpretation, not proof against all future vulnerabilities.
-
-**Core checkpoints:** `KHAHP-09.04A`, `KHAHP-09.04B`, `KHAHP-09.04C`
-
-**Source / evidence status:** 09-cpu-vulnerability-mitigations-20261012-141547.txt | Runtime demonstrated
-
-### 09.05 — Spectre/Meltdown/L1TF/MDS/ Retbleed/BHI/SSB/TAA/GDS mitigations
-
-**Stage / source classification:** `S2 / P2`
-
-**Historical evidence:** Runtime demonstrated: Kernel reports mitigated or Not affected for listed classes; GDS and SRBDS via microcode, SMT disabled.
-
-**Identified weakness / gap:** No new patch indicated by report; recheck after kernel/microcode updates.
-
-**Implementation task:** No new patch indicated by report; recheck after kernel/microcode updates.
-
-**Core checkpoints:** `KHAHP-09.05A`, `KHAHP-09.05B`, `KHAHP-09.05C`
-
-**Source / evidence status:** 09-cpu-vulnerability-mitigations-20261012-141547.txt | Runtime demonstrated
-
-### 09.06 — Mitigation-related kernel command- line parameters
-
-**Stage / source classification:** `S2 / P2`
-
-**Historical evidence:** Source/runtime tokens demonstrated; review: Report matches many policy boot tokens, including spectre_v2, ssbd, kpti, mitigations and vmscape.
-
-**Identified weakness / gap:** Kernel log also identifies some unrecognized tokens; audit their actual support before crediting effects.
-
-**Implementation task:** Kernel log also identifies some unrecognized tokens; audit their actual support before crediting effects.
-
-**Core checkpoints:** `KHAHP-09.06A`, `KHAHP-09.06B`, `KHAHP-09.06C`
-
-**Source / evidence status:** 09-cpu-vulnerability-mitigations-20261012-141547.txt | Source/runtime tokens demonstrated; review
-
-### 09.07 — CPU mitigation flags and kernel-log confirmation
-
-**Stage / source classification:** `S2 / P2`
-
-**Historical evidence:** Runtime demonstrated; parser limitation: CPU flags ibrs/ibpb/stibp/ssbd/md_clear/flush_l1d listed; logs confirm several mitigation actions.
-
-**Identified weakness / gap:** Review unknown-kernel-parameter message as effectiveness caveat; do not remove or add flags blindly.
-
-**Implementation task:** Review unknown-kernel-parameter message as effectiveness caveat; do not remove or add flags blindly.
-
-**Core checkpoints:** `KHAHP-09.07A`, `KHAHP-09.07B`, `KHAHP-09.07C`
-
-**Source / evidence status:** 09-cpu-vulnerability-mitigations-20261012-141547.txt | Runtime demonstrated; parser limitation
+**Seven registered families:** `07.01` Effective mount table and filesystem inventory; `07.02` Root mount source, filesystem and options; `07.03` /boot and /boot/efi separation, ownership and exposure; `07.04` /tmp tmpfs, sticky bit and mount- option review; `07.05` /var/tmp sticky-bit and separate- mount review; `07.06` /home containment, ownership and inherited options; `07.07` Writable mountpoints, fstab and remount-secure review.
 
 ---
 
-## 10 — IOMMU / DMA Protection
+### 08 — GRUB / Bootloader Protection
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** DOCUMENTATION BASELINE COMPLETE; FORMAL A/B/C REVIEW OPEN.
 
-### 10.01 — CPU virtualization/VT-d capability baseline
+**Documented/observed:** GRUB protection directives were present in historical source review.
 
-**Stage / source classification:** `S2 / P2`
+**What still needs evidence or action:** Physical boot-edit negative test and tested recovery remain pending.
 
-**Historical evidence:** Inventory demonstrated: Intel VT-x and CPU vendor identified.
-
-**Identified weakness / gap:** VT-x capability alone is not VT-d proof; see runtime DMAR.
-
-**Implementation task:** VT-x capability alone is not VT-d proof; see runtime DMAR.
-
-**Core checkpoints:** `KHAHP-10.01A`, `KHAHP-10.01B`, `KHAHP-10.01C`
-
-**Source / evidence status:** 10-iommu-dma-protection-20261012-142405.txt | Inventory demonstrated
-
-### 10.02 — IOMMU kernel parameters and passthrough policy
-
-**Stage / source classification:** `S2 / P2`
-
-**Historical evidence:** Runtime tokens demonstrated: intel_iommu=on, iommu=force, iommu.passthrough=0, iommu.strict=1, early PCI DMA restriction present.
-
-**Identified weakness / gap:** Cross-vendor amd_iommu option is logged as informational, not failure.
-
-**Implementation task:** Cross-vendor amd_iommu option is logged as informational, not failure.
-
-**Core checkpoints:** `KHAHP-10.02A`, `KHAHP-10.02B`, `KHAHP-10.02C`
-
-**Source / evidence status:** 10-iommu-dma-protection-20261012-142405.txt | Runtime tokens demonstrated
-
-### 10.03 — DMAR/IOMMU runtime enablement
-
-**Stage / source classification:** `S2 / P2`
-
-**Historical evidence:** Runtime demonstrated: Kernel DMAR reports IOMMU enabled, VT-d recognized.
-
-**Identified weakness / gap:** No patch indicated by reported runtime.
-
-**Implementation task:** No patch indicated by reported runtime.
-
-**Core checkpoints:** `KHAHP-10.03A`, `KHAHP-10.03B`, `KHAHP-10.03C`
-
-**Source / evidence status:** 10-iommu-dma-protection-20261012-142405.txt | Runtime demonstrated
-
-### 10.04 — Translated default domain and strict invalidation
-
-**Stage / source classification:** `S2 / P2`
-
-**Historical evidence:** Runtime demonstrated: Kernel explicitly reports translated default DMA domain and strict invalidation policy.
-
-**Identified weakness / gap:** No patch indicated.
-
-**Implementation task:** No patch indicated.
-
-**Core checkpoints:** `KHAHP-10.04A`, `KHAHP-10.04B`, `KHAHP-10.04C`
-
-**Source / evidence status:** 10-iommu-dma-protection-20261012-142405.txt | Runtime demonstrated
-
-### 10.05 — IRQ/interrupt remapping
-
-**Stage / source classification:** `S2 / P2`
-
-**Historical evidence:** Runtime demonstrated: Kernel reports IRQ remapping enabled in x2APIC mode.
-
-**Identified weakness / gap:** No patch indicated.
-
-**Implementation task:** No patch indicated.
-
-**Core checkpoints:** `KHAHP-10.05A`, `KHAHP-10.05B`, `KHAHP-10.05C`
-
-**Source / evidence status:** 10-iommu-dma-protection-20261012-142405.txt | Runtime demonstrated
-
-### 10.06 — IOMMU group topology and full PCI membership
-
-**Stage / source classification:** `S2 / P2`
-
-**Historical evidence:** Runtime demonstrated; topology review: 23/23 PCI devices have IOMMU groups; 17 groups total, 4 contain multiple devices.
-
-**Identified weakness / gap:** Multi-device groups are not automatically unsafe; device assignment/pass-through policy needs separate review.
-
-**Implementation task:** Multi-device groups are not automatically unsafe; device assignment/pass-through policy needs separate review.
-
-**Core checkpoints:** `KHAHP-10.06A`, `KHAHP-10.06B`, `KHAHP-10.06C`
-
-**Source / evidence status:** 10-iommu-dma-protection-20261012-142405.txt | Runtime demonstrated; topology review
-
-### 10.07 — Early PCI DMA restriction and firmware WSMT evidence
-
-**Stage / source classification:** `S2 / P2`
-
-**Historical evidence:** Runtime token + firmware inventory: efi=disable_early_pci_dma present; WSMT table identified.
-
-**Identified weakness / gap:** Firmware-based preboot DMA and physical access not fully verified by runtime logs; Section 39 remains relevant.
-
-**Implementation task:** Firmware-based preboot DMA and physical access not fully verified by runtime logs; Section 39 remains relevant.
-
-**Core checkpoints:** `KHAHP-10.07A`, `KHAHP-10.07B`, `KHAHP-10.07C`
-
-**Source / evidence status:** 10-iommu-dma-protection-20261012-142405.txt | Runtime token + firmware inventory
+**Seven registered families:** `08.01` GRUB package baseline and generated grub.cfg; `08.02` grub.cfg ownership, permissions and menu entries; `08.03` GRUB password_pbkdf2 and superusers directives; `08.04` Kicksecure CPU/kernel/ram-wipe/remount/signed -module fragments; `08.05` Quiet-boot and recovery-restriction fragments; `08.06` Effective boot command-line correlation; `08.07` /boot and EFI exposure versus cryptographic integrity limits.
 
 ---
 
-## 11 — Kernel Sysctl Hardening
+### 09 — CPU Vulnerability Mitigations
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** DOCUMENTATION BASELINE COMPLETE; FORMAL A/B/C REVIEW OPEN.
 
-### 11.01 — Sysctl source-tree inventory and precedence
+**Documented/observed:** SMT and CPU vulnerability mitigations were inspected; some kernel flags were not fully attributable.
 
-**Stage / source classification:** `S2 / NO PATCH SHOWN`
+**What still needs evidence or action:** Confirm effective kernel features before making CFI/KCFI claims.
 
-**Historical evidence:** Sysctl configuration files, precedence view and selected live values inventoried.
-
-**Identified weakness / gap:** File inventory does not itself prove every precedence override persists through upgrade.
-
-**Implementation task:** PRESERVE / LINK EVIDENCE
-
-**Core checkpoints:** `KHAHP-11.01A`, `KHAHP-11.01B`, `KHAHP-11.01C`
-
-**Source / evidence status:** 11-kernel-sysctl-hardening-20261012-143141.txt | NO PATCH SHOWN
-
-### 11.02 — Kicksecure security-misc sysctl source files
-
-**Stage / source classification:** `S2 / NO PATCH SHOWN`
-
-**Historical evidence:** Kicksecure/security-misc sources for kexec, ptrace, printk and ASLR were found and attributed.
-
-**Identified weakness / gap:** Provenance and live behavior supported for selected values; do not override package policy blindly.
-
-**Implementation task:** PRESERVE PACKAGE POLICY
-
-**Core checkpoints:** `KHAHP-11.02A`, `KHAHP-11.02B`, `KHAHP-11.02C`
-
-**Source / evidence status:** 11-kernel-sysctl-hardening-20261012-143141.txt | NO PATCH SHOWN
-
-### 11.03 — Kernel information-leak restrictions
-
-**Stage / source classification:** `S2 / ENFORCED IN REPORT`
-
-**Historical evidence:** Live kptr_restrict=2, dmesg_restrict=1 and perf_event_paranoid=3 positively observed.
-
-**Identified weakness / gap:** Current-boot checks; customer builds must repeat.
-
-**Implementation task:** Retain the observed protection; link complete source/runtime/persistence proof and re-verify after changes.
-
-**Core checkpoints:** `KHAHP-11.03A`, `KHAHP-11.03B`, `KHAHP-11.03C`
-
-**Source / evidence status:** 11-kernel-sysctl-hardening-20261012-143141.txt | ENFORCED IN REPORT
-
-### 11.04 — ASLR, mmap, kexec and privileged- coredump controls
-
-**Stage / source classification:** `S2 / ENFORCED IN REPORT`
-
-**Historical evidence:** ASLR=2, kexec_load_disabled=1, mmap_min_addr=65536 and suid_dumpable=0 checked live.
-
-**Identified weakness / gap:** No bypass or upgrade-persistence experiment in this source.
-
-**Implementation task:** Retain the observed protection; link complete source/runtime/persistence proof and re-verify after changes.
-
-**Core checkpoints:** `KHAHP-11.04A`, `KHAHP-11.04B`, `KHAHP-11.04C`
-
-**Source / evidence status:** 11-kernel-sysctl-hardening-20261012-143141.txt | ENFORCED IN REPORT
-
-### 11.05 — BPF, ptrace, perf and TTY line- discipline restrictions
-
-**Stage / source classification:** `S2 / ENFORCED IN REPORT`
-
-**Historical evidence:** unprivileged_bpf_disabled=1, BPF JIT harden=2, ptrace_scope=3 and TTY autoload=0 checked live.
-
-**Identified weakness / gap:** Unprivileged user namespace was 1 and flagged compatibility-sensitive, not automatically failed.
-
-**Implementation task:** RETAIN; CONTEXT REVIEW
-
-**Core checkpoints:** `KHAHP-11.05A`, `KHAHP-11.05B`, `KHAHP-11.05C`
-
-**Source / evidence status:** 11-kernel-sysctl-hardening-20261012-143141.txt | ENFORCED IN REPORT
-
-### 11.06 — Protected links/FIFOs/regular-file controls
-
-**Stage / source classification:** `S2 / ENFORCED IN REPORT`
-
-**Historical evidence:** protected_hardlinks/symlinks=1, protected_fifos/regular=2 checked live.
-
-**Identified weakness / gap:** No live bypass test; positive sysctl state established.
-
-**Implementation task:** Retain the observed protection; link complete source/runtime/persistence proof and re-verify after changes.
-
-**Core checkpoints:** `KHAHP-11.06A`, `KHAHP-11.06B`, `KHAHP-11.06C`
-
-**Source / evidence status:** 11-kernel-sysctl-hardening-20261012-143141.txt | ENFORCED IN REPORT
-
-### 11.07 — Network-stack sysctl hardening observations
-
-**Stage / source classification:** `S2 / CROSS-SECTION REVIEW`
-
-**Historical evidence:** IPv4 redirect/source-route restrictions, log_martians=1, syncookies=1 recorded.
-
-**Identified weakness / gap:** Report explicitly defers final networking/DNS policy interpretation to later sections.
-
-**Implementation task:** LINK TO NETWORK REPORTS
-
-**Core checkpoints:** `KHAHP-11.07A`, `KHAHP-11.07B`, `KHAHP-11.07C`
-
-**Source / evidence status:** 11-kernel-sysctl-hardening-20261012-143141.txt | CROSS-SECTION REVIEW
+**Seven registered families:** `09.01` CPU identity, vendor and mitigation- capability baseline; `09.02` SMT/Hyper-Threading disablement and topology; `09.03` Runtime microcode revision and package baseline; `09.04` Kernel vulnerability-interface enumeration; `09.05` Spectre/Meltdown/L1TF/MDS/ Retbleed/BHI/SSB/TAA/GDS mitigations; `09.06` Mitigation-related kernel command- line parameters; `09.07` CPU mitigation flags and kernel-log confirmation.
 
 ---
 
-## 12 — Kernel Boot / Memory Hardening
+### 10 — IOMMU / DMA Protection
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** DOCUMENTATION BASELINE COMPLETE; FORMAL A/B/C REVIEW OPEN.
 
-### 12.01 — Slab allocator hardening and slab_nomerge
+**Documented/observed:** IOMMU, strict invalidation and interrupt remapping were observed historically.
 
-**Stage / source classification:** `S2 / CONFIG & BOOT CONFIRMED`
+**What still needs evidence or action:** Confirm preboot DMA and firmware applicability with safe manual tests.
 
-**Historical evidence:** slab_nomerge and slab_debug=FZ found in source GRUB, generated GRUB and /proc/cmdline.
-
-**Identified weakness / gap:** Flag presence does not prove allocator behavior beyond supported kernel evidence.
-
-**Implementation task:** RETAIN / CHECK EFFECT
-
-**Core checkpoints:** `KHAHP-12.01A`, `KHAHP-12.01B`, `KHAHP-12.01C`
-
-**Source / evidence status:** 12-kernel-boot-memory-hardening-20261012-161307.txt | CONFIG & BOOT CONFIRMED
-
-### 12.02 — init_on_alloc and init_on_free memory initialization
-
-**Stage / source classification:** `S2 / CONFIG & BOOT CONFIRMED`
-
-**Historical evidence:** init_on_alloc=1, init_on_free=1 found in source, generated GRUB and live boot.
-
-**Identified weakness / gap:** Memory initialization build/runtime effect not independently stress-tested.
-
-**Implementation task:** Retain the observed protection; link complete source/runtime/persistence proof and re-verify after changes.
-
-**Core checkpoints:** `KHAHP-12.02A`, `KHAHP-12.02B`, `KHAHP-12.02C`
-
-**Source / evidence status:** 12-kernel-boot-memory-hardening-20261012-161307.txt | CONFIG & BOOT CONFIRMED
-
-### 12.03 — page allocator shuffle and stack randomization
-
-**Stage / source classification:** `S2 / CONFIG & BOOT CONFIRMED`
-
-**Historical evidence:** page_alloc.shuffle=1 and randomize_kstack_offset=on persisted through source, GRUB and boot.
-
-**Identified weakness / gap:** Runtime randomization quality not experimentally evaluated.
-
-**Implementation task:** Retain the observed protection; link complete source/runtime/persistence proof and re-verify after changes.
-
-**Core checkpoints:** `KHAHP-12.03A`, `KHAHP-12.03B`, `KHAHP-12.03C`
-
-**Source / evidence status:** 12-kernel-boot-memory-hardening-20261012-161307.txt | CONFIG & BOOT CONFIRMED
-
-### 12.04 — vsyscall, vdso32 and 32-bit compatibility restrictions
-
-**Stage / source classification:** `S2 / CONFIG & LIMITED RUNTIME`
-
-**Historical evidence:** vsyscall=none, vdso32=0 and ia32_emulation=0 present; verifier showed no vsyscall mapping.
-
-**Identified weakness / gap:** Architecture/compatibility needs reassessment on clean builds.
-
-**Implementation task:** Retain the observed protection; link complete source/runtime/persistence proof and re-verify after changes.
-
-**Core checkpoints:** `KHAHP-12.04A`, `KHAHP-12.04B`, `KHAHP-12.04C`
-
-**Source / evidence status:** 12-kernel-boot-memory-hardening-20261012-161307.txt | CONFIG & LIMITED RUNTIME
-
-### 12.05 — debugfs, KFENCE and kernel debug- surface controls
-
-**Stage / source classification:** `S2 / ENFORCED IN REPORT`
-
-**Historical evidence:** debugfs=off, KFENCE sample interval 100 and unmounted debugfs directly observed.
-
-**Identified weakness / gap:** KFENCE sample interval does not prove detected faults; no intentional fault injection.
-
-**Implementation task:** Retain the observed protection; link complete source/runtime/persistence proof and re-verify after changes.
-
-**Core checkpoints:** `KHAHP-12.05A`, `KHAHP-12.05B`, `KHAHP-12.05C`
-
-**Source / evidence status:** 12-kernel-boot-memory-hardening-20261012-161307.txt | ENFORCED IN REPORT
-
-### 12.06 — CFI/KCFI and boot-time control acceptance
-
-**Stage / source classification:** `S2 / OPEN EFFECTIVENESS WARNING`
-
-**Historical evidence:** cfi=kcfi persisted in GRUB and command line; kernel logged it as an unknown boot option and no positive CFI enablement was found.
-
-**Identified weakness / gap:** CONFIG_ARCH_SUPPORTS_CFI_CLANG=y indicates support capability, NOT CONFIG_CFI_CLANG or active KCFI.
-
-**Implementation task:** TARGETED KERNEL BUILD/RUNTIME VALIDATION
-
-**Core checkpoints:** `KHAHP-12.06A`, `KHAHP-12.06B`, `KHAHP-12.06C`
-
-**Source / evidence status:** 12-kernel-boot-memory-hardening-20261012-161307.txt | OPEN EFFECTIVENESS WARNING
-
-### 12.07 — pstore/ERST/proc_mem/entropy trust boot parameters
-
-**Stage / source classification:** `S2 / CONFIG ONLY / REVIEW`
-
-**Historical evidence:** pstore/ERST, proc_mem and random trust tokens inventoried; extra_latent_entropy forwarded as unknown and no userspace consumer found.
-
-**Identified weakness / gap:** Some boot tokens are non-effective, and pstore is mounted; see Section 22 before proposing replacement flags.
-
-**Implementation task:** DISTINGUISH REAL FROM INERT CONTROLS
-
-**Core checkpoints:** `KHAHP-12.07A`, `KHAHP-12.07B`, `KHAHP-12.07C`
-
-**Source / evidence status:** 12-kernel-boot-memory-hardening-20261012-161307.txt | CONFIG ONLY / REVIEW
+**Seven registered families:** `10.01` CPU virtualization/VT-d capability baseline; `10.02` IOMMU kernel parameters and passthrough policy; `10.03` DMAR/IOMMU runtime enablement; `10.04` Translated default domain and strict invalidation; `10.05` IRQ/interrupt remapping; `10.06` IOMMU group topology and full PCI membership; `10.07` Early PCI DMA restriction and firmware WSMT evidence.
 
 ---
 
-## 13 — Kernel Module Restrictions
+### 11 — Kernel Sysctl Hardening
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** DOCUMENTATION BASELINE COMPLETE; FORMAL A/B/C REVIEW OPEN.
 
-### 13.01 — security-misc module blacklist configuration
+**Documented/observed:** Restrictive kernel and network sysctls were observed.
 
-**Stage / source classification:** `S2 / SOURCE CONFIRMED`
+**What still needs evidence or action:** Map package-owned precedence and persist expected values after upgrades.
 
-**Historical evidence:** security-misc blacklist/disable source files were package-attributed; effective modprobe config recorded.
-
-**Identified weakness / gap:** Source integrity not identical to current-boot negative-load tests.
-
-**Implementation task:** Retain the observed protection; link complete source/runtime/persistence proof and re-verify after changes.
-
-**Core checkpoints:** `KHAHP-13.01A`, `KHAHP-13.01B`, `KHAHP-13.01C`
-
-**Source / evidence status:** 13-kernel-module-restrictions-20261012-162051.txt | SOURCE CONFIRMED
-
-### 13.02 — Hard-disable install rules for risky modules
-
-**Stage / source classification:** `S2 / SOURCE CONFIRMED`
-
-**Historical evidence:** Hard-disable install rules using Kicksecure handlers found in effective modprobe config.
-
-**Identified weakness / gap:** One exceptional dry-run requires review; see 13.07.
-
-**Implementation task:** RETAIN / CROSS-CHECK
-
-**Core checkpoints:** `KHAHP-13.02A`, `KHAHP-13.02B`, `KHAHP-13.02C`
-
-**Source / evidence status:** 13-kernel-module-restrictions-20261012-162051.txt | SOURCE CONFIRMED
-
-### 13.03 — Loaded-module inventory versus policy
-
-**Stage / source classification:** `S2 / RUNTIME CONFIRMED`
-
-**Historical evidence:** Loaded modules enumerated; zero modules matched examined blacklist/install-rule-disabled lists.
-
-**Identified weakness / gap:** Current boot only; future modules and dynamic loading not prevented by this observation.
-
-**Implementation task:** Retain the observed protection; link complete source/runtime/persistence proof and re-verify after changes.
-
-**Core checkpoints:** `KHAHP-13.03A`, `KHAHP-13.03B`, `KHAHP-13.03C`
-
-**Source / evidence status:** 13-kernel-module-restrictions-20261012-162051.txt | RUNTIME CONFIRMED
-
-### 13.04 — Legacy filesystem module restrictions
-
-**Stage / source classification:** `S2 / SOURCE CONFIRMED`
-
-**Historical evidence:** Legacy filesystem module restrictions shown in security-misc policy.
-
-**Identified weakness / gap:** Not all filesystem module absence/build status proven by policy presence.
-
-**Implementation task:** RETAIN / PROFILE REVIEW
-
-**Core checkpoints:** `KHAHP-13.04A`, `KHAHP-13.04B`, `KHAHP-13.04C`
-
-**Source / evidence status:** 13-kernel-module-restrictions-20261012-162051.txt | SOURCE CONFIRMED
-
-### 13.05 — Legacy network/protocol module restrictions
-
-**Stage / source classification:** `S2 / SOURCE CONFIRMED`
-
-**Historical evidence:** Legacy network/protocol module restriction sources and safe dry-run samples recorded.
-
-**Identified weakness / gap:** No aggressive blocking of necessary Kicksecure protocols without compatibility validation.
-
-**Implementation task:** RETAIN / PROFILE REVIEW
-
-**Core checkpoints:** `KHAHP-13.05A`, `KHAHP-13.05B`, `KHAHP-13.05C`
-
-**Source / evidence status:** 13-kernel-module-restrictions-20261012-162051.txt | SOURCE CONFIRMED
-
-### 13.06 — USB/storage/media module restriction exceptions
-
-**Stage / source classification:** `S2 / INTENTIONAL POLICY`
-
-**Historical evidence:** Report confirms usb_storage and uas were intentionally not hard-disabled.
-
-**Identified weakness / gap:** Deliberate requirement to permit USB mass-storage; do not blacklist these modules.
-
-**Implementation task:** DOCUMENT INTENTIONAL EXCEPTION
-
-**Core checkpoints:** `KHAHP-13.06A`, `KHAHP-13.06B`, `KHAHP-13.06C`
-
-**Source / evidence status:** 13-kernel-module-restrictions-20261012-162051.txt | INTENTIONAL POLICY
-
-### 13.07 — Module-load negative tests and compatibility exceptions
-
-**Stage / source classification:** `S2 / OPEN CLASSIFICATION WARNING`
-
-**Historical evidence:** 145 of 146 simulated module loads showed restriction-like results; vesafb returned rc=0 with empty output.
-
-**Identified weakness / gap:** vesafb result inconclusive: module may be built in, absent or not subject to expected install rule; no actual exploit proved.
-
-**Implementation task:** TARGETED VESAFB CLASSIFICATION
-
-**Core checkpoints:** `KHAHP-13.07A`, `KHAHP-13.07B`, `KHAHP-13.07C`
-
-**Source / evidence status:** 13-kernel-module-restrictions-20261012-162051.txt | OPEN CLASSIFICATION WARNING
+**Seven registered families:** `11.01` Sysctl source-tree inventory and precedence; `11.02` Kicksecure security-misc sysctl source files; `11.03` Kernel information-leak restrictions; `11.04` ASLR, mmap, kexec and privileged- coredump controls; `11.05` BPF, ptrace, perf and TTY line- discipline restrictions; `11.06` Protected links/FIFOs/regular-file controls; `11.07` Network-stack sysctl hardening observations.
 
 ---
 
-## 14 — Kernel Module Signing / DKMS
+### 12 — Kernel Boot / Memory Hardening
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** DOCUMENTATION BASELINE COMPLETE; FORMAL A/B/C REVIEW OPEN.
 
-### 14.01 — Loaded-module signer inventory
+**Documented/observed:** Memory initialization/kernel boot flags were inspected in source and runtime.
 
-**Stage / source classification:** `S2 / SOURCE/RUNTIME WITH LATER EVIDENCE`
+**What still needs evidence or action:** Separate effective kernel capability from mere presence of boot tokens.
 
-**Historical evidence:** All loaded modules showed signer metadata in historical Section 14 inventory.
-
-**Identified weakness / gap:** Signer metadata alone does not prove platform trust or enforcement at that date.
-
-**Implementation task:** LINK TO 39 SECURE BOOT
-
-**Core checkpoints:** `KHAHP-14.01A`, `KHAHP-14.01B`, `KHAHP-14.01C`
-
-**Source / evidence status:** 14-kernel-module-signing-dkms-20261012-163518.txt | SOURCE/RUNTIME WITH LATER EVIDENCE
-
-### 14.02 — DKMS package and built-module inventory
-
-**Stage / source classification:** `S2 / HISTORICAL WARNING OVERRIDDEN`
-
-**Historical evidence:** dkms status lists tirdad for the running and older kernel; DKMS module file present.
-
-**Identified weakness / gap:** Verifier warning about missing running-kernel DKMS build contradicts its own dkms status; likely classifier defect.
-
-**Implementation task:** RESOLVE FALSE-POSITIVE WARNING
-
-**Core checkpoints:** `KHAHP-14.02A`, `KHAHP-14.02B`, `KHAHP-14.02C`
-
-**Source / evidence status:** 14-kernel-module-signing-dkms-20261012-163518.txt | HISTORICAL WARNING OVERRIDDEN
-
-### 14.03 — tirdad DKMS build, signer and runtime state
-
-**Stage / source classification:** `S2 / SUPERSEDED BY LATER EVIDENCE`
-
-**Historical evidence:** Signed tirdad module was loaded; later Section 39 confirms Secure Boot enabled and signer/MOK present.
-
-**Identified weakness / gap:** Do not treat early Setup Mode report as current state; firmware exceptions remain.
-
-**Implementation task:** CREDIT LATER SECTION 39
-
-**Core checkpoints:** `KHAHP-14.03A`, `KHAHP-14.03B`, `KHAHP-14.03C`
-
-**Source / evidence status:** 14-kernel-module-signing-dkms-20261012-163518.txt | SUPERSEDED BY LATER EVIDENCE
-
-### 14.04 — NVIDIA/other third-party module signer state
-
-**Stage / source classification:** `S2 / NO PATCH SHOWN`
-
-**Historical evidence:** Only reported third-party loaded module was signed tirdad; NVIDIA absent.
-
-**Identified weakness / gap:** NVIDIA not installed is informational, not a missing patch.
-
-**Implementation task:** NO NVIDIA REMEDIATION
-
-**Core checkpoints:** `KHAHP-14.04A`, `KHAHP-14.04B`, `KHAHP-14.04C`
-
-**Source / evidence status:** 14-kernel-module-signing-dkms-20261012-163518.txt | NO PATCH SHOWN
-
-### 14.05 — Kernel module signature enforcement capability
-
-**Stage / source classification:** `S2 / PARTIAL ENFORCEMENT EVIDENCE`
-
-**Historical evidence:** Kernel supports module signing; original CONFIG_MODULE_SIG_FORCE was not set; lockdown state recorded.
-
-**Identified weakness / gap:** Signature metadata and Secure Boot integrity do not automatically prove every module policy target; check effective enforcement separately if needed.
-
-**Implementation task:** ENFORCEMENT ASSURANCE REVIEW
-
-**Core checkpoints:** `KHAHP-14.05A`, `KHAHP-14.05B`, `KHAHP-14.05C`
-
-**Source / evidence status:** 14-kernel-module-signing-dkms-20261012-163518.txt | PARTIAL ENFORCEMENT EVIDENCE
-
-### 14.06 — MOK/enrolled certificate readiness
-
-**Stage / source classification:** `S2 / SUPERSEDED BY LATER EVIDENCE`
-
-**Historical evidence:** MOK utility and DKMS signing key paths were present; later Section 39 confirms enrolled signing chain.
-
-**Identified weakness / gap:** MOK material itself must never enter commercial customer image.
-
-**Implementation task:** CREDIT LATER MOK / EXCLUDE SECRETS
-
-**Core checkpoints:** `KHAHP-14.06A`, `KHAHP-14.06B`, `KHAHP-14.06C`
-
-**Source / evidence status:** 14-kernel-module-signing-dkms-20261012-163518.txt | SUPERSEDED BY LATER EVIDENCE
-
-### 14.07 — Secure-Boot compatibility and unsigned-module exceptions
-
-**Stage / source classification:** `S2 / SUPERSEDED BY LATER EVIDENCE`
-
-**Historical evidence:** Original report had Secure Boot disabled and firmware Setup Mode; later Section 39 verifies Secure Boot enabled and SetupMode=0.
-
-**Identified weakness / gap:** Remaining BIOS physical recovery limitations belong to Section 39, not repeated module signing fixes.
-
-**Implementation task:** CREDIT LATER BOOT STATE
-
-**Core checkpoints:** `KHAHP-14.07A`, `KHAHP-14.07B`, `KHAHP-14.07C`
-
-**Source / evidence status:** 14-kernel-module-signing-dkms-20261012-163518.txt | SUPERSEDED BY LATER EVIDENCE
+**Seven registered families:** `12.01` Slab allocator hardening and slab_nomerge; `12.02` init_on_alloc and init_on_free memory initialization; `12.03` page allocator shuffle and stack randomization; `12.04` vsyscall, vdso32 and 32-bit compatibility restrictions; `12.05` debugfs, KFENCE and kernel debug- surface controls; `12.06` CFI/KCFI and boot-time control acceptance; `12.07` pstore/ERST/proc_mem/entropy trust boot parameters.
 
 ---
 
-## 15 — AppArmor / Mandatory Access Control
+### 13 — Kernel Module Restrictions
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** DOCUMENTATION BASELINE COMPLETE; FORMAL A/B/C REVIEW OPEN.
 
-### 15.01 — AppArmor kernel/module enablement
+**Documented/observed:** Module restrictions and exceptions were inspected.
 
-**Stage / source classification:** `S1 / ENFORCED SYSTEM LEVEL`
+**What still needs evidence or action:** Resolve built-in versus loadable module behavior and compatibility.
 
-**Historical evidence:** Kernel AppArmor enabled and apparmor.service active in USER-mode report.
-
-**Identified weakness / gap:** Service activity does not guarantee each app has enforced profile.
-
-**Implementation task:** Retain the observed protection; link complete source/runtime/persistence proof and re-verify after changes.
-
-**Core checkpoints:** `KHAHP-15.01A`, `KHAHP-15.01B`, `KHAHP-15.01C`
-
-**Source / evidence status:** 15-apparmor-mandatory-access-control-user-20261012-165737.txt | ENFORCED SYSTEM LEVEL
-
-### 15.02 — Profile inventory and parser status
-
-**Stage / source classification:** `S1 / SOURCE CONFIRMED`
-
-**Historical evidence:** apparmor_parser present; profile files inventoried, package attribution recorded.
-
-**Identified weakness / gap:** Profile file presence does not prove it is loaded or in enforce mode.
-
-**Implementation task:** RETAIN / TEST LABELS
-
-**Core checkpoints:** `KHAHP-15.02A`, `KHAHP-15.02B`, `KHAHP-15.02C`
-
-**Source / evidence status:** 15-apparmor-mandatory-access-control-user-20261012-165737.txt | SOURCE CONFIRMED
-
-### 15.03 — Enforce/complain/unconfined process counts
-
-**Stage / source classification:** `S1 / PRIVILEGED EVIDENCE GAP`
-
-**Historical evidence:** USER was denied privileged aa-status profile counts; module remained loaded.
-
-**Identified weakness / gap:** No authoritative full enforce/complain/unconfined count in this USER report.
-
-**Implementation task:** SYSMAINT STATUS NEEDED
-
-**Core checkpoints:** `KHAHP-15.03A`, `KHAHP-15.03B`, `KHAHP-15.03C`
-
-**Source / evidence status:** 15-apparmor-mandatory-access-control-user-20261012-165737.txt | PRIVILEGED EVIDENCE GAP
-
-### 15.04 — Tor and network-service profile enforcement
-
-**Stage / source classification:** `S1 / MIXED ENFORCEMENT`
-
-**Historical evidence:** tor process label system_tor (enforce), unbound label unbound (enforce); NetworkManager label unconfined.
-
-**Identified weakness / gap:** NetworkManager unconfined and conservative Tor classifier require intentional policy review, not automatic fixes.
-
-**Implementation task:** REVIEW DESIRED PROFILES
-
-**Core checkpoints:** `KHAHP-15.04A`, `KHAHP-15.04B`, `KHAHP-15.04C`
-
-**Source / evidence status:** 15-apparmor-mandatory-access-control-user-20261012-165737.txt | MIXED ENFORCEMENT
-
-### 15.05 — Browser/application profile coverage
-
-**Stage / source classification:** `S1 / OPEN SECURITY COVERAGE GAP`
-
-**Historical evidence:** Fourteen Firefox-related processes reported label firefox (unconfined) despite profile source existing.
-
-**Identified weakness / gap:** Confinement was NOT effective for these processes at report time. Changing package-owned profile can break browser.
-
-**Implementation task:** PRIORITY TARGETED APPARMOR REMEDIATION
-
-**Core checkpoints:** `KHAHP-15.05A`, `KHAHP-15.05B`, `KHAHP-15.05C`
-
-**Source / evidence status:** 15-apparmor-mandatory-access-control-user-20261012-165737.txt | OPEN SECURITY COVERAGE GAP
-
-### 15.06 — Denied-event review and false-positive handling
-
-**Stage / source classification:** `S1 / LIMITED RUNTIME EVIDENCE`
-
-**Historical evidence:** Zero accessible current-boot AppArmor DENIED events and false-positive handling policy documented.
-
-**Identified weakness / gap:** Zero denial events cannot prove no bypass or full confinement.
-
-**Implementation task:** RETAIN / TEST POLICY
-
-**Core checkpoints:** `KHAHP-15.06A`, `KHAHP-15.06B`, `KHAHP-15.06C`
-
-**Source / evidence status:** 15-apparmor-mandatory-access-control-user-20261012-165737.txt | LIMITED RUNTIME EVIDENCE
-
-### 15.07 — USER versus SYSMAINT AppArmor behavior
-
-**Stage / source classification:** `S1 / BOTH-MODE GAP`
-
-**Historical evidence:** USER-side role process labels and source/persistence inventory captured.
-
-**Identified weakness / gap:** SYSMAINT privileged profile counts and a second-boot comparison absent in this report.
-
-**Implementation task:** PAIR WITH SYSMAINT EVIDENCE
-
-**Core checkpoints:** `KHAHP-15.07A`, `KHAHP-15.07B`, `KHAHP-15.07C`
-
-**Source / evidence status:** 15-apparmor-mandatory-access-control-user-20261012-165737.txt | BOTH-MODE GAP
+**Seven registered families:** `13.01` security-misc module blacklist configuration; `13.02` Hard-disable install rules for risky modules; `13.03` Loaded-module inventory versus policy; `13.04` Legacy filesystem module restrictions; `13.05` Legacy network/protocol module restrictions; `13.06` USB/storage/media module restriction exceptions; `13.07` Module-load negative tests and compatibility exceptions.
 
 ---
 
-## 16 — SUID / SGID / File Capabilities
+### 14 — Kernel Module Signing / DKMS
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** DOCUMENTATION BASELINE COMPLETE; FORMAL A/B/C REVIEW OPEN.
 
-### 16.01 — Complete SUID file inventory
+**Documented/observed:** Later privileged evidence observed signed DKMS builds and enabled Secure Boot.
 
-**Stage / source classification:** `S3 / INVENTORY CONFIRMED`
+**What still needs evidence or action:** Validate signer chain and upgrade behavior without re-enrolling keys unnecessarily.
 
-**Historical evidence:** SUID regular-file inventory of scan-eligible local filesystems completed.
-
-**Identified weakness / gap:** Inventory excludes pseudo-/non-eligible mounts and does not alone prove all allowed SUID files needed.
-
-**Implementation task:** RETAIN / CHANGE BASELINE
-
-**Core checkpoints:** `KHAHP-16.01A`, `KHAHP-16.01B`, `KHAHP-16.01C`
-
-**Source / evidence status:** 16-suid-sgid-file-capabilities-sysmaint-20261012-191027.txt | INVENTORY CONFIRMED
-
-### 16.02 — Complete SGID file inventory
-
-**Stage / source classification:** `S3 / INVENTORY CONFIRMED`
-
-**Historical evidence:** SGID regular-file inventory of scan-eligible local filesystems completed.
-
-**Identified weakness / gap:** A dated snapshot needs package-update persistence comparison.
-
-**Implementation task:** RETAIN / CHANGE BASELINE
-
-**Core checkpoints:** `KHAHP-16.02A`, `KHAHP-16.02B`, `KHAHP-16.02C`
-
-**Source / evidence status:** 16-suid-sgid-file-capabilities-sysmaint-20261012-191027.txt | INVENTORY CONFIRMED
-
-### 16.03 — Package ownership of privileged binaries
-
-**Stage / source classification:** `S3 / PACKAGE ATTRIBUTED`
-
-**Historical evidence:** All discovered SUID/SGID files package-attributed; no tracked privileged-file md5 mismatches.
-
-**Identified weakness / gap:** Hash check limited to available package metadata, not signed measured boot.
-
-**Implementation task:** Retain the observed protection; link complete source/runtime/persistence proof and re-verify after changes.
-
-**Core checkpoints:** `KHAHP-16.03A`, `KHAHP-16.03B`, `KHAHP-16.03C`
-
-**Source / evidence status:** 16-suid-sgid-file-capabilities-sysmaint-20261012-191027.txt | PACKAGE ATTRIBUTED
-
-### 16.04 — permission-hardener expected mode validation
-
-**Stage / source classification:** `S3 / ENFORCED IN REPORT`
-
-**Historical evidence:** permission-hardener present; all extant statoverride targets matched expected owner/group/mode.
-
-**Identified weakness / gap:** Do not apply a broad chmod pass over dpkg-managed files.
-
-**Implementation task:** RETAIN PACKAGE POLICY
-
-**Core checkpoints:** `KHAHP-16.04A`, `KHAHP-16.04B`, `KHAHP-16.04C`
-
-**Source / evidence status:** 16-suid-sgid-file-capabilities-sysmaint-20261012-191027.txt | ENFORCED IN REPORT
-
-### 16.05 — File-capability inventory and package attribution
-
-**Stage / source classification:** `S3 / PRIVILEGED SURFACE REVIEW`
-
-**Historical evidence:** One package-owned file with capabilities: gstreamer gst-ptp-helper, cap_net_bind_service/cap_net_admin/cap_sys_nice.
-
-**Identified weakness / gap:** Capability use/necessity not established; package ownership is not reason to remove cap automatically.
-
-**Implementation task:** REVIEW NECESSITY OF CAPABILITIES
-
-**Core checkpoints:** `KHAHP-16.05A`, `KHAHP-16.05B`, `KHAHP-16.05C`
-
-**Source / evidence status:** 16-suid-sgid-file-capabilities-sysmaint-20261012-191027.txt | PRIVILEGED SURFACE REVIEW
-
-### 16.06 — Unexpected privileged executable detection
-
-**Stage / source classification:** `S3 / NO UNSAFE FILE DETECTED`
-
-**Historical evidence:** No SUID/SGID regular file world/group-writable, in reviewed writable user/temp paths, or unowned.
-
-**Identified weakness / gap:** No negative execution test; known file capability should be reviewed separately.
-
-**Implementation task:** Retain the observed protection; link complete source/runtime/persistence proof and re-verify after changes.
-
-**Core checkpoints:** `KHAHP-16.06A`, `KHAHP-16.06B`, `KHAHP-16.06C`
-
-**Source / evidence status:** 16-suid-sgid-file-capabilities-sysmaint-20261012-191027.txt | NO UNSAFE FILE DETECTED
-
-### 16.07 — Privilege-binary negative/compatibility review
-
-**Stage / source classification:** `S3 / TEST-GAP ONLY`
-
-**Historical evidence:** Privileged-mount semantics, USER/SYSMAINT hardener integration and passive verification recorded.
-
-**Identified weakness / gap:** Report explicitly did not invoke privileged executables for negative test; persistence comparison elsewhere.
-
-**Implementation task:** DEFER CONTROLLED NEGATIVE TEST
-
-**Core checkpoints:** `KHAHP-16.07A`, `KHAHP-16.07B`, `KHAHP-16.07C`
-
-**Source / evidence status:** 16-suid-sgid-file-capabilities-sysmaint-20261012-191027.txt | TEST-GAP ONLY
+**Seven registered families:** `14.01` Loaded-module signer inventory; `14.02` DKMS package and built-module inventory; `14.03` tirdad DKMS build, signer and runtime state; `14.04` NVIDIA/other third-party module signer state; `14.05` Kernel module signature enforcement capability; `14.06` MOK/enrolled certificate readiness; `14.07` Secure-Boot compatibility and unsigned-module exceptions.
 
 ---
 
-## 17 — Permissions / ACL / Umask
+### 15 — AppArmor / Mandatory Access Control
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** DOCUMENTATION BASELINE COMPLETE; FORMAL A/B/C REVIEW OPEN.
 
-### 17.01 — System file ownership baseline
+**Documented/observed:** AppArmor active; selected services enforced; strict Firefox confinement not established.
 
-**Stage / source classification:** `S1 / PERMISSIONS PASS`
+**What still needs evidence or action:** Plan compatible browser confinement in a test environment before any package-profile changes.
 
-**Historical evidence:** Critical auth/privilege/boot files reviewed: root-owned and not group/world writable.
+**Linked follow-ups:** `I15-001`, `I15-002`, `I15-003`.
 
-**Identified weakness / gap:** Source report is from 12 Oct and not current scan.
-
-**Implementation task:** Retain the observed protection; link complete source/runtime/persistence proof and re-verify after changes.
-
-**Core checkpoints:** `KHAHP-17.01A`, `KHAHP-17.01B`, `KHAHP-17.01C`
-
-**Source / evidence status:** 17-permissions-acl-umask-sysmaint-20261012-202746.txt | PERMISSIONS PASS
-
-### 17.02 — World-writable system path inventory
-
-**Stage / source classification:** `S1 / OPEN DIRECTORY PERMISSION WARNING`
-
-**Historical evidence:** No world-writable regular files; one directory /var/cache/setup-dist/status-files root:root mode 0777 lacked sticky bit.
-
-**Identified weakness / gap:** Unattributed system cache path needs owner/consumer check and live recheck before chmod.
-
-**Implementation task:** HIGH PRIORITY ATTRIBUTION & SAFE FIX
-
-**Core checkpoints:** `KHAHP-17.02A`, `KHAHP-17.02B`, `KHAHP-17.02C`
-
-**Source / evidence status:** 17-permissions-acl-umask-sysmaint-20261012-202746.txt | OPEN DIRECTORY PERMISSION WARNING
-
-### 17.03 — Unexpected group-writable sensitive paths
-
-**Stage / source classification:** `S1 / PERMISSIONS PASS`
-
-**Historical evidence:** No unexpected group-writable (but not world-writable) sensitive paths in reviewed roots.
-
-**Identified weakness / gap:** Coverage limited to listed roots.
-
-**Implementation task:** Retain the observed protection; link complete source/runtime/persistence proof and re-verify after changes.
-
-**Core checkpoints:** `KHAHP-17.03A`, `KHAHP-17.03B`, `KHAHP-17.03C`
-
-**Source / evidence status:** 17-permissions-acl-umask-sysmaint-20261012-202746.txt | PERMISSIONS PASS
-
-### 17.04 — ACL inventory on sensitive configuration
-
-**Stage / source classification:** `S1 / ACL INVENTORY PASS`
-
-**Historical evidence:** getfacl traversed high-sensitivity paths; no extended ACLs found there.
-
-**Identified weakness / gap:** No ACLs observed does not prove all access-control requirements.
-
-**Implementation task:** Retain the observed protection; link complete source/runtime/persistence proof and re-verify after changes.
-
-**Core checkpoints:** `KHAHP-17.04A`, `KHAHP-17.04B`, `KHAHP-17.04C`
-
-**Source / evidence status:** 17-permissions-acl-umask-sysmaint-20261012-202746.txt | ACL INVENTORY PASS
-
-### 17.05 — Root and user umask policy
-
-**Stage / source classification:** `S1 / BENCHMARK ALIGNMENT REVIEW`
-
-**Historical evidence:** SYSMAINT invoking shell umask 0022; Kicksecure PAM umask fragments 027/022 recorded.
-
-**Identified weakness / gap:** Not umask=077 for SYSMAINT; effective ordinary USER shell umask was not measured in this report.
-
-**Implementation task:** POLICY/USER MODE REVIEW
-
-**Core checkpoints:** `KHAHP-17.05A`, `KHAHP-17.05B`, `KHAHP-17.05C`
-
-**Source / evidence status:** 17-permissions-acl-umask-sysmaint-20261012-202746.txt | BENCHMARK ALIGNMENT REVIEW
-
-### 17.06 — Home and evidence-directory permissions
-
-**Stage / source classification:** `S1 / PASS AT SNAPSHOT`
-
-**Historical evidence:** Reviewed KHAHP and home dirs had no reported ownership/write exposure; KHAHP was mode 0700.
-
-**Identified weakness / gap:** Home dirs 0750 at snapshot; later archive creation deliberately changed KHAHP ownership.
-
-**Implementation task:** RECONCILE AGAINST LATER FILE OWNERSHIP
-
-**Core checkpoints:** `KHAHP-17.06A`, `KHAHP-17.06B`, `KHAHP-17.06C`
-
-**Source / evidence status:** 17-permissions-acl-umask-sysmaint-20261012-202746.txt | PASS AT SNAPSHOT
-
-### 17.07 — Sticky-bit and shared-directory permission policy
-
-**Stage / source classification:** `S1 / OPEN DIRECTORY PERMISSION WARNING`
-
-**Historical evidence:** Canonical /tmp and /var/tmp shared dirs had sticky bit; same noncanonical cache dir lacked it.
-
-**Identified weakness / gap:** 17.02 and 17.07 are two warnings for ONE underlying path, not two independent vulnerabilities.
-
-**Implementation task:** SAME ACTION AS 17.02
-
-**Core checkpoints:** `KHAHP-17.07A`, `KHAHP-17.07B`, `KHAHP-17.07C`
-
-**Source / evidence status:** 17-permissions-acl-umask-sysmaint-20261012-202746.txt | OPEN DIRECTORY PERMISSION WARNING
+**Seven registered families:** `15.01` AppArmor kernel/module enablement; `15.02` Profile inventory and parser status; `15.03` Enforce/complain/unconfined process counts; `15.04` Tor and network-service profile enforcement; `15.05` Browser/application profile coverage; `15.06` Denied-event review and false-positive handling; `15.07` USER versus SYSMAINT AppArmor behavior.
 
 ---
 
-## 18 — PAM / Login / Faillock
+### 16 — SUID / SGID / File Capabilities
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** DOCUMENTATION BASELINE COMPLETE; FORMAL A/B/C REVIEW OPEN.
 
-### 18.01 — PAM stack package provenance
+**Documented/observed:** Privileged binaries/capabilities were inventoried and package-attributed.
 
-**Stage / source classification:** `S3 / LOW`
+**What still needs evidence or action:** Review drift and package capabilities without blind permission changes.
 
-**Historical evidence:** PAM packages present; common PAM files root-owned and protected; Kicksecure PAM fragments present.
+**Linked follow-ups:** `I15-004`, `I15-005`.
 
-**Identified weakness / gap:** Inventory and permissions do not prove every authentication path enforces these modules.
-
-**Implementation task:** RETAIN; reconcile USER authentication paths
-
-**Core checkpoints:** `KHAHP-18.01A`, `KHAHP-18.01B`, `KHAHP-18.01C`
-
-**Source / evidence status:** 18-pam-login-faillock-sysmaint-20261012-205338.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 18.02 — password quality and hashing policy
-
-**Stage / source classification:** `S3 / MEDIUM`
-
-**Historical evidence:** pam_unix uses yescrypt and login.defs specifies YESCRYPT; pwquality package/config exists.
-
-**Identified weakness / gap:** No active pam_pwquality/pam_passwdqc rule; pwquality settings in report are commented defaults.
-
-**Implementation task:** TARGETED POLICY REVIEW: password quality / UX / installer
-
-**Core checkpoints:** `KHAHP-18.02A`, `KHAHP-18.02B`, `KHAHP-18.02C`
-
-**Source / evidence status:** 18-pam-login-faillock-sysmaint-20261012-205338.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 18.03 — faillock/brute-force lockout policy
-
-**Stage / source classification:** `S3 / MEDIUM`
-
-**Historical evidence:** Active common-auth pam_faillock hooks; deny=50, fail_interval=604800, unlock_time=never, even_deny_root.
-
-**Identified weakness / gap:** Counters were read but no safe negative lockout experiment; lockout threshold and indefinite unlock merit usability/DoS review.
-
-**Implementation task:** RETAIN; validate intended faillock policy and non-destructive test
-
-**Core checkpoints:** `KHAHP-18.03A`, `KHAHP-18.03B`, `KHAHP-18.03C`
-
-**Source / evidence status:** 18-pam-login-faillock-sysmaint-20261012-205338.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 18.04 — login delay and retry controls
-
-**Stage / source classification:** `S3 / LOW`
-
-**Historical evidence:** pam_faildelay sets 3,000,000 microseconds; LOGIN_RETRIES=5 and LOGIN_TIMEOUT=60.
-
-**Identified weakness / gap:** FAIL_DELAY parsing unconfirmed; PAM vs login front-end behavior not exercised.
-
-**Implementation task:** PRESERVE; verify interactive behavior only if necessary
-
-**Core checkpoints:** `KHAHP-18.04A`, `KHAHP-18.04B`, `KHAHP-18.04C`
-
-**Source / evidence status:** 18-pam-login-faillock-sysmaint-20261012-205338.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 18.05 — su/sudo/polkit PAM interaction
-
-**Stage / source classification:** `S3 / LOW`
-
-**Historical evidence:** su/sudo/polkit PAM files protected; sudo/pkexec restricted to SYSMAINT group with setuid mode 4750.
-
-**Identified weakness / gap:** This report does not execute privilege-bypass tests; Section 03 supplied sudo denial evidence.
-
-**Implementation task:** CREDIT SECTION 03; preserve USER/SYSMAINT split
-
-**Core checkpoints:** `KHAHP-18.05A`, `KHAHP-18.05B`, `KHAHP-18.05C`
-
-**Source / evidence status:** 18-pam-login-faillock-sysmaint-20261012-205338.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 18.06 — account aging and inactive-account policy High-Assurance Defense-in-Depth
-
-**Stage / source classification:** `S3 / MEDIUM`
-
-**Historical evidence:** root password locked; USER/SYSMAINT accounts active; PASS_MAX_DAYS=99999, PASS_MIN_DAYS=0; warn 7 days.
-
-**Identified weakness / gap:** No password expiration/inactivity enforcement. Must resolve against intended user policy, not arbitrarily set password rotation.
-
-**Implementation task:** POLICY / BENCHMARK APPLICABILITY REVIEW
-
-**Core checkpoints:** `KHAHP-18.06A`, `KHAHP-18.06B`, `KHAHP-18.06C`
-
-**Source / evidence status:** 18-pam-login-faillock-sysmaint-20261012-205338.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 18.07 — USER/SYSMAINT login regression tests
-
-**Stage / source classification:** `S3 / LOW`
-
-**Historical evidence:** Required accounts/homes/shells and login restrictions are present.
-
-**Identified weakness / gap:** No real credential-login regression or post-update check performed in this report.
-
-**Implementation task:** LINK USER/SYSMAINT LOGIN EVIDENCE; deferred functional test
-
-**Core checkpoints:** `KHAHP-18.07A`, `KHAHP-18.07B`, `KHAHP-18.07C`
-
-**Source / evidence status:** 18-pam-login-faillock-sysmaint-20261012-205338.txt | NOT SIGNED OFF AT ASSERTION LEVEL
+**Seven registered families:** `16.01` Complete SUID file inventory; `16.02` Complete SGID file inventory; `16.03` Package ownership of privileged binaries; `16.04` permission-hardener expected mode validation; `16.05` File-capability inventory and package attribution; `16.06` Unexpected privileged executable detection; `16.07` Privilege-binary negative/compatibility review.
 
 ---
 
-## 19 — SSH Client / Server Security
+### 17 — Permissions / ACL / Umask
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** DOCUMENTATION BASELINE COMPLETE; FORMAL A/B/C REVIEW OPEN.
 
-### 19.01 — Local SSH server service/socket state
+**Documented/observed:** Restrictive permissions/umask observed; one package-owned world-writable status cache documented.
 
-**Stage / source classification:** `S3 / LOW`
+**What still needs evidence or action:** Classify intended vendor exception and monitor unexpected permission drift.
 
-**Historical evidence:** On Oct 12, openssh-server binary/service absent; subsequent closeout shows ssh.service and ssh.socket masked.
+**Linked follow-ups:** `I15-006`, `I15-007`.
 
-**Identified weakness / gap:** Historical server absence no longer describes later package state; do not use Oct 12 server policy as current.
-
-**Implementation task:** SUPERSEDED by Sections 42 and 39–43 closeout
-
-**Core checkpoints:** `KHAHP-19.01A`, `KHAHP-19.01B`, `KHAHP-19.01C`
-
-**Source / evidence status:** 19-ssh-client-server-security-sysmaint-20261012-210100.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 19.02 — sshd listener and inbound port absence
-
-**Stage / source classification:** `S3 / LOW`
-
-**Historical evidence:** No sshd process and no TCP/22 listener on Oct 12.
-
-**Identified weakness / gap:** SYSMAINT current-boot observation; no external scan in this report.
-
-**Implementation task:** CREDIT later SSH masked check
-
-**Core checkpoints:** `KHAHP-19.02A`, `KHAHP-19.02B`, `KHAHP-19.02C`
-
-**Source / evidence status:** 19-ssh-client-server-security-sysmaint-20261012-210100.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 19.03 — sshd_config security-misc policy if installed
-
-**Stage / source classification:** `S3 / LOW`
-
-**Historical evidence:** Kicksecure sshd_config.d/30_security-misc.conf present: password and keyboard-interactive auth disabled; root setting initially prohibit-password.
-
-**Identified weakness / gap:** Server binary absent then; cannot equate source to effective policy. Later verifier checked PermitRootLogin no and key-only.
-
-**Implementation task:** SUPERSEDED: later effective SSH policy PASS
-
-**Core checkpoints:** `KHAHP-19.03A`, `KHAHP-19.03B`, `KHAHP-19.03C`
-
-**Source / evidence status:** 19-ssh-client-server-security-sysmaint-20261012-210100.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 19.04 — SSH client configuration and host-key verification
-
-**Stage / source classification:** `S3 / LOW`
-
-**Historical evidence:** SSH client strict host checking=ask, HashKnownHosts=yes; Kicksecure client config attributed and protected.
-
-**Identified weakness / gap:** ask is interactive confirmation, not a host-key pinning decision for every user workflow.
-
-**Implementation task:** RETAIN; consider host-key enrollment guidance
-
-**Core checkpoints:** `KHAHP-19.04A`, `KHAHP-19.04B`, `KHAHP-19.04C`
-
-**Source / evidence status:** 19-ssh-client-server-security-sysmaint-20261012-210100.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 19.05 — Private-key ownership and permission baseline
-
-**Stage / source classification:** `S3 / LOW`
-
-**Historical evidence:** Checked SSH paths/private files had safe ownership/modes; no private SSH keys identified in original check.
-
-**Identified weakness / gap:** Absent paths / no keys are not proofs of future key hygiene. Later Section 42 found authorized_keys empty and private modes.
-
-**Implementation task:** CREDIT Section 42 SSH metadata; retest customer provisioning
-
-**Core checkpoints:** `KHAHP-19.05A`, `KHAHP-19.05B`, `KHAHP-19.05C`
-
-**Source / evidence status:** 19-ssh-client-server-security-sysmaint-20261012-210100.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 19.06 — Password-authentication and root- login policy for future server use
-
-**Stage / source classification:** `S3 / LOW`
-
-**Historical evidence:** Originally no server exposed; password auth no in source. Later effective sshd configuration keys-only with no root, and SSH masked.
-
-**Identified weakness / gap:** Original source allowed prohibit-password for root, insufficient for desired no-root policy; later effective policy passed.
-
-**Implementation task:** RESOLVED by later effective no-root SSH evidence
-
-**Core checkpoints:** `KHAHP-19.06A`, `KHAHP-19.06B`, `KHAHP-19.06C`
-
-**Source / evidence status:** 19-ssh-client-server-security-sysmaint-20261012-210100.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 19.07 — Known-hosts/key algorithm and crypto-policy review
-
-**Stage / source classification:** `S3 / LOW`
-
-**Historical evidence:** Effective client crypto list uses modern KEX, ed25519 and AEAD/ETM algorithms; no reviewed legacy algorithms active.
-
-**Identified weakness / gap:** ssh -Q capability list is not active policy; individual server-specific overrides beyond dummy.invalid untested.
-
-**Implementation task:** RETAIN; verify deployment-specific policy on commercial builds
-
-**Core checkpoints:** `KHAHP-19.07A`, `KHAHP-19.07B`, `KHAHP-19.07C`
-
-**Source / evidence status:** 19-ssh-client-server-security-sysmaint-20261012-210100.txt | NOT SIGNED OFF AT ASSERTION LEVEL
+**Seven registered families:** `17.01` System file ownership baseline; `17.02` World-writable system path inventory; `17.03` Unexpected group-writable sensitive paths; `17.04` ACL inventory on sensitive configuration; `17.05` Root and user umask policy; `17.06` Home and evidence-directory permissions; `17.07` Sticky-bit and shared-directory permission policy.
 
 ---
 
-## 20 — Enabled / Running Service Audit
+### 18 — PAM / Login / Faillock
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** DOCUMENTATION BASELINE COMPLETE; FORMAL A/B/C REVIEW OPEN.
 
-### 20.01 — Enabled systemd service inventory
+**Documented/observed:** Yescrypt and faillock observed; root locked and USER/SYSMAINT split preserved.
 
-**Stage / source classification:** `S3 / MEDIUM`
+**What still needs evidence or action:** Prove safe recovery from lockout and decide local passphrase/aging requirements.
 
-**Historical evidence:** Enabled/linked systemd services enumerated with provenance.
+**Linked follow-ups:** `I15-008`, `I15-009`, `I15-010`.
 
-**Identified weakness / gap:** Inventory alone does not show every enabled service is approved for sale; USER boot differs.
-
-**Implementation task:** MAINTAIN EXPLICIT SERVICE ALLOWLIST
-
-**Core checkpoints:** `KHAHP-20.01A`, `KHAHP-20.01B`, `KHAHP-20.01C`
-
-**Source / evidence status:** 20-enabled-running-service-audit-sysmaint-20261012-213111.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 20.02 — Running systemd service inventory
-
-**Stage / source classification:** `S3 / LOW`
-
-**Historical evidence:** Running systemd services enumerated; key Kicksecure services present.
-
-**Identified weakness / gap:** SYSMAINT only; USER-mode service set must be assessed separately.
-
-**Implementation task:** LINK later USER results and service baseline
-
-**Core checkpoints:** `KHAHP-20.02A`, `KHAHP-20.02B`, `KHAHP-20.02C`
-
-**Source / evidence status:** 20-enabled-running-service-audit-sysmaint-20261012-213111.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 20.03 — Socket/path/timer activated service inventory
-
-**Stage / source classification:** `S3 / MEDIUM`
-
-**Historical evidence:** Socket/path/timer activation inventory captured.
-
-**Identified weakness / gap:** An inactive service can still be socket-activated; inventory requires allowlist review.
-
-**Implementation task:** REVIEW ACTIVATION UNITS BEFORE RELEASE
-
-**Core checkpoints:** `KHAHP-20.03A`, `KHAHP-20.03B`, `KHAHP-20.03C`
-
-**Source / evidence status:** 20-enabled-running-service-audit-sysmaint-20261012-213111.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 20.04 — Kicksecure-required service attribution
-
-**Stage / source classification:** `S3 / LOW`
-
-**Historical evidence:** SYSMAINT service dependencies enumerated and package attribution recorded.
-
-**Identified weakness / gap:** Package-owned does not mean mandatory or least-privileged.
-
-**Implementation task:** RETAIN; operator-approved allowlist for nonessential units
-
-**Core checkpoints:** `KHAHP-20.04A`, `KHAHP-20.04B`, `KHAHP-20.04C`
-
-**Source / evidence status:** 20-enabled-running-service-audit-sysmaint-20261012-213111.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 20.05 — Unexpected or unnecessary service classification
-
-**Stage / source classification:** `S3 / MEDIUM`
-
-**Historical evidence:** 17 exposure-sensitive services/sockets checked inactive/not installed; ssh socket/service masked.
-
-**Identified weakness / gap:** Unfamiliar remaining services not classified as safe or unsafe individually.
-
-**Implementation task:** CLASSIFY ANY UNREVIEWED ACTIVE UNITS; do not mass disable
-
-**Core checkpoints:** `KHAHP-20.05A`, `KHAHP-20.05B`, `KHAHP-20.05C`
-
-**Source / evidence status:** 20-enabled-running-service-audit-sysmaint-20261012-213111.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 20.06 — Listener-to-service ownership correlation
-
-**Stage / source classification:** `S3 / LOW`
-
-**Historical evidence:** Only 127.0.0.1 Unbound:53 and Tor:9050 listeners; 0 non-loopback TCP and 0 TCP/22; all socket PID owners resolved.
-
-**Identified weakness / gap:** Snapshot excludes later service changes, UDP external exposure and USER boot specifics.
-
-**Implementation task:** RETAIN LOOPBACK POLICY; compare USER boot
-
-**Core checkpoints:** `KHAHP-20.06A`, `KHAHP-20.06B`, `KHAHP-20.06C`
-
-**Source / evidence status:** 20-enabled-running-service-audit-sysmaint-20261012-213111.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 20.07 — Reboot persistence and failed-service review
-
-**Stage / source classification:** `S3 / LOW`
-
-**Historical evidence:** No failed units; system running; state fingerprints saved.
-
-**Identified weakness / gap:** A fingerprint in one boot does not prove persistence across boots/updates.
-
-**Implementation task:** LINK Section 41 and 44 drift comparisons
-
-**Core checkpoints:** `KHAHP-20.07A`, `KHAHP-20.07B`, `KHAHP-20.07C`
-
-**Source / evidence status:** 20-enabled-running-service-audit-sysmaint-20261012-213111.txt | NOT SIGNED OFF AT ASSERTION LEVEL
+**Seven registered families:** `18.01` PAM stack package provenance; `18.02` password quality and hashing policy; `18.03` faillock/brute-force lockout policy; `18.04` login delay and retry controls; `18.05` su/sudo/polkit PAM interaction; `18.06` account aging and inactive-account policy; `18.07` USER/SYSMAINT login regression tests.
 
 ---
 
-## 21 — systemd Service Sandboxing
+### 19 — SSH Client / Server Security
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** DOCUMENTATION BASELINE COMPLETE; FORMAL A/B/C REVIEW OPEN.
 
-### 21.01 — systemd-analyze security baseline
+**Documented/observed:** Network SSH service masked with no ordinary TCP listener in inspected state.
 
-**Stage / source classification:** `S3 / MEDIUM`
+**What still needs evidence or action:** Preserve local exception and validate state after upgrades and recovery.
 
-**Historical evidence:** systemd-analyze security scored all 26 running services; exposure scores recorded, not used as false pass.
+**Linked follow-ups:** `I15-011`, `I15-012`.
 
-**Identified weakness / gap:** Numerous EXPOSED/UNSAFE scores (e.g. unbound 9.6, udisks2 9.6, NetworkManager 7.8); scoring is heuristic, not direct exploit evidence.
-
-**Implementation task:** SERVICE-BY-SERVICE HARDENING REVIEW, regression tested
-
-**Core checkpoints:** `KHAHP-21.01A`, `KHAHP-21.01B`, `KHAHP-21.01C`
-
-**Source / evidence status:** 21-systemd-service-sandboxing-sysmaint-20261012-214104.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 21.02 — NoNewPrivileges adoption
-
-**Stage / source classification:** `S3 / MEDIUM`
-
-**Historical evidence:** NoNewPrivileges=yes on 7 of 16 selected units; Tor/USBGuard/SDWDate supported.
-
-**Identified weakness / gap:** NoNewPrivileges=no on security and privileged helpers (e.g. unbound, usbguard-dbus); may be necessary.
-
-**Implementation task:** REVIEW UNIT-BY-UNIT FOR SAFE PRIVILEGE REDUCTION
-
-**Core checkpoints:** `KHAHP-21.02A`, `KHAHP-21.02B`, `KHAHP-21.02C`
-
-**Source / evidence status:** 21-systemd-service-sandboxing-sysmaint-20261012-214104.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 21.03 — ProtectSystem/ProtectHome restrictions
-
-**Stage / source classification:** `S3 / MEDIUM`
-
-**Historical evidence:** ProtectSystem/ProtectHome state measured; Tor full/yes, SDWDate strict/yes, USBGuard yes/yes.
-
-**Identified weakness / gap:** Several units retain broad file visibility; root helper and network exceptions may be necessary.
-
-**Implementation task:** TEST NARROW SANDBOX DROP-INS IN STAGING FIRST
-
-**Core checkpoints:** `KHAHP-21.03A`, `KHAHP-21.03B`, `KHAHP-21.03C`
-
-**Source / evidence status:** 21-systemd-service-sandboxing-sysmaint-20261012-214104.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 21.04 — PrivateTmp/PrivateDevices isolation
-
-**Stage / source classification:** `S3 / LOW`
-
-**Historical evidence:** PrivateTmp/PrivateDevices state measured for selected units; hardening in some units.
-
-**Identified weakness / gap:** Service functions involving USB, network and devices cannot be blindly isolated.
-
-**Implementation task:** TARGETED COMPATIBILITY REVIEW
-
-**Core checkpoints:** `KHAHP-21.04A`, `KHAHP-21.04B`, `KHAHP-21.04C`
-
-**Source / evidence status:** 21-systemd-service-sandboxing-sysmaint-20261012-214104.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 21.05 — CapabilityBoundingSet and ambient capabilities
-
-**Stage / source classification:** `S3 / MEDIUM`
-
-**Historical evidence:** Ambient capabilities empty for 13/16; reduced bounding sets on 7/16 selected services.
-
-**Identified weakness / gap:** Capability set counts alone do not establish minimum privilege; not all capabilities safely removable.
-
-**Implementation task:** TARGETED CAPABILITY REVIEW, no mass removal
-
-**Core checkpoints:** `KHAHP-21.05A`, `KHAHP-21.05B`, `KHAHP-21.05C`
-
-**Source / evidence status:** 21-systemd-service-sandboxing-sysmaint-20261012-214104.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 21.06 — RestrictNamespaces/ SystemCallFilter/address-family controls
-
-**Stage / source classification:** `S3 / MEDIUM`
-
-**Historical evidence:** Namespace/syscall/address-family controls inventoried and chosen services attributed.
-
-**Identified weakness / gap:** No syscall-filter denial testing or post-hardening service regression in source.
-
-**Implementation task:** TARGETED POLICY REVIEW FOR RISKIEST APPLICABLE SERVICES
-
-**Core checkpoints:** `KHAHP-21.06A`, `KHAHP-21.06B`, `KHAHP-21.06C`
-
-**Source / evidence status:** 21-systemd-service-sandboxing-sysmaint-20261012-214104.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 21.07 — Service-specific compatibility exceptions and regressions
-
-**Stage / source classification:** `S3 / LOW`
-
-**Historical evidence:** 64 sandbox directive lines found; 0 failed units; system running; Tor/Unbound/USBGuard/SDWDate active.
-
-**Identified weakness / gap:** No drop-ins added or modified by this verifier; no staged before/after performance regression test.
-
-**Implementation task:** PRESERVE HEALTH; staged changes only with rollback
-
-**Core checkpoints:** `KHAHP-21.07A`, `KHAHP-21.07B`, `KHAHP-21.07C`
-
-**Source / evidence status:** 21-systemd-service-sandboxing-sysmaint-20261012-214104.txt | NOT SIGNED OFF AT ASSERTION LEVEL
+**Seven registered families:** `19.01` Local SSH server service/socket state; `19.02` sshd listener and inbound port absence; `19.03` sshd_config security-misc policy if installed; `19.04` SSH client configuration and host-key verification; `19.05` Private-key ownership and permission baseline; `19.06` Password-authentication and root-login policy for future server use; `19.07` Known-hosts/key algorithm and crypto-policy review.
 
 ---
 
-## 22 — System.map / Core Dumps / PStore
+### 20 — Enabled / Running Service Audit
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** DOCUMENTATION BASELINE COMPLETE; FORMAL A/B/C REVIEW OPEN.
 
-### 22.01 — System.map exposure and removal policy
+**Documented/observed:** Services and sockets inventoried independently across roles.
 
-**Stage / source classification:** `S3 / LOW`
+**What still needs evidence or action:** Classify dependencies and verify expected-role persistence; do not disable blindly.
 
-**Historical evidence:** remove-system-map.service active; no System.map remains in checked policy paths.
+**Linked follow-ups:** `I15-013`, `I15-014`.
 
-**Identified weakness / gap:** Future new kernel installation must retain cleanup functionality.
-
-**Implementation task:** RETAIN / VERIFY ON KERNEL UPDATE
-
-**Core checkpoints:** `KHAHP-22.01A`, `KHAHP-22.01B`, `KHAHP-22.01C`
-
-**Source / evidence status:** 22-systemmap-coredumps-pstore-sysmaint-20261012-215207.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 22.02 — systemd-coredump configuration
-
-**Stage / source classification:** `S3 / LOW`
-
-**Historical evidence:** Effective systemd-coredump Storage=none; policy package-owned.
-
-**Identified weakness / gap:** Presence of unit/config does not equate to saved core files; no intentional dump test.
-
-**Implementation task:** Retain the observed protection; link complete source/runtime/persistence proof and re-verify after changes.
-
-**Core checkpoints:** `KHAHP-22.02A`, `KHAHP-22.02B`, `KHAHP-22.02C`
-
-**Source / evidence status:** 22-systemmap-coredumps-pstore-sysmaint-20261012-215207.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 22.03 — kernel.core_pattern effective state
-
-**Stage / source classification:** `S3 / LOW`
-
-**Historical evidence:** kernel.core_pattern pipes to /bin/false.
-
-**Identified weakness / gap:** Positive runtime suppression config; no negative core-generation test performed.
-
-**Implementation task:** Retain the observed protection; link complete source/runtime/persistence proof and re-verify after changes.
-
-**Core checkpoints:** `KHAHP-22.03A`, `KHAHP-22.03B`, `KHAHP-22.03C`
-
-**Source / evidence status:** 22-systemmap-coredumps-pstore-sysmaint-20261012-215207.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 22.04 — fs.suid_dumpable effective state
-
-**Stage / source classification:** `S3 / LOW`
-
-**Historical evidence:** fs.suid_dumpable=0 observed at runtime.
-
-**Identified weakness / gap:** Does not alone prove all possible application memory leakage routes.
-
-**Implementation task:** Retain the observed protection; link complete source/runtime/persistence proof and re-verify after changes.
-
-**Core checkpoints:** `KHAHP-22.04A`, `KHAHP-22.04B`, `KHAHP-22.04C`
-
-**Source / evidence status:** 22-systemmap-coredumps-pstore-sysmaint-20261012-215207.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 22.05 — pstore retention/disable policy
-
-**Stage / source classification:** `S3 / LOW`
-
-**Historical evidence:** Effective systemd-pstore Storage=none; no current pstore archived records.
-
-**Identified weakness / gap:** Storage=none does not necessarily disable pstore filesystem or all firmware persistence.
-
-**Implementation task:** RETAIN; note privacy vs recovery evidence tradeoff
-
-**Core checkpoints:** `KHAHP-22.05A`, `KHAHP-22.05B`, `KHAHP-22.05C`
-
-**Source / evidence status:** 22-systemmap-coredumps-pstore-sysmaint-20261012-215207.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 22.06 — EFI pstore and ERST boot controls
-
-**Stage / source classification:** `S3 / LOW`
-
-**Historical evidence:** efi_pstore.pstore_disable=1 and erst_disable present in live kernel command line; ERST module absent.
-
-**Identified weakness / gap:** Boot options observed, but no deliberate crash/firmware recovery test.
-
-**Implementation task:** RETAIN; cross-link section 39 firmware
-
-**Core checkpoints:** `KHAHP-22.06A`, `KHAHP-22.06B`, `KHAHP-22.06C`
-
-**Source / evidence status:** 22-systemmap-coredumps-pstore-sysmaint-20261012-215207.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 22.07 — Crash-evidence privacy versus diagnostic requirements
-
-**Stage / source classification:** `S3 / LOW`
-
-**Historical evidence:** No reviewed crash artifacts, core dumps or accessible records; no System.map residual.
-
-**Identified weakness / gap:** Crash-privacy tradeoff can hinder forensic troubleshooting; no crash simulation.
-
-**Implementation task:** DOCUMENT DIAGNOSTIC POLICY / RETAIN
-
-**Core checkpoints:** `KHAHP-22.07A`, `KHAHP-22.07B`, `KHAHP-22.07C`
-
-**Source / evidence status:** 22-systemmap-coredumps-pstore-sysmaint-20261012-215207.txt | NOT SIGNED OFF AT ASSERTION LEVEL
+**Seven registered families:** `20.01` Enabled systemd service inventory; `20.02` Running systemd service inventory; `20.03` Socket/path/timer activated service inventory; `20.04` Kicksecure-required service attribution; `20.05` Unexpected or unnecessary service classification; `20.06` Listener-to-service ownership correlation; `20.07` Reboot persistence and failed-service review.
 
 ---
 
-## 23 — Journald / Logging / Logrotate
+### 21 — systemd Service Sandboxing
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** DOCUMENTATION BASELINE COMPLETE; FORMAL A/B/C REVIEW OPEN.
 
-### 23.01 — journald security-misc configuration
+**Documented/observed:** Service sandboxing present; local resolver systemd score documented as context-dependent.
 
-**Stage / source classification:** `S3 / LOW`
+**What still needs evidence or action:** Rehearse proposed additional sandbox restrictions without breaking DNS.
 
-**Historical evidence:** Kicksecure journald configuration present; ForwardToWall=no.
+**Linked follow-ups:** `I15-015`, `I15-016`.
 
-**Identified weakness / gap:** A config-file presence check is not a complete journald configuration audit.
-
-**Implementation task:** RETAIN; tie to 23.04–23.06 policy
-
-**Core checkpoints:** `KHAHP-23.01A`, `KHAHP-23.01B`, `KHAHP-23.01C`
-
-**Source / evidence status:** 23-journald-logging-logrotate-sysmaint-20261012-215459.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 23.02 — Persistent versus volatile journal storage
-
-**Stage / source classification:** `S3 / MEDIUM`
-
-**Historical evidence:** Journal persisted under /var/log/journal: 101 journal files, roughly 511.7 MB.
-
-**Identified weakness / gap:** Storage is default/auto, not pinned; retention/location may differ on clean builds.
-
-**Implementation task:** DEFINE EXPLICIT STORAGE/RETENTION POLICY, compatibility tested
-
-**Core checkpoints:** `KHAHP-23.02A`, `KHAHP-23.02B`, `KHAHP-23.02C`
-
-**Source / evidence status:** 23-journald-logging-logrotate-sysmaint-20261012-215459.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 23.03 — Journal file permissions and ownership
-
-**Stage / source classification:** `S3 / LOW`
-
-**Historical evidence:** Journal files owned root:systemd-journal, mode 640 in sampled metadata; no unexpected mode/owner.
-
-**Identified weakness / gap:** No claims about exhaustive access by all user groups beyond inspected metadata.
-
-**Implementation task:** Retain the observed protection; link complete source/runtime/persistence proof and re-verify after changes.
-
-**Core checkpoints:** `KHAHP-23.03A`, `KHAHP-23.03B`, `KHAHP-23.03C`
-
-**Source / evidence status:** 23-journald-logging-logrotate-sysmaint-20261012-215459.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 23.04 — Rate limiting and size/retention policy
-
-**Stage / source classification:** `S3 / MEDIUM`
-
-**Historical evidence:** RateLimit and retention/size values unset; systemd default applies.
-
-**Identified weakness / gap:** Defaults do not demonstrate capacity/retention decisions or behavior under log flood.
-
-**Implementation task:** POLICY REVIEW: bounded retention, rate limits, disk exhaustion
-
-**Core checkpoints:** `KHAHP-23.04A`, `KHAHP-23.04B`, `KHAHP-23.04C`
-
-**Source / evidence status:** 23-journald-logging-logrotate-sysmaint-20261012-215459.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 23.05 — Forwarding/syslog integration state
-
-**Stage / source classification:** `S3 / MEDIUM`
-
-**Historical evidence:** ForwardToSyslog=yes while rsyslog/syslog-ng and syslog socket absent.
-
-**Identified weakness / gap:** No external syslog consumer; no evidence of remote durable forwarding. May be intentional journald-only design.
-
-**Implementation task:** DECIDE journald-only vs configured forwarding; avoid false remote-log claim
-
-**Core checkpoints:** `KHAHP-23.05A`, `KHAHP-23.05B`, `KHAHP-23.05C`
-
-**Source / evidence status:** 23-journald-logging-logrotate-sysmaint-20261012-215459.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 23.06 — logrotate configuration and sensitive- log modes
-
-**Stage / source classification:** `S3 / MEDIUM`
-
-**Historical evidence:** Logrotate snippets root-owned and protected; sensitive lastlog/wtmp/btmp modes acceptable.
-
-**Identified weakness / gap:** logrotate binary and timer/service absent: existing snippets are not evidence they execute; rotation may be handled by other services.
-
-**Implementation task:** REVIEW LEGACY LOG GROWTH / ROTATION; install only if needed
-
-**Core checkpoints:** `KHAHP-23.06A`, `KHAHP-23.06B`, `KHAHP-23.06C`
-
-**Source / evidence status:** 23-journald-logging-logrotate-sysmaint-20261012-215459.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 23.07 — Log integrity, time coherence and reboot persistence
-
-**Stage / source classification:** `S3 / LOW`
-
-**Historical evidence:** journalctl --verify succeeded; sdwdate and journald active; multiple boot records.
-
-**Identified weakness / gap:** Journal integrity verification is not tamper-evident off-host storage; drift after updates not tested here.
-
-**Implementation task:** RETAIN, LINK SECURE TIME AND AUDITD
-
-**Core checkpoints:** `KHAHP-23.07A`, `KHAHP-23.07B`, `KHAHP-23.07C`
-
-**Source / evidence status:** 23-journald-logging-logrotate-sysmaint-20261012-215459.txt | NOT SIGNED OFF AT ASSERTION LEVEL
+**Seven registered families:** `21.01` systemd-analyze security baseline; `21.02` NoNewPrivileges adoption; `21.03` ProtectSystem/ProtectHome restrictions; `21.04` PrivateTmp/PrivateDevices isolation; `21.05` CapabilityBoundingSet and ambient capabilities; `21.06` RestrictNamespaces/SystemCallFilter/address-family controls; `21.07` Service-specific compatibility exceptions and regressions.
 
 ---
 
-## 24 — Panic / Recovery / Emergency Shutdown
+### 22 — System.map / Core Dumps / PStore
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** DOCUMENTATION BASELINE COMPLETE; FORMAL A/B/C REVIEW OPEN.
 
-### 24.01 — kernel panic-on-oops policy
+**Documented/observed:** Core-dump/pstore suppression observed.
 
-**Stage / source classification:** `S2 / HIGH`
+**What still needs evidence or action:** Confirm ongoing enforcement after updates; record forensic trade-offs.
 
-**Historical evidence:** panic-on-oops helper/unit present; runtime oops_limit=10000 and warn_limit=0 in SYSMAINT; service disabled/inactive.
+**Linked follow-ups:** `I15-017`, `I15-018`.
 
-**Identified weakness / gap:** Differs from helper intended 1/1; may be deliberate SYSMAINT split or operational choice.
-
-**Implementation task:** PRIORITY TARGETED REVIEW: USER and SYSMAINT policy before any change
-
-**Core checkpoints:** `KHAHP-24.01A`, `KHAHP-24.01B`, `KHAHP-24.01C`
-
-**Source / evidence status:** 24-panic-recovery-emergency-shutdown-sysmaint-20261012-220203.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 24.02 — panic timeout and fail-closed behavior
-
-**Stage / source classification:** `S2 / LOW`
-
-**Historical evidence:** kernel.panic=-1 observed (immediate reboot after panic).
-
-**Identified weakness / gap:** No deliberate kernel panic triggered; DoS/recovery behavior only inferred from policy.
-
-**Implementation task:** RETAIN; safety-reviewed recovery test only
-
-**Core checkpoints:** `KHAHP-24.02A`, `KHAHP-24.02B`, `KHAHP-24.02C`
-
-**Source / evidence status:** 24-panic-recovery-emergency-shutdown-sysmaint-20261012-220203.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 24.03 — emerg-shutdown.service provenance and state
-
-**Stage / source classification:** `S2 / MEDIUM`
-
-**Historical evidence:** emerg-shutdown service package-owned and active/enabled in SYSMAINT; udev keyboard hooks present.
-
-**Identified weakness / gap:** No trigger test; unexpected physical event must not brick customer systems.
-
-**Implementation task:** RETAIN with recovery/physical tests
-
-**Core checkpoints:** `KHAHP-24.03A`, `KHAHP-24.03B`, `KHAHP-24.03C`
-
-**Source / evidence status:** 24-panic-recovery-emergency-shutdown-sysmaint-20261012-220203.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 24.04 — rescue/emergency target restrictions
-
-**Stage / source classification:** `S2 / LOW`
-
-**Historical evidence:** Rescue/emergency target overrides set SYSTEMD_SULOGIN_FORCE=1; root password locked.
-
-**Identified weakness / gap:** Emergency target admission not tested; avoid entering emergency.target on live hardware.
-
-**Implementation task:** RETAIN; controlled recovery validation
-
-**Core checkpoints:** `KHAHP-24.04A`, `KHAHP-24.04B`, `KHAHP-24.04C`
-
-**Source / evidence status:** 24-panic-recovery-emergency-shutdown-sysmaint-20261012-220203.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 24.05 — rd.emergency=halt and rd.shell=0 behavior
-
-**Stage / source classification:** `S2 / LOW`
-
-**Historical evidence:** GRUB_DISABLE_RECOVERY=true; rd.emergency=halt and rd.shell=0 present in live boot args.
-
-**Identified weakness / gap:** Source/boot tokens tested, not all physical bypass scenarios.
-
-**Implementation task:** RETAIN / CROSS-LINK BOOT CONTROLS
-
-**Core checkpoints:** `KHAHP-24.05A`, `KHAHP-24.05B`, `KHAHP-24.05C`
-
-**Source / evidence status:** 24-panic-recovery-emergency-shutdown-sysmaint-20261012-220203.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 24.06 — Magic SysRq and recovery-surface policy
-
-**Stage / source classification:** `S2 / LOW`
-
-**Historical evidence:** kernel.sysrq=0 effective; no rescue/emergency argument in current boot.
-
-**Identified weakness / gap:** No intentional SysRq crash invoked.
-
-**Implementation task:** RETAIN; no destructive test without recovery plan
-
-**Core checkpoints:** `KHAHP-24.06A`, `KHAHP-24.06B`, `KHAHP-24.06C`
-
-**Source / evidence status:** 24-panic-recovery-emergency-shutdown-sysmaint-20261012-220203.txt | NOT SIGNED OFF AT ASSERTION LEVEL
-
-### 24.07 — Controlled failure/recovery evidence and rollback
-
-**Stage / source classification:** `S2 / MEDIUM`
-
-**Historical evidence:** Rollback source components inventoried; current boot running with 0 failed units.
-
-**Identified weakness / gap:** Full destructive recovery/restore behavior deferred; needs backup, media, physical access.
-
-**Implementation task:** DOCUMENT CONTROLLED RECOVERY EXCEPTION/TEST PLAN
-
-**Core checkpoints:** `KHAHP-24.07A`, `KHAHP-24.07B`, `KHAHP-24.07C`
-
-**Source / evidence status:** 24-panic-recovery-emergency-shutdown-sysmaint-20261012-220203.txt | NOT SIGNED OFF AT ASSERTION LEVEL
+**Seven registered families:** `22.01` System.map exposure and removal policy; `22.02` systemd-coredump configuration; `22.03` kernel.core_pattern effective state; `22.04` fs.suid_dumpable effective state; `22.05` pstore retention/disable policy; `22.06` EFI pstore and ERST boot controls; `22.07` Crash-evidence privacy versus diagnostic requirements.
 
 ---
 
-## 25 — RAM Wipe
+### 23 — Journald / Logging / Logrotate
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** DOCUMENTATION BASELINE COMPLETE; FORMAL A/B/C REVIEW OPEN.
 
-### 25.01 — ram-wipe package provenance and version
+**Documented/observed:** Journal integrity verified in historical privileged context.
 
-**Stage / source classification:** `S2 / P3`
+**What still needs evidence or action:** Approve retention/rotation/access policy and time continuity evidence.
 
-**Historical evidence:** ram-wipe 3:4.6-1 and attributable hooks present; package state only.
+**Linked follow-ups:** `I15-019`, `I15-020`.
 
-**Identified weakness / gap:** Record package/version in image build manifest; test update impact.
-
-**Implementation task:** Record package/version in image build manifest; test update impact.
-
-**Core checkpoints:** `KHAHP-25.01A`, `KHAHP-25.01B`, `KHAHP-25.01C`
-
-**Source / evidence status:** 25-ram-wipe-sysmaint-20261012-221816.txt:L43-L60 | RETAIN / regression
-
-### 25.02 — GRUB ram-wipe fragment presence
-
-**Stage / source classification:** `S2 / P3`
-
-**Historical evidence:** GRUB fragment present, wiperam=skip commented out; live skip absent.
-
-**Identified weakness / gap:** Preserve fragment; test resulting installed image, not merely source.
-
-**Implementation task:** Preserve fragment; test resulting installed image, not merely source.
-
-**Core checkpoints:** `KHAHP-25.02A`, `KHAHP-25.02B`, `KHAHP-25.02C`
-
-**Source / evidence status:** 25-ram-wipe-sysmaint-20261012-221816.txt:L63-L81 | RETAIN / regression
-
-### 25.03 — init_on_alloc/init_on_free correlation
-
-**Stage / source classification:** `S2 / P3`
-
-**Historical evidence:** Both init_on_alloc=1 and init_on_free=1 present on running cmdline; no unknown-param warnings.
-
-**Identified weakness / gap:** Keep with kernel upgrade regression; boot flags are not complete memory-wipe proof.
-
-**Implementation task:** Keep with kernel upgrade regression; boot flags are not complete memory-wipe proof.
-
-**Core checkpoints:** `KHAHP-25.03A`, `KHAHP-25.03B`, `KHAHP-25.03C`
-
-**Source / evidence status:** 25-ram-wipe-sysmaint-20261012-221816.txt:L84-L92 | RETAIN / regression
-
-### 25.04 — Shutdown/reboot wipe service or hook inventory
-
-**Stage / source classification:** `S2 / P2`
-
-**Historical evidence:** Dracut ram-wipe hooks are listed in current initramfs, but actual shutdown execution is unobserved.
-
-**Identified weakness / gap:** Use controlled staging reboot with console evidence and recovery readiness.
-
-**Implementation task:** Use controlled staging reboot with console evidence and recovery readiness.
-
-**Core checkpoints:** `KHAHP-25.04A`, `KHAHP-25.04B`, `KHAHP-25.04C`
-
-**Source / evidence status:** 25-ram-wipe-sysmaint-20261012-221816.txt:L95-L137 | RETEST MANUAL
-
-### 25.05 — Swap/LUKS interaction during shutdown
-
-**Stage / source classification:** `S2 / P3`
-
-**Historical evidence:** Root LUKS mapping and swap file on encrypted root observed; shutdown hook checks for crypt mappings.
-
-**Identified weakness / gap:** Preserve encrypted swap; do not equate hooks with measured memory sanitization.
-
-**Implementation task:** Preserve encrypted swap; do not equate hooks with measured memory sanitization.
-
-**Core checkpoints:** `KHAHP-25.05A`, `KHAHP-25.05B`, `KHAHP-25.05C`
-
-**Source / evidence status:** 25-ram-wipe-sysmaint-20261012-221816.txt:L140-L160 | RETAIN / verify
-
-### 25.06 — Controlled reboot/shutdown persistence test
-
-**Stage / source classification:** `S2 / P2`
-
-**Historical evidence:** Previous-boot RAM-wipe messages = 0; no controlled shutdown test executed.
-
-**Identified weakness / gap:** Perform supervised test only with owner authorization; not an automatic remediation.
-
-**Implementation task:** Perform supervised test only with owner authorization; not an automatic remediation.
-
-**Core checkpoints:** `KHAHP-25.06A`, `KHAHP-25.06B`, `KHAHP-25.06C`
-
-**Source / evidence status:** 25-ram-wipe-sysmaint-20261012-221816.txt:L163-L182 | RETEST MANUAL
-
-### 25.07 — Limitations of software RAM wiping and cold-boot scope
-
-**Stage / source classification:** `S2 / P3`
-
-**Historical evidence:** Report explicitly limits cold-boot claims; sudden loss, device RAM, live keys are not covered.
-
-**Identified weakness / gap:** Publish hardware/physical attack limitations in release threat model.
-
-**Implementation task:** Publish hardware/physical attack limitations in release threat model.
-
-**Core checkpoints:** `KHAHP-25.07A`, `KHAHP-25.07B`, `KHAHP-25.07C`
-
-**Source / evidence status:** 25-ram-wipe-sysmaint-20261012-221816.txt:L184-L209 | DOCUMENT EXCEPTION
+**Seven registered families:** `23.01` journald security-misc configuration; `23.02` Persistent versus volatile journal storage; `23.03` Journal file permissions and ownership; `23.04` Rate limiting and size/retention policy; `23.05` Forwarding/syslog integration state; `23.06` logrotate configuration and sensitive-log modes; `23.07` Log integrity, time coherence and reboot persistence.
 
 ---
 
-## 26 — USBGuard / Peripheral Security
+### 24 — Panic / Recovery / Emergency Shutdown
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** DOCUMENTATION BASELINE COMPLETE; FORMAL A/B/C REVIEW OPEN.
 
-### 26.01 — usbguard daemon and DBus service state
+**Documented/observed:** Recovery restrictions and emergency-shutdown component observed.
 
-**Stage / source classification:** `S3 / P3`
+**What still needs evidence or action:** Rehearse safe recovery offline; no destructive production panic tests.
 
-**Historical evidence:** USBGuard and D-Bus services active and enabled in SYSMAINT and USER.
+**Linked follow-ups:** `I15-021`, `I15-022`.
 
-**Identified weakness / gap:** Preserve active service; add real physical insertion test.
-
-**Implementation task:** Preserve active service; add real physical insertion test.
-
-**Core checkpoints:** `KHAHP-26.01A`, `KHAHP-26.01B`, `KHAHP-26.01C`
-
-**Source / evidence status:** 26-usbguard-peripheral-security-sysmaint-20261012-224526.txt:L36-L60 | 26-usbguard-peripheral-security-user-20261012- 225114.txt:L31-L56 | RETAIN / test
-
-### 26.02 — Policy files and rule provenance
-
-**Stage / source classification:** `S3 / P1`
-
-**Historical evidence:** Root-only USBGuard policy files 0600, 32 effective rules reported, yet allow/block/reject rule counters all 0.
-
-**Identified weakness / gap:** Reconcile list-rules output format/counting; do not infer rules absent or enforcement complete.
-
-**Implementation task:** Reconcile list-rules output format/counting; do not infer rules absent or enforcement complete.
-
-**Core checkpoints:** `KHAHP-26.02A`, `KHAHP-26.02B`, `KHAHP-26.02C`
-
-**Source / evidence status:** 26-usbguard-peripheral-security-sysmaint-20261012-224526.txt:L62-L110 | REVIEW PARSER
-
-### 26.03 — ImplicitPolicyTarget and device-policy settings
-
-**Stage / source classification:** `S3 / P1`
-
-**Historical evidence:** Configured implicit block, inserted apply-policy, authorized default none; present-device policy is allow.
-
-**Identified weakness / gap:** Test daemon restart with pre-attached forbidden devices; decide startup policy and rollback.
-
-**Implementation task:** Test daemon restart with pre-attached forbidden devices; decide startup policy and rollback.
-
-**Core checkpoints:** `KHAHP-26.03A`, `KHAHP-26.03B`, `KHAHP-26.03C`
-
-**Source / evidence status:** 26-usbguard-peripheral-security-sysmaint-20261012-224526.txt:L99-L127 | RISK REVIEW
-
-### 26.04 — Allowed keyboard/mouse/audio/video/storage classes
-
-**Stage / source classification:** `S3 / P1`
-
-**Historical evidence:** Class allow rules include mouse, keyboard, audio, video, storage, hub; keyboard is not blanket- blocked.
-
-**Identified weakness / gap:** Confirm whether keyboard allowances conflict with requirement to reject unauthorized external keyboards; physically test.
-
-**Implementation task:** Confirm whether keyboard allowances conflict with requirement to reject unauthorized external keyboards; physically test.
-
-**Core checkpoints:** `KHAHP-26.04A`, `KHAHP-26.04B`, `KHAHP-26.04C`
-
-**Source / evidence status:** 26-usbguard-peripheral-security-sysmaint-20261012-224526.txt:L126-L158 | POLICY DECISION
-
-### 26.05 — Rejected HID+extra and RNDIS/network-device patterns
-
-**Stage / source classification:** `S3 / P1`
-
-**Historical evidence:** Reject patterns for mixed HID+other and ef:04:* were found in source; USB Ethernet/phone coverage not proven universally.
-
-**Identified weakness / gap:** Test representative phone/RNDIS/USB-Ethernet and composite devices; verify actual reject decisions.
-
-**Implementation task:** Test representative phone/RNDIS/USB-Ethernet and composite devices; verify actual reject decisions.
-
-**Core checkpoints:** `KHAHP-26.05A`, `KHAHP-26.05B`, `KHAHP-26.05C`
-
-**Source / evidence status:** 26-usbguard-peripheral-security-sysmaint-20261012-224526.txt:L159-L195 | RETEST MANUAL
-
-### 26.06 — IPC authorization/notifier behavior
-
-**Stage / source classification:** `S3 / P2`
-
-**Historical evidence:** USER cannot list rules but can list devices; notifier active; SYSMAINT root/plugdev IPC permissions exist.
-
-**Identified weakness / gap:** Review whether USER device visibility and plugdev/sudo ACLs match threat model.
-
-**Implementation task:** Review whether USER device visibility and plugdev/sudo ACLs match threat model.
-
-**Core checkpoints:** `KHAHP-26.06A`, `KHAHP-26.06B`, `KHAHP-26.06C`
-
-**Source / evidence status:** 26-usbguard-peripheral-security-user-20261012-225114.txt:L72-L130 | 26-usbguard-peripheral-security-sysmaint-20261012- 224526.txt:L196-L223 | LEAST-PRIVILEGE REVIEW
-
-### 26.07 — Hot-plug negative tests and reboot persistence
-
-**Stage / source classification:** `S3 / P1`
-
-**Historical evidence:** No physical hot-plug denial test or post-reboot insertion validation performed in either context.
-
-**Identified weakness / gap:** Test USB keyboard, mouse, storage, phone, network adapter and composite device; retest after reboot.
-
-**Implementation task:** Test USB keyboard, mouse, storage, phone, network adapter and composite device; retest after reboot.
-
-**Core checkpoints:** `KHAHP-26.07A`, `KHAHP-26.07B`, `KHAHP-26.07C`
-
-**Source / evidence status:** 26-usbguard-peripheral-security-sysmaint-20261012-224526.txt:L224-L257 | 26-usbguard-peripheral-security-user-20261012- 225114.txt:L131-L169 | RETEST MANUAL
+**Seven registered families:** `24.01` kernel panic-on-oops policy; `24.02` panic timeout and fail-closed behavior; `24.03` emerg-shutdown.service provenance and state; `24.04` rescue/emergency target restrictions; `24.05` rd.emergency=halt and rd.shell=0 behavior; `24.06` Magic SysRq and recovery-surface policy; `24.07` Controlled failure/recovery evidence and rollback.
 
 ---
 
-## 27 — NetworkManager / Wi-Fi / MAC / DHCP
+### 25 — RAM Wipe
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** DOCUMENTATION BASELINE COMPLETE; FORMAL A/B/C REVIEW OPEN.
 
-### 27.01 — NetworkManager package/service state
+**Documented/observed:** Kernel memory initialization flags observed; encrypted root/swap ancestry partly supported.
 
-**Stage / source classification:** `S4 / P3`
+**What still needs evidence or action:** Confirm shutdown hooks, swap crypto path and residual cold-boot risk.
 
-**Historical evidence:** NetworkManager installed, active and enabled in USER.
+**Linked follow-ups:** `I-003`, `I-004`, `I-017`.
 
-**Identified weakness / gap:** Keep; apply privacy profiles on clean build and after updates.
-
-**Implementation task:** Keep; apply privacy profiles on clean build and after updates.
-
-**Core checkpoints:** `KHAHP-27.01A`, `KHAHP-27.01B`, `KHAHP-27.01C`
-
-**Source / evidence status:** 27-networkmanager-wifi-mac-dhcp-user-20261012-230746.txt:L25-L30 | RETAIN / regression
-
-### 27.02 — Saved Wi-Fi profile inventory and autoconnect
-
-**Stage / source classification:** `S4 / P2`
-
-**Historical evidence:** Two saved Wi-Fi profiles both have autoconnect=yes.
-
-**Identified weakness / gap:** Choose privacy/usability behavior; prevent exporting these profiles to commercial image.
-
-**Implementation task:** Choose privacy/usability behavior; prevent exporting these profiles to commercial image.
-
-**Core checkpoints:** `KHAHP-27.02A`, `KHAHP-27.02B`, `KHAHP-27.02C`
-
-**Source / evidence status:** 27-networkmanager-wifi-mac-dhcp-user-20261012-230746.txt:L54-L60 | POLICY DECISION
-
-### 27.03 — Wi-Fi cloned-MAC randomization
-
-**Stage / source classification:** `S4 / P3`
-
-**Historical evidence:** Both Wi-Fi profiles explicitly use cloned-mac-address=random.
-
-**Identified weakness / gap:** Verify effective address across fresh reconnects without recording raw MACs.
-
-**Implementation task:** Verify effective address across fresh reconnects without recording raw MACs.
-
-**Core checkpoints:** `KHAHP-27.03A`, `KHAHP-27.03B`, `KHAHP-27.03C`
-
-**Source / evidence status:** 27-networkmanager-wifi-mac-dhcp-user-20261012-230746.txt:L63-L69 | RETAIN / test
-
-### 27.04 — Scan MAC randomization
-
-**Stage / source classification:** `S4 / P1`
-
-**Historical evidence:** Effective config dump contains wifi.scan-rand-mac-address=yes and device-31-mac-addr-change=no; verifier simply reports yes.
-
-**Identified weakness / gap:** Determine which setting applies to wlan0/scans; do not claim scan privacy fully proven yet.
-
-**Implementation task:** Determine which setting applies to wlan0/scans; do not claim scan privacy fully proven yet.
-
-**Core checkpoints:** `KHAHP-27.04A`, `KHAHP-27.04B`, `KHAHP-27.04C`
-
-**Source / evidence status:** 27-networkmanager-wifi-mac-dhcp-user-20261012-230746.txt:L33-L51 | 27-networkmanager-wifi-mac-dhcp-user-20261012- 230746.txt:L72-L75 | CONFIG CONFLICT REVIEW
-
-### 27.05 — Ethernet MAC randomization policy
-
-**Stage / source classification:** `S4 / P2`
-
-**Historical evidence:** Global Ethernet randomized MAC policy is set, but no saved Ethernet profile exists.
-
-**Identified weakness / gap:** Test after Ethernet adapter added; ensure USBGuard and NM policies agree.
-
-**Implementation task:** Test after Ethernet adapter added; ensure USBGuard and NM policies agree.
-
-**Core checkpoints:** `KHAHP-27.05A`, `KHAHP-27.05B`, `KHAHP-27.05C`
-
-**Source / evidence status:** 27-networkmanager-wifi-mac-dhcp-user-20261012-230746.txt:L78-L82 | NEEDS RUNTIME TEST
-
-### 27.06 — Runtime MAC versus permanent hardware MAC
-
-**Stage / source classification:** `S4 / P2`
-
-**Historical evidence:** Runtime MAC was captured as hash; permanent hardware MAC unavailable; addr_assign_type=3 reported.
-
-**Identified weakness / gap:** Compare actual policy without exposing identifiers; cannot prove runtime differs from permanent by this report.
-
-**Implementation task:** Compare actual policy without exposing identifiers; cannot prove runtime differs from permanent by this report.
-
-**Core checkpoints:** `KHAHP-27.06A`, `KHAHP-27.06B`, `KHAHP-27.06C`
-
-**Source / evidence status:** 27-networkmanager-wifi-mac-dhcp-user-20261012-230746.txt:L85-L89 | NEEDS RUNTIME TEST
-
-### 27.07 — DHCP client identifier and profile persistence
-
-**Stage / source classification:** `S4 / P2`
-
-**Historical evidence:** Both DHCP client-id settings unset; no explicit permanent-MAC ID, but server-visible ID and hostname not captured.
-
-**Identified weakness / gap:** Verify default DHCP semantics and reconnect variability on test network.
-
-**Implementation task:** Verify default DHCP semantics and reconnect variability on test network.
-
-**Core checkpoints:** `KHAHP-27.07A`, `KHAHP-27.07B`, `KHAHP-27.07C`
-
-**Source / evidence status:** 27-networkmanager-wifi-mac-dhcp-user-20261012-230746.txt:L92-L107 | PRIVACY POLICY REVIEW
+**Seven registered families:** `25.01` ram-wipe package provenance and version; `25.02` GRUB/package RAM-wipe source presence; `25.03` init_on_alloc/init_on_free live correlation; `25.04` Shutdown/reboot wipe hook inventory; `25.05` Swap/LUKS interaction during shutdown; `25.06` Controlled reboot/shutdown persistence test; `25.07` Limitations of software RAM wiping and cold-boot scope.
 
 ---
 
-## 28 — IPv6 Elimination
+### 26 — USBGuard / Peripheral Security
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** DOCUMENTATION BASELINE COMPLETE; FORMAL A/B/C REVIEW OPEN.
 
-### 28.01 — ipv6.disable=1 boot parameter
+**Documented/observed:** USBGuard loaded rule inventory; owned mouse and recovery USB appeared authorized.
 
-**Stage / source classification:** `S4 / P3`
+**What still needs evidence or action:** Verify keyboard rejection through real keystroke test and first-match logs; test composite and network devices.
 
-**Historical evidence:** Kernel ipv6.disable=1 configured and present in both roles.
+**Linked follow-ups:** `I-001`, `I-002`, `I-018`.
 
-**Identified weakness / gap:** Verify physical and VM image each apply same deliberate IPv6 policy.
-
-**Implementation task:** Verify physical and VM image each apply same deliberate IPv6 policy.
-
-**Core checkpoints:** `KHAHP-28.01A`, `KHAHP-28.01B`, `KHAHP-28.01C`
-
-**Source / evidence status:** 28-ipv6-elimination-user-20261012-231413.txt:L25-L36 | 28-ipv6-elimination-sysmaint-20261012-231704.txt:L25-L36 | RETAIN / build gate
-
-### 28.02 — Absence of IPv6 addresses
-
-**Stage / source classification:** `S4 / P3`
-
-**Historical evidence:** Zero IPv6 addresses in both context reports.
-
-**Identified weakness / gap:** Regression after interface and kernel changes.
-
-**Implementation task:** Regression after interface and kernel changes.
-
-**Core checkpoints:** `KHAHP-28.02A`, `KHAHP-28.02B`, `KHAHP-28.02C`
-
-**Source / evidence status:** 28-ipv6-elimination-user-20261012-231413.txt:L39-L43 | 28-ipv6-elimination-sysmaint-20261012-231704.txt:L39-L43 | RETAIN / regression
-
-### 28.03 — Absence of IPv6 routes
-
-**Stage / source classification:** `S4 / P3`
-
-**Historical evidence:** Zero IPv6 routes in both contexts.
-
-**Identified weakness / gap:** Retest image/new network profiles.
-
-**Implementation task:** Retest image/new network profiles.
-
-**Core checkpoints:** `KHAHP-28.03A`, `KHAHP-28.03B`, `KHAHP-28.03C`
-
-**Source / evidence status:** 28-ipv6-elimination-user-20261012-231413.txt:L46-L49 | 28-ipv6-elimination-sysmaint-20261012-231704.txt:L46-L49 | RETAIN / regression
-
-### 28.04 — NetworkManager IPv6 method/state
-
-**Stage / source classification:** `S4 / P2`
-
-**Historical evidence:** Both saved Wi-Fi profiles retain ipv6.method=auto while IPv6 disabled at kernel level.
-
-**Identified weakness / gap:** Consider defense-in-depth profile policy if kernel flag is ever lost; no present IPv6 exposure shown.
-
-**Implementation task:** Consider defense-in-depth profile policy if kernel flag is ever lost; no present IPv6 exposure shown.
-
-**Core checkpoints:** `KHAHP-28.04A`, `KHAHP-28.04B`, `KHAHP-28.04C`
-
-**Source / evidence status:** 28-ipv6-elimination-user-20261012-231413.txt:L52-L58 | FALLBACK CONFIG REVIEW
-
-### 28.05 — Resolver absence of IPv6 nameservers
-
-**Stage / source classification:** `S4 / P3`
-
-**Historical evidence:** No IPv6 resolver nameserver; NM IP6.DNS empty in both roles.
-
-**Identified weakness / gap:** Retest on new networks/profiles.
-
-**Implementation task:** Retest on new networks/profiles.
-
-**Core checkpoints:** `KHAHP-28.05A`, `KHAHP-28.05B`, `KHAHP-28.05C`
-
-**Source / evidence status:** 28-ipv6-elimination-user-20261012-231413.txt:L61-L67 | RETAIN / regression
-
-### 28.06 — IPv6 listener/socket exposure
-
-**Stage / source classification:** `S4 / P3`
-
-**Historical evidence:** No IPv6 listener; IPv6 sysctl tree absent in both roles.
-
-**Identified weakness / gap:** Check after kernel/bootloader updates.
-
-**Implementation task:** Check after kernel/bootloader updates.
-
-**Core checkpoints:** `KHAHP-28.06A`, `KHAHP-28.06B`, `KHAHP-28.06C`
-
-**Source / evidence status:** 28-ipv6-elimination-user-20261012-231413.txt:L70-L74 | RETAIN / regression
-
-### 28.07 — Reboot persistence and DNS/HTTPS regression test
-
-**Stage / source classification:** `S4 / P2`
-
-**Historical evidence:** Kernel source/runtime agrees between two boot roles; USER DNS and HTTPS work.
-
-**Identified weakness / gap:** Do not treat retained boot-count alone as a two-boot drift comparison.
-
-**Implementation task:** Do not treat retained boot-count alone as a two-boot drift comparison.
-
-**Core checkpoints:** `KHAHP-28.07A`, `KHAHP-28.07B`, `KHAHP-28.07C`
-
-**Source / evidence status:** 28-ipv6-elimination-user-20261012-231413.txt:L77-L86 | 28-ipv6-elimination-sysmaint-20261012-231704.txt:L77-L84 | PERSISTENCE EVIDENCE REVIEW
+**Seven registered families:** `26.01` usbguard daemon and DBus service state; `26.02` Policy files and rule provenance; `26.03` ImplicitPolicyTarget and device-policy settings; `26.04` Allowed keyboard/mouse/audio/video/storage classes; `26.05` Rejected HID+extra and RNDIS/network-device patterns; `26.06` IPC authorization/notifier behavior; `26.07` Hot-plug negative tests and reboot persistence.
 
 ---
 
-## 29 — Unbound / Local DNS Architecture
+### 27 — NetworkManager / Wi-Fi / MAC / DHCP
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** DOCUMENTATION BASELINE COMPLETE; FORMAL A/B/C REVIEW OPEN.
 
-### 29.01 — Unbound package/service state
+**Documented/observed:** Active Wi-Fi profile configured for randomized MAC.
 
-**Stage / source classification:** `S4 / P3`
+**What still needs evidence or action:** Correlate over-air identity and DHCP identifier on owned network; persist after reconnect.
 
-**Historical evidence:** Unbound active and enabled in USER; Section 30 also explicitly found Unbound active in SYSMAINT.
+**Linked follow-ups:** `I-005`, `I-006`.
 
-**Identified weakness / gap:** Prior summary describing SYSMAINT as inactive is not accurate for this recorded snapshot.
-
-**Implementation task:** Prior summary describing SYSMAINT as inactive is not accurate for this recorded snapshot.
-
-**Core checkpoints:** `KHAHP-29.01A`, `KHAHP-29.01B`, `KHAHP-29.01C`
-
-**Source / evidence status:** 29-unbound-local-dns-architecture-user-20261013-000557.txt:L26-L37 | 30-dnssec-dot-dns-leak-prevention-sysmaint-20261013- 001818.txt:L26-L30 | RETAIN / regression
-
-### 29.02 — 127.0.0.1:53 UDP/TCP listener
-
-**Stage / source classification:** `S4 / P3`
-
-**Historical evidence:** UDP/TCP Unbound listeners on 127.0.0.1:53; no nonloopback port 53 endpoints.
-
-**Identified weakness / gap:** Test application paths and other DNS transports separately.
-
-**Implementation task:** Test application paths and other DNS transports separately.
-
-**Core checkpoints:** `KHAHP-29.02A`, `KHAHP-29.02B`, `KHAHP-29.02C`
-
-**Source / evidence status:** 29-unbound-local-dns-architecture-user-20261013-000557.txt:L40-L47 | RETAIN / test
-
-### 29.03 — resolv.conf local-resolver wiring
-
-**Stage / source classification:** `S4 / P3`
-
-**Historical evidence:** USER /etc/resolv.conf nameserver exclusively 127.0.0.1.
-
-**Identified weakness / gap:** Retest after DHCP lease/reconnect to avoid leak regressions.
-
-**Implementation task:** Retest after DHCP lease/reconnect to avoid leak regressions.
-
-**Core checkpoints:** `KHAHP-29.03A`, `KHAHP-29.03B`, `KHAHP-29.03C`
-
-**Source / evidence status:** 29-unbound-local-dns-architecture-user-20261013-000557.txt:L50-L54 | RETAIN / reconnect test
-
-### 29.04 — NetworkManager DNS assignment
-
-**Stage / source classification:** `S4 / P3`
-
-**Historical evidence:** USER NetworkManager IP4.DNS solely 127.0.0.1.
-
-**Identified weakness / gap:** Test when different network hands out DNS.
-
-**Implementation task:** Test when different network hands out DNS.
-
-**Core checkpoints:** `KHAHP-29.04A`, `KHAHP-29.04B`, `KHAHP-29.04C`
-
-**Source / evidence status:** 29-unbound-local-dns-architecture-user-20261013-000557.txt:L57-L61 | RETAIN / reconnect test
-
-### 29.05 — Unbound configuration include tree
-
-**Stage / source classification:** `S4 / P3`
-
-**Historical evidence:** Unbound-checkconf succeeds; 4 includes listed.
-
-**Identified weakness / gap:** Review package include update semantics/anchors, not blanket reconfigure.
-
-**Implementation task:** Review package include update semantics/anchors, not blanket reconfigure.
-
-**Core checkpoints:** `KHAHP-29.05A`, `KHAHP-29.05B`, `KHAHP-29.05C`
-
-**Source / evidence status:** 29-unbound-local-dns-architecture-user-20261013-000557.txt:L64-L73 | RETAIN / config review
-
-### 29.06 — Quad9 forward-zone and TLS hostname configuration
-
-**Stage / source classification:** `S4 / P3`
-
-**Historical evidence:** TLS forward upstream configured with two Quad9 endpoints, direct and system queries pass.
-
-**Identified weakness / gap:** Does not alone prove forbidden fallback impossible; cross-check Section 30.
-
-**Implementation task:** Does not alone prove forbidden fallback impossible; cross-check Section 30.
-
-**Core checkpoints:** `KHAHP-29.06A`, `KHAHP-29.06B`, `KHAHP-29.06C`
-
-**Source / evidence status:** 29-unbound-local-dns-architecture-user-20261013-000557.txt:L76-L82 | RETAIN / denial test
-
-### 29.07 — USER/SYSMAINT service behavior and persistence
-
-**Stage / source classification:** `S4 / P2`
-
-**Historical evidence:** SYSMAINT WantedBy override exists; contemporaneous Section 30 SYSMAINT report says Unbound active.
-
-**Identified weakness / gap:** Clarify exact expected SYSMAINT behavior at approved baseline; no service change from stale assumption.
-
-**Implementation task:** Clarify exact expected SYSMAINT behavior at approved baseline; no service change from stale assumption.
-
-**Core checkpoints:** `KHAHP-29.07A`, `KHAHP-29.07B`, `KHAHP-29.07C`
-
-**Source / evidence status:** 29-unbound-local-dns-architecture-user-20261013-000557.txt:L85-L95 | 30-dnssec-dot-dns-leak-prevention-sysmaint-20261013- 001818.txt:L26-L30 | ROLE RECONCILIATION
+**Seven registered families:** `27.01` NetworkManager package/service state; `27.02` Saved Wi-Fi profile inventory and autoconnect; `27.03` Active-profile cloned-MAC and DHCP privacy settings; `27.04` Scan MAC randomization; `27.05` Ethernet MAC randomization policy; `27.06` Runtime MAC versus permanent hardware MAC; `27.07` DHCP client identifier and profile persistence.
 
 ---
 
-## 30 — DNSSEC / DoT / DNS Leak Prevention
+### 28 — IPv6 Policy
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** DOCUMENTATION BASELINE COMPLETE; FORMAL A/B/C REVIEW OPEN.
 
-### 30.01 — DNSSEC positive validation test
+**Documented/observed:** IPv6 appeared disabled across inspected USER boots.
 
-**Stage / source classification:** `S4 / P3`
+**What still needs evidence or action:** Resolve intentional disablement versus future advanced dual-stack privacy policy before changes.
 
-**Historical evidence:** AD flag=1 in both USER and SYSMAINT for signed-domain probe.
+**Linked follow-ups:** `I-007`, `I-019`.
 
-**Identified weakness / gap:** Maintain combined positive and negative validator tests.
-
-**Implementation task:** Maintain combined positive and negative validator tests.
-
-**Core checkpoints:** `KHAHP-30.01A`, `KHAHP-30.01B`, `KHAHP-30.01C`
-
-**Source / evidence status:** 30-dnssec-dot-dns-leak-prevention-user-20261013-001519.txt:L44-L47 | 30-dnssec-dot-dns-leak-prevention-sysmaint-20261013- 001818.txt:L44-L47 | RETAIN / regression
-
-### 30.02 — Broken-DNSSEC negative test
-
-**Stage / source classification:** `S4 / P1`
-
-**Historical evidence:** USER negative test returned status=none after TCP retry; SYSMAINT got SERVFAIL.
-
-**Identified weakness / gap:** Different role/boot outcome; USER still inconclusive, not a confirmed DNSSEC bypass.
-
-**Implementation task:** Different role/boot outcome; USER still inconclusive, not a confirmed DNSSEC bypass.
-
-**Core checkpoints:** `KHAHP-30.02A`, `KHAHP-30.02B`, `KHAHP-30.02C`
-
-**Source / evidence status:** 30-dnssec-dot-dns-leak-prevention-user-20261013-001519.txt:L50-L54 | 30-dnssec-dot-dns-leak-prevention-sysmaint-20261013- 001818.txt:L50-L53 | USER RETEST
-
-### 30.03 — DoT TCP/853 forwarder reachability
-
-**Stage / source classification:** `S4 / P1`
-
-**Historical evidence:** SYSMAINT passed both Quad9 DoT endpoints; USER passed 149.112.112.112 but failed 9.9.9.9.
-
-**Identified weakness / gap:** Diagnose route/forwarder reachability before changing upstreams.
-
-**Implementation task:** Diagnose route/forwarder reachability before changing upstreams.
-
-**Core checkpoints:** `KHAHP-30.03A`, `KHAHP-30.03B`, `KHAHP-30.03C`
-
-**Source / evidence status:** 30-dnssec-dot-dns-leak-prevention-user-20261013-001519.txt:L56-L59 | 30-dnssec-dot-dns-leak-prevention-sysmaint-20261013- 001818.txt:L56-L59 | USER CONNECTIVITY REVIEW
-
-### 30.04 — Plaintext external UDP/53 block
-
-**Stage / source classification:** `S4 / P2`
-
-**Historical evidence:** External UDP/53 query to 8.8.8.8 got no reply in both roles and SYSMAINT nft source blocks it.
-
-**Identified weakness / gap:** A single blocked path is not blanket prevention of all DNS leaks.
-
-**Implementation task:** A single blocked path is not blanket prevention of all DNS leaks.
-
-**Core checkpoints:** `KHAHP-30.04A`, `KHAHP-30.04B`, `KHAHP-30.04C`
-
-**Source / evidence status:** 30-dnssec-dot-dns-leak-prevention-user-20261013-001519.txt:L67-L70 | 30-dnssec-dot-dns-leak-prevention-sysmaint-20261013- 001818.txt:L63-L74 | RETAIN / extended bypass test
-
-### 30.05 — Plaintext external TCP/53 block
-
-**Stage / source classification:** `S4 / P2`
-
-**Historical evidence:** External TCP/53 query to 8.8.8.8 got no reply in both roles and SYSMAINT nft source blocks it.
-
-**Identified weakness / gap:** DoH over 443 or alternative transports remain outside this negative test.
-
-**Implementation task:** DoH over 443 or alternative transports remain outside this negative test.
-
-**Core checkpoints:** `KHAHP-30.05A`, `KHAHP-30.05B`, `KHAHP-30.05C`
-
-**Source / evidence status:** 30-dnssec-dot-dns-leak-prevention-user-20261013-001519.txt:L72-L75 | 30-dnssec-dot-dns-leak-prevention-sysmaint-20261013- 001818.txt:L63-L79 | RETAIN / extended bypass test
-
-### 30.06 — Local DNS functionality after firewall enforcement
-
-**Stage / source classification:** `S4 / P3`
-
-**Historical evidence:** Local UDP/TCP DNS and IPv4 HTTPS continue working in both roles.
-
-**Identified weakness / gap:** Add browser DoH and direct DNS application bypass tests where relevant.
-
-**Implementation task:** Add browser DoH and direct DNS application bypass tests where relevant.
-
-**Core checkpoints:** `KHAHP-30.06A`, `KHAHP-30.06B`, `KHAHP-30.06C`
-
-**Source / evidence status:** 30-dnssec-dot-dns-leak-prevention-user-20261013-001519.txt:L77-L88 | 30-dnssec-dot-dns-leak-prevention-sysmaint-20261013- 001818.txt:L82-L87 | RETAIN / application test
-
-### 30.07 — DNS leak/bypass and reboot- persistence testing
-
-**Stage / source classification:** `S4 / P1`
-
-**Historical evidence:** Only loopback resolver/NM wiring and boot history verified; no full browser DoH/VPN/Tor DNS leak coverage.
-
-**Identified weakness / gap:** Define app-specific leak tests and customer-image network isolation limits.
-
-**Implementation task:** Define app-specific leak tests and customer-image network isolation limits.
-
-**Core checkpoints:** `KHAHP-30.07A`, `KHAHP-30.07B`, `KHAHP-30.07C`
-
-**Source / evidence status:** 30-dnssec-dot-dns-leak-prevention-user-20261013-001519.txt:L91-L100 | 31-nftables-firewall-sysmaint-20261013-002330.txt:L93-L97 | NEGATIVE TEST GAP
+**Seven registered families:** `28.01` ipv6.disable=1 boot parameter; `28.02` Absence of IPv6 addresses; `28.03` Absence of IPv6 routes; `28.04` NetworkManager IPv6 method/state; `28.05` Resolver absence of IPv6 nameservers; `28.06` IPv6 TCP/UDP listener exposure; `28.07` Reboot persistence and DNS/HTTPS regression test.
 
 ---
 
-## 31 — nftables Firewall
+### 29 — Unbound / Local DNS Architecture
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** DOCUMENTATION BASELINE COMPLETE; FORMAL A/B/C REVIEW OPEN.
 
-### 31.01 — nftables package/service state
+**Documented/observed:** Local Unbound listener/service recorded in USER; different SYSMAINT role semantics expected.
 
-**Stage / source classification:** `S4 / P3`
+**What still needs evidence or action:** Confirm DHCP transition and resolver fail-safe without inadvertently breaking browsing.
 
-**Historical evidence:** nftables installed and enabled and active in SYSMAINT.
+**Linked follow-ups:** `I-008`, `I-020`.
 
-**Identified weakness / gap:** Verify USER live rule state for acceptance.
-
-**Implementation task:** Verify USER live rule state for acceptance.
-
-**Core checkpoints:** `KHAHP-31.01A`, `KHAHP-31.01B`, `KHAHP-31.01C`
-
-**Source / evidence status:** 31-nftables-firewall-sysmaint-20261013-002330.txt:L29-L42 | RETAIN / regression
-
-### 31.02 — Dedicated inet kicksecure_hardening table
-
-**Stage / source classification:** `S4 / P2`
-
-**Historical evidence:** inet kicksecure_hardening table and base chains exist.
-
-**Identified weakness / gap:** Assess interplay with other nftables tables and output chains in both roles.
-
-**Implementation task:** Assess interplay with other nftables tables and output chains in both roles.
-
-**Core checkpoints:** `KHAHP-31.02A`, `KHAHP-31.02B`, `KHAHP-31.02C`
-
-**Source / evidence status:** 31-nftables-firewall-sysmaint-20261013-002330.txt:L45-L52 | RETAIN / full ruleset review
-
-### 31.03 — Input default-drop policy
-
-**Stage / source classification:** `S4 / P3`
-
-**Historical evidence:** Input base-chain policy drop.
-
-**Identified weakness / gap:** Staged ingress packet-test after interface changes.
-
-**Implementation task:** Staged ingress packet-test after interface changes.
-
-**Core checkpoints:** `KHAHP-31.03A`, `KHAHP-31.03B`, `KHAHP-31.03C`
-
-**Source / evidence status:** 31-nftables-firewall-sysmaint-20261013-002330.txt:L55-L59 | RETAIN / negative test
-
-### 31.04 — Forward default-drop policy
-
-**Stage / source classification:** `S4 / P3`
-
-**Historical evidence:** Forward base-chain policy drop.
-
-**Identified weakness / gap:** VM bridge/NAT networking must have separately tested policy.
-
-**Implementation task:** VM bridge/NAT networking must have separately tested policy.
-
-**Core checkpoints:** `KHAHP-31.04A`, `KHAHP-31.04B`, `KHAHP-31.04C`
-
-**Source / evidence status:** 31-nftables-firewall-sysmaint-20261013-002330.txt:L62-L66 | RETAIN / VM PROFILE
-
-### 31.05 — Loopback, established/related and invalid handling
-
-**Stage / source classification:** `S4 / P3`
-
-**Historical evidence:** Loopback and established accepted, invalid dropped, 127/8 anti-spoof.
-
-**Identified weakness / gap:** Test effect from interfaces not just rule-text matching.
-
-**Implementation task:** Test effect from interfaces not just rule-text matching.
-
-**Core checkpoints:** `KHAHP-31.05A`, `KHAHP-31.05B`, `KHAHP-31.05C`
-
-**Source / evidence status:** 31-nftables-firewall-sysmaint-20261013-002330.txt:L69-L78 | RETAIN / negative test
-
-### 31.06 — DHCP/ICMP and required inbound exceptions
-
-**Stage / source classification:** `S4 / P2`
-
-**Historical evidence:** DHCP and ICMP inbound allowances present.
-
-**Identified weakness / gap:** Validate necessary allowances and safe update on external network.
-
-**Implementation task:** Validate necessary allowances and safe update on external network.
-
-**Core checkpoints:** `KHAHP-31.06A`, `KHAHP-31.06B`, `KHAHP-31.06C`
-
-**Source / evidence status:** 31-nftables-firewall-sysmaint-20261013-002330.txt:L81-L91 | EXCEPTION REVIEW
-
-### 31.07 — Safe reload, no global flush and reboot persistence
-
-**Stage / source classification:** `S4 / P1`
-
-**Historical evidence:** No global flush in local override, nft config syntax good, but output chain policy accept and live reload untested.
-
-**Identified weakness / gap:** Define outbound policy targets, DoH limits, and controlled reload+rollback before edits.
-
-**Implementation task:** Define outbound policy targets, DoH limits, and controlled reload+rollback before edits.
-
-**Core checkpoints:** `KHAHP-31.07A`, `KHAHP-31.07B`, `KHAHP-31.07C`
-
-**Source / evidence status:** 31-nftables-firewall-sysmaint-20261013-002330.txt:L93-L97 | 31-nftables-firewall-sysmaint-20261013-002330.txt:L100-L175 | HIGH-PRIORITY POLICY REVIEW
+**Seven registered families:** `29.01` Unbound package/service state; `29.02` loopback DNS listener UDP/TCP listener and non-loopback absence; `29.03` resolv.conf local-resolver wiring; `29.04` NetworkManager effective DNS assignment; `29.05` Unbound configuration include tree validation; `29.06` DoT forward-zone and IPv6 source policy; `29.07` USER/SYSMAINT service behavior and persistence.
 
 ---
 
-## 32 — LAN Discovery / Multicast / LLMNR / mDNS
+### 30 — DNSSEC / DoT / DNS Leak Prevention
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** DOCUMENTATION BASELINE COMPLETE; FORMAL A/B/C REVIEW OPEN.
 
-### 32.01 — Avahi/mDNS daemon state
+**Documented/observed:** DNSSEC success and deliberate bogus-domain failure observed; DoT forwarding configured.
 
-**Stage / source classification:** `S4 / LOW`
+**What still needs evidence or action:** Demonstrate Unbound-owned authenticated TLS; prove UDP/TCP direct DNS egress policy with owned peer.
 
-**Historical evidence:** Avahi package absent and service/socket inactive/not-found in USER and SYSMAINT.
+**Linked follow-ups:** `I-009`, `I-010`, `I-011`, `I-021`.
 
-**Identified weakness / gap:** No active multicast probes from a second host.
-
-**Implementation task:** Retest when new network packages are installed.
-
-**Core checkpoints:** `KHAHP-32.01A`, `KHAHP-32.01B`, `KHAHP-32.01C`
-
-**Source / evidence status:** 32-lan-discovery-multicast-llmnr-mdns-sysmaint-20261013-004401.txt:L40-L52; 32-lan-discovery-multicast-llmnr-mdns-user- 20261013-004424.txt:L40-L52 | OBSERVED_PROTECTION
-
-### 32.02 — LLMNR/resolved multicast name- resolution state
-
-**Stage / source classification:** `S4 / MEDIUM`
-
-**Historical evidence:** systemd-resolved inactive; two NetworkManager profiles have no explicit yes for mDNS/LLMNR (both -1).
-
-**Identified weakness / gap:** No packet capture of unsolicited name requests; -1 is not an explicit deny override.
-
-**Implementation task:** Confirm effective NetworkManager defaults and negative LAN response from test host.
-
-**Core checkpoints:** `KHAHP-32.02A`, `KHAHP-32.02B`, `KHAHP-32.02C`
-
-**Source / evidence status:** 32-lan-discovery-multicast-llmnr-mdns-sysmaint-20261013-004401.txt:L48-L60; 32-lan-discovery-multicast-llmnr-mdns-user- 20261013-004424.txt:L48-L60 | PARTIAL_VERIFICATION
-
-### 32.03 — wsdd/Samba discovery state
-
-**Stage / source classification:** `S4 / LOW`
-
-**Historical evidence:** wsdd, wsdd2, SMB/Samba discovery/sharing units inactive/not-found in both roles.
-
-**Identified weakness / gap:** Future installation/activation could alter the condition.
-
-**Implementation task:** Add regression after package updates.
-
-**Core checkpoints:** `KHAHP-32.03A`, `KHAHP-32.03B`, `KHAHP-32.03C`
-
-**Source / evidence status:** 32-lan-discovery-multicast-llmnr-mdns-sysmaint-20261013-004401.txt:L58-L70; 32-lan-discovery-multicast-llmnr-mdns-user- 20261013-004424.txt:L58-L70 | OBSERVED_PROTECTION
-
-### 32.04 — rpcbind/minidlna/UPnP service state
-
-**Stage / source classification:** `S4 / LOW`
-
-**Historical evidence:** rpcbind socket/service, miniDLNA and UPnP services inactive/not-found in both roles.
-
-**Identified weakness / gap:** Reviewed named services, not every possible multicast responder.
-
-**Implementation task:** Maintain service allowlist.
-
-**Core checkpoints:** `KHAHP-32.04A`, `KHAHP-32.04B`, `KHAHP-32.04C`
-
-**Source / evidence status:** 32-lan-discovery-multicast-llmnr-mdns-sysmaint-20261013-004401.txt:L70-L82; 32-lan-discovery-multicast-llmnr-mdns-user- 20261013-004424.txt:L70-L82 | OBSERVED_PROTECTION
-
-### 32.05 — Multicast/broadcast listener inventory
-
-**Stage / source classification:** `S4 / MEDIUM`
-
-**Historical evidence:** Zero listeners on mDNS 5353, LLMNR 5355, SSDP 1900, WSD 3702, NetBIOS 137/138, SMB 445, rpcbind 111 and miniDLNA 8200 in both roles.
-
-**Identified weakness / gap:** Listener snapshot cannot prove silence on all protocols across reconnections.
-
-**Implementation task:** Perform a controlled LAN negative probe and capture; repeat after normal boot.
-
-**Core checkpoints:** `KHAHP-32.05A`, `KHAHP-32.05B`, `KHAHP-32.05C`
-
-**Source / evidence status:** 32-lan-discovery-multicast-llmnr-mdns-sysmaint-20261013-004401.txt:L80-L92; 32-lan-discovery-multicast-llmnr-mdns-user- 20261013-004424.txt:L80-L92 | PARTIAL_VERIFICATION
-
-### 32.06 — Firewall exposure of discovery ports
-
-**Stage / source classification:** `S4 / MEDIUM`
-
-**Historical evidence:** SYSMAINT nftables input default-drop; no discovery-port accept rule; USER report correctly defers privileged firewall inspection.
-
-**Identified weakness / gap:** Firewall policy and listener inventory are not equivalent to packet-level drop proof.
-
-**Implementation task:** Compare effective nftables in normal USER boot using approved privileged probe or external traffic tests.
-
-**Core checkpoints:** `KHAHP-32.06A`, `KHAHP-32.06B`, `KHAHP-32.06C`
-
-**Source / evidence status:** 32-lan-discovery-multicast-llmnr-mdns-sysmaint-20261013-004401.txt:L95-L107; 32-lan-discovery-multicast-llmnr-mdns-user- 20261013-004424.txt:L95-L107 | PARTIAL_VERIFICATION
-
-### 32.07 — Negative LAN discovery and reboot- persistence test
-
-**Stage / source classification:** `S4 / MEDIUM`
-
-**Historical evidence:** Source records 26/49 retained boots with no failed units and current zero discovery listeners.
-
-**Identified weakness / gap:** No active negative LAN discovery probes or same-role reboot regression were performed; marked MANUAL.
-
-**Implementation task:** From controlled peer test each named discovery protocol and re-test after reboot.
-
-**Core checkpoints:** `KHAHP-32.07A`, `KHAHP-32.07B`, `KHAHP-32.07C`
-
-**Source / evidence status:** 32-lan-discovery-multicast-llmnr-mdns-sysmaint-20261013-004401.txt:L103-L115; 32-lan-discovery-multicast-llmnr-mdns-user- 20261013-004424.txt:L100-L112 | MANUAL_ACCEPTANCE
+**Seven registered families:** `30.01` DNSSEC positive validation test; `30.02` Broken-DNSSEC negative test; `30.03` DoT forwarding configuration and reachability scope; `30.04` Plaintext external UDP/53 block; `30.05` Plaintext external TCP/53 block; `30.06` Local DNS functionality after firewall enforcement; `30.07` DNS leak/bypass and reboot-persistence testing.
 
 ---
 
-## 33 — Tor / SOCKS / Tor DNS Isolation
+### 31 — nftables Firewall
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** DOCUMENTATION BASELINE COMPLETE; FORMAL A/B/C REVIEW OPEN.
 
-### 33.01 — Tor package/service state
+**Documented/observed:** Structured firewall inspection observed inbound/forward protections and candidate outbound DNS rules.
 
-**Stage / source classification:** `S4 / LOW`
+**What still needs evidence or action:** Prove effective outbound packet verdict and exact loaded-ruleset persistence.
 
-**Historical evidence:** Tor and tor@default.service installed, active in USER, enabled/enabled-runtime.
+**Linked follow-ups:** `I-012`, `I-013`.
 
-**Identified weakness / gap:** Tor operation does not imply mandatory use by applications.
-
-**Implementation task:** Recheck after upgrades.
-
-**Core checkpoints:** `KHAHP-33.01A`, `KHAHP-33.01B`, `KHAHP-33.01C`
-
-**Source / evidence status:** 33-tor-socks-dns-isolation-user-20261013-153231.txt:L30-L42 | OBSERVED_PROTECTION
-
-### 33.02 — SOCKS listener 127.0.0.1:9050
-
-**Stage / source classification:** `S4 / LOW`
-
-**Historical evidence:** TCP SOCKS port 9050 on 127.0.0.1 only, non-loopback 9050 count=0.
-
-**Identified weakness / gap:** No other Tor listener exposure checked beyond documented port.
-
-**Implementation task:** Verify unchanged network binding in customer image.
-
-**Core checkpoints:** `KHAHP-33.02A`, `KHAHP-33.02B`, `KHAHP-33.02C`
-
-**Source / evidence status:** 33-tor-socks-dns-isolation-user-20261013-153231.txt:L55-L67 | OBSERVED_PROTECTION
-
-### 33.03 — Tor configuration provenance
-
-**Stage / source classification:** `S4 / LOW`
-
-**Historical evidence:** /etc/tor/torrc and /etc/tor/torsocks.conf are package-owned root:root mode 644 with hashes; no observed unowned config.
-
-**Identified weakness / gap:** Configuration contents not audited for all effective directives or per-application intent.
-
-**Implementation task:** Audit effective Tor config for specific approved use modes without exposing secrets.
-
-**Core checkpoints:** `KHAHP-33.03A`, `KHAHP-33.03B`, `KHAHP-33.03C`
-
-**Source / evidence status:** 33-tor-socks-dns-isolation-user-20261013-153231.txt:L63-L75 | PARTIAL_VERIFICATION
-
-### 33.04 — Application proxy routing where intended
-
-**Stage / source classification:** `S4 / HIGH`
-
-**Historical evidence:** Bounded HTTPS request via socks5-hostname Tor succeeded in USER.
-
-**Identified weakness / gap:** No Tor Browser-like process active; no named application proxy-policy matrix; persistence MANUAL.
-
-**Implementation task:** Identify Tor-required applications and test real app behavior and profile persistence.
-
-**Core checkpoints:** `KHAHP-33.04A`, `KHAHP-33.04B`, `KHAHP-33.04C`
-
-**Source / evidence status:** 33-tor-socks-dns-isolation-user-20261013-153231.txt:L75-L87 | PARTIAL_VERIFICATION
-
-### 33.05 — Tor DNS isolation behavior
-
-**Stage / source classification:** `S4 / MEDIUM`
-
-**Historical evidence:** Tor Check identified the SOCKS hostname route as Tor; remote hostname resolution over SOCKS succeeded.
-
-**Identified weakness / gap:** Proves this controlled route, not every application's DNS isolation.
-
-**Implementation task:** Verify DNS behavior for each Tor-designated application.
-
-**Core checkpoints:** `KHAHP-33.05A`, `KHAHP-33.05B`, `KHAHP-33.05C`
-
-**Source / evidence status:** 33-tor-socks-dns-isolation-user-20261013-153231.txt:L84-L96 | PARTIAL_VERIFICATION
-
-### 33.06 — Clearnet bypass detection for Tor- mode applications
-
-**Stage / source classification:** `S4 / HIGH`
-
-**Historical evidence:** Report explicitly observed a direct HTTPS clearnet/non-Tor path; general host intentionally retains clearnet.
-
-**Identified weakness / gap:** No assertion that all apps are Tor-only is justified; no forced Tor-only bypass-blocking test.
-
-**Implementation task:** Define Tor-only application allowlist and test fail-closed when Tor is unavailable in staging.
-
-**Core checkpoints:** `KHAHP-33.06A`, `KHAHP-33.06B`, `KHAHP-33.06C`
-
-**Source / evidence status:** 33-tor-socks-dns-isolation-user-20261013-153231.txt:L91-L103 | MANUAL_ACCEPTANCE
-
-### 33.07 — Bootstrap, circuit, restart and failure- mode behavior
-
-**Stage / source classification:** `S4 / MEDIUM`
-
-**Historical evidence:** Tor is usable and showed no failed units; retained reboot history present; NRestarts=0.
-
-**Identified weakness / gap:** Stop/restart, bootstrap failure and circuit failure behavior NOT induced.
-
-**Implementation task:** Test Tor outage and restart on disposable VM without weakening reference laptop.
-
-**Core checkpoints:** `KHAHP-33.07A`, `KHAHP-33.07B`, `KHAHP-33.07C`
-
-**Source / evidence status:** 33-tor-socks-dns-isolation-user-20261013-153231.txt:L101-L113 | MANUAL_ACCEPTANCE
+**Seven registered families:** `31.01` nftables package/service/runtime ruleset state; `31.02` Dedicated inet kicksecure_hardening table; `31.03` Input default-drop policy; `31.04` Forward default-drop policy; `31.05` Loopback, established/related and invalid handling; `31.06` DHCP/ICMP and required inbound exceptions; `31.07` Static syntax, reload safety and reboot persistence.
 
 ---
 
-## 34 — sdwdate / Secure Time / Boot Clock
+### 32 — LAN Discovery / Multicast / LLMNR / mDNS
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** DOCUMENTATION BASELINE COMPLETE; FORMAL A/B/C REVIEW OPEN.
 
-### 34.01 — sdwdate package/service state
+**Documented/observed:** Static LAN service inventory available, but four owned-peer guide outcomes inconclusive.
 
-**Stage / source classification:** `S4 / LOW`
+**What still needs evidence or action:** Collect protocol-specific peer mDNS/LLMNR/SSDP evidence; do not infer from unicast scans.
 
-**Historical evidence:** sdwdate installed and active with persistent activation in both USER and SYSMAINT.
+**Linked follow-ups:** `I-014`, `I-022`.
 
-**Identified weakness / gap:** No independent absolute authenticated-time assessment.
-
-**Implementation task:** Check service on future boots.
-
-**Core checkpoints:** `KHAHP-34.01A`, `KHAHP-34.01B`, `KHAHP-34.01C`
-
-**Source / evidence status:** 34-sdwdate-secure-time-boot-clock-sysmaint-20261013-153748.txt:L28-L40; 34-sdwdate-secure-time-boot-clock-user-20261013- 153514.txt:L28-L40 | OBSERVED_PROTECTION
-
-### 34.02 — timesanitycheck state
-
-**Stage / source classification:** `S4 / LOW`
-
-**Historical evidence:** timesanitycheck.service loaded and completed successfully in both contexts.
-
-**Identified weakness / gap:** Does not show induced failure response.
-
-**Implementation task:** Consider controlled test on disposable VM.
-
-**Core checkpoints:** `KHAHP-34.02A`, `KHAHP-34.02B`, `KHAHP-34.02C`
-
-**Source / evidence status:** 34-sdwdate-secure-time-boot-clock-sysmaint-20261013-153748.txt:L38-L50; 34-sdwdate-secure-time-boot-clock-user-20261013- 153514.txt:L38-L50 | OBSERVED_PROTECTION
-
-### 34.03 — bootclockrandomization state
-
-**Stage / source classification:** `S4 / LOW`
-
-**Historical evidence:** bootclockrandomization.service loaded and completed successfully in both contexts.
-
-**Identified weakness / gap:** Randomization distribution/quality was not evaluated.
-
-**Implementation task:** Preserve Kicksecure integration.
-
-**Core checkpoints:** `KHAHP-34.03A`, `KHAHP-34.03B`, `KHAHP-34.03C`
-
-**Source / evidence status:** 34-sdwdate-secure-time-boot-clock-sysmaint-20261013-153748.txt:L44-L56; 34-sdwdate-secure-time-boot-clock-user-20261013- 153514.txt:L44-L56 | OBSERVED_PROTECTION
-
-### 34.04 — System clock sanity at boot
-
-**Stage / source classification:** `S4 / MEDIUM`
-
-**Historical evidence:** Current clock plausible; uptime and boot-age difference zero in both reports.
-
-**Identified weakness / gap:** Timedatectl NTPSynchronized=no despite active sdwdate; not necessarily a defect and cannot establish trusted wall-clock truth.
-
-**Implementation task:** Validate sdwdate sync/health indicators and time-error tolerance after offline use.
-
-**Core checkpoints:** `KHAHP-34.04A`, `KHAHP-34.04B`, `KHAHP-34.04C`
-
-**Source / evidence status:** 34-sdwdate-secure-time-boot-clock-sysmaint-20261013-153748.txt:L50-L62; 34-sdwdate-secure-time-boot-clock-user-20261013- 153514.txt:L50-L62 | PARTIAL_VERIFICATION
-
-### 34.05 — NTP/systemd-timesyncd conflicts
-
-**Stage / source classification:** `S4 / LOW`
-
-**Historical evidence:** No active/enabled competing timesyncd, chrony, ntp, ntpsec or openntpd in either context.
-
-**Identified weakness / gap:** Future packages may introduce conflicting time sync.
-
-**Implementation task:** Service regression after update.
-
-**Core checkpoints:** `KHAHP-34.05A`, `KHAHP-34.05B`, `KHAHP-34.05C`
-
-**Source / evidence status:** 34-sdwdate-secure-time-boot-clock-sysmaint-20261013-153748.txt:L66-L78; 34-sdwdate-secure-time-boot-clock-user-20261013- 153514.txt:L66-L78 | OBSERVED_PROTECTION
-
-### 34.06 — USER versus SYSMAINT time-source behavior
-
-**Stage / source classification:** `S4 / LOW`
-
-**Historical evidence:** Both USER and SYSMAINT report active sdwdate; SYSMAINT target requests expected services.
-
-**Identified weakness / gap:** Different boots/contexts observed; no controlled time-source failure test.
-
-**Implementation task:** Keep both-role versioned evidence.
-
-**Core checkpoints:** `KHAHP-34.06A`, `KHAHP-34.06B`, `KHAHP-34.06C`
-
-**Source / evidence status:** 34-sdwdate-secure-time-boot-clock-sysmaint-20261013-153748.txt:L80-L92; 34-sdwdate-secure-time-boot-clock-user-20261013- 153514.txt:L80-L92 | OBSERVED_PROTECTION
-
-### 34.07 — Time rollback/jump detection and log coherence
-
-**Stage / source classification:** `S4 / MEDIUM`
-
-**Historical evidence:** No rollback/error keywords in small reviewed secure-time journal; logs/reboot history available.
-
-**Identified weakness / gap:** No actual backwards clock manipulation or jump injection; journal only 1 line in USER snapshot.
-
-**Implementation task:** Run time-jump resilience test only in isolated VM; do not change host RTC.
-
-**Core checkpoints:** `KHAHP-34.07A`, `KHAHP-34.07B`, `KHAHP-34.07C`
-
-**Source / evidence status:** 34-sdwdate-secure-time-boot-clock-sysmaint-20261013-153748.txt:L90-L102; 34-sdwdate-secure-time-boot-clock-user-20261013- 153514.txt:L90-L102 | MANUAL_ACCEPTANCE
+**Seven registered families:** `32.01` Avahi/mDNS daemon state; `32.02` LLMNR/resolved multicast name-resolution state; `32.03` wsdd/Samba discovery state; `32.04` rpcbind/minidlna/UPnP service state; `32.05` Multicast/discovery TCP+UDP listener inventory; `32.06` Firewall exposure of discovery ports; `32.07` Negative LAN discovery and reboot-persistence test.
 
 ---
 
-## 35 — Entropy / RNG / haveged / jitterentropy
+### 33 — Tor / SOCKS / DNS Isolation
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** DOCUMENTATION BASELINE COMPLETE; FORMAL A/B/C REVIEW OPEN.
 
-### 35.01 — Kernel RNG readiness at boot
+**Documented/observed:** Tor service was active in the inspected USER context.
 
-**Stage / source classification:** `S4 / LOW`
+**What still needs evidence or action:** Test Tor Browser-specific proxy/DNS routing and safe fail-close without a disruptive global service stop.
 
-**Historical evidence:** entropy_avail=256; current-boot RNG readiness messages; no explicit RNG init failure.
+**Linked follow-ups:** `I-015`.
 
-**Identified weakness / gap:** Entropy availability is not proof of cryptographic quality.
-
-**Implementation task:** Preserve readiness checks in first boot.
-
-**Core checkpoints:** `KHAHP-35.01A`, `KHAHP-35.01B`, `KHAHP-35.01C`
-
-**Source / evidence status:** 35-entropy-rng-haveged-jitterentropy-sysmaint-20261013-154326.txt:L29-L41 | OBSERVED_PROTECTION
-
-### 35.02 — haveged package/service state
-
-**Stage / source classification:** `S4 / LOW`
-
-**Historical evidence:** haveged installed and active, enabled, with package-owned unit evidence.
-
-**Identified weakness / gap:** Extra daemon presence does not independently prove security improvement.
-
-**Implementation task:** Retain only if supported and appropriate for kernel architecture.
-
-**Core checkpoints:** `KHAHP-35.02A`, `KHAHP-35.02B`, `KHAHP-35.02C`
-
-**Source / evidence status:** 35-entropy-rng-haveged-jitterentropy-sysmaint-20261013-154326.txt:L42-L54 | OBSERVED_PROTECTION
-
-### 35.03 — jitterentropy-rngd package/service state
-
-**Stage / source classification:** `S4 / LOW`
-
-**Historical evidence:** jitterentropy-rngd installed; jitterentropy.service active/enabled and package-owned.
-
-**Identified weakness / gap:** No daemon-failure injection or quality characterization.
-
-**Implementation task:** Check compatibility and service health in ISO/VM builds.
-
-**Core checkpoints:** `KHAHP-35.03A`, `KHAHP-35.03B`, `KHAHP-35.03C`
-
-**Source / evidence status:** 35-entropy-rng-haveged-jitterentropy-sysmaint-20261013-154326.txt:L52-L64 | OBSERVED_PROTECTION
-
-### 35.04 — random.trust_cpu boot policy
-
-**Stage / source classification:** `S4 / LOW`
-
-**Historical evidence:** random.trust_cpu explicitly set off in boot policy.
-
-**Identified weakness / gap:** Policy is attested as configured, not a measurement of CPU entropy-source integrity.
-
-**Implementation task:** Document hardware/VM threat-model choice.
-
-**Core checkpoints:** `KHAHP-35.04A`, `KHAHP-35.04B`, `KHAHP-35.04C`
-
-**Source / evidence status:** 35-entropy-rng-haveged-jitterentropy-sysmaint-20261013-154326.txt:L63-L75 | OBSERVED_PROTECTION
-
-### 35.05 — random.trust_bootloader boot policy
-
-**Stage / source classification:** `S4 / LOW`
-
-**Historical evidence:** random.trust_bootloader explicitly set off in boot policy.
-
-**Identified weakness / gap:** Cannot infer complete VM entropy readiness or source diversity.
-
-**Implementation task:** Decide host vs guest entropy source policy separately.
-
-**Core checkpoints:** `KHAHP-35.05A`, `KHAHP-35.05B`, `KHAHP-35.05C`
-
-**Source / evidence status:** 35-entropy-rng-haveged-jitterentropy-sysmaint-20261013-154326.txt:L69-L81 | OBSERVED_PROTECTION
-
-### 35.06 — Entropy source and /dev/random behavior
-
-**Stage / source classification:** `S4 / LOW`
-
-**Historical evidence:** /dev/random and /dev/urandom are character devices; bounded 32-byte reads succeeded without disclosure.
-
-**Identified weakness / gap:** Functionality test is not statistical validation.
-
-**Implementation task:** Retain bounded health test, no random byte dumps.
-
-**Core checkpoints:** `KHAHP-35.06A`, `KHAHP-35.06B`, `KHAHP-35.06C`
-
-**Source / evidence status:** 35-entropy-rng-haveged-jitterentropy-sysmaint-20261013-154326.txt:L76-L88 | OBSERVED_PROTECTION
-
-### 35.07 — Early-boot entropy persistence and regression evidence
-
-**Stage / source classification:** `S4 / HIGH`
-
-**Historical evidence:** systemd-random-seed completed; seed present 32 bytes, root:root mode 600; no boot error.
-
-**Identified weakness / gap:** No induced entropy-starvation test; image publication must not duplicate developer random seed.
-
-**Implementation task:** Exclude development seed from artifacts; generate distinct customer seed after first boot/import.
-
-**Core checkpoints:** `KHAHP-35.07A`, `KHAHP-35.07B`, `KHAHP-35.07C`
-
-**Source / evidence status:** 35-entropy-rng-haveged-jitterentropy-sysmaint-20261013-154326.txt:L88-L100 | IMAGE_RELEASE_GATE
+**Seven registered families:** `33.01` Tor package/service state; `33.02` SOCKS listener loopback Tor SOCKS listener and non-loopback absence; `33.03` Tor configuration provenance and syntax validation; `33.04` Application proxy routing where intended; `33.05` Tor DNS isolation behavior; `33.06` Clearnet bypass classification for Tor-mode applications; `33.07` Bootstrap, circuit, restart and failure-mode behavior.
 
 ---
 
-## 36 — Browser DoH / WebRTC / Telemetry
+### 34 — sdwdate / Secure Time / Boot Clock
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** DOCUMENTATION BASELINE COMPLETE; FORMAL A/B/C REVIEW OPEN.
 
-### 36.01 — Browser DNS-over-HTTPS/TRR setting
+**Documented/observed:** Secure-time components active, no error keywords in bounded log view.
 
-**Stage / source classification:** `S4 / MEDIUM`
+**What still needs evidence or action:** Review execution chronology and controlled VM-only clock rollback.
 
-**Historical evidence:** Firefox mapped user.js and prefs.js both show network.trr.mode=5.
+**Linked follow-ups:** `I-016`, `I-023`.
 
-**Identified weakness / gap:** No direct runtime packet proof of browser DoH being disabled on all browser profiles.
-
-**Implementation task:** Inspect effective Firefox policy and perform DNS leak test for mapped profile.
-
-**Core checkpoints:** `KHAHP-36.01A`, `KHAHP-36.01B`, `KHAHP-36.01C`
-
-**Source / evidence status:** 36-browser-state-verification-user-20261013-162652.txt:L59-L79 | PARTIAL_VERIFICATION
-
-### 36.02 — Browser proxy DNS routing behavior
-
-**Stage / source classification:** `S4 / MEDIUM`
-
-**Historical evidence:** Firefox profile and privacy preferences inventoried, but no explicit configured browser-proxy execution test appears.
-
-**Identified weakness / gap:** Proxy DNS behavior of actual browser was not exercised; not equivalent to Section 33's curl- through-Tor proof.
-
-**Implementation task:** Test browser-specific routing and DNS for approved Tor/clearnet modes.
-
-**Core checkpoints:** `KHAHP-36.02A`, `KHAHP-36.02B`, `KHAHP-36.02C`
-
-**Source / evidence status:** 36-browser-state-verification-user-20261013-162652.txt:L39-L46 | UNTESTED_BEHAVIOR
-
-### 36.03 — WebRTC/STUN local/public IP exposure
-
-**Stage / source classification:** `S4 / MEDIUM`
-
-**Historical evidence:** media.peerconnection.enabled=false recorded in user.js and prefs.js for running mapped Firefox profile.
-
-**Identified weakness / gap:** No actual browser WebRTC/STUN leak test executed.
-
-**Implementation task:** Perform controlled STUN/WebRTC leak test in mapped Firefox and separate Mullvad profile.
-
-**Core checkpoints:** `KHAHP-36.03A`, `KHAHP-36.03B`, `KHAHP-36.03C`
-
-**Source / evidence status:** 36-browser-state-verification-user-20261013-162652.txt:L61-L79 | PARTIAL_VERIFICATION
-
-### 36.04 — Telemetry and crash-report settings
-
-**Stage / source classification:** `S4 / MEDIUM`
-
-**Historical evidence:** Most telemetry/crash reporting preferences agree between user.js and prefs.js; toolkit.telemetry.enabled=false in user.js but absent in prefs.js.
-
-**Identified weakness / gap:** Absent prefs.js entry alone does not prove telemetry enabled; actual effective setting not independently checked.
-
-**Implementation task:** Check about:config/policies effective value, startup processing and locked-policy overrides; change only if wrong.
-
-**Core checkpoints:** `KHAHP-36.04A`, `KHAHP-36.04B`, `KHAHP-36.04C`
-
-**Source / evidence status:** 36-browser-state-verification-user-20261013-162652.txt:L63-L92 | PARTIAL_VERIFICATION
-
-### 36.05 — Safe browsing/prediction/background network features
-
-**Stage / source classification:** `S4 / MEDIUM`
-
-**Historical evidence:** KHAHP user.js disables speculative connections, DNS prefetch, prediction and prefetch; corresponding prefs.js values found.
-
-**Identified weakness / gap:** Safe Browsing policy and real network-background activity not comprehensively inventoried.
-
-**Implementation task:** Confirm required Safe Browsing tradeoff, background traffic and policy enforcement.
-
-**Core checkpoints:** `KHAHP-36.05A`, `KHAHP-36.05B`, `KHAHP-36.05C`
-
-**Source / evidence status:** 36-browser-state-verification-user-20261013-162652.txt:L70-L92 | PARTIAL_VERIFICATION
-
-### 36.06 — Extension/add-on inventory and trust
-
-**Stage / source classification:** `S4 / MEDIUM`
-
-**Historical evidence:** One additional Firefox profile with KHAHP user.js; Mullvad Browser profile inventoried and intentionally not modified.
-
-**Identified weakness / gap:** Extension/add-on inventory and trust/signed-extension evidence are absent from this verifier.
-
-**Implementation task:** Inventory enabled add-ons and extension permissions per profile without modifying Mullvad policies.
-
-**Core checkpoints:** `KHAHP-36.06A`, `KHAHP-36.06B`, `KHAHP-36.06C`
-
-**Source / evidence status:** 36-browser-state-verification-user-20261013-162652.txt:L125-L139 | UNTESTED_BEHAVIOR
-
-### 36.07 — Browser update, profile persistence and leak tests
-
-**Stage / source classification:** `S4 / MEDIUM`
-
-**Historical evidence:** Running Firefox used installation-mapped profile; user.js restrictive mode 600; managed values matched; Mullvad separate.
-
-**Identified weakness / gap:** Live effective preference proof incomplete and update/relaunch/leak regression not shown.
-
-**Implementation task:** Reconfirm effective prefs and leak behavior after browser restart/update.
-
-**Core checkpoints:** `KHAHP-36.07A`, `KHAHP-36.07B`, `KHAHP-36.07C`
-
-**Source / evidence status:** 36-browser-state-verification-user-20261013-162652.txt:L142-L152 | PARTIAL_VERIFICATION
+**Seven registered families:** `34.01` sdwdate package/service state; `34.02` timesanitycheck execution state; `34.03` bootclockrandomization execution state; `34.04` System clock sanity metadata; `34.05` NTP/systemd-timesyncd conflicts; `34.06` USER versus SYSMAINT time-source behavior; `34.07` Time rollback/jump detection and log coherence.
 
 ---
 
-## 37 — Application / File / Metadata Privacy
+### 35 — Entropy / RNG
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** PROVISIONAL HISTORICAL REVIEW; TARGET VERIFICATION PENDING.
 
-### 37.01 — Desktop search/indexing services
+**Documented/observed:** Historical entropy/rng evidence and seed-management policy reviewed; target-side current run unavailable.
 
-**Stage / source classification:** `S1 / LOW`
+**What still needs evidence or action:** Record early-boot quality, seed handling, package choices and role-matched persistence.
 
-**Historical evidence:** Known indexer packages and services absent/inactive; zero matching USER indexer/autostart processes.
-
-**Identified weakness / gap:** Does not audit every application-specific search indexer.
-
-**Implementation task:** Monitor process and autostart changes.
-
-**Core checkpoints:** `KHAHP-37.01A`, `KHAHP-37.01B`, `KHAHP-37.01C`
-
-**Source / evidence status:** 37-application-file-metadata-privacy-user-20261013-165726.txt:L30-L42 | OBSERVED_PROTECTION
-
-### 37.02 — Thumbnail and preview cache behavior
-
-**Stage / source classification:** `S1 / LOW`
-
-**Historical evidence:** Thumbnail cache mode 700, zero cached files/bytes; tumblerd not running/not installed.
-
-**Identified weakness / gap:** Verifier deliberately did not provoke automatic thumbnail generation/cleanup.
-
-**Implementation task:** Controlled synthetic document open/close and retention test if privacy goal requires it.
-
-**Core checkpoints:** `KHAHP-37.02A`, `KHAHP-37.02B`, `KHAHP-37.02C`
-
-**Source / evidence status:** 37-application-file-metadata-privacy-user-20261013-165726.txt:L55-L67 | PARTIAL_VERIFICATION
-
-### 37.03 — Recent-files/history and clipboard retention
-
-**Stage / source classification:** `S1 / LOW`
-
-**Historical evidence:** No GTK recent-file database or known clipboard-manager process/autostart; clipboard contents never read.
-
-**Identified weakness / gap:** Does not establish every app's private history/clipboard memory retention.
-
-**Implementation task:** Assess targeted applications with synthetic data only.
-
-**Core checkpoints:** `KHAHP-37.03A`, `KHAHP-37.03B`, `KHAHP-37.03C`
-
-**Source / evidence status:** 37-application-file-metadata-privacy-user-20261013-165726.txt:L70-L82 | PARTIAL_VERIFICATION
-
-### 37.04 — Document/image metadata handling
-
-**Stage / source classification:** `S1 / MEDIUM`
-
-**Historical evidence:** mat2 and ExifTool installed; no user documents inspected.
-
-**Identified weakness / gap:** Tool availability does not prove actual metadata removal from real customer file types.
-
-**Implementation task:** Use synthetic samples across supported formats; optional owner-reviewed real files.
-
-**Core checkpoints:** `KHAHP-37.04A`, `KHAHP-37.04B`, `KHAHP-37.04C`
-
-**Source / evidence status:** 37-application-file-metadata-privacy-user-20261013-165726.txt:L81-L93 | PARTIAL_VERIFICATION
-
-### 37.05 — Temporary-file and application-cache exposure
-
-**Stage / source classification:** `S1 / LOW`
-
-**Historical evidence:** XDG runtime and cache roots mode 700; /tmp USER files had zero world-exposure hits; private group explains group-read bits.
-
-**Identified weakness / gap:** Group-readable cache files exist behind private parent; /tmp/world permissions require application-specific examination.
-
-**Implementation task:** No blanket chmod from group bits; targeted leakage test.
-
-**Core checkpoints:** `KHAHP-37.05A`, `KHAHP-37.05B`, `KHAHP-37.05C`
-
-**Source / evidence status:** 37-application-file-metadata-privacy-user-20261013-165726.txt:L96-L108 | OBSERVED_PROTECTION
-
-### 37.06 — Sandboxed versus unsandboxed application inventory
-
-**Stage / source classification:** `S1 / HIGH`
-
-**Historical evidence:** Of 48 assessed USER processes, 0 labeled non-unconfined AppArmor; 48 unconfined/unknown; 4 had seccomp-filter mode 2.
-
-**Identified weakness / gap:** Generic verifier's label method and process scope require confirmation; explicitly cannot claim USER applications generally confined.
-
-**Implementation task:** Crosscheck /proc/<pid>/attr/current per intended app against aa-status and Section 15; add compatible enforced profiles where viable.
-
-**Core checkpoints:** `KHAHP-37.06A`, `KHAHP-37.06B`, `KHAHP-37.06C`
-
-**Source / evidence status:** 37-application-file-metadata-privacy-user-20261013-165726.txt:L118-L140 | HARDENING_REVIEW
-
-### 37.07 — Metadata-removal workflow and regression testing
-
-**Stage / source classification:** `S1 / MEDIUM`
-
-**Historical evidence:** Synthetic PNG marker removed by mat2 with successful exit; no real user files touched.
-
-**Identified weakness / gap:** Real-document workflow and repeated roundtrip test remain manual.
-
-**Implementation task:** Add format-specific synthetic regression corpus and safe customer documentation.
-
-**Core checkpoints:** `KHAHP-37.07A`, `KHAHP-37.07B`, `KHAHP-37.07C`
-
-**Source / evidence status:** 37-application-file-metadata-privacy-user-20261013-165726.txt:L143-L155 | PARTIAL_VERIFICATION
+**Seven registered families:** `35.01` Kernel RNG readiness at boot; `35.02` haveged package/service state; `35.03` jitterentropy-rngd package/service state; `35.04` random.trust_cpu boot policy; `35.05` random.trust_bootloader boot policy; `35.06` Entropy source and /dev/random behavior; `35.07` Early-boot entropy persistence and regression evidence.
 
 ---
 
-## 38 — Camera / Microphone / Power / Screen Lock
+### 36 — Browser DoH / WebRTC / Telemetry
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** PROVISIONAL HISTORICAL REVIEW; TARGET VERIFICATION PENDING.
 
-### 38.01 — Camera hardware/device exposure
+**Documented/observed:** Historical browser preference source restrictions; effective runtime prefs were not conclusively established.
 
-**Stage / source classification:** `S3 / MEDIUM`
+**What still needs evidence or action:** Run USER browser checks for DNS-over-HTTPS, WebRTC leakage, telemetry and upgrades.
 
-**Historical evidence:** Two video devices with mode 0 denied USER; no USER camera FDs open.
-
-**Identified weakness / gap:** No physical capture attempt/seat ACL regression performed.
-
-**Implementation task:** Controlled camera negative test before claiming deny-by-default.
-
-**Core checkpoints:** `KHAHP-38.01A`, `KHAHP-38.01B`, `KHAHP-38.01C`
-
-**Source / evidence status:** 38-camera-microphone-power-screenlock-user-20261013-174938.txt:L34-L46; 38-lxqt-lock-power-diagnostic-user-20261013- 172045.txt | PARTIAL_VERIFICATION
-
-### 38.02 — Microphone hardware/device exposure
-
-**Stage / source classification:** `S3 / MEDIUM`
-
-**Historical evidence:** Capture ALSA node denied; no non-monitor pactl capture source; all 4 playback nodes USER accessible.
-
-**Identified weakness / gap:** No real microphone app recording negative test.
-
-**Implementation task:** Validate capture denial and playback retention using safe synthetic/app test.
-
-**Core checkpoints:** `KHAHP-38.02A`, `KHAHP-38.02B`, `KHAHP-38.02C`
-
-**Source / evidence status:** 38-camera-microphone-power-screenlock-user-20261013-174938.txt:L44-L56; 38-lxqt-lock-power-diagnostic-user-20261013- 172045.txt | PARTIAL_VERIFICATION
-
-### 38.03 — Bluetooth/rfkill interaction with peripherals
-
-**Stage / source classification:** `S3 / LOW`
-
-**Historical evidence:** Bluetooth inactive; 2 rfkill controllers soft-blocked in USER observation.
-
-**Identified weakness / gap:** Physical toggle/reboot persistence not exercised.
-
-**Implementation task:** Try authorized physical enable and verify policy persists after reboot.
-
-**Core checkpoints:** `KHAHP-38.03A`, `KHAHP-38.03B`, `KHAHP-38.03C`
-
-**Source / evidence status:** 38-camera-microphone-power-screenlock-user-20261013-174938.txt:L57-L69; 38-lxqt-lock-power-diagnostic-user-20261013- 172045.txt | PARTIAL_VERIFICATION
-
-### 38.04 — Screen-lock timeout and authentication
-
-**Stage / source classification:** `S3 / MEDIUM`
-
-**Historical evidence:** Later 17:49 report shows root-managed swayidle autostart, 2 running swayidle processes and a 300- second swaylock command.
-
-**Identified weakness / gap:** Earlier 17:20 generic diagnostic missed explicit idle policy; actual unattended lock and authentication weren't exercised.
-
-**Implementation task:** Perform timed idle lock and unlock authentication check with owner present.
-
-**Core checkpoints:** `KHAHP-38.04A`, `KHAHP-38.04B`, `KHAHP-38.04C`
-
-**Source / evidence status:** 38-camera-microphone-power-screenlock-user-20261013-174938.txt:L65-L80; 38-lxqt-lock-power-diagnostic-user-20261013- 172045.txt:L106-L114 | PARTIAL_VERIFICATION
-
-### 38.05 — Suspend/lock-on-lid and idle behavior
-
-**Stage / source classification:** `S3 / HIGH`
-
-**Historical evidence:** 17:20 diagnostic shows logind inhibitor 'handle-lid-switch' by lxqt-powermanagement and pre-sleep inhibitor; later 17:49 verifier shows pre-sleep=1 but lid_handler_inhibitor=0.
-
-**Identified weakness / gap:** Reports disagree, possibly matcher/timing; neither performed physical lid-close/resume lock test.
-
-**Implementation task:** Inspect current loginctl inhibit/LXQt handling without changing settings, then test lid close/resume lock and repair only if bypass reproduced.
-
-**Core checkpoints:** `KHAHP-38.05A`, `KHAHP-38.05B`, `KHAHP-38.05C`
-
-**Source / evidence status:** 38-lxqt-lock-power-diagnostic-user-20261013-172045.txt:L94-L114; 38-camera-microphone-power-screenlock-user-20261013- 174938.txt:L82-L90 | HARDENING_REVIEW
-
-### 38.06 — Hibernation configuration and encrypted-swap implications
-
-**Stage / source classification:** `S3 / MEDIUM`
-
-**Historical evidence:** Kernel advertises hibernation; no resume cmdline or resume config detected; active swap=1 with Section 06 encryption cross-reference.
-
-**Identified weakness / gap:** No hibernate/resume performed; no proven supported encrypted resume arrangement.
-
-**Implementation task:** Document whether hibernation unsupported/disabled or securely provisioned, then test on disposable setup.
-
-**Core checkpoints:** `KHAHP-38.06A`, `KHAHP-38.06B`, `KHAHP-38.06C`
-
-**Source / evidence status:** 38-camera-microphone-power-screenlock-user-20261013-174938.txt:L92-L98 | MANUAL_ACCEPTANCE
-
-### 38.07 — Shutdown-versus-suspend operational policy
-
-**Stage / source classification:** `S3 / MEDIUM`
-
-**Historical evidence:** ram-wipe installed; shutdown for transport/unattended is documented high-assurance policy.
-
-**Identified weakness / gap:** No shutdown/suspend recovery or zeroization test performed; suspend retains RAM secrets.
-
-**Implementation task:** Validate real shutdown/lock behaviors and customer operating guide when safe.
-
-**Core checkpoints:** `KHAHP-38.07A`, `KHAHP-38.07B`, `KHAHP-38.07C`
-
-**Source / evidence status:** 38-camera-microphone-power-screenlock-user-20261013-174938.txt:L99-L107 | MANUAL_ACCEPTANCE
+**Seven registered families:** `36.01` Browser DNS-over-HTTPS/TRR setting; `36.02` Browser proxy DNS routing behavior; `36.03` WebRTC/STUN local/public IP exposure; `36.04` Telemetry and crash-report settings; `36.05` Safe browsing/prediction/background network features; `36.06` Extension/add-on inventory and trust; `36.07` Browser update, profile persistence and leak tests.
 
 ---
 
-## 39 — Firmware / BIOS / Secure Boot / TPM
+### 37 — Application / File / Metadata Privacy
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** PROVISIONAL HISTORICAL REVIEW; TARGET VERIFICATION PENDING.
 
-### 39.01 — BIOS/UEFI vendor, model and firmware version
+**Documented/observed:** Historical metadata/indexing and synthetic sanitization observations reported.
 
-**Stage / source classification:** `S2 / P2`
+**What still needs evidence or action:** Revisit app caches, thumbnails, history retention and runtime confinement.
 
-**Historical evidence:** UEFI platform and BIOS revision inventoried; no serial or machine UUID copied into report.
-
-**Identified weakness / gap:** Firmware latest/supported status not established.
-
-**Implementation task:** Compare installed BIOS with authenticated ASUS release and advisories; avoid blind firmware update.
-
-**Core checkpoints:** `KHAHP-39.01A`, `KHAHP-39.01B`, `KHAHP-39.01C`
-
-**Source / evidence status:** 39-postenable-final-sysmaint-20261014-212049.txt:24-35 | INVENTORY_CONFIRMED
-
-### 39.02 — fwupd device/security-attribute inventory
-
-**Stage / source classification:** `S2 / P1`
-
-**Historical evidence:** fwupd reported HSI:1!; UEFI memory protection and pre-boot DMA protection disabled; kernel tainted; BootGuard, SPI lock and IOMMU positive.
-
-**Identified weakness / gap:** May be firmware/hardware-limited. No BIOS or platform remediation proven.
-
-**Implementation task:** Prioritize verified firmware security-capability review; record vendor/hardware limitations and mitigations; do not promise HSI improvement.
-
-**Core checkpoints:** `KHAHP-39.02A`, `KHAHP-39.02B`, `KHAHP-39.02C`
-
-**Source / evidence status:** 39-postenable-final-sysmaint-20261014-212049.txt:38-62 | POTENTIAL_HARDENING_GAP
-
-### 39.03 — Secure Boot state and Setup Mode
-
-**Stage / source classification:** `S2 / P2`
-
-**Historical evidence:** SecureBoot=1, SetupMode=0; PK, KEK and db present; later independent mokutil confirms Secure Boot.
-
-**Identified weakness / gap:** No post-update/recovery persistence proof.
-
-**Implementation task:** Retain existing working enrollment; verify after future approved firmware/kernel changes.
-
-**Core checkpoints:** `KHAHP-39.03A`, `KHAHP-39.03B`, `KHAHP-39.03C`
-
-**Source / evidence status:** 39-postenable-final-sysmaint-20261014-212049.txt:64-77;39-mok-resolution-v1.3-sysmaint-20261014-212851.txt:7-10 | ENFORCEMENT_OBSERVED
-
-### 39.04 — TPM presence, version and ownership state
-
-**Stage / source classification:** `S2 / P2`
-
-**Historical evidence:** TPM 2.0 enumerated and permanent attributes readable; lockoutAuthSet=1; disableClear=0.
-
-**Identified weakness / gap:** TPM owner/hierarchy, tamper recovery and disk-binding policy not validated.
-
-**Implementation task:** Review permitted TPM operations, ownership and safe recovery; do not clear TPM.
-
-**Core checkpoints:** `KHAHP-39.04A`, `KHAHP-39.04B`, `KHAHP-39.04C`
-
-**Source / evidence status:** 39-postenable-final-sysmaint-20261014-212049.txt:79-99 | PARTIAL_RUNTIME
-
-### 39.05 — BIOS/UEFI administrator password manual check
-
-**Stage / source classification:** `S2 / P1`
-
-**Historical evidence:** Firmware administrator password test explicitly deferred to owner.
-
-**Identified weakness / gap:** No evidence unauthorized BIOS changes require valid administrator authentication.
-
-**Implementation task:** Owner-only firmware-screen negative check without recording password.
-
-**Core checkpoints:** `KHAHP-39.05A`, `KHAHP-39.05B`, `KHAHP-39.05C`
-
-**Source / evidence status:** 39-postenable-final-sysmaint-20261014-212049.txt:101-108;39-43-targeted-sysmaint-v1.3-20261015-013719.txt:11-11 | MANUAL_REQUIRED
-
-### 39.06 — PXE/CSM/external-boot/manual boot- order policy
-
-**Stage / source classification:** `S2 / P1`
-
-**Historical evidence:** UEFI BootOrder inventoried; no obvious network/removable boot entry labels.
-
-**Identified weakness / gap:** CSM, PXE, one-time boot and physical bypass restrictions not tested.
-
-**Implementation task:** Manually check external boot and boot-menu bypass under controlled conditions; document limitations.
-
-**Core checkpoints:** `KHAHP-39.06A`, `KHAHP-39.06B`, `KHAHP-39.06C`
-
-**Source / evidence status:** 39-postenable-final-sysmaint-20261014-212049.txt:110-120 | MANUAL_REQUIRED
-
-### 39.07 — Firmware update, DKMS/MOK and Secure-Boot readiness
-
-**Stage / source classification:** `S2 / P2`
-
-**Historical evidence:** Kernel image signed; lockdown active; 197/197 file-backed loaded modules had signature metadata; tirdad loaded. Initial mokutil exit-code false failure later corrected: output says certificate already enrolled.
-
-**Identified weakness / gap:** Firmware recovery and future signed DKMS upgrades untested; third-party kernel module taint recorded.
-
-**Implementation task:** Keep signing configuration; regression test module load after kernel update; document firmware recovery.
-
-**Core checkpoints:** `KHAHP-39.07A`, `KHAHP-39.07B`, `KHAHP-39.07C`
-
-**Source / evidence status:** 39-postenable-final-sysmaint-20261014-212049.txt:122-146;39-mok-resolution-v1.3-sysmaint-20261014-212851.txt:7-26 | HISTORICAL_FINDING_RESOLVED
+**Seven registered families:** `37.01` Desktop search/indexing services; `37.02` Thumbnail and preview cache behavior; `37.03` Recent-files/history and clipboard retention; `37.04` Document/image metadata handling; `37.05` Temporary-file and application-cache exposure; `37.06` Sandboxed versus unsandboxed application inventory; `37.07` Metadata-removal workflow and regression testing.
 
 ---
 
-## 40 — Auditd / AIDE / Integrity Monitoring
+### 38 — Camera / Microphone / Power / Screen Lock
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** PROVISIONAL HISTORICAL REVIEW; TARGET VERIFICATION PENDING.
 
-### 40.01 — auditd package/service state
+**Documented/observed:** Historical USER camera/mic access denial, screen-lock configuration noted.
 
-**Stage / source classification:** `S5 / P2`
+**What still needs evidence or action:** Prove actual idle lock, lid/suspend/resume authentication and hotplug behavior.
 
-**Historical evidence:** auditd installed/enabled; SYSMAINT service inactive as expected for its boot context; later USER- mode privileged probe shows active auditd, lost=0.
-
-**Identified weakness / gap:** USER boot persistence and audit loss under controlled log pressure not fully verified.
-
-**Implementation task:** Retain current services; test USER logging continuity and after-boot state.
-
-**Core checkpoints:** `KHAHP-40.01A`, `KHAHP-40.01B`, `KHAHP-40.01C`
-
-**Source / evidence status:** 39-43-closeout-sysmaint-v1.1-20261015-011541.txt:18-23;39-43-targeted-user-probe-v1.3-20261015-015154.txt:1-10 | ENFORCEMENT_OBSERVED
-
-### 40.02 — Audit rule inventory and immutable/finalize policy
-
-**Stage / source classification:** `S5 / P1`
-
-**Historical evidence:** Five staged rule keys built with augenrules; later USER-mode audit probe confirms all five loaded in kernel.
-
-**Identified weakness / gap:** Independent event-generation with matching audit records unperformed.
-
-**Implementation task:** Create harmless monitored event and verify corresponding USER audit event; do not reinstall one- shot probe.
-
-**Core checkpoints:** `KHAHP-40.02A`, `KHAHP-40.02B`, `KHAHP-40.02C`
-
-**Source / evidence status:** 39-43-targeted-sysmaint-v1.3-20261015-013719.txt:15-20;39-43-targeted-user-probe-v1.3-20261015-015154.txt:1-10 | ENFORCEMENT_OBSERVED
-
-### 40.03 — Privileged-command and identity- change audit coverage
-
-**Stage / source classification:** `S5 / P1`
-
-**Historical evidence:** Identity, privilege, SSH policy, auditing and persistence watch keys present in USER kernel.
-
-**Identified weakness / gap:** Presence alone does not prove each watched change generates searchable audit event.
-
-**Implementation task:** Execute controlled harmless event test for representative rule keys; verify key, timestamp and result.
-
-**Core checkpoints:** `KHAHP-40.03A`, `KHAHP-40.03B`, `KHAHP-40.03C`
-
-**Source / evidence status:** 40-audit-rules-remediation-v1.1-sysmaint-20261015-000238.txt:18-40;39-43-targeted-user-probe-v1.3-20261015-015154.txt:1-10 | PARTIAL_RUNTIME
-
-### 40.04 — AIDE package/database/configuration state
-
-**Stage / source classification:** `S5 / P2`
-
-**Historical evidence:** AIDE 0.19.1 baseline pair byte-identical; config rules cover /etc/shadow, /etc/audit/auditd.conf and /etc/ssh/sshd_config. Earlier exit 17 arose from missing --config invocation; separate operator screenshot later indicated correct command exit 0.
-
-**Identified weakness / gap:** Corrected exit-0 screenshot is not in this tar archive; full scan and trusted baseline custody require independent acceptance.
-
-**Implementation task:** Do NOT reinitialize AIDE. Preserve baseline; attach correct --config check evidence and validate alert on harmless isolated fixture.
-
-**Core checkpoints:** `KHAHP-40.04A`, `KHAHP-40.04B`, `KHAHP-40.04C`
-
-**Source / evidence status:** 39-40-41-combined-final-verifier-v1.0-sysmaint-20261014-234903.txt:315-355;39-43-targeted-sysmaint-v1.3-20261015-013719.txt:21- 27 | HISTORICAL_VERIFIER_ERROR
-
-### 40.05 — File-integrity baseline and scheduled checks
-
-**Stage / source classification:** `S5 / P2`
-
-**Historical evidence:** Daily AIDE timer enabled and active in SYSMAINT and USER snapshots.
-
-**Identified weakness / gap:** Timer active is not proof of successful full AIDE verification over time.
-
-**Implementation task:** Inspect permitted recent service results; verify controlled alert lifecycle and post-boot recurrence.
-
-**Core checkpoints:** `KHAHP-40.05A`, `KHAHP-40.05B`, `KHAHP-40.05C`
-
-**Source / evidence status:** 39-40-41-combined-final-verifier-v1.0-sysmaint-20261014-234903.txt:342-356;39-43-targeted-user-probe-v1.3-20261015- 015154.txt:10-11 | PARTIAL_RUNTIME
-
-### 40.06 — Audit-log ownership, rotation and tamper resistance
-
-**Stage / source classification:** `S5 / P2`
-
-**Historical evidence:** Audit log directory permissions assessed; auditd log infrastructure and metadata inventoried.
-
-**Identified weakness / gap:** Retention, rotation, disk-pressure and event availability not fully demonstrated in USER role.
-
-**Implementation task:** Test log access restrictions, rotation thresholds and loss behavior on non-destructive test workload.
-
-**Core checkpoints:** `KHAHP-40.06A`, `KHAHP-40.06B`, `KHAHP-40.06C`
-
-**Source / evidence status:** 39-43-closeout-sysmaint-v1.1-20261015-011541.txt:27-31;40-baseline-sysmaint-20261014-213426.txt:21-40 | CONFIG_INVENTORIED
-
-### 40.07 — CIS/DISA accountability-gap analysis
-
-**Stage / source classification:** `S5 / P2`
-
-**Historical evidence:** Auditd, AIDE, staged rule sources, timers and missing-test inventory captured.
-
-**Identified weakness / gap:** No comprehensive negative/independent evidence coverage or alert response chain accepted.
-
-**Implementation task:** Cross-map each Section40 family A/B/C with event evidence, AIDE alert and recovery; keep documented exceptions.
-
-**Core checkpoints:** `KHAHP-40.07A`, `KHAHP-40.07B`, `KHAHP-40.07C`
-
-**Source / evidence status:** 39-43-targeted-user-probe-v1.3-20261015-015154.txt:1-14;39-43-closeout-sysmaint-v1.1-20261015-011541.txt:18-31 | PARTIAL_RUNTIME
+**Seven registered families:** `38.01` Camera hardware/device exposure; `38.02` Microphone hardware/device exposure; `38.03` Bluetooth/rfkill interaction with peripherals; `38.04` Screen-lock timeout and authentication; `38.05` Suspend/lock-on-lid and idle behavior; `38.06` Hibernation configuration and encrypted-swap implications; `38.07` Shutdown-versus-suspend operational policy.
 
 ---
 
-## 41 — Cron / Timers / Persistence / Supply Chain
+### 39 — Firmware / BIOS / Secure Boot / TPM
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** PROVISIONAL HISTORICAL REVIEW; TARGET VERIFICATION PENDING.
 
-### 41.01 — cron/anacron job inventory
+**Documented/observed:** Historical Secure Boot/MOK and TPM observations; fwupd HSI:1! needs interpretation.
 
-**Stage / source classification:** `S5 / P2`
+**What still needs evidence or action:** Owner-controlled firmware/DMA/boot policy inspection; no blind MOK re-enrollment.
 
-**Historical evidence:** Cron-related directories inventoried; cron/anacron units absent and multiple package-owned scripts identified.
-
-**Identified weakness / gap:** Job-level allowlist and ownership trust assessment not completed; the absence of daemon does not mean malicious persistence impossible.
-
-**Implementation task:** Classify each scheduled script and executable by owner, origin, content hash and actual execution mechanism.
-
-**Core checkpoints:** `KHAHP-41.01A`, `KHAHP-41.01B`, `KHAHP-41.01C`
-
-**Source / evidence status:** 41-targeted-verification-v1.2-sysmaint-20261014-233434-qkayOV.txt:8-47 | INVENTORY_ONLY
-
-### 41.02 — systemd timer inventory
-
-**Stage / source classification:** `S5 / P2`
-
-**Historical evidence:** Several systemd timers including AIDE and APT update timers documented with next and last timestamps.
-
-**Identified weakness / gap:** Lists contain active/inactive timers; timer inventory is not allowlist; last execution result not uniform.
-
-**Implementation task:** Record full timer source→trigger→service→binary, ownership and last success.
-
-**Core checkpoints:** `KHAHP-41.02A`, `KHAHP-41.02B`, `KHAHP-41.02C`
-
-**Source / evidence status:** 41-targeted-verification-v1.2-sysmaint-20261014-233434-qkayOV.txt:89-151 | INVENTORY_ONLY
-
-### 41.03 — User autostart and desktop persistence inventory
-
-**Stage / source classification:** `S5 / P1`
-
-**Historical evidence:** USER startup .desktop entries enumerated from SYSMAINT; khahp-idle-lock.desktop recorded.
-
-**Identified weakness / gap:** No authenticated USER runtime autostart and two-boot comparison in archive; USER agent ports not classified.
-
-**Implementation task:** Review effective USER autostart and authorized entries during normal login, then compare on next normal boot.
-
-**Core checkpoints:** `KHAHP-41.03A`, `KHAHP-41.03B`, `KHAHP-41.03C`
-
-**Source / evidence status:** 41-targeted-verification-v1.2-sysmaint-20261014-233434-qkayOV.txt:151-223;39-43-targeted-sysmaint-v1.3-20261015-013719.txt:35- 35 | PARTIAL_INVENTORY
-
-### 41.04 — Package repository and signing-key provenance
-
-**Stage / source classification:** `S5 / P1`
-
-**Historical evidence:** APT source/keyring path inventories gathered, installed dpkg database healthy.
-
-**Identified weakness / gap:** Repository key lineage, unsigned local overrides and third-party key policy not fully validated.
-
-**Implementation task:** Validate source origins, signed-by, key ownership, permitted distributions and repository trust decisions.
-
-**Core checkpoints:** `KHAHP-41.04A`, `KHAHP-41.04B`, `KHAHP-41.04C`
-
-**Source / evidence status:** 41-targeted-verification-v1.2-sysmaint-20261014-233434-qkayOV.txt:225-332;39-43-targeted-sysmaint-v1.3-20261015-013719.txt:37- 37 | PROVENANCE_REVIEW
-
-### 41.05 — APT pinning/holds and update-policy review
-
-**Stage / source classification:** `S5 / P2`
-
-**Historical evidence:** No held packages and dpkg --audit empty; APT update timers exist.
-
-**Identified weakness / gap:** No full package-update/rollback and unattended update regression measured.
-
-**Implementation task:** Record pinned package baseline and safe upgrade/rollback regression.
-
-**Core checkpoints:** `KHAHP-41.05A`, `KHAHP-41.05B`, `KHAHP-41.05C`
-
-**Source / evidence status:** 41-targeted-verification-v1.2-sysmaint-20261014-233434-qkayOV.txt:333-390 | PARTIAL_RUNTIME
-
-### 41.06 — Unexpected startup scripts/services/modules
-
-**Stage / source classification:** `S5 / P2`
-
-**Historical evidence:** Service/module inventories and failed-unit status collected; no failed services reported.
-
-**Identified weakness / gap:** Not all startup entries individually attributed; some links are unowned by dpkg but may be intentional local policy.
-
-**Implementation task:** Build an explicit approved startup allowlist; review package-owned and local override units.
-
-**Core checkpoints:** `KHAHP-41.06A`, `KHAHP-41.06B`, `KHAHP-41.06C`
-
-**Source / evidence status:** 41-targeted-verification-v1.2-sysmaint-20261014-233434-qkayOV.txt:391-555 | PROVENANCE_REVIEW
-
-### 41.07 — Supply-chain drift and reboot- persistence evidence
-
-**Stage / source classification:** `S5 / P1`
-
-**Historical evidence:** Source inventory and hash manifests exist with a boot ID.
-
-**Identified weakness / gap:** No signed diff from TWO distinct normal USER boots, no drift decision or approved-change history.
-
-**Implementation task:** Capture separated USER boot snapshots; compare exact hashes and classify changes without leaking identity.
-
-**Core checkpoints:** `KHAHP-41.07A`, `KHAHP-41.07B`, `KHAHP-41.07C`
-
-**Source / evidence status:** 41-targeted-verification-v1.2-sysmaint-20261014-233434-qkayOV.txt:1-7;39-43-targeted-sysmaint-v1.3-20261015-013719.txt:35-36 | PERSISTENCE_UNTESTED
+**Seven registered families:** `39.01` BIOS/UEFI vendor, model and firmware version; `39.02` fwupd device/security-attribute inventory; `39.03` Secure Boot state and Setup Mode; `39.04` TPM presence, version and ownership state; `39.05` BIOS/UEFI administrator password manual check; `39.06` PXE/CSM/external-boot/manual boot- order policy; `39.07` Firmware update, DKMS/MOK and Secure-Boot readiness.
 
 ---
 
-## 42 — Credentials / SSH Keys / Secrets / Backup
+### 40 — Auditd / AIDE / Integrity Monitoring
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** PROVISIONAL HISTORICAL REVIEW; TARGET VERIFICATION PENDING.
 
-### 42.01 — SSH private-key inventory and permissions
+**Documented/observed:** Five USER audit rule keys and existing AIDE evidence described historically.
 
-**Stage / source classification:** `S6 / P2`
+**What still needs evidence or action:** Verify permitted audit event retrieval, AIDE alert lifecycle and retention; do not reinitialize AIDE.
 
-**Historical evidence:** root and USER SSH dirs mode 700; authorized_keys 600; keys-only/no-root effective sshd policy; SSH service/socket masked.
-
-**Identified weakness / gap:** Customer images require regenerated keys, not copying developer key material.
-
-**Implementation task:** Retain SSH restrictions; test release image for zero inherited host keys and personal credentials.
-
-**Core checkpoints:** `KHAHP-42.01A`, `KHAHP-42.01B`, `KHAHP-42.01C`
-
-**Source / evidence status:** 42-credentials-secrets-backup-baseline-v1.0-sysmaint-20261015-001435.txt:7-16;39-43-targeted-sysmaint-v1.3-20261015- 013719.txt:39-42 | ENFORCEMENT_OBSERVED
-
-### 42.02 — API/token/secret storage locations
-
-**Stage / source classification:** `S6 / P1`
-
-**Historical evidence:** Common secret location modes inventoried; NetworkManager connection files mode-restricted; credential-release-gate script created.
-
-**Identified weakness / gap:** No complete filesystem secret content scan; no clean release artifact exists to run gate on.
-
-**Implementation task:** Run approved nonleaking secret scanner on freshly built customer root only; inspect reports before sharing.
-
-**Core checkpoints:** `KHAHP-42.02A`, `KHAHP-42.02B`, `KHAHP-42.02C`
-
-**Source / evidence status:** 42-credentials-secrets-backup-baseline-v1.0-sysmaint-20261015-001435.txt:17-27;42-safe-remediation-and-image-gate-v1.1- sysmaint-20261015-003431.txt:12-20 | INVENTORY_ONLY
-
-### 42.03 — Password-manager selection and vault policy
-
-**Stage / source classification:** `S6 / P2`
-
-**Historical evidence:** KeePassXC installed, policy file prepared.
-
-**Identified weakness / gap:** Actual vault unlock/backup/integration tests and operator policy decisions not performed.
-
-**Implementation task:** Decide supported customer vault policy; test protected vault creation/unlock/recovery separately.
-
-**Core checkpoints:** `KHAHP-42.03A`, `KHAHP-42.03B`, `KHAHP-42.03C`
-
-**Source / evidence status:** 42-credentials-secrets-backup-baseline-v1.0-sysmaint-20261015-001435.txt:28-36;42-safe-remediation-and-image-gate-v1.1- sysmaint-20261015-003431.txt:31-31 | POLICY_PREPARED
-
-### 42.04 — FIDO2/YubiKey readiness and hardware-backed keys
-
-**Stage / source classification:** `S6 / P2`
-
-**Historical evidence:** FIDO2/cryptenroll tooling available.
-
-**Identified weakness / gap:** No physical token enrollment, loss/recovery or customer hardware test.
-
-**Implementation task:** Test with consent on designated spare hardware; record capability not token secrets.
-
-**Core checkpoints:** `KHAHP-42.04A`, `KHAHP-42.04B`, `KHAHP-42.04C`
-
-**Source / evidence status:** 42-credentials-secrets-backup-baseline-v1.0-sysmaint-20261015-001435.txt:37-43;42-safe-remediation-and-image-gate-v1.1- sysmaint-20261015-003431.txt:32-32 | MANUAL_REQUIRED
-
-### 42.05 — Recovery-code generation and offline storage
-
-**Stage / source classification:** `S6 / P1`
-
-**Historical evidence:** Offline recovery policy prepared; existing backup directory metadata inventoried.
-
-**Identified weakness / gap:** No custodian attestation, key rotation or offline-recovery drill recorded.
-
-**Implementation task:** Define and owner-approve recovery custody; test recovery without writing codes into reports.
-
-**Core checkpoints:** `KHAHP-42.05A`, `KHAHP-42.05B`, `KHAHP-42.05C`
-
-**Source / evidence status:** 42-credentials-secrets-backup-baseline-v1.0-sysmaint-20261015-001435.txt:44-48;42-safe-remediation-and-image-gate-v1.1- sysmaint-20261015-003431.txt:33-33 | MANUAL_REQUIRED
-
-### 42.06 — Encrypted backup creation and retention
-
-**Stage / source classification:** `S6 / P1`
-
-**Historical evidence:** GPG available; disposable AES256 encrypted/decrypted fixture passed; dpkg backup timer present.
-
-**Identified weakness / gap:** No genuine encrypted backup repository, designated target, retention/rotation or test data restored.
-
-**Implementation task:** Obtain owner-approved destination; implement encrypted backup with read-after-write verification and recovery isolation.
-
-**Core checkpoints:** `KHAHP-42.06A`, `KHAHP-42.06B`, `KHAHP-42.06C`
-
-**Source / evidence status:** 42-credentials-secrets-backup-baseline-v1.0-sysmaint-20261015-001435.txt:49-68;42-safe-remediation-and-image-gate-v1.1- sysmaint-20261015-003431.txt:22-35 | BACKUP_UNTESTED
-
-### 42.07 — Restore test, key recovery and disaster-recovery evidence
-
-**Stage / source classification:** `S6 / P1`
-
-**Historical evidence:** Disposable fixture proves crypto tool can encrypt/decrypt a test object.
-
-**Identified weakness / gap:** No real laptop backup restoration, disaster-recovery recovery-time estimate or secret custody evidence.
-
-**Implementation task:** Perform isolated restore from actual approved encrypted backup and verify integrity/ownership; no production overwrite.
-
-**Core checkpoints:** `KHAHP-42.07A`, `KHAHP-42.07B`, `KHAHP-42.07C`
-
-**Source / evidence status:** 42-safe-remediation-and-image-gate-v1.1-sysmaint-20261015-003431.txt:22-37;42-credentials-secrets-backup-baseline-v1.0- sysmaint-20261015-001435.txt:70-78 | RESTORE_UNTESTED
+**Seven registered families:** `40.01` auditd package/service state; `40.02` Audit rule inventory and immutable/finalize policy; `40.03` Privileged-command and identity- change audit coverage; `40.04` AIDE package/database/configuration state; `40.05` File-integrity baseline and scheduled checks; `40.06` Audit-log ownership, rotation and tamper resistance; `40.07` CIS/DISA accountability-gap analysis.
 
 ---
 
-## 43 — CIS Debian 13 L2 + DISA GPOS + KSPP Mapping
+### 41 — Cron / Timers / Persistence / Supply Chain
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** PROVISIONAL HISTORICAL REVIEW; TARGET VERIFICATION PENDING.
 
-### 43.01 — CIS Debian 13 Level 2 applicability mapping
+**Documented/observed:** Historical timer/cron and dpkg provenance checks exist.
 
-**Stage / source classification:** `S7 / P1`
+**What still needs evidence or action:** Establish desktop autostart provenance, signing sources and two-boot drift.
 
-**Historical evidence:** CIS Debian 13 v1.1.0 parsed: 332 primary entries, 328 cumulative workstation L2; 10 explicit checks PASS in classifier.
-
-**Identified weakness / gap:** v1.2 leaves 304 EVIDENCE_REVIEW, 12 APPLICABILITY_REVIEW, 1 EXCEPTION_PROPOSED, 1 REVIEW; four other entries outside cumulative L2. Not 304 security failures.
-
-**Implementation task:** Attach exact dated evidence and applicability to every primary control; verify profile membership.
-
-**Core checkpoints:** `KHAHP-43.01A`, `KHAHP-43.01B`, `KHAHP-43.01C`
-
-**Source / evidence status:** 43-standards-control-validation-v1.2-sysmaint-20261015-023110.txt:1-13;43-standards-control-validation-v1.2-sysmaint-20261015- 023110.tsv:2-10 | MAPPING_INCOMPLETE
-
-### 43.02 — DISA GPOS/SRG objective mapping
-
-**Stage / source classification:** `S7 / P1`
-
-**Historical evidence:** CIS Debian 11 STIG-oriented 356 recommendation titles inventoried.
-
-**Identified weakness / gap:** Historical CIS document is not an authoritative Debian13 DISA STIG; direct GPOS/SRG control- ID mapping absent.
-
-**Implementation task:** Use authoritative published DISA GPOS/SRG identifiers and applicability; never claim DISA certification.
-
-**Core checkpoints:** `KHAHP-43.02A`, `KHAHP-43.02B`, `KHAHP-43.02C`
-
-**Source / evidence status:** 43-standards-evidence-mapping-v1.0-sysmaint-20261015-004246.txt:79-87;43-standards-control-validation-v1.2-sysmaint-20261015- 023110.txt:1-10 | MAPPING_INCOMPLETE
-
-### 43.03 — KSPP/kernel-self-protection mapping
-
-**Stage / source classification:** `S7 / P2`
-
-**Historical evidence:** Kernel control candidates linked to earlier section reports.
-
-**Identified weakness / gap:** No item-by-item KSPP recommendation to build/runtime result with kernel feature evidence.
-
-**Implementation task:** Map current KSPP features with exact kernel config and effective runtime proof.
-
-**Core checkpoints:** `KHAHP-43.03A`, `KHAHP-43.03B`, `KHAHP-43.03C`
-
-**Source / evidence status:** 43-standards-evidence-mapping-v1.0-sysmaint-20261015-004246.txt:79-87;39-43-targeted-sysmaint-v1.3-20261015-013719.txt:50-53 | MAPPING_INCOMPLETE
-
-### 43.04 — Kicksecure-native equivalent control mapping
-
-**Stage / source classification:** `S7 / P2`
-
-**Historical evidence:** Kicksecure-native component families and custom additions listed as candidates.
-
-**Identified weakness / gap:** No full inherited-policy vs KHAHP-extension attribution and functional equivalence check.
-
-**Implementation task:** Link package owners/source policy to live settings and label deviations per edition.
-
-**Core checkpoints:** `KHAHP-43.04A`, `KHAHP-43.04B`, `KHAHP-43.04C`
-
-**Source / evidence status:** 43-standards-evidence-mapping-v1.0-sysmaint-20261015-004246.txt:79-89;39-43-targeted-sysmaint-v1.3-20261015-013719.txt:53-54 | PROVENANCE_REVIEW
-
-### 43.05 — Project-extension control mapping
-
-**Stage / source classification:** `S7 / P1`
-
-**Historical evidence:** All prior sections have report file counts and candidate source references.
-
-**Identified weakness / gap:** A file name candidate is not exact assertion-to-control runtime proof.
-
-**Implementation task:** Map each asserted extension to exact output lines, dates, and ongoing enforcement tests.
-
-**Core checkpoints:** `KHAHP-43.05A`, `KHAHP-43.05B`, `KHAHP-43.05C`
-
-**Source / evidence status:** 43-standards-evidence-mapping-v1.0-sysmaint-20261015-004246.txt:35-88;43-standards-control-validation-v1.2-sysmaint-20261015- 023110.txt:1-11 | EVIDENCE_REVIEW
-
-### 43.06 — Exception/N-A/manual-control rationale
-
-**Stage / source classification:** `S7 / P1`
-
-**Historical evidence:** Known applicability cases include USB storage retained, LXQt, Wi-Fi, local Unbound and nftables; proposed exceptions enumerated.
-
-**Identified weakness / gap:** Signed risk-owner approvals and compensating controls not documented.
-
-**Implementation task:** Approve or reject specific N/A/deviation rationales with owner, severity and compensating evidence.
-
-**Core checkpoints:** `KHAHP-43.06A`, `KHAHP-43.06B`, `KHAHP-43.06C`
-
-**Source / evidence status:** 43-standards-control-validation-v1.2-sysmaint-20261015-023110.txt:9-11;39-43-targeted-sysmaint-v1.3-20261015-013719.txt:54-56 | EXCEPTION_REVIEW
-
-### 43.07 — Evidence citation and no-certification disclaimer
-
-**Stage / source classification:** `S7 / P1`
-
-**Historical evidence:** Historical report hash manifest checked and no-certification disclaimer present.
-
-**Identified weakness / gap:** Hashes alone do not mean every source controls map to A/B/C test evidence; no independent validation.
-
-**Implementation task:** Produce signed citation index with assertion ID, report line, checksum, reviewer and decision.
-
-**Core checkpoints:** `KHAHP-43.07A`, `KHAHP-43.07B`, `KHAHP-43.07C`
-
-**Source / evidence status:** 39-43-targeted-sysmaint-v1.3-20261015-013719.txt:48-56;43-standards-evidence-mapping-v1.0-sysmaint-20261015-004246.txt:90- 100 | PARTIAL_EVIDENCE
+**Seven registered families:** `41.01` cron/anacron job inventory; `41.02` systemd timer inventory; `41.03` User autostart and desktop persistence inventory; `41.04` Package repository and signing-key provenance; `41.05` APT pinning/holds and update-policy review; `41.06` Unexpected startup scripts/services/modules; `41.07` Supply-chain drift and reboot- persistence evidence.
 
 ---
 
-## 44 — Final Acceptance / POC Evidence / Scoring
+### 42 — Credentials / SSH Keys / Secrets / Backup
 
-**Scope:** 7 control families · 21 A/B/C checkpoints.
+**Disposition:** PROVISIONAL HISTORICAL REVIEW; TARGET VERIFICATION PENDING.
 
-### 44.01 — Full reboot persistence acceptance
+**Documented/observed:** SSH restricted, disposable backup/crypto fixture documented; production restore not shown.
 
-**Stage / source classification:** `S8 / P1`
+**What still needs evidence or action:** Complete actual encrypted backup, isolated restore and release-secret exclusion.
 
-**Historical evidence:** Original Section 44 verifier script exists outside the archive; NO execution output included in provided archive.
-
-**Identified weakness / gap:** Full reboot-persistence acceptance cannot be assumed from historical boot checks.
-
-**Implementation task:** Run explicitly authorized final acceptance after remediation; compare distinct boots and boot roles.
-
-**Core checkpoints:** `KHAHP-44.01A`, `KHAHP-44.01B`, `KHAHP-44.01C`
-
-**Source / evidence status:** NO_SECTION_44_EXECUTION_REPORT | NO_EXECUTION_REPORT
-
-### 44.02 — USER-mode regression acceptance
-
-**Stage / source classification:** `S8 / P1`
-
-**Historical evidence:** Historic USER tests exist in earlier sections, not a final post-remediation USER regression.
-
-**Identified weakness / gap:** Final USER session behavior and negative tests not accepted.
-
-**Implementation task:** Perform final normal USER boot regression after changes, with agreed safe tests.
-
-**Core checkpoints:** `KHAHP-44.02A`, `KHAHP-44.02B`, `KHAHP-44.02C`
-
-**Source / evidence status:** NO_SECTION_44_EXECUTION_REPORT | NO_EXECUTION_REPORT
-
-### 44.03 — SYSMAINT-mode regression acceptance
-
-**Stage / source classification:** `S8 / P1`
-
-**Historical evidence:** Historic SYSMAINT tests exist in earlier sections, not final post-remediation SYSMAINT regression.
-
-**Identified weakness / gap:** Final SYSMAINT boot-role regression missing.
-
-**Implementation task:** Perform final SYSMAINT read-only regression after changes; no unapproved reboot.
-
-**Core checkpoints:** `KHAHP-44.03A`, `KHAHP-44.03B`, `KHAHP-44.03C`
-
-**Source / evidence status:** NO_SECTION_44_EXECUTION_REPORT | NO_EXECUTION_REPORT
-
-### 44.04 — Network/DNS/firewall/Tor/USB negative-test acceptance
-
-**Stage / source classification:** `S8 / P1`
-
-**Historical evidence:** Earlier USB/DNS/Tor/firewall tests and snapshots exist but are not a single final negative-test suite.
-
-**Identified weakness / gap:** Final fail-closed cross-context behavior and physical peripheral checks unproven.
-
-**Implementation task:** Execute safe non-disruptive negative-test matrix across both roles and physical devices as authorized.
-
-**Core checkpoints:** `KHAHP-44.04A`, `KHAHP-44.04B`, `KHAHP-44.04C`
-
-**Source / evidence status:** NO_SECTION_44_EXECUTION_REPORT | NO_EXECUTION_REPORT
-
-### 44.05 — Recovery/rollback/backup acceptance
-
-**Stage / source classification:** `S8 / P1`
-
-**Historical evidence:** Section42 plan/fixture exists, but no real backup/restore acceptance.
-
-**Identified weakness / gap:** No full recoverable encrypted backup, isolated restore and rollback proof.
-
-**Implementation task:** Close 42.06–42.07 before final acceptance, then record exact recovery outcomes.
-
-**Core checkpoints:** `KHAHP-44.05A`, `KHAHP-44.05B`, `KHAHP-44.05C`
-
-**Source / evidence status:** NO_SECTION_44_EXECUTION_REPORT | BLOCKED_BY_SECTION42
-
-### 44.06 — Evidence completeness, hashes and chain-of-custody bundle
-
-**Stage / source classification:** `S8 / P1`
-
-**Historical evidence:** Archive has many partial SHA256 manifests and audit logs.
-
-**Identified weakness / gap:** No immutable, signed assertion-indexed final 924-assertion bundle.
-
-**Implementation task:** Consolidate source files, hashes, decisions and signatures without customer secrets.
-
-**Core checkpoints:** `KHAHP-44.06A`, `KHAHP-44.06B`, `KHAHP-44.06C`
-
-**Source / evidence status:** NO_SECTION_44_EXECUTION_REPORT | NO_EXECUTION_REPORT
-
-### 44.07 — Final scorecard, residual risk and operator sign-off
-
-**Stage / source classification:** `S8 / P1`
-
-**Historical evidence:** Earlier section status summaries exist, but no final risk-owner acceptance scorecard.
-
-**Identified weakness / gap:** No signed accepted/rejected/N-A decision for every KHAHP assertion and exception.
-
-**Implementation task:** Prepare final attestation only after evidence, remediations and risk decisions; never assert 924 PASS from inventories.
-
-**Core checkpoints:** `KHAHP-44.07A`, `KHAHP-44.07B`, `KHAHP-44.07C`
-
-**Source / evidence status:** NO_SECTION_44_EXECUTION_REPORT | NO_EXECUTION_REPORT
+**Seven registered families:** `42.01` SSH private-key inventory and permissions; `42.02` API/token/secret storage locations; `42.03` Password-manager selection and vault policy; `42.04` FIDO2/YubiKey readiness and hardware-backed keys; `42.05` Recovery-code generation and offline storage; `42.06` Encrypted backup creation and retention; `42.07` Restore test, key recovery and disaster-recovery evidence.
 
 ---
 
-## Commercial release annex — 60 proposed validation tests
+### 43 — CIS / DISA GPOS / KSPP Mapping
 
-**Not executed in the source PDF.** The release suites are **R0 / Common (20)**, **R1 / Physical ISO (20)**, **R2 / KVM QCOW2 (10)** and **R3 / VirtualBox OVA (10)**.
+**Disposition:** PROVISIONAL HISTORICAL REVIEW; TARGET VERIFICATION PENDING.
 
-### R0 — Common release controls
+**Documented/observed:** Preliminary CIS/DISA/KSPP mapping undertaken; many entries need evidence review.
 
-#### `KHAHP-REL-COM-01` — Reproducible upstream source
+**What still needs evidence or action:** Confirm applicability and source mapping one by one; no certification claim.
 
-**Release risk / evidence:** Source lockfile, build manifest, repeat-build comparison
-
-**Required test:** Record pinned Derivative-Maker commit and build dependencies; second build on clean worker matches documented inputs.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-COM-02` — Package provenance
-
-**Release risk / evidence:** Signed repository inventory and SBOM
-
-**Required test:** Verify signed repositories and record complete package versions and origins.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-COM-03` — Build isolation
-
-**Release risk / evidence:** Build-worker attestation and mounts log
-
-**Required test:** Build in a clean isolated environment without personal home directories.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-COM-04` — Credential exclusion
-
-**Release risk / evidence:** Negative secret-scan report
-
-**Required test:** Scan image for private SSH keys, tokens, Wi-Fi connections, browser profiles and developer secrets; fail on any find.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-COM-05` — Unique machine identity
-
-**Release risk / evidence:** Two-instance comparison
-
-**Required test:** Install/import twice; confirm distinct machine IDs and random state.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-COM-06` — Unique SSH host keys
-
-**Release risk / evidence:** Fingerprint comparison with private keys withheld
-
-**Required test:** Confirm fresh host key generation only when SSH is provisioned, and no developer keys embedded.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-COM-07` — SSH access policy
-
-**Release risk / evidence:** Effective sshd -T and unit-state evidence
-
-**Required test:** Confirm sshd disabled by default, no root login, password/KbdInteractive disabled, public-key access only if activated.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-COM-08` — Privileges and boot-role separation
-
-**Release risk / evidence:** USER negative test and SYSMAINT positive test
-
-**Required test:** Normal USER has no sudo escalation; SYSMAINT maintenance pathway preserved.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-COM-09` — Default firewall
-
-**Release risk / evidence:** Ruleset inventory and approved traffic test
-
-**Required test:** Verify nftables ruleset loads with intended inbound/outbound policy after boot.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-COM-10` — DNS resolver protection
-
-**Release risk / evidence:** Resolver, packet-path and DNS leak tests
-
-**Required test:** Verify Unbound/DNSSEC and permitted upstream policy; test unwanted resolver bypass.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-COM-11` — Network privacy behavior
-
-**Release risk / evidence:** Protocol and policy evidence
-
-**Required test:** Verify LAN discovery suppression and chosen IPv4/IPv6 modes without breaking needed networking.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-COM-12` — MAC and device privacy
-
-**Release risk / evidence:** Effective NetworkManager policy
-
-**Required test:** Verify MAC-randomization policy applies on compatible adapters without retaining developer profiles.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-COM-13` — Mandatory access controls
-
-**Release risk / evidence:** aa-status + negative confinement test
-
-**Required test:** Confirm AppArmor profiles and expected confinement outcomes; document exemptions.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-COM-14` — Kernel hardening
-
-**Release risk / evidence:** Config and runtime comparison
-
-**Required test:** Validate selected kernel compile configuration, cmdline and effective sysctls.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-COM-15` — Audit visibility
-
-**Release risk / evidence:** auditctl and ausearch event evidence
-
-**Required test:** Confirm auditd starts, required watch rules load, and a harmless test event is recorded.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-COM-16` — File integrity monitoring
-
-**Release risk / evidence:** Baseline and controlled mismatch
-
-**Required test:** Generate customer-specific AIDE database after provision and demonstrate a detected test change.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-COM-17` — Upgrade safety
-
-**Release risk / evidence:** Before/after security diff
-
-**Required test:** Apply a supported security update; check protections and configuration drift afterward.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-COM-18` — Backup and restoration
-
-**Release risk / evidence:** Encrypted archive and restore hash evidence
-
-**Required test:** Create encrypted test backup and perform an actual tested restore to disposable target.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-COM-19` — Release signing
-
-**Release risk / evidence:** sha256sum and signature verification outputs
-
-**Required test:** Create checksum, detached signature and validate both on a separate machine.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-COM-20` — Customer documentation and licensing
-
-**Release risk / evidence:** Reviewed release pack and legal sign-off
-
-**Required test:** Include installation, first-boot recovery, limitations, attribution, GPL/source obligations, pricing and support scope.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-### R1 — Physical ISO
-
-#### `KHAHP-REL-ISO-01` — UEFI USB boot
-
-**Release risk / evidence:** Boot logs and installation checklist
-
-**Required test:** Boot media on more than one compliant UEFI implementation.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-ISO-02` — Installer storage detection
-
-**Release risk / evidence:** Installer test log
-
-**Required test:** Detect SATA/NVMe disks correctly and require explicit destructive-write confirmation.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-ISO-03` — Fresh encrypted installation
-
-**Release risk / evidence:** LUKS header metadata and first-boot test
-
-**Required test:** Configure unique LUKS volume and customer-generated unlock material.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-ISO-04` — Encryption recovery
-
-**Release risk / evidence:** Documented recovery exercise
-
-**Required test:** Recover a controlled installation using a separately stored recovery method.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-ISO-05` — Secure Boot enrollment
-
-**Release risk / evidence:** Firmware/MOK and boot logs
-
-**Required test:** Validate signing/MOK strategy on target hardware without sharing build signing keys.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-ISO-06` — Firmware Setup Mode
-
-**Release risk / evidence:** UEFI variable evidence
-
-**Required test:** Check Secure Boot operational state and firmware Setup Mode on capable devices.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-ISO-07` — TPM optional path
-
-**Release risk / evidence:** Capable/noncapable hardware tests
-
-**Required test:** Verify TPM 2.0 discovery and optional enrollment; cleanly handle absence.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-ISO-08` — Intel and AMD support
-
-**Release risk / evidence:** Two hardware test matrices
-
-**Required test:** Install and run acceptance suite on representative Intel and AMD platforms.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-ISO-09` — Graphics and desktop
-
-**Release risk / evidence:** Desktop session tests
-
-**Required test:** Validate LXQt login, graphics drivers, suspend/resume and screen locking.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-ISO-10` — Wireless networking
-
-**Release risk / evidence:** Wi-Fi connection and image scan evidence
-
-**Required test:** Connect using customer-created profile; no developer SSID/profile remains.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-ISO-11` — Ethernet and hotplug
-
-**Release risk / evidence:** Adapter / firewall behavior log
-
-**Required test:** Verify Ethernet and safe network-adapter handling within firewall policy.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-ISO-12` — USBGuard defaults
-
-**Release risk / evidence:** Controlled physical hotplug matrix
-
-**Required test:** Test approved USB storage and mouse against unknown keyboards, phones and NICs per policy.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-ISO-13` — Installer device safety
-
-**Release risk / evidence:** Abort test evidence
-
-**Required test:** Check wrong-target protection, cancellation and recovery from interrupted installation.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-ISO-14` — DMA/IOMMU capabilities
-
-**Release risk / evidence:** Per-device IOMMU evidence
-
-**Required test:** Verify IOMMU claims on platforms that expose them; document hardware exclusions.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-ISO-15` — Signed module lifecycle
-
-**Release risk / evidence:** Module signer and update logs
-
-**Required test:** Verify required DKMS modules load and remain signed through kernel update.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-ISO-16` — Physical webcam/microphone
-
-**Release risk / evidence:** Consent-based device test
-
-**Required test:** Verify privacy/device access controls on actual peripherals.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-ISO-17` — Power and RAM-wipe process
-
-**Release risk / evidence:** Controlled restart/power evidence
-
-**Required test:** Exercise safe shutdown behavior and log any untestable memory-erasure claims.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-ISO-18` — BIOS recovery restrictions
-
-**Release risk / evidence:** Operator checklist signed off
-
-**Required test:** Check firmware password, external boot policy and recovery pathway without capturing password.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-ISO-19` — Multi-boot/firmware resilience
-
-**Release risk / evidence:** Recovery and firmware update report
-
-**Required test:** Verify normal boot after firmware update or recovery event on test hardware.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-ISO-20` — Fresh-install two-device comparison
-
-**Release risk / evidence:** Cross-install differential report
-
-**Required test:** Compare secrets/identities and security results across separate clean physical installations.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-### R2 — KVM QCOW2
-
-#### `KHAHP-REL-KVM-01` — QCOW2 import and boot
-
-**Release risk / evidence:** Import and boot evidence
-
-**Required test:** Import into supported QEMU/KVM/libvirt and boot using documented virtual firmware.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-KVM-02` — Fresh clone identity
-
-**Release risk / evidence:** Instance fingerprints comparison
-
-**Required test:** Clone twice, verify unique guest identity and optional SSH host keys.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-KVM-03` — Virtual firmware choice
-
-**Release risk / evidence:** OVMF/firmware settings and boot logs
-
-**Required test:** Document and verify UEFI or legacy guest boot requirement.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-KVM-04` — Virtual TPM support
-
-**Release risk / evidence:** vTPM test matrix
-
-**Required test:** Check vTPM-compatible profile or documented nonavailability without claiming physical TPM.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-KVM-05` — Host-guest firewall isolation
-
-**Release risk / evidence:** Traffic negative tests
-
-**Required test:** Verify guest nftables policy and host NAT/bridged network restrictions.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-KVM-06` — Guest disk encryption
-
-**Release risk / evidence:** Key uniqueness and recovery test
-
-**Required test:** Verify per-guest LUKS provisioning where promised or an explicit host-only encryption limitation.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-KVM-07` — Virtio device support
-
-**Release risk / evidence:** Virtio compatibility checklist
-
-**Required test:** Test storage, network, entropy and guest drivers without unnecessary privileges.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-KVM-08` — KVM snapshot and restore
-
-**Release risk / evidence:** Snapshot and hash comparison
-
-**Required test:** Restore snapshot on isolated test host and verify integrity after rollback.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-KVM-09` — KVM version regression
-
-**Release risk / evidence:** Version matrix and results
-
-**Required test:** Run tests on minimum and current supported QEMU/KVM versions.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-KVM-10` — QCOW2 sanitized release
-
-**Release risk / evidence:** Archive/metadata and secret-scan gate
-
-**Required test:** Confirm no build-host paths, cached IDs, snapshots or writable shared resources ship.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-### R3 — VirtualBox OVA
-
-#### `KHAHP-REL-OVA-01` — OVA packaging and import
-
-**Release risk / evidence:** Import checklist and log
-
-**Required test:** Import OVA on supported VirtualBox host editions.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-OVA-02` — Unique identity on import
-
-**Release risk / evidence:** Two-import comparison
-
-**Required test:** Perform two independent imports; ensure fresh machine and SSH identities.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-OVA-03` — Clipboard and drag-drop
-
-**Release risk / evidence:** VBox configuration inspection
-
-**Required test:** Verify disabled by default unless customer explicitly opts in.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-OVA-04` — Shared-folder isolation
-
-**Release risk / evidence:** Host/guest negative test
-
-**Required test:** Verify shared folders absent and host filesystem not exposed.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-OVA-05` — USB passthrough restriction
-
-**Release risk / evidence:** VirtualBox USB policy and test
-
-**Required test:** Verify no unauthorized automatic host USB attachment.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-OVA-06` — VirtualBox networking
-
-**Release risk / evidence:** Network path and DNS checks
-
-**Required test:** Check NAT/bridging policy, blocked inbound traffic and resolver behavior.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-OVA-07` — Guest addition safety
-
-**Release risk / evidence:** Module and service inventory
-
-**Required test:** Review installed guest integration modules and least-privilege behavior.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-OVA-08` — Virtual disk recovery
-
-**Release risk / evidence:** Restore integrity report
-
-**Required test:** Restore test appliance snapshot/disk backup without repeating machine keys.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-OVA-09` — Supported host matrix
-
-**Release risk / evidence:** Host compatibility matrix
-
-**Required test:** Test supported Windows, Linux and macOS host combinations as stated in release notes.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
-
-#### `KHAHP-REL-OVA-10` — OVA clean release gate
-
-**Release risk / evidence:** OVA scanner and signing result
-
-**Required test:** Inspect OVA contents for identifiers, credentials and dangerous VM defaults.
-
-**Status in source:** PLANNED / NOT EXECUTED • KHAHP v0.9 proposed release suite
+**Seven registered families:** `43.01` CIS Debian 13 Level 2 applicability mapping; `43.02` DISA GPOS/SRG objective mapping; `43.03` KSPP/kernel-self-protection mapping; `43.04` Kicksecure-native equivalent control mapping; `43.05` Project-extension control mapping; `43.06` Exception/N-A/manual-control rationale; `43.07` Evidence citation and no-certification disclaimer.
 
 ---
 
-## Final acceptance and evidence custody
+### 44 — Final Acceptance / Evidence / Scoring
 
-Acceptance requires traceable decisions for all applicable A/B/C assertions, controlled verification in both USER and SYSMAINT contexts, tested rollback and backup recovery, a reproducible package and artifact manifest, approved exceptions, and documented owner sign-off. The commercial releases require additional independent fresh-install and virtual-platform verification.
+**Disposition:** PROVISIONAL HISTORICAL REVIEW; TARGET VERIFICATION PENDING.
 
-**This Markdown is a faithful technical conversion and reformatting of the supplied PDF; it is not a new security assessment.** No operational configuration has been changed and no new product build has been executed in creating these files.
+**Documented/observed:** No completed archived Section 44 execution report.
+
+**What still needs evidence or action:** Complete two-role/two-boot regressions, negative tests, recovery and final owner sign-off.
+
+**Seven registered families:** `44.01` Full reboot persistence acceptance; `44.02` USER-mode regression acceptance; `44.03` SYSMAINT-mode regression acceptance; `44.04` Network/DNS/firewall/Tor/USB negative-test acceptance; `44.05` Recovery/rollback/backup acceptance; `44.06` Evidence completeness, hashes and chain-of-custody bundle; `44.07` Final scorecard, residual risk and operator sign-off.
+
+---
+
+## 8. Master technical control register — 308 families / 924 gates
+
+Every official family appears below. These are **public acceptance requirements**, not confidential configuration dumps. All A/B/C sign-offs are **OPEN** pending authorized evidence review. Section-specific implementation status is established in Sections 5–7 above and the associated technical dossiers.
+
+**How to use this register:** For A, inspect dated package/config provenance and approved change history. For B, obtain correct-role runtime and authorized negative testing. For C, perform controlled reboot/update/reconnect/recovery or record justified nonapplicability. For each family, review the section-specific evidence gap before ordering a modification.
+
+### Section 01: Platform / OS / Hardware Baseline
+
+#### 01.01 — Operating-system identity and Debian/Kicksecure release baseline
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of operating-system identity and debian/kicksecure release baseline; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Refresh actual hardware/OS scope before translating source-only observations into accepted controls.
+- **Acceptance IDs:** `KHAHP-01.01A`, `KHAHP-01.01B`, `KHAHP-01.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 01.02 — Kernel release, architecture and build identity
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of kernel release, architecture and build identity; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Refresh actual hardware/OS scope before translating source-only observations into accepted controls.
+- **Acceptance IDs:** `KHAHP-01.02A`, `KHAHP-01.02B`, `KHAHP-01.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 01.03 — CPU model, topology and virtualization capability
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of cpu model, topology and virtualization capability; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Refresh actual hardware/OS scope before translating source-only observations into accepted controls.
+- **Acceptance IDs:** `KHAHP-01.03A`, `KHAHP-01.03B`, `KHAHP-01.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 01.04 — Physical memory and swap capacity baseline
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of physical memory and swap capacity baseline; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Refresh actual hardware/OS scope before translating source-only observations into accepted controls.
+- **Acceptance IDs:** `KHAHP-01.04A`, `KHAHP-01.04B`, `KHAHP-01.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 01.05 — Storage controller, disk and filesystem topology
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of storage controller, disk and filesystem topology; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Refresh actual hardware/OS scope before translating source-only observations into accepted controls.
+- **Acceptance IDs:** `KHAHP-01.05A`, `KHAHP-01.05B`, `KHAHP-01.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 01.06 — UEFI/bare-metal/virtualization platform state
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of uefi/bare-metal/virtualization platform state; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Refresh actual hardware/OS scope before translating source-only observations into accepted controls.
+- **Acceptance IDs:** `KHAHP-01.06A`, `KHAHP-01.06B`, `KHAHP-01.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 01.07 — Failed-unit, uptime, boot-time and baseline health state
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of failed-unit, uptime, boot-time and baseline health state; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Refresh actual hardware/OS scope before translating source-only observations into accepted controls.
+- **Acceptance IDs:** `KHAHP-01.07A`, `KHAHP-01.07B`, `KHAHP-01.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 02: Kicksecure Package Provenance
+
+#### 02.01 — Core Kicksecure package installation and exact versions
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of core kicksecure package installation and exact versions; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Reconcile exact package ownership and versions; do not prescribe installing absent packages based on heuristic names.
+- **Acceptance IDs:** `KHAHP-02.01A`, `KHAHP-02.01B`, `KHAHP-02.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 02.02 — Supporting security-package installation and exact versions
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of supporting security-package installation and exact versions; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Reconcile exact package ownership and versions; do not prescribe installing absent packages based on heuristic names.
+- **Acceptance IDs:** `KHAHP-02.02A`, `KHAHP-02.02B`, `KHAHP-02.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 02.03 — APT source files and repository configuration
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of apt source files and repository configuration; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Reconcile exact package ownership and versions; do not prescribe installing absent packages based on heuristic names.
+- **Acceptance IDs:** `KHAHP-02.03A`, `KHAHP-02.03B`, `KHAHP-02.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 02.04 — APT policy and repository origin attribution
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of apt policy and repository origin attribution; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Reconcile exact package ownership and versions; do not prescribe installing absent packages based on heuristic names.
+- **Acceptance IDs:** `KHAHP-02.04A`, `KHAHP-02.04B`, `KHAHP-02.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 02.05 — Package ownership of security-critical configuration files
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of package ownership of security-critical configuration files; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Reconcile exact package ownership and versions; do not prescribe installing absent packages based on heuristic names.
+- **Acceptance IDs:** `KHAHP-02.05A`, `KHAHP-02.05B`, `KHAHP-02.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 02.06 — Package holds, partial installs and dpkg database health
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of package holds, partial installs and dpkg database health; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Reconcile exact package ownership and versions; do not prescribe installing absent packages based on heuristic names.
+- **Acceptance IDs:** `KHAHP-02.06A`, `KHAHP-02.06B`, `KHAHP-02.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 02.07 — Local modifications versus package-owned baseline
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of local modifications versus package-owned baseline; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Reconcile exact package ownership and versions; do not prescribe installing absent packages based on heuristic names.
+- **Acceptance IDs:** `KHAHP-02.07A`, `KHAHP-02.07B`, `KHAHP-02.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 03: USER / SYSMAINT Privilege Architecture
+
+#### 03.01 — USER, SYSMAINT and root account separation
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of user, sysmaint and root account separation; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Verify boot-role and upgrade regressions without weakening SYSMAINT boundaries.
+- **Acceptance IDs:** `KHAHP-03.01A`, `KHAHP-03.01B`, `KHAHP-03.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 03.02 — Distinct UID/GID and home-directory boundaries
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of distinct uid/gid and home-directory boundaries; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Verify boot-role and upgrade regressions without weakening SYSMAINT boundaries.
+- **Acceptance IDs:** `KHAHP-03.02A`, `KHAHP-03.02B`, `KHAHP-03.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 03.03 — user-sysmaint-split package and owned policy files
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of user-sysmaint-split package and owned policy files; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Verify boot-role and upgrade regressions without weakening SYSMAINT boundaries.
+- **Acceptance IDs:** `KHAHP-03.03A`, `KHAHP-03.03B`, `KHAHP-03.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 03.04 — sudo binary ownership, mode and SYSMAINT-only execution
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of sudo binary ownership, mode and sysmaint-only execution; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Verify boot-role and upgrade regressions without weakening SYSMAINT boundaries.
+- **Acceptance IDs:** `KHAHP-03.04A`, `KHAHP-03.04B`, `KHAHP-03.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 03.05 — sudoers syntax and user-sysmaint- split policy
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of sudoers syntax and user-sysmaint- split policy; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Verify boot-role and upgrade regressions without weakening SYSMAINT boundaries.
+- **Acceptance IDs:** `KHAHP-03.05A`, `KHAHP-03.05B`, `KHAHP-03.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 03.06 — USER negative sudo/root acquisition probe
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of user negative sudo/root acquisition probe; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Verify boot-role and upgrade regressions without weakening SYSMAINT boundaries.
+- **Acceptance IDs:** `KHAHP-03.06A`, `KHAHP-03.06B`, `KHAHP-03.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 03.07 — Login-shell and boot-role separation behavior
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of login-shell and boot-role separation behavior; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Verify boot-role and upgrade regressions without weakening SYSMAINT boundaries.
+- **Acceptance IDs:** `KHAHP-03.07A`, `KHAHP-03.07B`, `KHAHP-03.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 04: SYSMAINT Boot Role
+
+#### 04.01 — boot-role=sysmaint kernel marker
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of boot-role=sysmaint kernel marker; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Validate appropriate services in each boot role and persistence following updates.
+- **Acceptance IDs:** `KHAHP-04.01A`, `KHAHP-04.01B`, `KHAHP-04.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 04.02 — systemd.unit=sysmaint-boot.target marker
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of systemd.unit=sysmaint-boot.target marker; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Validate appropriate services in each boot role and persistence following updates.
+- **Acceptance IDs:** `KHAHP-04.02A`, `KHAHP-04.02B`, `KHAHP-04.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 04.03 — sysmaint-boot.target package provenance and unit content
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of sysmaint-boot.target package provenance and unit content; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Validate appropriate services in each boot role and persistence following updates.
+- **Acceptance IDs:** `KHAHP-04.03A`, `KHAHP-04.03B`, `KHAHP-04.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 04.04 — Required SYSMAINT dependencies and wanted units
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of required sysmaint dependencies and wanted units; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Validate appropriate services in each boot role and persistence following updates.
+- **Acceptance IDs:** `KHAHP-04.04A`, `KHAHP-04.04B`, `KHAHP-04.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 04.05 — Intentionally omitted USER-only or incompatible hardeners
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of intentionally omitted user-only or incompatible hardeners; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Validate appropriate services in each boot role and persistence following updates.
+- **Acceptance IDs:** `KHAHP-04.05A`, `KHAHP-04.05B`, `KHAHP-04.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 04.06 — Conflicting USER/graphical boot-role negative checks
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of conflicting user/graphical boot-role negative checks; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Validate appropriate services in each boot role and persistence following updates.
+- **Acceptance IDs:** `KHAHP-04.06A`, `KHAHP-04.06B`, `KHAHP-04.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 04.07 — Failed units and SYSMAINT boot health
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of failed units and sysmaint boot health; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Validate appropriate services in each boot role and persistence following updates.
+- **Acceptance IDs:** `KHAHP-04.07A`, `KHAHP-04.07B`, `KHAHP-04.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 05: Accounts / UID / GID / Local Identity
+
+#### 05.01 — root, USER and SYSMAINT account identity
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of root, user and sysmaint account identity; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Resolve role/service-account classification and verify policy compatibility.
+- **Acceptance IDs:** `KHAHP-05.01A`, `KHAHP-05.01B`, `KHAHP-05.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 05.02 — Duplicate UID and duplicate GID detection
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of duplicate uid and duplicate gid detection; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Resolve role/service-account classification and verify policy compatibility.
+- **Acceptance IDs:** `KHAHP-05.02A`, `KHAHP-05.02B`, `KHAHP-05.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 05.03 — UID 0 exclusivity and privileged- account review
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of uid 0 exclusivity and privileged- account review; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Resolve role/service-account classification and verify policy compatibility.
+- **Acceptance IDs:** `KHAHP-05.03A`, `KHAHP-05.03B`, `KHAHP-05.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 05.04 — Low-UID service-account shell classification
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of low-uid service-account shell classification; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Resolve role/service-account classification and verify policy compatibility.
+- **Acceptance IDs:** `KHAHP-05.04A`, `KHAHP-05.04B`, `KHAHP-05.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 05.05 — Home-directory ownership and permissions
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of home-directory ownership and permissions; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Resolve role/service-account classification and verify policy compatibility.
+- **Acceptance IDs:** `KHAHP-05.05A`, `KHAHP-05.05B`, `KHAHP-05.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 05.06 — shadow/gshadow/passwd/group ownership and modes
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of shadow/gshadow/passwd/group ownership and modes; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Resolve role/service-account classification and verify policy compatibility.
+- **Acceptance IDs:** `KHAHP-05.06A`, `KHAHP-05.06B`, `KHAHP-05.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 05.07 — NSS identity source configuration and root lock state
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of nss identity source configuration and root lock state; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Resolve role/service-account classification and verify policy compatibility.
+- **Acceptance IDs:** `KHAHP-05.07A`, `KHAHP-05.07B`, `KHAHP-05.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 06: LUKS / Disk / Swap Encryption
+
+#### 06.01 — Root filesystem source and dm-crypt mapping
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of root filesystem source and dm-crypt mapping; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Validate key-recovery and restore evidence privately; do not publish secrets.
+- **Acceptance IDs:** `KHAHP-06.01A`, `KHAHP-06.01B`, `KHAHP-06.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 06.02 — LUKS2 backing partition and cryptsetup status
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of luks2 backing partition and cryptsetup status; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Validate key-recovery and restore evidence privately; do not publish secrets.
+- **Acceptance IDs:** `KHAHP-06.02A`, `KHAHP-06.02B`, `KHAHP-06.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 06.03 — LUKS header metadata without key- material disclosure
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of luks header metadata without key- material disclosure; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Validate key-recovery and restore evidence privately; do not publish secrets.
+- **Acceptance IDs:** `KHAHP-06.03A`, `KHAHP-06.03B`, `KHAHP-06.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 06.04 — Root encryption chain from block device to mountpoint
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of root encryption chain from block device to mountpoint; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Validate key-recovery and restore evidence privately; do not publish secrets.
+- **Acceptance IDs:** `KHAHP-06.04A`, `KHAHP-06.04B`, `KHAHP-06.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 06.05 — Active swap inventory and encrypted placement
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of active swap inventory and encrypted placement; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Validate key-recovery and restore evidence privately; do not publish secrets.
+- **Acceptance IDs:** `KHAHP-06.05A`, `KHAHP-06.05B`, `KHAHP-06.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 06.06 — swapfile ownership, mode and containing filesystem
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of swapfile ownership, mode and containing filesystem; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Validate key-recovery and restore evidence privately; do not publish secrets.
+- **Acceptance IDs:** `KHAHP-06.06A`, `KHAHP-06.06B`, `KHAHP-06.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 06.07 — crypttab/fstab encryption persistence and boot mapping
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of crypttab/fstab encryption persistence and boot mapping; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Validate key-recovery and restore evidence privately; do not publish secrets.
+- **Acceptance IDs:** `KHAHP-06.07A`, `KHAHP-06.07B`, `KHAHP-06.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 07: Filesystem / Mount Security
+
+#### 07.01 — Effective mount table and filesystem inventory
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of effective mount table and filesystem inventory; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Resolve separate boot-mount ordering and compatibility exceptions; SYSMAINT corroboration remains.
+- **Acceptance IDs:** `KHAHP-07.01A`, `KHAHP-07.01B`, `KHAHP-07.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 07.02 — Root mount source, filesystem and options
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of root mount source, filesystem and options; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Resolve separate boot-mount ordering and compatibility exceptions; SYSMAINT corroboration remains.
+- **Acceptance IDs:** `KHAHP-07.02A`, `KHAHP-07.02B`, `KHAHP-07.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 07.03 — /boot and /boot/efi separation, ownership and exposure
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of /boot and /boot/efi separation, ownership and exposure; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Resolve separate boot-mount ordering and compatibility exceptions; SYSMAINT corroboration remains.
+- **Acceptance IDs:** `KHAHP-07.03A`, `KHAHP-07.03B`, `KHAHP-07.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 07.04 — /tmp tmpfs, sticky bit and mount- option review
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of /tmp tmpfs, sticky bit and mount- option review; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Resolve separate boot-mount ordering and compatibility exceptions; SYSMAINT corroboration remains.
+- **Acceptance IDs:** `KHAHP-07.04A`, `KHAHP-07.04B`, `KHAHP-07.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 07.05 — /var/tmp sticky-bit and separate- mount review
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of /var/tmp sticky-bit and separate- mount review; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Resolve separate boot-mount ordering and compatibility exceptions; SYSMAINT corroboration remains.
+- **Acceptance IDs:** `KHAHP-07.05A`, `KHAHP-07.05B`, `KHAHP-07.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 07.06 — /home containment, ownership and inherited options
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of /home containment, ownership and inherited options; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Resolve separate boot-mount ordering and compatibility exceptions; SYSMAINT corroboration remains.
+- **Acceptance IDs:** `KHAHP-07.06A`, `KHAHP-07.06B`, `KHAHP-07.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 07.07 — Writable mountpoints, fstab and remount-secure review
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of writable mountpoints, fstab and remount-secure review; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Resolve separate boot-mount ordering and compatibility exceptions; SYSMAINT corroboration remains.
+- **Acceptance IDs:** `KHAHP-07.07A`, `KHAHP-07.07B`, `KHAHP-07.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 08: GRUB / Bootloader Protection
+
+#### 08.01 — GRUB package baseline and generated grub.cfg
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of grub package baseline and generated grub.cfg; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Physical boot-edit negative test and tested recovery remain pending.
+- **Acceptance IDs:** `KHAHP-08.01A`, `KHAHP-08.01B`, `KHAHP-08.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 08.02 — grub.cfg ownership, permissions and menu entries
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of grub.cfg ownership, permissions and menu entries; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Physical boot-edit negative test and tested recovery remain pending.
+- **Acceptance IDs:** `KHAHP-08.02A`, `KHAHP-08.02B`, `KHAHP-08.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 08.03 — GRUB password_pbkdf2 and superusers directives
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of grub password_pbkdf2 and superusers directives; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Physical boot-edit negative test and tested recovery remain pending.
+- **Acceptance IDs:** `KHAHP-08.03A`, `KHAHP-08.03B`, `KHAHP-08.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 08.04 — Kicksecure CPU/kernel/ram-wipe/remount/signed -module fragments
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of kicksecure cpu/kernel/ram-wipe/remount/signed -module fragments; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Physical boot-edit negative test and tested recovery remain pending.
+- **Acceptance IDs:** `KHAHP-08.04A`, `KHAHP-08.04B`, `KHAHP-08.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 08.05 — Quiet-boot and recovery-restriction fragments
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of quiet-boot and recovery-restriction fragments; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Physical boot-edit negative test and tested recovery remain pending.
+- **Acceptance IDs:** `KHAHP-08.05A`, `KHAHP-08.05B`, `KHAHP-08.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 08.06 — Effective boot command-line correlation
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of effective boot command-line correlation; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Physical boot-edit negative test and tested recovery remain pending.
+- **Acceptance IDs:** `KHAHP-08.06A`, `KHAHP-08.06B`, `KHAHP-08.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 08.07 — /boot and EFI exposure versus cryptographic integrity limits
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of /boot and efi exposure versus cryptographic integrity limits; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Physical boot-edit negative test and tested recovery remain pending.
+- **Acceptance IDs:** `KHAHP-08.07A`, `KHAHP-08.07B`, `KHAHP-08.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 09: CPU Vulnerability Mitigations
+
+#### 09.01 — CPU identity, vendor and mitigation- capability baseline
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of cpu identity, vendor and mitigation- capability baseline; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm effective kernel features before making CFI/KCFI claims.
+- **Acceptance IDs:** `KHAHP-09.01A`, `KHAHP-09.01B`, `KHAHP-09.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 09.02 — SMT/Hyper-Threading disablement and topology
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of smt/hyper-threading disablement and topology; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm effective kernel features before making CFI/KCFI claims.
+- **Acceptance IDs:** `KHAHP-09.02A`, `KHAHP-09.02B`, `KHAHP-09.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 09.03 — Runtime microcode revision and package baseline
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of runtime microcode revision and package baseline; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm effective kernel features before making CFI/KCFI claims.
+- **Acceptance IDs:** `KHAHP-09.03A`, `KHAHP-09.03B`, `KHAHP-09.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 09.04 — Kernel vulnerability-interface enumeration
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of kernel vulnerability-interface enumeration; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm effective kernel features before making CFI/KCFI claims.
+- **Acceptance IDs:** `KHAHP-09.04A`, `KHAHP-09.04B`, `KHAHP-09.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 09.05 — Spectre/Meltdown/L1TF/MDS/ Retbleed/BHI/SSB/TAA/GDS mitigations
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of spectre/meltdown/l1tf/mds/ retbleed/bhi/ssb/taa/gds mitigations; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm effective kernel features before making CFI/KCFI claims.
+- **Acceptance IDs:** `KHAHP-09.05A`, `KHAHP-09.05B`, `KHAHP-09.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 09.06 — Mitigation-related kernel command- line parameters
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of mitigation-related kernel command- line parameters; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm effective kernel features before making CFI/KCFI claims.
+- **Acceptance IDs:** `KHAHP-09.06A`, `KHAHP-09.06B`, `KHAHP-09.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 09.07 — CPU mitigation flags and kernel-log confirmation
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of cpu mitigation flags and kernel-log confirmation; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm effective kernel features before making CFI/KCFI claims.
+- **Acceptance IDs:** `KHAHP-09.07A`, `KHAHP-09.07B`, `KHAHP-09.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 10: IOMMU / DMA Protection
+
+#### 10.01 — CPU virtualization/VT-d capability baseline
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of cpu virtualization/vt-d capability baseline; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm preboot DMA and firmware applicability with safe manual tests.
+- **Acceptance IDs:** `KHAHP-10.01A`, `KHAHP-10.01B`, `KHAHP-10.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 10.02 — IOMMU kernel parameters and passthrough policy
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of iommu kernel parameters and passthrough policy; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm preboot DMA and firmware applicability with safe manual tests.
+- **Acceptance IDs:** `KHAHP-10.02A`, `KHAHP-10.02B`, `KHAHP-10.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 10.03 — DMAR/IOMMU runtime enablement
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of dmar/iommu runtime enablement; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm preboot DMA and firmware applicability with safe manual tests.
+- **Acceptance IDs:** `KHAHP-10.03A`, `KHAHP-10.03B`, `KHAHP-10.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 10.04 — Translated default domain and strict invalidation
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of translated default domain and strict invalidation; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm preboot DMA and firmware applicability with safe manual tests.
+- **Acceptance IDs:** `KHAHP-10.04A`, `KHAHP-10.04B`, `KHAHP-10.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 10.05 — IRQ/interrupt remapping
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of irq/interrupt remapping; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm preboot DMA and firmware applicability with safe manual tests.
+- **Acceptance IDs:** `KHAHP-10.05A`, `KHAHP-10.05B`, `KHAHP-10.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 10.06 — IOMMU group topology and full PCI membership
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of iommu group topology and full pci membership; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm preboot DMA and firmware applicability with safe manual tests.
+- **Acceptance IDs:** `KHAHP-10.06A`, `KHAHP-10.06B`, `KHAHP-10.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 10.07 — Early PCI DMA restriction and firmware WSMT evidence
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of early pci dma restriction and firmware wsmt evidence; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm preboot DMA and firmware applicability with safe manual tests.
+- **Acceptance IDs:** `KHAHP-10.07A`, `KHAHP-10.07B`, `KHAHP-10.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 11: Kernel Sysctl Hardening
+
+#### 11.01 — Sysctl source-tree inventory and precedence
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of sysctl source-tree inventory and precedence; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Map package-owned precedence and persist expected values after upgrades.
+- **Acceptance IDs:** `KHAHP-11.01A`, `KHAHP-11.01B`, `KHAHP-11.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 11.02 — Kicksecure security-misc sysctl source files
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of kicksecure security-misc sysctl source files; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Map package-owned precedence and persist expected values after upgrades.
+- **Acceptance IDs:** `KHAHP-11.02A`, `KHAHP-11.02B`, `KHAHP-11.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 11.03 — Kernel information-leak restrictions
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of kernel information-leak restrictions; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Map package-owned precedence and persist expected values after upgrades.
+- **Acceptance IDs:** `KHAHP-11.03A`, `KHAHP-11.03B`, `KHAHP-11.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 11.04 — ASLR, mmap, kexec and privileged- coredump controls
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of aslr, mmap, kexec and privileged- coredump controls; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Map package-owned precedence and persist expected values after upgrades.
+- **Acceptance IDs:** `KHAHP-11.04A`, `KHAHP-11.04B`, `KHAHP-11.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 11.05 — BPF, ptrace, perf and TTY line- discipline restrictions
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of bpf, ptrace, perf and tty line- discipline restrictions; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Map package-owned precedence and persist expected values after upgrades.
+- **Acceptance IDs:** `KHAHP-11.05A`, `KHAHP-11.05B`, `KHAHP-11.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 11.06 — Protected links/FIFOs/regular-file controls
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of protected links/fifos/regular-file controls; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Map package-owned precedence and persist expected values after upgrades.
+- **Acceptance IDs:** `KHAHP-11.06A`, `KHAHP-11.06B`, `KHAHP-11.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 11.07 — Network-stack sysctl hardening observations
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of network-stack sysctl hardening observations; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Map package-owned precedence and persist expected values after upgrades.
+- **Acceptance IDs:** `KHAHP-11.07A`, `KHAHP-11.07B`, `KHAHP-11.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 12: Kernel Boot / Memory Hardening
+
+#### 12.01 — Slab allocator hardening and slab_nomerge
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of slab allocator hardening and slab_nomerge; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Separate effective kernel capability from mere presence of boot tokens.
+- **Acceptance IDs:** `KHAHP-12.01A`, `KHAHP-12.01B`, `KHAHP-12.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 12.02 — init_on_alloc and init_on_free memory initialization
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of init_on_alloc and init_on_free memory initialization; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Separate effective kernel capability from mere presence of boot tokens.
+- **Acceptance IDs:** `KHAHP-12.02A`, `KHAHP-12.02B`, `KHAHP-12.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 12.03 — page allocator shuffle and stack randomization
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of page allocator shuffle and stack randomization; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Separate effective kernel capability from mere presence of boot tokens.
+- **Acceptance IDs:** `KHAHP-12.03A`, `KHAHP-12.03B`, `KHAHP-12.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 12.04 — vsyscall, vdso32 and 32-bit compatibility restrictions
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of vsyscall, vdso32 and 32-bit compatibility restrictions; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Separate effective kernel capability from mere presence of boot tokens.
+- **Acceptance IDs:** `KHAHP-12.04A`, `KHAHP-12.04B`, `KHAHP-12.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 12.05 — debugfs, KFENCE and kernel debug- surface controls
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of debugfs, kfence and kernel debug- surface controls; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Separate effective kernel capability from mere presence of boot tokens.
+- **Acceptance IDs:** `KHAHP-12.05A`, `KHAHP-12.05B`, `KHAHP-12.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 12.06 — CFI/KCFI and boot-time control acceptance
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of cfi/kcfi and boot-time control acceptance; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Separate effective kernel capability from mere presence of boot tokens.
+- **Acceptance IDs:** `KHAHP-12.06A`, `KHAHP-12.06B`, `KHAHP-12.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 12.07 — pstore/ERST/proc_mem/entropy trust boot parameters
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of pstore/erst/proc_mem/entropy trust boot parameters; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Separate effective kernel capability from mere presence of boot tokens.
+- **Acceptance IDs:** `KHAHP-12.07A`, `KHAHP-12.07B`, `KHAHP-12.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 13: Kernel Module Restrictions
+
+#### 13.01 — security-misc module blacklist configuration
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of security-misc module blacklist configuration; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Resolve built-in versus loadable module behavior and compatibility.
+- **Acceptance IDs:** `KHAHP-13.01A`, `KHAHP-13.01B`, `KHAHP-13.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 13.02 — Hard-disable install rules for risky modules
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of hard-disable install rules for risky modules; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Resolve built-in versus loadable module behavior and compatibility.
+- **Acceptance IDs:** `KHAHP-13.02A`, `KHAHP-13.02B`, `KHAHP-13.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 13.03 — Loaded-module inventory versus policy
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of loaded-module inventory versus policy; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Resolve built-in versus loadable module behavior and compatibility.
+- **Acceptance IDs:** `KHAHP-13.03A`, `KHAHP-13.03B`, `KHAHP-13.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 13.04 — Legacy filesystem module restrictions
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of legacy filesystem module restrictions; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Resolve built-in versus loadable module behavior and compatibility.
+- **Acceptance IDs:** `KHAHP-13.04A`, `KHAHP-13.04B`, `KHAHP-13.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 13.05 — Legacy network/protocol module restrictions
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of legacy network/protocol module restrictions; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Resolve built-in versus loadable module behavior and compatibility.
+- **Acceptance IDs:** `KHAHP-13.05A`, `KHAHP-13.05B`, `KHAHP-13.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 13.06 — USB/storage/media module restriction exceptions
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of usb/storage/media module restriction exceptions; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Resolve built-in versus loadable module behavior and compatibility.
+- **Acceptance IDs:** `KHAHP-13.06A`, `KHAHP-13.06B`, `KHAHP-13.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 13.07 — Module-load negative tests and compatibility exceptions
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of module-load negative tests and compatibility exceptions; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Resolve built-in versus loadable module behavior and compatibility.
+- **Acceptance IDs:** `KHAHP-13.07A`, `KHAHP-13.07B`, `KHAHP-13.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 14: Kernel Module Signing / DKMS
+
+#### 14.01 — Loaded-module signer inventory
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of loaded-module signer inventory; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Validate signer chain and upgrade behavior without re-enrolling keys unnecessarily.
+- **Acceptance IDs:** `KHAHP-14.01A`, `KHAHP-14.01B`, `KHAHP-14.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 14.02 — DKMS package and built-module inventory
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of dkms package and built-module inventory; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Validate signer chain and upgrade behavior without re-enrolling keys unnecessarily.
+- **Acceptance IDs:** `KHAHP-14.02A`, `KHAHP-14.02B`, `KHAHP-14.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 14.03 — tirdad DKMS build, signer and runtime state
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of tirdad dkms build, signer and runtime state; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Validate signer chain and upgrade behavior without re-enrolling keys unnecessarily.
+- **Acceptance IDs:** `KHAHP-14.03A`, `KHAHP-14.03B`, `KHAHP-14.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 14.04 — NVIDIA/other third-party module signer state
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of nvidia/other third-party module signer state; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Validate signer chain and upgrade behavior without re-enrolling keys unnecessarily.
+- **Acceptance IDs:** `KHAHP-14.04A`, `KHAHP-14.04B`, `KHAHP-14.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 14.05 — Kernel module signature enforcement capability
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of kernel module signature enforcement capability; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Validate signer chain and upgrade behavior without re-enrolling keys unnecessarily.
+- **Acceptance IDs:** `KHAHP-14.05A`, `KHAHP-14.05B`, `KHAHP-14.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 14.06 — MOK/enrolled certificate readiness
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of mok/enrolled certificate readiness; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Validate signer chain and upgrade behavior without re-enrolling keys unnecessarily.
+- **Acceptance IDs:** `KHAHP-14.06A`, `KHAHP-14.06B`, `KHAHP-14.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 14.07 — Secure-Boot compatibility and unsigned-module exceptions
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of secure-boot compatibility and unsigned-module exceptions; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Validate signer chain and upgrade behavior without re-enrolling keys unnecessarily.
+- **Acceptance IDs:** `KHAHP-14.07A`, `KHAHP-14.07B`, `KHAHP-14.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 15: AppArmor / Mandatory Access Control
+
+#### 15.01 — AppArmor kernel/module enablement
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-002`.
+- **Required A/B/C evidence:** Provenance of apparmor kernel/module enablement; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Plan compatible browser confinement in a test environment before any package-profile changes.
+- **Acceptance IDs:** `KHAHP-15.01A`, `KHAHP-15.01B`, `KHAHP-15.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 15.02 — Profile inventory and parser status
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-002`.
+- **Required A/B/C evidence:** Provenance of profile inventory and parser status; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Plan compatible browser confinement in a test environment before any package-profile changes.
+- **Acceptance IDs:** `KHAHP-15.02A`, `KHAHP-15.02B`, `KHAHP-15.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 15.03 — Enforce/complain/unconfined process counts
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-001`, `I15-003`.
+- **Required A/B/C evidence:** Provenance of enforce/complain/unconfined process counts; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Plan compatible browser confinement in a test environment before any package-profile changes.
+- **Acceptance IDs:** `KHAHP-15.03A`, `KHAHP-15.03B`, `KHAHP-15.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 15.04 — Tor and network-service profile enforcement
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-002`.
+- **Required A/B/C evidence:** Provenance of tor and network-service profile enforcement; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Plan compatible browser confinement in a test environment before any package-profile changes.
+- **Acceptance IDs:** `KHAHP-15.04A`, `KHAHP-15.04B`, `KHAHP-15.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 15.05 — Browser/application profile coverage
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-001`.
+- **Required A/B/C evidence:** Provenance of browser/application profile coverage; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Plan compatible browser confinement in a test environment before any package-profile changes.
+- **Acceptance IDs:** `KHAHP-15.05A`, `KHAHP-15.05B`, `KHAHP-15.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 15.06 — Denied-event review and false-positive handling
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-002`.
+- **Required A/B/C evidence:** Provenance of denied-event review and false-positive handling; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Plan compatible browser confinement in a test environment before any package-profile changes.
+- **Acceptance IDs:** `KHAHP-15.06A`, `KHAHP-15.06B`, `KHAHP-15.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 15.07 — USER versus SYSMAINT AppArmor behavior
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-001`, `I15-003`.
+- **Required A/B/C evidence:** Provenance of user versus sysmaint apparmor behavior; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Plan compatible browser confinement in a test environment before any package-profile changes.
+- **Acceptance IDs:** `KHAHP-15.07A`, `KHAHP-15.07B`, `KHAHP-15.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 16: SUID / SGID / File Capabilities
+
+#### 16.01 — Complete SUID file inventory
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-004`.
+- **Required A/B/C evidence:** Provenance of complete suid file inventory; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Review drift and package capabilities without blind permission changes.
+- **Acceptance IDs:** `KHAHP-16.01A`, `KHAHP-16.01B`, `KHAHP-16.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 16.02 — Complete SGID file inventory
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-004`.
+- **Required A/B/C evidence:** Provenance of complete sgid file inventory; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Review drift and package capabilities without blind permission changes.
+- **Acceptance IDs:** `KHAHP-16.02A`, `KHAHP-16.02B`, `KHAHP-16.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 16.03 — Package ownership of privileged binaries
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-004`.
+- **Required A/B/C evidence:** Provenance of package ownership of privileged binaries; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Review drift and package capabilities without blind permission changes.
+- **Acceptance IDs:** `KHAHP-16.03A`, `KHAHP-16.03B`, `KHAHP-16.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 16.04 — permission-hardener expected mode validation
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of permission-hardener expected mode validation; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Review drift and package capabilities without blind permission changes.
+- **Acceptance IDs:** `KHAHP-16.04A`, `KHAHP-16.04B`, `KHAHP-16.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 16.05 — File-capability inventory and package attribution
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-005`.
+- **Required A/B/C evidence:** Provenance of file-capability inventory and package attribution; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Review drift and package capabilities without blind permission changes.
+- **Acceptance IDs:** `KHAHP-16.05A`, `KHAHP-16.05B`, `KHAHP-16.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 16.06 — Unexpected privileged executable detection
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-004`.
+- **Required A/B/C evidence:** Provenance of unexpected privileged executable detection; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Review drift and package capabilities without blind permission changes.
+- **Acceptance IDs:** `KHAHP-16.06A`, `KHAHP-16.06B`, `KHAHP-16.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 16.07 — Privilege-binary negative/compatibility review
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-005`.
+- **Required A/B/C evidence:** Provenance of privilege-binary negative/compatibility review; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Review drift and package capabilities without blind permission changes.
+- **Acceptance IDs:** `KHAHP-16.07A`, `KHAHP-16.07B`, `KHAHP-16.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 17: Permissions / ACL / Umask
+
+#### 17.01 — System file ownership baseline
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-006`.
+- **Required A/B/C evidence:** Provenance of system file ownership baseline; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Classify intended vendor exception and monitor unexpected permission drift.
+- **Acceptance IDs:** `KHAHP-17.01A`, `KHAHP-17.01B`, `KHAHP-17.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 17.02 — World-writable system path inventory
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-006`.
+- **Required A/B/C evidence:** Provenance of world-writable system path inventory; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Classify intended vendor exception and monitor unexpected permission drift.
+- **Acceptance IDs:** `KHAHP-17.02A`, `KHAHP-17.02B`, `KHAHP-17.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 17.03 — Unexpected group-writable sensitive paths
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-007`.
+- **Required A/B/C evidence:** Provenance of unexpected group-writable sensitive paths; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Classify intended vendor exception and monitor unexpected permission drift.
+- **Acceptance IDs:** `KHAHP-17.03A`, `KHAHP-17.03B`, `KHAHP-17.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 17.04 — ACL inventory on sensitive configuration
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-007`.
+- **Required A/B/C evidence:** Provenance of acl inventory on sensitive configuration; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Classify intended vendor exception and monitor unexpected permission drift.
+- **Acceptance IDs:** `KHAHP-17.04A`, `KHAHP-17.04B`, `KHAHP-17.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 17.05 — Root and user umask policy
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-007`.
+- **Required A/B/C evidence:** Provenance of root and user umask policy; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Classify intended vendor exception and monitor unexpected permission drift.
+- **Acceptance IDs:** `KHAHP-17.05A`, `KHAHP-17.05B`, `KHAHP-17.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 17.06 — Home and evidence-directory permissions
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-007`.
+- **Required A/B/C evidence:** Provenance of home and evidence-directory permissions; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Classify intended vendor exception and monitor unexpected permission drift.
+- **Acceptance IDs:** `KHAHP-17.06A`, `KHAHP-17.06B`, `KHAHP-17.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 17.07 — Sticky-bit and shared-directory permission policy
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-006`, `I15-007`.
+- **Required A/B/C evidence:** Provenance of sticky-bit and shared-directory permission policy; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Classify intended vendor exception and monitor unexpected permission drift.
+- **Acceptance IDs:** `KHAHP-17.07A`, `KHAHP-17.07B`, `KHAHP-17.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 18: PAM / Login / Faillock
+
+#### 18.01 — PAM stack package provenance
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-010`.
+- **Required A/B/C evidence:** Provenance of pam stack package provenance; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Prove safe recovery from lockout and decide local passphrase/aging requirements.
+- **Acceptance IDs:** `KHAHP-18.01A`, `KHAHP-18.01B`, `KHAHP-18.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 18.02 — password quality and hashing policy
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-009`.
+- **Required A/B/C evidence:** Provenance of password quality and hashing policy; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Prove safe recovery from lockout and decide local passphrase/aging requirements.
+- **Acceptance IDs:** `KHAHP-18.02A`, `KHAHP-18.02B`, `KHAHP-18.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 18.03 — faillock/brute-force lockout policy
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-008`.
+- **Required A/B/C evidence:** Provenance of faillock/brute-force lockout policy; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Prove safe recovery from lockout and decide local passphrase/aging requirements.
+- **Acceptance IDs:** `KHAHP-18.03A`, `KHAHP-18.03B`, `KHAHP-18.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 18.04 — login delay and retry controls
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-008`.
+- **Required A/B/C evidence:** Provenance of login delay and retry controls; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Prove safe recovery from lockout and decide local passphrase/aging requirements.
+- **Acceptance IDs:** `KHAHP-18.04A`, `KHAHP-18.04B`, `KHAHP-18.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 18.05 — su/sudo/polkit PAM interaction
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-010`.
+- **Required A/B/C evidence:** Provenance of su/sudo/polkit pam interaction; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Prove safe recovery from lockout and decide local passphrase/aging requirements.
+- **Acceptance IDs:** `KHAHP-18.05A`, `KHAHP-18.05B`, `KHAHP-18.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 18.06 — account aging and inactive-account policy
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-009`.
+- **Required A/B/C evidence:** Provenance of account aging and inactive-account policy; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Prove safe recovery from lockout and decide local passphrase/aging requirements.
+- **Acceptance IDs:** `KHAHP-18.06A`, `KHAHP-18.06B`, `KHAHP-18.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 18.07 — USER/SYSMAINT login regression tests
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-008`, `I15-010`.
+- **Required A/B/C evidence:** Provenance of user/sysmaint login regression tests; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Prove safe recovery from lockout and decide local passphrase/aging requirements.
+- **Acceptance IDs:** `KHAHP-18.07A`, `KHAHP-18.07B`, `KHAHP-18.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 19: SSH Client / Server Security
+
+#### 19.01 — Local SSH server service/socket state
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-011`.
+- **Required A/B/C evidence:** Provenance of local ssh server service/socket state; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Preserve local exception and validate state after upgrades and recovery.
+- **Acceptance IDs:** `KHAHP-19.01A`, `KHAHP-19.01B`, `KHAHP-19.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 19.02 — sshd listener and inbound port absence
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-011`.
+- **Required A/B/C evidence:** Provenance of sshd listener and inbound port absence; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Preserve local exception and validate state after upgrades and recovery.
+- **Acceptance IDs:** `KHAHP-19.02A`, `KHAHP-19.02B`, `KHAHP-19.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 19.03 — sshd_config security-misc policy if installed
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-011`.
+- **Required A/B/C evidence:** Provenance of sshd_config security-misc policy if installed; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Preserve local exception and validate state after upgrades and recovery.
+- **Acceptance IDs:** `KHAHP-19.03A`, `KHAHP-19.03B`, `KHAHP-19.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 19.04 — SSH client configuration and host-key verification
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-012`.
+- **Required A/B/C evidence:** Provenance of ssh client configuration and host-key verification; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Preserve local exception and validate state after upgrades and recovery.
+- **Acceptance IDs:** `KHAHP-19.04A`, `KHAHP-19.04B`, `KHAHP-19.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 19.05 — Private-key ownership and permission baseline
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-012`.
+- **Required A/B/C evidence:** Provenance of private-key ownership and permission baseline; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Preserve local exception and validate state after upgrades and recovery.
+- **Acceptance IDs:** `KHAHP-19.05A`, `KHAHP-19.05B`, `KHAHP-19.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 19.06 — Password-authentication and root-login policy for future server use
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-011`.
+- **Required A/B/C evidence:** Provenance of password-authentication and root-login policy for future server use; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Preserve local exception and validate state after upgrades and recovery.
+- **Acceptance IDs:** `KHAHP-19.06A`, `KHAHP-19.06B`, `KHAHP-19.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 19.07 — Known-hosts/key algorithm and crypto-policy review
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-012`.
+- **Required A/B/C evidence:** Provenance of known-hosts/key algorithm and crypto-policy review; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Preserve local exception and validate state after upgrades and recovery.
+- **Acceptance IDs:** `KHAHP-19.07A`, `KHAHP-19.07B`, `KHAHP-19.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 20: Enabled / Running Service Audit
+
+#### 20.01 — Enabled systemd service inventory
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-013`.
+- **Required A/B/C evidence:** Provenance of enabled systemd service inventory; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Classify dependencies and verify expected-role persistence; do not disable blindly.
+- **Acceptance IDs:** `KHAHP-20.01A`, `KHAHP-20.01B`, `KHAHP-20.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 20.02 — Running systemd service inventory
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-013`.
+- **Required A/B/C evidence:** Provenance of running systemd service inventory; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Classify dependencies and verify expected-role persistence; do not disable blindly.
+- **Acceptance IDs:** `KHAHP-20.02A`, `KHAHP-20.02B`, `KHAHP-20.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 20.03 — Socket/path/timer activated service inventory
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-013`.
+- **Required A/B/C evidence:** Provenance of socket/path/timer activated service inventory; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Classify dependencies and verify expected-role persistence; do not disable blindly.
+- **Acceptance IDs:** `KHAHP-20.03A`, `KHAHP-20.03B`, `KHAHP-20.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 20.04 — Kicksecure-required service attribution
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-013`, `I15-014`.
+- **Required A/B/C evidence:** Provenance of kicksecure-required service attribution; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Classify dependencies and verify expected-role persistence; do not disable blindly.
+- **Acceptance IDs:** `KHAHP-20.04A`, `KHAHP-20.04B`, `KHAHP-20.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 20.05 — Unexpected or unnecessary service classification
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-014`.
+- **Required A/B/C evidence:** Provenance of unexpected or unnecessary service classification; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Classify dependencies and verify expected-role persistence; do not disable blindly.
+- **Acceptance IDs:** `KHAHP-20.05A`, `KHAHP-20.05B`, `KHAHP-20.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 20.06 — Listener-to-service ownership correlation
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-013`, `I15-014`.
+- **Required A/B/C evidence:** Provenance of listener-to-service ownership correlation; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Classify dependencies and verify expected-role persistence; do not disable blindly.
+- **Acceptance IDs:** `KHAHP-20.06A`, `KHAHP-20.06B`, `KHAHP-20.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 20.07 — Reboot persistence and failed-service review
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-013`.
+- **Required A/B/C evidence:** Provenance of reboot persistence and failed-service review; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Classify dependencies and verify expected-role persistence; do not disable blindly.
+- **Acceptance IDs:** `KHAHP-20.07A`, `KHAHP-20.07B`, `KHAHP-20.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 21: systemd Service Sandboxing
+
+#### 21.01 — systemd-analyze security baseline
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-015`.
+- **Required A/B/C evidence:** Provenance of systemd-analyze security baseline; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Rehearse proposed additional sandbox restrictions without breaking DNS.
+- **Acceptance IDs:** `KHAHP-21.01A`, `KHAHP-21.01B`, `KHAHP-21.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 21.02 — NoNewPrivileges adoption
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-016`.
+- **Required A/B/C evidence:** Provenance of nonewprivileges adoption; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Rehearse proposed additional sandbox restrictions without breaking DNS.
+- **Acceptance IDs:** `KHAHP-21.02A`, `KHAHP-21.02B`, `KHAHP-21.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 21.03 — ProtectSystem/ProtectHome restrictions
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-015`.
+- **Required A/B/C evidence:** Provenance of protectsystem/protecthome restrictions; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Rehearse proposed additional sandbox restrictions without breaking DNS.
+- **Acceptance IDs:** `KHAHP-21.03A`, `KHAHP-21.03B`, `KHAHP-21.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 21.04 — PrivateTmp/PrivateDevices isolation
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-016`.
+- **Required A/B/C evidence:** Provenance of privatetmp/privatedevices isolation; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Rehearse proposed additional sandbox restrictions without breaking DNS.
+- **Acceptance IDs:** `KHAHP-21.04A`, `KHAHP-21.04B`, `KHAHP-21.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 21.05 — CapabilityBoundingSet and ambient capabilities
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-015`, `I15-016`.
+- **Required A/B/C evidence:** Provenance of capabilityboundingset and ambient capabilities; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Rehearse proposed additional sandbox restrictions without breaking DNS.
+- **Acceptance IDs:** `KHAHP-21.05A`, `KHAHP-21.05B`, `KHAHP-21.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 21.06 — RestrictNamespaces/SystemCallFilter/address-family controls
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-016`.
+- **Required A/B/C evidence:** Provenance of restrictnamespaces/systemcallfilter/address-family controls; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Rehearse proposed additional sandbox restrictions without breaking DNS.
+- **Acceptance IDs:** `KHAHP-21.06A`, `KHAHP-21.06B`, `KHAHP-21.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 21.07 — Service-specific compatibility exceptions and regressions
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-015`, `I15-016`.
+- **Required A/B/C evidence:** Provenance of service-specific compatibility exceptions and regressions; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Rehearse proposed additional sandbox restrictions without breaking DNS.
+- **Acceptance IDs:** `KHAHP-21.07A`, `KHAHP-21.07B`, `KHAHP-21.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 22: System.map / Core Dumps / PStore
+
+#### 22.01 — System.map exposure and removal policy
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-017`.
+- **Required A/B/C evidence:** Provenance of system.map exposure and removal policy; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm ongoing enforcement after updates; record forensic trade-offs.
+- **Acceptance IDs:** `KHAHP-22.01A`, `KHAHP-22.01B`, `KHAHP-22.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 22.02 — systemd-coredump configuration
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-017`.
+- **Required A/B/C evidence:** Provenance of systemd-coredump configuration; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm ongoing enforcement after updates; record forensic trade-offs.
+- **Acceptance IDs:** `KHAHP-22.02A`, `KHAHP-22.02B`, `KHAHP-22.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 22.03 — kernel.core_pattern effective state
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-017`.
+- **Required A/B/C evidence:** Provenance of kernel.core_pattern effective state; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm ongoing enforcement after updates; record forensic trade-offs.
+- **Acceptance IDs:** `KHAHP-22.03A`, `KHAHP-22.03B`, `KHAHP-22.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 22.04 — fs.suid_dumpable effective state
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-017`.
+- **Required A/B/C evidence:** Provenance of fs.suid_dumpable effective state; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm ongoing enforcement after updates; record forensic trade-offs.
+- **Acceptance IDs:** `KHAHP-22.04A`, `KHAHP-22.04B`, `KHAHP-22.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 22.05 — pstore retention/disable policy
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-017`.
+- **Required A/B/C evidence:** Provenance of pstore retention/disable policy; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm ongoing enforcement after updates; record forensic trade-offs.
+- **Acceptance IDs:** `KHAHP-22.05A`, `KHAHP-22.05B`, `KHAHP-22.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 22.06 — EFI pstore and ERST boot controls
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-017`.
+- **Required A/B/C evidence:** Provenance of efi pstore and erst boot controls; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm ongoing enforcement after updates; record forensic trade-offs.
+- **Acceptance IDs:** `KHAHP-22.06A`, `KHAHP-22.06B`, `KHAHP-22.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 22.07 — Crash-evidence privacy versus diagnostic requirements
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-018`.
+- **Required A/B/C evidence:** Provenance of crash-evidence privacy versus diagnostic requirements; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm ongoing enforcement after updates; record forensic trade-offs.
+- **Acceptance IDs:** `KHAHP-22.07A`, `KHAHP-22.07B`, `KHAHP-22.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 23: Journald / Logging / Logrotate
+
+#### 23.01 — journald security-misc configuration
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-019`.
+- **Required A/B/C evidence:** Provenance of journald security-misc configuration; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Approve retention/rotation/access policy and time continuity evidence.
+- **Acceptance IDs:** `KHAHP-23.01A`, `KHAHP-23.01B`, `KHAHP-23.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 23.02 — Persistent versus volatile journal storage
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-019`.
+- **Required A/B/C evidence:** Provenance of persistent versus volatile journal storage; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Approve retention/rotation/access policy and time continuity evidence.
+- **Acceptance IDs:** `KHAHP-23.02A`, `KHAHP-23.02B`, `KHAHP-23.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 23.03 — Journal file permissions and ownership
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-019`.
+- **Required A/B/C evidence:** Provenance of journal file permissions and ownership; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Approve retention/rotation/access policy and time continuity evidence.
+- **Acceptance IDs:** `KHAHP-23.03A`, `KHAHP-23.03B`, `KHAHP-23.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 23.04 — Rate limiting and size/retention policy
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-019`.
+- **Required A/B/C evidence:** Provenance of rate limiting and size/retention policy; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Approve retention/rotation/access policy and time continuity evidence.
+- **Acceptance IDs:** `KHAHP-23.04A`, `KHAHP-23.04B`, `KHAHP-23.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 23.05 — Forwarding/syslog integration state
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-019`.
+- **Required A/B/C evidence:** Provenance of forwarding/syslog integration state; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Approve retention/rotation/access policy and time continuity evidence.
+- **Acceptance IDs:** `KHAHP-23.05A`, `KHAHP-23.05B`, `KHAHP-23.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 23.06 — logrotate configuration and sensitive-log modes
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-019`.
+- **Required A/B/C evidence:** Provenance of logrotate configuration and sensitive-log modes; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Approve retention/rotation/access policy and time continuity evidence.
+- **Acceptance IDs:** `KHAHP-23.06A`, `KHAHP-23.06B`, `KHAHP-23.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 23.07 — Log integrity, time coherence and reboot persistence
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-020`.
+- **Required A/B/C evidence:** Provenance of log integrity, time coherence and reboot persistence; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Approve retention/rotation/access policy and time continuity evidence.
+- **Acceptance IDs:** `KHAHP-23.07A`, `KHAHP-23.07B`, `KHAHP-23.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 24: Panic / Recovery / Emergency Shutdown
+
+#### 24.01 — kernel panic-on-oops policy
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-021`.
+- **Required A/B/C evidence:** Provenance of kernel panic-on-oops policy; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Rehearse safe recovery offline; no destructive production panic tests.
+- **Acceptance IDs:** `KHAHP-24.01A`, `KHAHP-24.01B`, `KHAHP-24.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 24.02 — panic timeout and fail-closed behavior
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-021`.
+- **Required A/B/C evidence:** Provenance of panic timeout and fail-closed behavior; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Rehearse safe recovery offline; no destructive production panic tests.
+- **Acceptance IDs:** `KHAHP-24.02A`, `KHAHP-24.02B`, `KHAHP-24.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 24.03 — emerg-shutdown.service provenance and state
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-022`.
+- **Required A/B/C evidence:** Provenance of emerg-shutdown.service provenance and state; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Rehearse safe recovery offline; no destructive production panic tests.
+- **Acceptance IDs:** `KHAHP-24.03A`, `KHAHP-24.03B`, `KHAHP-24.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 24.04 — rescue/emergency target restrictions
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-021`.
+- **Required A/B/C evidence:** Provenance of rescue/emergency target restrictions; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Rehearse safe recovery offline; no destructive production panic tests.
+- **Acceptance IDs:** `KHAHP-24.04A`, `KHAHP-24.04B`, `KHAHP-24.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 24.05 — rd.emergency=halt and rd.shell=0 behavior
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-021`.
+- **Required A/B/C evidence:** Provenance of rd.emergency=halt and rd.shell=0 behavior; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Rehearse safe recovery offline; no destructive production panic tests.
+- **Acceptance IDs:** `KHAHP-24.05A`, `KHAHP-24.05B`, `KHAHP-24.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 24.06 — Magic SysRq and recovery-surface policy
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-021`.
+- **Required A/B/C evidence:** Provenance of magic sysrq and recovery-surface policy; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Rehearse safe recovery offline; no destructive production panic tests.
+- **Acceptance IDs:** `KHAHP-24.06A`, `KHAHP-24.06B`, `KHAHP-24.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 24.07 — Controlled failure/recovery evidence and rollback
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I15-022`.
+- **Required A/B/C evidence:** Provenance of controlled failure/recovery evidence and rollback; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Rehearse safe recovery offline; no destructive production panic tests.
+- **Acceptance IDs:** `KHAHP-24.07A`, `KHAHP-24.07B`, `KHAHP-24.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 25: RAM Wipe
+
+#### 25.01 — ram-wipe package provenance and version
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-004`, `I-017`.
+- **Required A/B/C evidence:** Provenance of ram-wipe package provenance and version; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm shutdown hooks, swap crypto path and residual cold-boot risk.
+- **Acceptance IDs:** `KHAHP-25.01A`, `KHAHP-25.01B`, `KHAHP-25.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 25.02 — GRUB/package RAM-wipe source presence
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-004`.
+- **Required A/B/C evidence:** Provenance of grub/package ram-wipe source presence; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm shutdown hooks, swap crypto path and residual cold-boot risk.
+- **Acceptance IDs:** `KHAHP-25.02A`, `KHAHP-25.02B`, `KHAHP-25.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 25.03 — init_on_alloc/init_on_free live correlation
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of init_on_alloc/init_on_free live correlation; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm shutdown hooks, swap crypto path and residual cold-boot risk.
+- **Acceptance IDs:** `KHAHP-25.03A`, `KHAHP-25.03B`, `KHAHP-25.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 25.04 — Shutdown/reboot wipe hook inventory
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-004`, `I-017`.
+- **Required A/B/C evidence:** Provenance of shutdown/reboot wipe hook inventory; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm shutdown hooks, swap crypto path and residual cold-boot risk.
+- **Acceptance IDs:** `KHAHP-25.04A`, `KHAHP-25.04B`, `KHAHP-25.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 25.05 — Swap/LUKS interaction during shutdown
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-003`.
+- **Required A/B/C evidence:** Provenance of swap/luks interaction during shutdown; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm shutdown hooks, swap crypto path and residual cold-boot risk.
+- **Acceptance IDs:** `KHAHP-25.05A`, `KHAHP-25.05B`, `KHAHP-25.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 25.06 — Controlled reboot/shutdown persistence test
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-003`.
+- **Required A/B/C evidence:** Provenance of controlled reboot/shutdown persistence test; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm shutdown hooks, swap crypto path and residual cold-boot risk.
+- **Acceptance IDs:** `KHAHP-25.06A`, `KHAHP-25.06B`, `KHAHP-25.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 25.07 — Limitations of software RAM wiping and cold-boot scope
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-004`.
+- **Required A/B/C evidence:** Provenance of limitations of software ram wiping and cold-boot scope; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm shutdown hooks, swap crypto path and residual cold-boot risk.
+- **Acceptance IDs:** `KHAHP-25.07A`, `KHAHP-25.07B`, `KHAHP-25.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 26: USBGuard / Peripheral Security
+
+#### 26.01 — usbguard daemon and DBus service state
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of usbguard daemon and dbus service state; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Verify keyboard rejection through real keystroke test and first-match logs; test composite and network devices.
+- **Acceptance IDs:** `KHAHP-26.01A`, `KHAHP-26.01B`, `KHAHP-26.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 26.02 — Policy files and rule provenance
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-002`.
+- **Required A/B/C evidence:** Provenance of policy files and rule provenance; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Verify keyboard rejection through real keystroke test and first-match logs; test composite and network devices.
+- **Acceptance IDs:** `KHAHP-26.02A`, `KHAHP-26.02B`, `KHAHP-26.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 26.03 — ImplicitPolicyTarget and device-policy settings
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of implicitpolicytarget and device-policy settings; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Verify keyboard rejection through real keystroke test and first-match logs; test composite and network devices.
+- **Acceptance IDs:** `KHAHP-26.03A`, `KHAHP-26.03B`, `KHAHP-26.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 26.04 — Allowed keyboard/mouse/audio/video/storage classes
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-001`.
+- **Required A/B/C evidence:** Provenance of allowed keyboard/mouse/audio/video/storage classes; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Verify keyboard rejection through real keystroke test and first-match logs; test composite and network devices.
+- **Acceptance IDs:** `KHAHP-26.04A`, `KHAHP-26.04B`, `KHAHP-26.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 26.05 — Rejected HID+extra and RNDIS/network-device patterns
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-001`, `I-002`.
+- **Required A/B/C evidence:** Provenance of rejected hid+extra and rndis/network-device patterns; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Verify keyboard rejection through real keystroke test and first-match logs; test composite and network devices.
+- **Acceptance IDs:** `KHAHP-26.05A`, `KHAHP-26.05B`, `KHAHP-26.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 26.06 — IPC authorization/notifier behavior
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of ipc authorization/notifier behavior; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Verify keyboard rejection through real keystroke test and first-match logs; test composite and network devices.
+- **Acceptance IDs:** `KHAHP-26.06A`, `KHAHP-26.06B`, `KHAHP-26.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 26.07 — Hot-plug negative tests and reboot persistence
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-001`, `I-002`, `I-018`.
+- **Required A/B/C evidence:** Provenance of hot-plug negative tests and reboot persistence; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Verify keyboard rejection through real keystroke test and first-match logs; test composite and network devices.
+- **Acceptance IDs:** `KHAHP-26.07A`, `KHAHP-26.07B`, `KHAHP-26.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 27: NetworkManager / Wi-Fi / MAC / DHCP
+
+#### 27.01 — NetworkManager package/service state
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of networkmanager package/service state; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Correlate over-air identity and DHCP identifier on owned network; persist after reconnect.
+- **Acceptance IDs:** `KHAHP-27.01A`, `KHAHP-27.01B`, `KHAHP-27.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 27.02 — Saved Wi-Fi profile inventory and autoconnect
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of saved wi-fi profile inventory and autoconnect; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Correlate over-air identity and DHCP identifier on owned network; persist after reconnect.
+- **Acceptance IDs:** `KHAHP-27.02A`, `KHAHP-27.02B`, `KHAHP-27.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 27.03 — Active-profile cloned-MAC and DHCP privacy settings
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-005`.
+- **Required A/B/C evidence:** Provenance of active-profile cloned-mac and dhcp privacy settings; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Correlate over-air identity and DHCP identifier on owned network; persist after reconnect.
+- **Acceptance IDs:** `KHAHP-27.03A`, `KHAHP-27.03B`, `KHAHP-27.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 27.04 — Scan MAC randomization
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of scan mac randomization; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Correlate over-air identity and DHCP identifier on owned network; persist after reconnect.
+- **Acceptance IDs:** `KHAHP-27.04A`, `KHAHP-27.04B`, `KHAHP-27.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 27.05 — Ethernet MAC randomization policy
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of ethernet mac randomization policy; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Correlate over-air identity and DHCP identifier on owned network; persist after reconnect.
+- **Acceptance IDs:** `KHAHP-27.05A`, `KHAHP-27.05B`, `KHAHP-27.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 27.06 — Runtime MAC versus permanent hardware MAC
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-005`.
+- **Required A/B/C evidence:** Provenance of runtime mac versus permanent hardware mac; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Correlate over-air identity and DHCP identifier on owned network; persist after reconnect.
+- **Acceptance IDs:** `KHAHP-27.06A`, `KHAHP-27.06B`, `KHAHP-27.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 27.07 — DHCP client identifier and profile persistence
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-006`.
+- **Required A/B/C evidence:** Provenance of dhcp client identifier and profile persistence; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Correlate over-air identity and DHCP identifier on owned network; persist after reconnect.
+- **Acceptance IDs:** `KHAHP-27.07A`, `KHAHP-27.07B`, `KHAHP-27.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 28: IPv6 Policy
+
+#### 28.01 — ipv6.disable=1 boot parameter
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-019`.
+- **Required A/B/C evidence:** Provenance of ipv6.disable=1 boot parameter; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Resolve intentional disablement versus future advanced dual-stack privacy policy before changes.
+- **Acceptance IDs:** `KHAHP-28.01A`, `KHAHP-28.01B`, `KHAHP-28.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 28.02 — Absence of IPv6 addresses
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of absence of ipv6 addresses; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Resolve intentional disablement versus future advanced dual-stack privacy policy before changes.
+- **Acceptance IDs:** `KHAHP-28.02A`, `KHAHP-28.02B`, `KHAHP-28.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 28.03 — Absence of IPv6 routes
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of absence of ipv6 routes; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Resolve intentional disablement versus future advanced dual-stack privacy policy before changes.
+- **Acceptance IDs:** `KHAHP-28.03A`, `KHAHP-28.03B`, `KHAHP-28.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 28.04 — NetworkManager IPv6 method/state
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-007`, `I-019`.
+- **Required A/B/C evidence:** Provenance of networkmanager ipv6 method/state; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Resolve intentional disablement versus future advanced dual-stack privacy policy before changes.
+- **Acceptance IDs:** `KHAHP-28.04A`, `KHAHP-28.04B`, `KHAHP-28.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 28.05 — Resolver absence of IPv6 nameservers
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of resolver absence of ipv6 nameservers; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Resolve intentional disablement versus future advanced dual-stack privacy policy before changes.
+- **Acceptance IDs:** `KHAHP-28.05A`, `KHAHP-28.05B`, `KHAHP-28.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 28.06 — IPv6 TCP/UDP listener exposure
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-007`.
+- **Required A/B/C evidence:** Provenance of ipv6 tcp/udp listener exposure; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Resolve intentional disablement versus future advanced dual-stack privacy policy before changes.
+- **Acceptance IDs:** `KHAHP-28.06A`, `KHAHP-28.06B`, `KHAHP-28.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 28.07 — Reboot persistence and DNS/HTTPS regression test
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-007`, `I-019`.
+- **Required A/B/C evidence:** Provenance of reboot persistence and dns/https regression test; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Resolve intentional disablement versus future advanced dual-stack privacy policy before changes.
+- **Acceptance IDs:** `KHAHP-28.07A`, `KHAHP-28.07B`, `KHAHP-28.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 29: Unbound / Local DNS Architecture
+
+#### 29.01 — Unbound package/service state
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of unbound package/service state; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm DHCP transition and resolver fail-safe without inadvertently breaking browsing.
+- **Acceptance IDs:** `KHAHP-29.01A`, `KHAHP-29.01B`, `KHAHP-29.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 29.02 — loopback DNS listener UDP/TCP listener and non-loopback absence
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of loopback DNS listener udp/tcp listener and non-loopback absence; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm DHCP transition and resolver fail-safe without inadvertently breaking browsing.
+- **Acceptance IDs:** `KHAHP-29.02A`, `KHAHP-29.02B`, `KHAHP-29.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 29.03 — resolv.conf local-resolver wiring
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-008`.
+- **Required A/B/C evidence:** Provenance of resolv.conf local-resolver wiring; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm DHCP transition and resolver fail-safe without inadvertently breaking browsing.
+- **Acceptance IDs:** `KHAHP-29.03A`, `KHAHP-29.03B`, `KHAHP-29.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 29.04 — NetworkManager effective DNS assignment
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-008`.
+- **Required A/B/C evidence:** Provenance of networkmanager effective dns assignment; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm DHCP transition and resolver fail-safe without inadvertently breaking browsing.
+- **Acceptance IDs:** `KHAHP-29.04A`, `KHAHP-29.04B`, `KHAHP-29.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 29.05 — Unbound configuration include tree validation
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of unbound configuration include tree validation; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm DHCP transition and resolver fail-safe without inadvertently breaking browsing.
+- **Acceptance IDs:** `KHAHP-29.05A`, `KHAHP-29.05B`, `KHAHP-29.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 29.06 — DoT forward-zone and IPv6 source policy
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-009`.
+- **Required A/B/C evidence:** Provenance of dot forward-zone and ipv6 source policy; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm DHCP transition and resolver fail-safe without inadvertently breaking browsing.
+- **Acceptance IDs:** `KHAHP-29.06A`, `KHAHP-29.06B`, `KHAHP-29.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 29.07 — USER/SYSMAINT service behavior and persistence
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-008`, `I-020`.
+- **Required A/B/C evidence:** Provenance of user/sysmaint service behavior and persistence; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm DHCP transition and resolver fail-safe without inadvertently breaking browsing.
+- **Acceptance IDs:** `KHAHP-29.07A`, `KHAHP-29.07B`, `KHAHP-29.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 30: DNSSEC / DoT / DNS Leak Prevention
+
+#### 30.01 — DNSSEC positive validation test
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-021`.
+- **Required A/B/C evidence:** Provenance of dnssec positive validation test; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Demonstrate Unbound-owned authenticated TLS; prove UDP/TCP direct DNS egress policy with owned peer.
+- **Acceptance IDs:** `KHAHP-30.01A`, `KHAHP-30.01B`, `KHAHP-30.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 30.02 — Broken-DNSSEC negative test
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-021`.
+- **Required A/B/C evidence:** Provenance of broken-dnssec negative test; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Demonstrate Unbound-owned authenticated TLS; prove UDP/TCP direct DNS egress policy with owned peer.
+- **Acceptance IDs:** `KHAHP-30.02A`, `KHAHP-30.02B`, `KHAHP-30.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 30.03 — DoT forwarding configuration and reachability scope
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-009`.
+- **Required A/B/C evidence:** Provenance of dot forwarding configuration and reachability scope; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Demonstrate Unbound-owned authenticated TLS; prove UDP/TCP direct DNS egress policy with owned peer.
+- **Acceptance IDs:** `KHAHP-30.03A`, `KHAHP-30.03B`, `KHAHP-30.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 30.04 — Plaintext external UDP/53 block
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-010`.
+- **Required A/B/C evidence:** Provenance of plaintext external udp/53 block; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Demonstrate Unbound-owned authenticated TLS; prove UDP/TCP direct DNS egress policy with owned peer.
+- **Acceptance IDs:** `KHAHP-30.04A`, `KHAHP-30.04B`, `KHAHP-30.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 30.05 — Plaintext external TCP/53 block
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-010`.
+- **Required A/B/C evidence:** Provenance of plaintext external tcp/53 block; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Demonstrate Unbound-owned authenticated TLS; prove UDP/TCP direct DNS egress policy with owned peer.
+- **Acceptance IDs:** `KHAHP-30.05A`, `KHAHP-30.05B`, `KHAHP-30.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 30.06 — Local DNS functionality after firewall enforcement
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-021`.
+- **Required A/B/C evidence:** Provenance of local dns functionality after firewall enforcement; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Demonstrate Unbound-owned authenticated TLS; prove UDP/TCP direct DNS egress policy with owned peer.
+- **Acceptance IDs:** `KHAHP-30.06A`, `KHAHP-30.06B`, `KHAHP-30.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 30.07 — DNS leak/bypass and reboot-persistence testing
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-011`.
+- **Required A/B/C evidence:** Provenance of dns leak/bypass and reboot-persistence testing; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Demonstrate Unbound-owned authenticated TLS; prove UDP/TCP direct DNS egress policy with owned peer.
+- **Acceptance IDs:** `KHAHP-30.07A`, `KHAHP-30.07B`, `KHAHP-30.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 31: nftables Firewall
+
+#### 31.01 — nftables package/service/runtime ruleset state
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of nftables package/service/runtime ruleset state; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Prove effective outbound packet verdict and exact loaded-ruleset persistence.
+- **Acceptance IDs:** `KHAHP-31.01A`, `KHAHP-31.01B`, `KHAHP-31.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 31.02 — Dedicated inet kicksecure_hardening table
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of dedicated inet kicksecure_hardening table; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Prove effective outbound packet verdict and exact loaded-ruleset persistence.
+- **Acceptance IDs:** `KHAHP-31.02A`, `KHAHP-31.02B`, `KHAHP-31.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 31.03 — Input default-drop policy
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of input default-drop policy; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Prove effective outbound packet verdict and exact loaded-ruleset persistence.
+- **Acceptance IDs:** `KHAHP-31.03A`, `KHAHP-31.03B`, `KHAHP-31.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 31.04 — Forward default-drop policy
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of forward default-drop policy; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Prove effective outbound packet verdict and exact loaded-ruleset persistence.
+- **Acceptance IDs:** `KHAHP-31.04A`, `KHAHP-31.04B`, `KHAHP-31.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 31.05 — Loopback, established/related and invalid handling
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of loopback, established/related and invalid handling; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Prove effective outbound packet verdict and exact loaded-ruleset persistence.
+- **Acceptance IDs:** `KHAHP-31.05A`, `KHAHP-31.05B`, `KHAHP-31.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 31.06 — DHCP/ICMP and required inbound exceptions
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-012`.
+- **Required A/B/C evidence:** Provenance of dhcp/icmp and required inbound exceptions; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Prove effective outbound packet verdict and exact loaded-ruleset persistence.
+- **Acceptance IDs:** `KHAHP-31.06A`, `KHAHP-31.06B`, `KHAHP-31.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 31.07 — Static syntax, reload safety and reboot persistence
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-012`, `I-013`.
+- **Required A/B/C evidence:** Provenance of static syntax, reload safety and reboot persistence; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Prove effective outbound packet verdict and exact loaded-ruleset persistence.
+- **Acceptance IDs:** `KHAHP-31.07A`, `KHAHP-31.07B`, `KHAHP-31.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 32: LAN Discovery / Multicast / LLMNR / mDNS
+
+#### 32.01 — Avahi/mDNS daemon state
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-022`.
+- **Required A/B/C evidence:** Provenance of avahi/mdns daemon state; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Collect protocol-specific peer mDNS/LLMNR/SSDP evidence; do not infer from unicast scans.
+- **Acceptance IDs:** `KHAHP-32.01A`, `KHAHP-32.01B`, `KHAHP-32.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 32.02 — LLMNR/resolved multicast name-resolution state
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-022`.
+- **Required A/B/C evidence:** Provenance of llmnr/resolved multicast name-resolution state; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Collect protocol-specific peer mDNS/LLMNR/SSDP evidence; do not infer from unicast scans.
+- **Acceptance IDs:** `KHAHP-32.02A`, `KHAHP-32.02B`, `KHAHP-32.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 32.03 — wsdd/Samba discovery state
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of wsdd/samba discovery state; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Collect protocol-specific peer mDNS/LLMNR/SSDP evidence; do not infer from unicast scans.
+- **Acceptance IDs:** `KHAHP-32.03A`, `KHAHP-32.03B`, `KHAHP-32.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 32.04 — rpcbind/minidlna/UPnP service state
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of rpcbind/minidlna/upnp service state; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Collect protocol-specific peer mDNS/LLMNR/SSDP evidence; do not infer from unicast scans.
+- **Acceptance IDs:** `KHAHP-32.04A`, `KHAHP-32.04B`, `KHAHP-32.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 32.05 — Multicast/discovery TCP+UDP listener inventory
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-022`.
+- **Required A/B/C evidence:** Provenance of multicast/discovery tcp+udp listener inventory; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Collect protocol-specific peer mDNS/LLMNR/SSDP evidence; do not infer from unicast scans.
+- **Acceptance IDs:** `KHAHP-32.05A`, `KHAHP-32.05B`, `KHAHP-32.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 32.06 — Firewall exposure of discovery ports
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of firewall exposure of discovery ports; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Collect protocol-specific peer mDNS/LLMNR/SSDP evidence; do not infer from unicast scans.
+- **Acceptance IDs:** `KHAHP-32.06A`, `KHAHP-32.06B`, `KHAHP-32.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 32.07 — Negative LAN discovery and reboot-persistence test
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-014`, `I-022`.
+- **Required A/B/C evidence:** Provenance of negative lan discovery and reboot-persistence test; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Collect protocol-specific peer mDNS/LLMNR/SSDP evidence; do not infer from unicast scans.
+- **Acceptance IDs:** `KHAHP-32.07A`, `KHAHP-32.07B`, `KHAHP-32.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 33: Tor / SOCKS / DNS Isolation
+
+#### 33.01 — Tor package/service state
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of tor package/service state; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Test Tor Browser-specific proxy/DNS routing and safe fail-close without a disruptive global service stop.
+- **Acceptance IDs:** `KHAHP-33.01A`, `KHAHP-33.01B`, `KHAHP-33.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 33.02 — SOCKS listener loopback Tor SOCKS listener and non-loopback absence
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of socks listener loopback Tor SOCKS listener and non-loopback absence; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Test Tor Browser-specific proxy/DNS routing and safe fail-close without a disruptive global service stop.
+- **Acceptance IDs:** `KHAHP-33.02A`, `KHAHP-33.02B`, `KHAHP-33.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 33.03 — Tor configuration provenance and syntax validation
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of tor configuration provenance and syntax validation; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Test Tor Browser-specific proxy/DNS routing and safe fail-close without a disruptive global service stop.
+- **Acceptance IDs:** `KHAHP-33.03A`, `KHAHP-33.03B`, `KHAHP-33.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 33.04 — Application proxy routing where intended
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-015`.
+- **Required A/B/C evidence:** Provenance of application proxy routing where intended; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Test Tor Browser-specific proxy/DNS routing and safe fail-close without a disruptive global service stop.
+- **Acceptance IDs:** `KHAHP-33.04A`, `KHAHP-33.04B`, `KHAHP-33.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 33.05 — Tor DNS isolation behavior
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-015`.
+- **Required A/B/C evidence:** Provenance of tor dns isolation behavior; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Test Tor Browser-specific proxy/DNS routing and safe fail-close without a disruptive global service stop.
+- **Acceptance IDs:** `KHAHP-33.05A`, `KHAHP-33.05B`, `KHAHP-33.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 33.06 — Clearnet bypass classification for Tor-mode applications
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-015`.
+- **Required A/B/C evidence:** Provenance of clearnet bypass classification for tor-mode applications; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Test Tor Browser-specific proxy/DNS routing and safe fail-close without a disruptive global service stop.
+- **Acceptance IDs:** `KHAHP-33.06A`, `KHAHP-33.06B`, `KHAHP-33.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 33.07 — Bootstrap, circuit, restart and failure-mode behavior
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-015`.
+- **Required A/B/C evidence:** Provenance of bootstrap, circuit, restart and failure-mode behavior; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Test Tor Browser-specific proxy/DNS routing and safe fail-close without a disruptive global service stop.
+- **Acceptance IDs:** `KHAHP-33.07A`, `KHAHP-33.07B`, `KHAHP-33.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 34: sdwdate / Secure Time / Boot Clock
+
+#### 34.01 — sdwdate package/service state
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of sdwdate package/service state; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Review execution chronology and controlled VM-only clock rollback.
+- **Acceptance IDs:** `KHAHP-34.01A`, `KHAHP-34.01B`, `KHAHP-34.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 34.02 — timesanitycheck execution state
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-016`.
+- **Required A/B/C evidence:** Provenance of timesanitycheck execution state; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Review execution chronology and controlled VM-only clock rollback.
+- **Acceptance IDs:** `KHAHP-34.02A`, `KHAHP-34.02B`, `KHAHP-34.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 34.03 — bootclockrandomization execution state
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-016`.
+- **Required A/B/C evidence:** Provenance of bootclockrandomization execution state; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Review execution chronology and controlled VM-only clock rollback.
+- **Acceptance IDs:** `KHAHP-34.03A`, `KHAHP-34.03B`, `KHAHP-34.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 34.04 — System clock sanity metadata
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-016`.
+- **Required A/B/C evidence:** Provenance of system clock sanity metadata; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Review execution chronology and controlled VM-only clock rollback.
+- **Acceptance IDs:** `KHAHP-34.04A`, `KHAHP-34.04B`, `KHAHP-34.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 34.05 — NTP/systemd-timesyncd conflicts
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of ntp/systemd-timesyncd conflicts; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Review execution chronology and controlled VM-only clock rollback.
+- **Acceptance IDs:** `KHAHP-34.05A`, `KHAHP-34.05B`, `KHAHP-34.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 34.06 — USER versus SYSMAINT time-source behavior
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of user versus sysmaint time-source behavior; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Review execution chronology and controlled VM-only clock rollback.
+- **Acceptance IDs:** `KHAHP-34.06A`, `KHAHP-34.06B`, `KHAHP-34.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 34.07 — Time rollback/jump detection and log coherence
+
+- **Evidence status:** Documented historical baseline, formal acceptance open.
+- **Linked engineering record(s):** `I-016`, `I-023`.
+- **Required A/B/C evidence:** Provenance of time rollback/jump detection and log coherence; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Review execution chronology and controlled VM-only clock rollback.
+- **Acceptance IDs:** `KHAHP-34.07A`, `KHAHP-34.07B`, `KHAHP-34.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 35: Entropy / RNG
+
+#### 35.01 — Kernel RNG readiness at boot
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of kernel rng readiness at boot; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Record early-boot quality, seed handling, package choices and role-matched persistence.
+- **Acceptance IDs:** `KHAHP-35.01A`, `KHAHP-35.01B`, `KHAHP-35.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 35.02 — haveged package/service state
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of haveged package/service state; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Record early-boot quality, seed handling, package choices and role-matched persistence.
+- **Acceptance IDs:** `KHAHP-35.02A`, `KHAHP-35.02B`, `KHAHP-35.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 35.03 — jitterentropy-rngd package/service state
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of jitterentropy-rngd package/service state; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Record early-boot quality, seed handling, package choices and role-matched persistence.
+- **Acceptance IDs:** `KHAHP-35.03A`, `KHAHP-35.03B`, `KHAHP-35.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 35.04 — random.trust_cpu boot policy
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of random.trust_cpu boot policy; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Record early-boot quality, seed handling, package choices and role-matched persistence.
+- **Acceptance IDs:** `KHAHP-35.04A`, `KHAHP-35.04B`, `KHAHP-35.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 35.05 — random.trust_bootloader boot policy
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of random.trust_bootloader boot policy; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Record early-boot quality, seed handling, package choices and role-matched persistence.
+- **Acceptance IDs:** `KHAHP-35.05A`, `KHAHP-35.05B`, `KHAHP-35.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 35.06 — Entropy source and /dev/random behavior
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of entropy source and /dev/random behavior; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Record early-boot quality, seed handling, package choices and role-matched persistence.
+- **Acceptance IDs:** `KHAHP-35.06A`, `KHAHP-35.06B`, `KHAHP-35.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 35.07 — Early-boot entropy persistence and regression evidence
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of early-boot entropy persistence and regression evidence; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Record early-boot quality, seed handling, package choices and role-matched persistence.
+- **Acceptance IDs:** `KHAHP-35.07A`, `KHAHP-35.07B`, `KHAHP-35.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 36: Browser DoH / WebRTC / Telemetry
+
+#### 36.01 — Browser DNS-over-HTTPS/TRR setting
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Linked engineering record(s):** `I-011`.
+- **Required A/B/C evidence:** Provenance of browser dns-over-https/trr setting; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Run USER browser checks for DNS-over-HTTPS, WebRTC leakage, telemetry and upgrades.
+- **Acceptance IDs:** `KHAHP-36.01A`, `KHAHP-36.01B`, `KHAHP-36.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 36.02 — Browser proxy DNS routing behavior
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of browser proxy dns routing behavior; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Run USER browser checks for DNS-over-HTTPS, WebRTC leakage, telemetry and upgrades.
+- **Acceptance IDs:** `KHAHP-36.02A`, `KHAHP-36.02B`, `KHAHP-36.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 36.03 — WebRTC/STUN local/public IP exposure
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of webrtc/stun local/public ip exposure; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Run USER browser checks for DNS-over-HTTPS, WebRTC leakage, telemetry and upgrades.
+- **Acceptance IDs:** `KHAHP-36.03A`, `KHAHP-36.03B`, `KHAHP-36.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 36.04 — Telemetry and crash-report settings
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of telemetry and crash-report settings; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Run USER browser checks for DNS-over-HTTPS, WebRTC leakage, telemetry and upgrades.
+- **Acceptance IDs:** `KHAHP-36.04A`, `KHAHP-36.04B`, `KHAHP-36.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 36.05 — Safe browsing/prediction/background network features
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of safe browsing/prediction/background network features; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Run USER browser checks for DNS-over-HTTPS, WebRTC leakage, telemetry and upgrades.
+- **Acceptance IDs:** `KHAHP-36.05A`, `KHAHP-36.05B`, `KHAHP-36.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 36.06 — Extension/add-on inventory and trust
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of extension/add-on inventory and trust; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Run USER browser checks for DNS-over-HTTPS, WebRTC leakage, telemetry and upgrades.
+- **Acceptance IDs:** `KHAHP-36.06A`, `KHAHP-36.06B`, `KHAHP-36.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 36.07 — Browser update, profile persistence and leak tests
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of browser update, profile persistence and leak tests; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Run USER browser checks for DNS-over-HTTPS, WebRTC leakage, telemetry and upgrades.
+- **Acceptance IDs:** `KHAHP-36.07A`, `KHAHP-36.07B`, `KHAHP-36.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 37: Application / File / Metadata Privacy
+
+#### 37.01 — Desktop search/indexing services
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of desktop search/indexing services; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Revisit app caches, thumbnails, history retention and runtime confinement.
+- **Acceptance IDs:** `KHAHP-37.01A`, `KHAHP-37.01B`, `KHAHP-37.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 37.02 — Thumbnail and preview cache behavior
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of thumbnail and preview cache behavior; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Revisit app caches, thumbnails, history retention and runtime confinement.
+- **Acceptance IDs:** `KHAHP-37.02A`, `KHAHP-37.02B`, `KHAHP-37.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 37.03 — Recent-files/history and clipboard retention
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of recent-files/history and clipboard retention; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Revisit app caches, thumbnails, history retention and runtime confinement.
+- **Acceptance IDs:** `KHAHP-37.03A`, `KHAHP-37.03B`, `KHAHP-37.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 37.04 — Document/image metadata handling
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of document/image metadata handling; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Revisit app caches, thumbnails, history retention and runtime confinement.
+- **Acceptance IDs:** `KHAHP-37.04A`, `KHAHP-37.04B`, `KHAHP-37.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 37.05 — Temporary-file and application-cache exposure
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of temporary-file and application-cache exposure; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Revisit app caches, thumbnails, history retention and runtime confinement.
+- **Acceptance IDs:** `KHAHP-37.05A`, `KHAHP-37.05B`, `KHAHP-37.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 37.06 — Sandboxed versus unsandboxed application inventory
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of sandboxed versus unsandboxed application inventory; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Revisit app caches, thumbnails, history retention and runtime confinement.
+- **Acceptance IDs:** `KHAHP-37.06A`, `KHAHP-37.06B`, `KHAHP-37.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 37.07 — Metadata-removal workflow and regression testing
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of metadata-removal workflow and regression testing; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Revisit app caches, thumbnails, history retention and runtime confinement.
+- **Acceptance IDs:** `KHAHP-37.07A`, `KHAHP-37.07B`, `KHAHP-37.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 38: Camera / Microphone / Power / Screen Lock
+
+#### 38.01 — Camera hardware/device exposure
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of camera hardware/device exposure; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Prove actual idle lock, lid/suspend/resume authentication and hotplug behavior.
+- **Acceptance IDs:** `KHAHP-38.01A`, `KHAHP-38.01B`, `KHAHP-38.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 38.02 — Microphone hardware/device exposure
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of microphone hardware/device exposure; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Prove actual idle lock, lid/suspend/resume authentication and hotplug behavior.
+- **Acceptance IDs:** `KHAHP-38.02A`, `KHAHP-38.02B`, `KHAHP-38.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 38.03 — Bluetooth/rfkill interaction with peripherals
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of bluetooth/rfkill interaction with peripherals; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Prove actual idle lock, lid/suspend/resume authentication and hotplug behavior.
+- **Acceptance IDs:** `KHAHP-38.03A`, `KHAHP-38.03B`, `KHAHP-38.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 38.04 — Screen-lock timeout and authentication
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of screen-lock timeout and authentication; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Prove actual idle lock, lid/suspend/resume authentication and hotplug behavior.
+- **Acceptance IDs:** `KHAHP-38.04A`, `KHAHP-38.04B`, `KHAHP-38.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 38.05 — Suspend/lock-on-lid and idle behavior
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of suspend/lock-on-lid and idle behavior; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Prove actual idle lock, lid/suspend/resume authentication and hotplug behavior.
+- **Acceptance IDs:** `KHAHP-38.05A`, `KHAHP-38.05B`, `KHAHP-38.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 38.06 — Hibernation configuration and encrypted-swap implications
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of hibernation configuration and encrypted-swap implications; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Prove actual idle lock, lid/suspend/resume authentication and hotplug behavior.
+- **Acceptance IDs:** `KHAHP-38.06A`, `KHAHP-38.06B`, `KHAHP-38.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 38.07 — Shutdown-versus-suspend operational policy
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of shutdown-versus-suspend operational policy; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Prove actual idle lock, lid/suspend/resume authentication and hotplug behavior.
+- **Acceptance IDs:** `KHAHP-38.07A`, `KHAHP-38.07B`, `KHAHP-38.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 39: Firmware / BIOS / Secure Boot / TPM
+
+#### 39.01 — BIOS/UEFI vendor, model and firmware version
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of bios/uefi vendor, model and firmware version; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Owner-controlled firmware/DMA/boot policy inspection; no blind MOK re-enrollment.
+- **Acceptance IDs:** `KHAHP-39.01A`, `KHAHP-39.01B`, `KHAHP-39.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 39.02 — fwupd device/security-attribute inventory
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of fwupd device/security-attribute inventory; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Owner-controlled firmware/DMA/boot policy inspection; no blind MOK re-enrollment.
+- **Acceptance IDs:** `KHAHP-39.02A`, `KHAHP-39.02B`, `KHAHP-39.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 39.03 — Secure Boot state and Setup Mode
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of secure boot state and setup mode; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Owner-controlled firmware/DMA/boot policy inspection; no blind MOK re-enrollment.
+- **Acceptance IDs:** `KHAHP-39.03A`, `KHAHP-39.03B`, `KHAHP-39.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 39.04 — TPM presence, version and ownership state
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of tpm presence, version and ownership state; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Owner-controlled firmware/DMA/boot policy inspection; no blind MOK re-enrollment.
+- **Acceptance IDs:** `KHAHP-39.04A`, `KHAHP-39.04B`, `KHAHP-39.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 39.05 — BIOS/UEFI administrator password manual check
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of bios/uefi administrator password manual check; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Owner-controlled firmware/DMA/boot policy inspection; no blind MOK re-enrollment.
+- **Acceptance IDs:** `KHAHP-39.05A`, `KHAHP-39.05B`, `KHAHP-39.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 39.06 — PXE/CSM/external-boot/manual boot- order policy
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of pxe/csm/external-boot/manual boot- order policy; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Owner-controlled firmware/DMA/boot policy inspection; no blind MOK re-enrollment.
+- **Acceptance IDs:** `KHAHP-39.06A`, `KHAHP-39.06B`, `KHAHP-39.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 39.07 — Firmware update, DKMS/MOK and Secure-Boot readiness
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of firmware update, dkms/mok and secure-boot readiness; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Owner-controlled firmware/DMA/boot policy inspection; no blind MOK re-enrollment.
+- **Acceptance IDs:** `KHAHP-39.07A`, `KHAHP-39.07B`, `KHAHP-39.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 40: Auditd / AIDE / Integrity Monitoring
+
+#### 40.01 — auditd package/service state
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of auditd package/service state; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Verify permitted audit event retrieval, AIDE alert lifecycle and retention; do not reinitialize AIDE.
+- **Acceptance IDs:** `KHAHP-40.01A`, `KHAHP-40.01B`, `KHAHP-40.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 40.02 — Audit rule inventory and immutable/finalize policy
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of audit rule inventory and immutable/finalize policy; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Verify permitted audit event retrieval, AIDE alert lifecycle and retention; do not reinitialize AIDE.
+- **Acceptance IDs:** `KHAHP-40.02A`, `KHAHP-40.02B`, `KHAHP-40.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 40.03 — Privileged-command and identity- change audit coverage
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of privileged-command and identity- change audit coverage; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Verify permitted audit event retrieval, AIDE alert lifecycle and retention; do not reinitialize AIDE.
+- **Acceptance IDs:** `KHAHP-40.03A`, `KHAHP-40.03B`, `KHAHP-40.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 40.04 — AIDE package/database/configuration state
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of aide package/database/configuration state; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Verify permitted audit event retrieval, AIDE alert lifecycle and retention; do not reinitialize AIDE.
+- **Acceptance IDs:** `KHAHP-40.04A`, `KHAHP-40.04B`, `KHAHP-40.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 40.05 — File-integrity baseline and scheduled checks
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of file-integrity baseline and scheduled checks; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Verify permitted audit event retrieval, AIDE alert lifecycle and retention; do not reinitialize AIDE.
+- **Acceptance IDs:** `KHAHP-40.05A`, `KHAHP-40.05B`, `KHAHP-40.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 40.06 — Audit-log ownership, rotation and tamper resistance
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of audit-log ownership, rotation and tamper resistance; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Verify permitted audit event retrieval, AIDE alert lifecycle and retention; do not reinitialize AIDE.
+- **Acceptance IDs:** `KHAHP-40.06A`, `KHAHP-40.06B`, `KHAHP-40.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 40.07 — CIS/DISA accountability-gap analysis
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of cis/disa accountability-gap analysis; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Verify permitted audit event retrieval, AIDE alert lifecycle and retention; do not reinitialize AIDE.
+- **Acceptance IDs:** `KHAHP-40.07A`, `KHAHP-40.07B`, `KHAHP-40.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 41: Cron / Timers / Persistence / Supply Chain
+
+#### 41.01 — cron/anacron job inventory
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of cron/anacron job inventory; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Establish desktop autostart provenance, signing sources and two-boot drift.
+- **Acceptance IDs:** `KHAHP-41.01A`, `KHAHP-41.01B`, `KHAHP-41.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 41.02 — systemd timer inventory
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of systemd timer inventory; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Establish desktop autostart provenance, signing sources and two-boot drift.
+- **Acceptance IDs:** `KHAHP-41.02A`, `KHAHP-41.02B`, `KHAHP-41.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 41.03 — User autostart and desktop persistence inventory
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of user autostart and desktop persistence inventory; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Establish desktop autostart provenance, signing sources and two-boot drift.
+- **Acceptance IDs:** `KHAHP-41.03A`, `KHAHP-41.03B`, `KHAHP-41.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 41.04 — Package repository and signing-key provenance
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of package repository and signing-key provenance; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Establish desktop autostart provenance, signing sources and two-boot drift.
+- **Acceptance IDs:** `KHAHP-41.04A`, `KHAHP-41.04B`, `KHAHP-41.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 41.05 — APT pinning/holds and update-policy review
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of apt pinning/holds and update-policy review; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Establish desktop autostart provenance, signing sources and two-boot drift.
+- **Acceptance IDs:** `KHAHP-41.05A`, `KHAHP-41.05B`, `KHAHP-41.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 41.06 — Unexpected startup scripts/services/modules
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of unexpected startup scripts/services/modules; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Establish desktop autostart provenance, signing sources and two-boot drift.
+- **Acceptance IDs:** `KHAHP-41.06A`, `KHAHP-41.06B`, `KHAHP-41.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 41.07 — Supply-chain drift and reboot- persistence evidence
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of supply-chain drift and reboot- persistence evidence; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Establish desktop autostart provenance, signing sources and two-boot drift.
+- **Acceptance IDs:** `KHAHP-41.07A`, `KHAHP-41.07B`, `KHAHP-41.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 42: Credentials / SSH Keys / Secrets / Backup
+
+#### 42.01 — SSH private-key inventory and permissions
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of ssh private-key inventory and permissions; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Complete actual encrypted backup, isolated restore and release-secret exclusion.
+- **Acceptance IDs:** `KHAHP-42.01A`, `KHAHP-42.01B`, `KHAHP-42.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 42.02 — API/token/secret storage locations
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of api/token/secret storage locations; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Complete actual encrypted backup, isolated restore and release-secret exclusion.
+- **Acceptance IDs:** `KHAHP-42.02A`, `KHAHP-42.02B`, `KHAHP-42.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 42.03 — Password-manager selection and vault policy
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of password-manager selection and vault policy; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Complete actual encrypted backup, isolated restore and release-secret exclusion.
+- **Acceptance IDs:** `KHAHP-42.03A`, `KHAHP-42.03B`, `KHAHP-42.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 42.04 — FIDO2/YubiKey readiness and hardware-backed keys
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of fido2/yubikey readiness and hardware-backed keys; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Complete actual encrypted backup, isolated restore and release-secret exclusion.
+- **Acceptance IDs:** `KHAHP-42.04A`, `KHAHP-42.04B`, `KHAHP-42.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 42.05 — Recovery-code generation and offline storage
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of recovery-code generation and offline storage; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Complete actual encrypted backup, isolated restore and release-secret exclusion.
+- **Acceptance IDs:** `KHAHP-42.05A`, `KHAHP-42.05B`, `KHAHP-42.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 42.06 — Encrypted backup creation and retention
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of encrypted backup creation and retention; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Complete actual encrypted backup, isolated restore and release-secret exclusion.
+- **Acceptance IDs:** `KHAHP-42.06A`, `KHAHP-42.06B`, `KHAHP-42.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 42.07 — Restore test, key recovery and disaster-recovery evidence
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of restore test, key recovery and disaster-recovery evidence; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Complete actual encrypted backup, isolated restore and release-secret exclusion.
+- **Acceptance IDs:** `KHAHP-42.07A`, `KHAHP-42.07B`, `KHAHP-42.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 43: CIS / DISA GPOS / KSPP Mapping
+
+#### 43.01 — CIS Debian 13 Level 2 applicability mapping
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of cis debian 13 level 2 applicability mapping; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm applicability and source mapping one by one; no certification claim.
+- **Acceptance IDs:** `KHAHP-43.01A`, `KHAHP-43.01B`, `KHAHP-43.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 43.02 — DISA GPOS/SRG objective mapping
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of disa gpos/srg objective mapping; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm applicability and source mapping one by one; no certification claim.
+- **Acceptance IDs:** `KHAHP-43.02A`, `KHAHP-43.02B`, `KHAHP-43.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 43.03 — KSPP/kernel-self-protection mapping
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of kspp/kernel-self-protection mapping; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm applicability and source mapping one by one; no certification claim.
+- **Acceptance IDs:** `KHAHP-43.03A`, `KHAHP-43.03B`, `KHAHP-43.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 43.04 — Kicksecure-native equivalent control mapping
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of kicksecure-native equivalent control mapping; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm applicability and source mapping one by one; no certification claim.
+- **Acceptance IDs:** `KHAHP-43.04A`, `KHAHP-43.04B`, `KHAHP-43.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 43.05 — Project-extension control mapping
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of project-extension control mapping; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm applicability and source mapping one by one; no certification claim.
+- **Acceptance IDs:** `KHAHP-43.05A`, `KHAHP-43.05B`, `KHAHP-43.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 43.06 — Exception/N-A/manual-control rationale
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of exception/n-a/manual-control rationale; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm applicability and source mapping one by one; no certification claim.
+- **Acceptance IDs:** `KHAHP-43.06A`, `KHAHP-43.06B`, `KHAHP-43.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 43.07 — Evidence citation and no-certification disclaimer
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of evidence citation and no-certification disclaimer; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Confirm applicability and source mapping one by one; no certification claim.
+- **Acceptance IDs:** `KHAHP-43.07A`, `KHAHP-43.07B`, `KHAHP-43.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+### Section 44: Final Acceptance / Evidence / Scoring
+
+#### 44.01 — Full reboot persistence acceptance
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of full reboot persistence acceptance; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Complete two-role/two-boot regressions, negative tests, recovery and final owner sign-off.
+- **Acceptance IDs:** `KHAHP-44.01A`, `KHAHP-44.01B`, `KHAHP-44.01C` — **OPEN / NOT SIGNED OFF**.
+
+#### 44.02 — USER-mode regression acceptance
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of user-mode regression acceptance; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Complete two-role/two-boot regressions, negative tests, recovery and final owner sign-off.
+- **Acceptance IDs:** `KHAHP-44.02A`, `KHAHP-44.02B`, `KHAHP-44.02C` — **OPEN / NOT SIGNED OFF**.
+
+#### 44.03 — SYSMAINT-mode regression acceptance
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of sysmaint-mode regression acceptance; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Complete two-role/two-boot regressions, negative tests, recovery and final owner sign-off.
+- **Acceptance IDs:** `KHAHP-44.03A`, `KHAHP-44.03B`, `KHAHP-44.03C` — **OPEN / NOT SIGNED OFF**.
+
+#### 44.04 — Network/DNS/firewall/Tor/USB negative-test acceptance
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of network/dns/firewall/tor/usb negative-test acceptance; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Complete two-role/two-boot regressions, negative tests, recovery and final owner sign-off.
+- **Acceptance IDs:** `KHAHP-44.04A`, `KHAHP-44.04B`, `KHAHP-44.04C` — **OPEN / NOT SIGNED OFF**.
+
+#### 44.05 — Recovery/rollback/backup acceptance
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of recovery/rollback/backup acceptance; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Complete two-role/two-boot regressions, negative tests, recovery and final owner sign-off.
+- **Acceptance IDs:** `KHAHP-44.05A`, `KHAHP-44.05B`, `KHAHP-44.05C` — **OPEN / NOT SIGNED OFF**.
+
+#### 44.06 — Evidence completeness, hashes and chain-of-custody bundle
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of evidence completeness, hashes and chain-of-custody bundle; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Complete two-role/two-boot regressions, negative tests, recovery and final owner sign-off.
+- **Acceptance IDs:** `KHAHP-44.06A`, `KHAHP-44.06B`, `KHAHP-44.06C` — **OPEN / NOT SIGNED OFF**.
+
+#### 44.07 — Final scorecard, residual risk and operator sign-off
+
+- **Evidence status:** Provisional historical research, no current target-run acceptance.
+- **Link to tracked findings:** Section-level review, original private dossier; no family-specific defect inferred.
+- **Required A/B/C evidence:** Provenance of final scorecard, residual risk and operator sign-off; effective behavior in applicable boot role; controlled persistence/negative/recovery evidence or written exception.
+- **Unresolved section-level work:** Complete two-role/two-boot regressions, negative tests, recovery and final owner sign-off.
+- **Acceptance IDs:** `KHAHP-44.07A`, `KHAHP-44.07B`, `KHAHP-44.07C` — **OPEN / NOT SIGNED OFF**.
+
+
+## 9. Future implementation and evidence publication process
+
+| Stage | Required evidence | Safety/approval gate |
+|---|---|---|
+| 1. Triage | Proven observation, family ID and actual threat | Separate confirmed defect from test-only, enhancement and exception |
+| 2. Ownership | Package/source provenance and USER/SYSMAINT scope | No blind changes to vendor-managed policy |
+| 3. Design | Minimal configuration delta, dependency analysis, diff | Written approval; impact and recovery plan |
+| 4. QA | Offline parser/syntax tests and isolated compatibility tests | No mutation of production laptop during design |
+| 5. Apply | Pinned version/hash, role verification, backed-up original | Only explicitly authorized targeted change |
+| 6. Runtime B | Positive and appropriate authorized negative tests | Retain only sanitized public summary |
+| 7. Persistence C | Reboot/reconnect/upgrade and recovery checks | Do not close from source presence alone |
+| 8. Closure | Reviewed A/B/C evidence, exceptions and reviewer | Final owner acceptance and documented residual risk |
+
+**Production safety policies:** Preserve built-in input and recovery access before USBGuard changes; do not interrupt Unbound/nftables/Tor as a casual probe; prohibit arbitrary external DNS targets; use a disposable VM for destructive clock/boot or panic experiments; do not reinitialize AIDE baseline; do not share private backup/recovery secrets.
+
+## 10. Proposed commercial-image release test suite — 60 tests
+
+**All 60 tests below remain PROPOSED / NOT EXECUTED.** They provide release requirements, not evidence of a product already passing or being distributed.
+
+### Clean-image common release requirements (20 tests)
+
+| Test ID | Planned test | Gate status |
+|---|---|---|
+| `KHAHP-REL-COM-01` | Reproducible upstream source | NOT TESTED |
+| `KHAHP-REL-COM-02` | Package provenance | NOT TESTED |
+| `KHAHP-REL-COM-03` | Build isolation | NOT TESTED |
+| `KHAHP-REL-COM-04` | Credential exclusion | NOT TESTED |
+| `KHAHP-REL-COM-05` | Unique machine identity | NOT TESTED |
+| `KHAHP-REL-COM-06` | Unique SSH host keys | NOT TESTED |
+| `KHAHP-REL-COM-07` | SSH access policy | NOT TESTED |
+| `KHAHP-REL-COM-08` | Privileges and boot-role separation | NOT TESTED |
+| `KHAHP-REL-COM-09` | Default firewall | NOT TESTED |
+| `KHAHP-REL-COM-10` | DNS resolver protection | NOT TESTED |
+| `KHAHP-REL-COM-11` | Network privacy behavior | NOT TESTED |
+| `KHAHP-REL-COM-12` | MAC and device privacy | NOT TESTED |
+| `KHAHP-REL-COM-13` | Mandatory access controls | NOT TESTED |
+| `KHAHP-REL-COM-14` | Kernel hardening | NOT TESTED |
+| `KHAHP-REL-COM-15` | Audit visibility | NOT TESTED |
+| `KHAHP-REL-COM-16` | File integrity monitoring | NOT TESTED |
+| `KHAHP-REL-COM-17` | Upgrade safety | NOT TESTED |
+| `KHAHP-REL-COM-18` | Backup and restoration | NOT TESTED |
+| `KHAHP-REL-COM-19` | Release signing | NOT TESTED |
+| `KHAHP-REL-COM-20` | Customer documentation and licensing | NOT TESTED |
+
+### Physical ISO / USB release requirements (20 tests)
+
+| Test ID | Planned test | Gate status |
+|---|---|---|
+| `KHAHP-REL-ISO-01` | UEFI USB boot | NOT TESTED |
+| `KHAHP-REL-ISO-02` | Installer storage detection | NOT TESTED |
+| `KHAHP-REL-ISO-03` | Fresh encrypted installation | NOT TESTED |
+| `KHAHP-REL-ISO-04` | Encryption recovery | NOT TESTED |
+| `KHAHP-REL-ISO-05` | Secure Boot enrollment | NOT TESTED |
+| `KHAHP-REL-ISO-06` | Firmware Setup Mode | NOT TESTED |
+| `KHAHP-REL-ISO-07` | TPM optional path | NOT TESTED |
+| `KHAHP-REL-ISO-08` | Intel and AMD support | NOT TESTED |
+| `KHAHP-REL-ISO-09` | Graphics and desktop | NOT TESTED |
+| `KHAHP-REL-ISO-10` | Wireless networking | NOT TESTED |
+| `KHAHP-REL-ISO-11` | Ethernet and hotplug | NOT TESTED |
+| `KHAHP-REL-ISO-12` | USBGuard defaults | NOT TESTED |
+| `KHAHP-REL-ISO-13` | Installer device safety | NOT TESTED |
+| `KHAHP-REL-ISO-14` | DMA/IOMMU capabilities | NOT TESTED |
+| `KHAHP-REL-ISO-15` | Signed module lifecycle | NOT TESTED |
+| `KHAHP-REL-ISO-16` | Physical webcam/microphone | NOT TESTED |
+| `KHAHP-REL-ISO-17` | Power and RAM-wipe process | NOT TESTED |
+| `KHAHP-REL-ISO-18` | BIOS recovery restrictions | NOT TESTED |
+| `KHAHP-REL-ISO-19` | Multi-boot/firmware resilience | NOT TESTED |
+| `KHAHP-REL-ISO-20` | Fresh-install two-device comparison | NOT TESTED |
+
+### KVM / QCOW2 requirements (10 tests)
+
+| Test ID | Planned test | Gate status |
+|---|---|---|
+| `KHAHP-REL-KVM-01` | QCOW2 import and boot | NOT TESTED |
+| `KHAHP-REL-KVM-02` | Fresh clone identity | NOT TESTED |
+| `KHAHP-REL-KVM-03` | Virtual firmware choice | NOT TESTED |
+| `KHAHP-REL-KVM-04` | Virtual TPM support | NOT TESTED |
+| `KHAHP-REL-KVM-05` | Host-guest firewall isolation | NOT TESTED |
+| `KHAHP-REL-KVM-06` | Guest disk encryption | NOT TESTED |
+| `KHAHP-REL-KVM-07` | Virtio device support | NOT TESTED |
+| `KHAHP-REL-KVM-08` | KVM snapshot and restore | NOT TESTED |
+| `KHAHP-REL-KVM-09` | KVM version regression | NOT TESTED |
+| `KHAHP-REL-KVM-10` | QCOW2 sanitized release | NOT TESTED |
+
+### VirtualBox / OVA requirements (10 tests)
+
+| Test ID | Planned test | Gate status |
+|---|---|---|
+| `KHAHP-REL-OVA-01` | OVA packaging and import | NOT TESTED |
+| `KHAHP-REL-OVA-02` | Unique identity on import | NOT TESTED |
+| `KHAHP-REL-OVA-03` | Clipboard and drag-drop | NOT TESTED |
+| `KHAHP-REL-OVA-04` | Shared-folder isolation | NOT TESTED |
+| `KHAHP-REL-OVA-05` | USB passthrough restriction | NOT TESTED |
+| `KHAHP-REL-OVA-06` | VirtualBox networking | NOT TESTED |
+| `KHAHP-REL-OVA-07` | Guest addition safety | NOT TESTED |
+| `KHAHP-REL-OVA-08` | Virtual disk recovery | NOT TESTED |
+| `KHAHP-REL-OVA-09` | Supported host matrix | NOT TESTED |
+| `KHAHP-REL-OVA-10` | OVA clean release gate | NOT TESTED |
+
+## 11. Open challenge: requirements for an independently credible submission
+
+Researchers are invited to submit a **threat model, OS/package provenance, tested security deltas, enforcement and non-enforcement results, negative tests, reboot/update persistence, recovery results and justified exceptions**. Screenshots or claimed hardening scores alone are insufficient. Reproduce tests in systems you own or are explicitly authorized to assess. Avoid exploitation of third-party infrastructure and avoid publishing sensitive identifiers or private data.
+
+**No unsupported ranking:** KHAHP does not claim the strongest OS in the world, perfect anonymity, official CIS/DISA certification, universal device compatibility, or a completed Premium Hardened OS release. The product is proposed at **USD $1,250**, subject to proper release acceptance.
+
+## 12. Source bibliography, limits and next-document revision
+
+- **Public upstream:** `elite-cybersecurity-specialist/hardening-challenge` historical README and 308-family register, originally derived from a dated challenge PDF.
+- **Private baseline A:** Sections 01–14 Technical Dossier v1.0, historical Oct 12–15 inspections and documented narrow temporary-filesystem change.
+- **Private baseline B:** Sections 15–24 Technical Dossier v1.0 and 22-item follow-up tracker; original raw source collection only partially embedded in release.
+- **Private baseline C:** Sections 25–34 Technical Documentation v1.0, reconciled 520 historical observations, updated v6.1 USER/SYSMAINT/LAN records and 23-item issue register.
+- **Provisional baseline D:** Sections 35–44 Grand Verifier v1.0 QA Review and historical reconciliation. Offline QA is not a live target run. No completed Section 44 result is claimed.
+- **Private custody:** Original checksummed reports, machine-specific configurations, exact hashes, operator observations, and recovery evidence are withheld from the public publication unless independently sanitized and approved.
+
+**Next revision trigger:** When Sections 35–44 have real USER/SYSMAINT evidence, controlled manual/negative tests, actual encrypted backup/restore evidence, source-to-runtime reconciliations and sign-off decisions, issue a new reviewed release. Update Sections 01–34 if their operational state changes. Preserve historical public revisions in Git history.
+
+**Public contact:** ELITE CYBERSECURITY SPECIALIST · Malaysia · [GitHub project repository](https://github.com/elite-cybersecurity-specialist/hardening-challenge).
+
+---
+
+*Copyright and third-party notices:* Kicksecure, Debian, CIS, DISA and other third-party tools and references remain subject to their respective license, trademark and usage terms. A license for original KHAHP publication content should be separately specified by the owner; none is implied by publication.

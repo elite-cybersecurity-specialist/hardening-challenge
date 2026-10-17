@@ -1,121 +1,115 @@
 # KHAHP — Kicksecure High-Assurance Hardening Project
 
-### Open Cybersecurity Hardening Challenge
+## Open Cybersecurity Hardening Challenge
 
-**ELITE CYBERSECURITY SPECIALIST** · Malaysia  
-**Yuhisern Navaratnam** · Cybersecurity Engineer · Founder & Project Architect  
-**Over 120 hours of engineering and counting**
+**ELITE CYBERSECURITY SPECIALIST · Malaysia**
 
-![KHAHP Open Cybersecurity Hardening Challenge](assets/open-hardening-challenge.png)
+> Can you demonstrate a stronger, better-verified defensive operating-system hardening result?
 
-> **Can you demonstrate a stronger, better-verified Kicksecure hardening result?**
+KHAHP is an ongoing cybersecurity engineering project built on Kicksecure. We investigate operating-system attack surfaces, implement suitable defensive controls, verify their effectiveness, identify remaining weaknesses, and develop reproducible hardening and recovery procedures.
 
-KHAHP is an ongoing, evidence-driven effort to identify security weaknesses, attack-surface exposures, missing safeguards and hardening opportunities in a Kicksecure-based system, then strengthen, test, and maintain the applicable protections. The project publishes a **44-category technical roadmap** to invite independently reproducible security comparisons.
+The challenge is open to cybersecurity engineers, security researchers, operating-system specialists and independent reviewers.
 
-## Project scope
+**Public documentation update: 17 October 2026 — v3.0**
 
-| Scope | Defined items |
-|:--|--:|
-| Parent security categories | **44** |
-| Technical control families | **308** |
-| Core A/B/C checkpoints | **924** |
-| Proposed commercial image-release tests | **60** |
-| **Total verification scope** | **984** |
+## Project Scope
 
-The program covers **900+ identified security-weakness and hardening checkpoints**. The 924 core checkpoints are not 924 confirmed exploitable vulnerabilities or 924 completed patches. Every control is evaluated for **A — configuration/provenance**, **B — runtime enforcement**, and **C — persistence, negative testing or recovery**. The objective is to remediate real weaknesses and close all applicable checkpoints with evidence or justified exceptions.
+| Measurement | Scope |
+|---|---:|
+| Security sections | 44 |
+| Technical control families | 308 |
+| A/B/C acceptance checkpoints | 924 |
+| Proposed commercial release tests | 60 |
+| Total planned verification scope | 984 |
 
-**Project status:** Archived reconnaissance and family-level evidence review completed. **Staged hardening and final acceptance remain in progress.** No completed independent certification or released commercial image is claimed.
+These are security engineering and verification requirements, not 984 confirmed vulnerabilities or completed patches.
 
-## Why Kicksecure?
+Each control requires three kinds of evidence:
 
-[Kicksecure](https://www.kicksecure.com/) is a Debian-derived, security-focused operating system built to reduce attack surfaces and support stronger-than-default defensive practices. It provides a foundation for:
+- **A — Source and provenance:** intended configuration and origin.
+- **B — Runtime enforcement:** actual behavior under controlled tests.
+- **C — Persistence and recovery:** reboot, regression, negative-test and recovery evidence where applicable.
 
-- Separation of restricted day-to-day **USER** operation from **SYSMAINT** administration.
-- Linux kernel and application hardening, including AppArmor confinement.
-- Service minimization, restrictive networking, auditing and file-integrity monitoring.
-- Privacy-conscious operation and integration with more demanding network-security policies.
-- Reproducible verification, long-term maintenance and controlled recovery.
+## Current Engineering Progress
 
-Kicksecure is **not a guarantee of anonymity** or immunity from compromise. Privacy routing, operational security, firmware capabilities and ongoing updates remain part of the threat model.
+| Sections | Status |
+|---|---|
+| 01–14 | Technical documentation baseline established |
+| 15–24 | Technical documentation baseline established |
+| 25–34 | Technical documentation baseline established |
+| 35–44 | Verification and evidence reconciliation ongoing |
 
-## Who is the project intended to support?
+Sections 01–34 have documented technical baselines, including historical implementation and verification evidence. Documentation completion is not equivalent to final security acceptance. The full A/B/C assessment remains open.
 
-High-sensitivity use cases such as authorized law-enforcement investigations, government operations, investigative journalism and source protection, senior public officials, sensitive financial operations, critical infrastructure and executive endpoints. Actual use in classified or regulated environments requires the organization’s own authorization, policies and assessment.
+Section 44 final acceptance is not yet complete.
 
-## The open challenge
+## Public Evidence and Outstanding Work
 
-We invite cybersecurity specialists, system-hardening researchers, operating-system engineers, red and blue teams, and high-assurance reviewers to demonstrate **stronger protections backed by better evidence**.
+Our published technical reference documents observed protections, known exceptions, verification limitations, potential weaknesses and future remediation requirements.
 
-A convincing submission should include:
+Current investigation areas include:
 
-1. A clear threat model, operating-system and package versions, and test environment.
-2. Actual attack-surface reduction and least-privilege policy—not just configuration screenshots.
-3. Runtime enforcement and authorized negative tests.
-4. Reboot/upgrade persistence, failure handling, and tested recovery.
-5. Transparent exceptions, compatibility costs, and independently inspectable artifacts.
+- Application confinement, permissions and privileged surfaces.
+- USBGuard peripheral enforcement and policy precedence.
+- Wi-Fi identity and DHCP privacy.
+- Authenticated DNS-over-TLS and DNS leak prevention.
+- Effective nftables firewall verdicts.
+- LAN discovery and multicast exposure.
+- Selective Tor application routing and DNS isolation.
+- Browser DoH, WebRTC and telemetry behavior.
+- Firmware security and hardware-dependent limitations.
+- Auditd, AIDE and supply-chain integrity evidence.
+- Encrypted backup, restoration and recovery.
+- Reboot persistence and final cross-section acceptance.
 
-This is an **open technical challenge**, not a claim that KHAHP has achieved a certified world record or surpassed every alternative hardened system.
+An unresolved test is not automatically a confirmed vulnerability. Proposed repairs require evidence, review, approval and rollback.
 
-## Standards and engineering approach
+## Full Technical Documentation
 
-The work draws on **CIS Debian Linux 13 Benchmark Level 2 Workstation**, historical STIG-oriented benchmark material, relevant **DISA GPOS SRG** security objectives and **KSPP** kernel-self-protection principles. Benchmark references guide a platform-specific assessment; they do **not** imply official DISA certification or universal CIS compliance.
+**[Read the complete 44-section technical register](KHAHP_FULL_TECHNICAL_REGISTER.md)**
 
-The engineering lifecycle is **Harden → Test → Validate → Remediate → Re-test → Maintain**.
+**[Read the public master PDF — v3.0](docs/KHAHP_Public_Master_Evidence_Sections_01-44_v3.0.pdf)**
 
-## Staged implementation plan
+The technical register includes all 308 control families, their 924 acceptance identifiers, public evidence-to-action analysis, and the 60 planned commercial-image release tests. Sections 35–44 remain provisional until further testing is complete.
 
-| Stage | Implementation workstream | Categories |
-|:--|:--|:--|
-| **S0** | Safety, rollback, backups and controlled change | Prerequisite |
-| **S1** | AppArmor, exposed permissions, application/metadata privacy | 15, 17, 37 |
-| **S2** | Disk encryption, boot chain, kernel, memory, firmware | 06–14, 24–25, 39 |
-| **S3** | Identity, privileges, system services, authentication, peripherals | 01–05, 16, 18–23, 26, 38 |
-| **S4** | Wi-Fi, DNS, firewall, Tor, browser privacy and leak controls | 27–36 |
-| **S5** | Audit logs, integrity monitoring and persistence | 40–41 |
-| **S6** | Credentials, secrets, encrypted backup and full restore | 42 |
-| **S7** | CIS / STIG-oriented / KSPP evidence and exceptions | 43 |
-| **S8** | Regression testing, final acceptance and sign-off | 44 |
-| **R0–R3** | Clean-image common, physical ISO, KVM and VirtualBox release tests | 60 additional tests |
+## KHAHP Premium Hardened OS
 
-**Current highest-priority candidates** include the historical world-writable `setup-dist` directory finding (17), USER application/AppArmor confinement gaps (15/37), firmware limitations (39), USBGuard effectiveness (26), and USER DNS/firewall negative tests (30/31). These findings require current-state confirmation before changes.
+### Proposed Price: USD $1,250
 
-The [full technical register](KHAHP_FULL_TECHNICAL_REGISTER.md) contains **all 44 categories, 308 named control families, 924 core checkpoint IDs and 60 proposed release tests**, including original source-report filenames, historical evidence and implementation actions.
+The planned premium edition will focus on high-assurance defensive system hardening, evidence-driven verification, privacy-conscious configuration and recoverable deployment.
 
-## Planned KHAHP Premium Hardened OS — USD 1,250
+| Edition | Planned delivery |
+|---|---|
+| Physical | Bootable ISO / USB installation |
+| KVM | QCOW2 virtual machine |
+| VirtualBox | OVA virtual appliance |
 
-**The proposed price is USD $1,250; commercial deployment has not yet been released or accepted.** The planned editions are:
+The commercial editions remain under development. No final product release, complete certification, or universal security guarantee is claimed.
 
-| Edition | Format | Intended deployment |
-|:--|:--|:--|
-| Physical | **Bootable ISO / USB pendrive** | Compatible laptops and desktops |
-| KVM | **QCOW2** | QEMU/KVM virtual machines |
-| VirtualBox | **OVA** | VirtualBox appliances |
+Release engineering will require clean reproducible builds, unique installation identities, encrypted storage where applicable, secure configuration, hardware compatibility, and independently tested recovery procedures.
 
-Each target needs independent fresh-install, first-boot identity generation, encryption and recovery testing. The commercial artifacts must be created from a clean and version-controlled build—**never by cloning the development laptop**. No developer keys, Wi-Fi profiles, SSH host keys or disk-recovery secrets should be included.
+## Engineering Methodology
 
-## Repository files
+**Harden → Test → Validate → Remediate → Re-test → Maintain**
 
-- [`KHAHP_FULL_TECHNICAL_REGISTER.md`](KHAHP_FULL_TECHNICAL_REGISTER.md) — full source-derived 984-check implementation reference.
-- [`assets/open-hardening-challenge.png`](assets/open-hardening-challenge.png) — promotional graphic extracted from the attached project PDF.
-- [`assets/`](assets/) — additional public-facing visual assets.
+Relevant reference frameworks include CIS Debian Linux 13 Level 2 Workstation, DISA GPOS SRG security objectives, historical STIG-oriented material and KSPP guidance. These are engineering references, not claims of official CIS or DISA certification.
 
-> **Publication safety:** Do not upload live credentials, keys, sensitive system inventories, private network configurations, identifying host metadata, or unredacted operational reports. Publish only sanitized evidence that you have reviewed.
+## Open Challenge Rules
 
-## Project Author & Contact
+Security researchers are invited to demonstrate improvements using clearly defined threat models, reproducible evidence, runtime negative tests, recovery validation and transparent compatibility exceptions.
 
-**Yuhisern Navaratnam**  
-Cybersecurity Engineer · Founder & Project Architect  
+This challenge is not a claim that KHAHP is invulnerable, the world's most secure operating system, or fully completed.
+
+## Public Disclosure Policy
+
+Private reports, credentials, machine identifiers, network addresses, encryption/recovery secrets and sensitive internal configurations are not published. Only reviewed, sanitized technical evidence is intended for this public repository.
+
+## Project
+
 **ELITE CYBERSECURITY SPECIALIST**
 
-**Country:** Malaysia  
-**Business Registration:** 202403184091 (MA0319303-P)
+Malaysia
 
-**Email:** [yuhisern@protonmail.com](mailto:yuhisern@protonmail.com)  
-**Phone / WhatsApp:** [+60 17-279 1717](https://wa.me/60172791717)  
-**TikTok:** [@Yuhisern](https://www.tiktok.com/@Yuhisern)
+**KHAHP — An ongoing defensive security engineering challenge.**
 
----
-
-### How much are you willing to pay to achieve near maximum security?
-
-**License / reuse terms:** To be published by the project owner. Kicksecure and third-party components retain their own licenses and trademarks. Do not assume this repository grants a license until its terms are explicitly added.
+Existing Kicksecure and third-party licenses and trademarks remain applicable. Commercial licensing and product release terms will be published when finalized.
