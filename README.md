@@ -1,119 +1,70 @@
 <p align="center">
-  <img src="assets/Hardening-Challenge.jpg" alt="KHAHP Open Cybersecurity Hardening Challenge" width="100%">
+  <img src="assets/Hardening-Challenge.jpg" alt="KHAHP open defensive cybersecurity hardening challenge" width="100%">
 </p>
 
 # KHAHP — Kicksecure High-Assurance Hardening Project
 
-## Open Cybersecurity Hardening Challenge
+**200+ HOURS OF HANDS-ON CYBERSECURITY ENGINEERING, SYSTEM HARDENING AND VERIFICATION**  
+**Elite Cybersecurity Specialist · Malaysia**  
+**Public technical update: v4.0 · 18 October 2026**
 
-**ELITE CYBERSECURITY SPECIALIST · Malaysia**
+> **The open challenge:** Can you demonstrate a stronger, more reproducible and better-evidenced defensive operating-system hardening result?
 
-> Can you demonstrate a stronger, better-verified defensive operating-system hardening result?
+KHAHP is an independently developed hardening and assurance project built on [Kicksecure](https://www.kicksecure.com/). It combines Debian-based security engineering, a distinct USER/SYSMAINT administrative boundary, hardware and boot assurance, kernel protections, network privacy, application isolation, logging, recovery and repeatable negative testing.
 
-KHAHP is an ongoing cybersecurity engineering project built on Kicksecure. We investigate operating-system attack surfaces, implement suitable defensive controls, verify their effectiveness, identify remaining weaknesses, and develop reproducible hardening and recovery procedures.
+**200+ hours** is the project owner's reported cumulative engineering effort, not an independently time-tracked metric.
 
-The challenge is open to cybersecurity engineers, security researchers, operating-system specialists and independent reviewers.
+## Progress and scope
 
-**Public documentation update: 17 October 2026 — v3.0**
-
-## Project Scope
-
-| Measurement | Scope |
-|---|---:|
-| Security sections | 44 |
-| Technical control families | 308 |
-| A/B/C acceptance checkpoints | 924 |
-| Proposed commercial release tests | 60 |
-| Total planned verification scope | 984 |
-
-These are security engineering and verification requirements, not 984 confirmed vulnerabilities or completed patches.
-
-Each control requires three kinds of evidence:
-
-- **A — Source and provenance:** intended configuration and origin.
-- **B — Runtime enforcement:** actual behavior under controlled tests.
-- **C — Persistence and recovery:** reboot, regression, negative-test and recovery evidence where applicable.
-
-## Current Engineering Progress
-
-| Sections | Status |
+| Measure | Current position |
 |---|---|
-| 01–14 | Technical documentation baseline established |
-| 15–24 | Technical documentation baseline established |
-| 25–34 | Technical documentation baseline established |
-| 35–44 | Verification and evidence reconciliation ongoing |
+| Hardening domains | **44** sections |
+| Control families | **308** (7 per section) |
+| Planned A/B/C acceptance gates | **924** (3 per family) |
+| Working milestone | **Sections 01–40 covered by the implementation / investigation program** |
+| Remaining program phases | **41 — persistence/supply chain; 42 — secrets/backup; 43 — standards mapping; 44 — final acceptance** |
+| BIOS / firmware Section 39 | **Owner-declared complete; further BIOS retesting excluded** |
+| Formal 924-gate reviewer signoffs in supplied register | **0 — not yet reconciled into signed evidence** |
+| Proposed commercial-image release tests | **60; planned, not executed** |
 
-Sections 01–34 have documented technical baselines, including historical implementation and verification evidence. Documentation completion is not equivalent to final security acceptance. The full A/B/C assessment remains open.
+**Status distinction:** The owner reports the 01–40 engineering milestone. This is *not* a claim that every Section 01–40 A/B/C gate has been independently signed or that no unverified requirement remains. Section 40 auditd/AIDE lifecycle acceptance and other specifically listed tests still require evidence. Open tests are not, by themselves, confirmed vulnerabilities.
 
-Section 44 final acceptance is not yet complete.
+## Engineering results — selected evidence
 
-## Public Evidence and Outstanding Work
+| Security domain | What was demonstrated | Evidence boundary |
+|---|---|---|
+| USER / SYSMAINT trust boundary | Dedicated ordinary-user and privileged maintenance workflows; read-only USER and SYSMAINT evidence collection | Full lifecycle acceptance remains independent |
+| Filesystem protections | `/tmp` hardened with `nodev,nosuid`; later `/boot` / `/boot/efi` fstab ordering corrected and root validator passed | `/tmp` `noexec` deliberately not applied; fstab post-reboot proof still to be filed |
+| Encryption and boot | LUKS root; Secure Boot enabled in a privileged snapshot; signed Tirdad DKMS observed | Offline key recovery and unsigned-module rejection need controlled proof |
+| Kernel protections | Restricted ptrace, dmesg, BPF, ASLR and protected-file operations observed | Boot flags are not proof of every mitigation |
+| Network and DNS | Local Unbound; DNSSEC positive AD and negative SERVFAIL; configured DNS-over-TLS; active nftables and Tor | Browser bypass, authenticated DoT negative and effective external DNS drop tests are separate |
+| USB and privacy hardware | USBGuard authorizes known input/recovery devices; camera/microphone direct USER opens denied; Bluetooth blocked | External keyboard/mouse and composite-device policy test scope remains explicit |
+| Firefox | Privacy preferences observed; some child processes have seccomp filtering | Vendor AppArmor Firefox profile remains `unconfined` — not a strict-confinement PASS |
+| Desktop privacy and lock | Thumbnail restrictions applied; synthetic and restart evidence; interactive screen lock worked | Five-minute and suspend/resume behavior require distinct evidence |
+| Monitoring | AIDE daily timer active | Auditd snapshot showed no active rules / no daemon PID; Section 40 event and AIDE alert lifecycle pending |
 
-Our published technical reference documents observed protections, known exceptions, verification limitations, potential weaknesses and future remediation requirements.
+### What did we actually fix?
 
-Current investigation areas include:
+The **924 gates are questions to be verified, not 924 discovered weaknesses**. The earlier register has **69 mixed backlog items** (reviews, manual tests, exceptions and changes), not 69 proven vulnerabilities.
 
-- Application confinement, permissions and privileged surfaces.
-- USBGuard peripheral enforcement and policy precedence.
-- Wi-Fi identity and DHCP privacy.
-- Authenticated DNS-over-TLS and DNS leak prevention.
-- Effective nftables firewall verdicts.
-- LAN discovery and multicast exposure.
-- Selective Tor application routing and DNS isolation.
-- Browser DoH, WebRTC and telemetry behavior.
-- Firmware security and hardware-dependent limitations.
-- Auditd, AIDE and supply-chain integrity evidence.
-- Encrypted backup, restoration and recovery.
-- Reboot persistence and final cross-section acceptance.
+At least **three distinct configuration-change events** are identified in the supplied October 18 evidence history: `/tmp` mount hardening, disabling thumbnail generation, and correcting fstab boot-entry ordering. That is **not** a complete tally of all historic fixes or proof that all three changes arose from exploited vulnerabilities. A defensible total needs issue-by-issue before/after evidence review; the [technical register](KHAHP_FULL_TECHNICAL_REGISTER.md) explains what is known.
 
-An unresolved test is not automatically a confirmed vulnerability. Proposed repairs require evidence, review, approval and rollback.
+## Technical documentation
 
-## Full Technical Documentation
+- **[Full 44-section technical register — v4.0](KHAHP_FULL_TECHNICAL_REGISTER.md)** — all 308 family names, 924 A/B/C IDs, evidence findings, historical issue reconciliation and 60 future release tests.
+- **[Public master technical evidence PDF — v4.0](docs/KHAHP_Public_Master_Evidence_Sections_01-44_v4.0.pdf)** — structured, portable public technical report.
 
-**[Read the complete 44-section technical register](KHAHP_FULL_TECHNICAL_REGISTER.md)**
+Raw host-specific logs, identifiers, credentials, device serials, private firewall configurations and encryption/recovery materials are **not** published.
 
-**[Read the public master PDF — v3.0](docs/KHAHP_Public_Master_Evidence_Sections_01-44_v3.0.pdf)**
+## Premium Hardened OS — proposed product, not a released build
 
-The technical register includes all 308 control families, their 924 acceptance identifiers, public evidence-to-action analysis, and the 60 planned commercial-image release tests. Sections 35–44 remain provisional until further testing is complete.
+**Target price: USD $1,250.** Planned formats: physical ISO/USB installation, KVM/QCOW2 virtual machine and VirtualBox/OVA appliance. Each future delivery requires a clean build, unique customer identifiers and keys, compatibility testing, verified recovery and relevant security/third-party licensing. **No consumer ISO or virtual appliance is represented here as currently released or certified.**
 
-## KHAHP Premium Hardened OS
+## Rules of the open challenge
 
-### Proposed Price: USD $1,250
+Provide a threat model, exact configuration provenance, narrowly scoped defensive changes, authorized runtime and negative tests, reboot/upgrade persistence, recovery/rollback proof and reproducible evidence. A screenshot, benchmark score or untested security claim alone is not enough.
 
-The planned premium edition will focus on high-assurance defensive system hardening, evidence-driven verification, privacy-conscious configuration and recoverable deployment.
+**Engineering references:** CIS Debian Linux 13 Level 2 (where applicable), DISA General Purpose OS SRG objectives, KSPP and Kicksecure's own hardening model. These references do not amount to third-party CIS/DISA certification.
 
-| Edition | Planned delivery |
-|---|---|
-| Physical | Bootable ISO / USB installation |
-| KVM | QCOW2 virtual machine |
-| VirtualBox | OVA virtual appliance |
-
-The commercial editions remain under development. No final product release, complete certification, or universal security guarantee is claimed.
-
-Release engineering will require clean reproducible builds, unique installation identities, encrypted storage where applicable, secure configuration, hardware compatibility, and independently tested recovery procedures.
-
-## Engineering Methodology
-
-**Harden → Test → Validate → Remediate → Re-test → Maintain**
-
-Relevant reference frameworks include CIS Debian Linux 13 Level 2 Workstation, DISA GPOS SRG security objectives, historical STIG-oriented material and KSPP guidance. These are engineering references, not claims of official CIS or DISA certification.
-
-## Open Challenge Rules
-
-Security researchers are invited to demonstrate improvements using clearly defined threat models, reproducible evidence, runtime negative tests, recovery validation and transparent compatibility exceptions.
-
-This challenge is not a claim that KHAHP is invulnerable, the world's most secure operating system, or fully completed.
-
-## Public Disclosure Policy
-
-Private reports, credentials, machine identifiers, network addresses, encryption/recovery secrets and sensitive internal configurations are not published. Only reviewed, sanitized technical evidence is intended for this public repository.
-
-## Project
-
-**ELITE CYBERSECURITY SPECIALIST**
-
-Malaysia
-
-**KHAHP — An ongoing defensive security engineering challenge.**
-
-Existing Kicksecure and third-party licenses and trademarks remain applicable. Commercial licensing and product release terms will be published when finalized.
+**Project:** [Elite Cybersecurity Specialist](https://github.com/elite-cybersecurity-specialist) · Malaysia  
+**Revision policy:** evidence-first, read-only review before approved changes, no unreviewed publication of private machine data.
