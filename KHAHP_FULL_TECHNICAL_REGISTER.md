@@ -1,164 +1,117 @@
 # KHAHP — Full Technical Evidence & Engineering Register
 
-**Public Consolidated Release v4.2 · 19 October 2026 (cross-platform positioning and USER evidence update)**  
+**Public Consolidated Release v5.0 · 19 October 2026 · Sections 01-40 project closeout**  
 **Elite Cybersecurity Specialist · Malaysia**  
-**200+ hours of owner-reported engineering · 44 sections · 308 control families · 924 A/B/C assurance checkpoints**  
-**Historical technical observations through 18 October 2026; operator USER spot checks on 19 October 2026**
+**200+ hours of owner-reported engineering · 44 security domains · 308 control families · 924 A/B/C assurance checkpoints**
 
-> **Engineering mission:** Go beyond a conventional baseline-only hardening exercise. Extend Kicksecure's existing defenses by identifying security configuration weaknesses, evaluating additional protective controls, reducing unnecessary attack surface and producing repeatable evidence of enforcement, persistence and recovery — whether or not a specific weakness has been exploited.
+> **Engineering mission:** expose enough real implementation detail to demonstrate the quality of our defensive hardening methodology while keeping private host identifiers, secrets and sensitive operational evidence out of the public repository.
 
 ## 1. Executive engineering position and integrity statement
 
-KHAHP is a high-assurance defensive hardening and verification program for a Kicksecure / Debian 13 laptop. It is not a vulnerability-scanner scorecard. Its core objective is to **maximize practical defensive strength and operating-system resilience**, while respecting vendor safeguards, USER/SYSMAINT privilege separation and physical recovery.
+KHAHP is a high-assurance defensive hardening and verification program for a Kicksecure / Debian 13 laptop. The project uses Kicksecure as a **public reference implementation** for the engineering discipline behind Elite Cybersecurity Specialist hardening services.
 
-### 1.1. What "beyond CIS Level 2" means in this project
+### 1.1. Kicksecure OS Royal Hardening — public reference implementation
 
-The engineering program takes **applicable CIS Debian Linux 13 Level 2 Workstation** recommendations as a reference point and investigates further isolation, kernel and boot controls, network and DNS path validation, device/privacy boundaries, supply-chain assurance, recovery and evidence-driven negative testing. **DISA General Purpose Operating System SRG / applicable STIG-inspired objectives**, **KSPP**, and Kicksecure-native safeguards are additional design references.
+**Kicksecure OS Royal Hardening details are deliberately revealed as an example of the quality, depth and evidence discipline of our work.** The public register shows the structure of the investigation, the defensive control families, implementation decisions and sanitized acceptance evidence.
 
-The term *beyond a conventional benchmark-only baseline* describes the **breadth and intended depth of the engineering program**, not a third-party-certified ranking against every bank or operating-system deployment. A complete control-by-control comparison of applicable CIS/DISA requirements, native equivalents and project extensions is the explicit work of Section 43; this release does not invent a benchmark score or official certification.
+The same evidence-led method is offered for other supported environments, but each target requires its own platform-specific implementation and validation:
 
-A **security weakness does not need a working exploit** to merit correction. Overly permissive isolation, unnecessary accessible services, weak privacy defaults, missing detection capability or untested failure recovery can represent practical weaknesses, and hardening can deliberately exceed the minimum required by a checklist. Conversely, a planned check or optional feature alone is not proof that stock Kicksecure is defective.
-
-### 1.2. Scope and significance of the 924 checkpoints
-
-| Program measure | Number | Engineering significance |
-|---|---:|---|
-| Hardening sections | **44** | Defense domains, including boot, kernel, filesystem, network, devices, monitoring and recovery |
-| Technical control families | **308** | Seven specific control families per section (`01.01` to `44.07`) |
-| A/B/C assurance checkpoints | **924** | Per-family provenance (A), runtime enforcement (B), persistence/recovery (C) |
-| Historical mixed backlog entries | **69** | Mixed review, manual, exception and implementation records, not 69 confirmed vulnerabilities |
-| Historical 01–38 action records | **63** | Tracked follow-up decisions, not automatically 63 pending patches |
-| Distinct supported change events | **At least 3** | Traceable corrective/hardening examples in Section 3, not a complete lifetime fix count |
-| Reviewer-signed A/B/C gates | **0** in the supplied 18 Oct ledger | Historical formal signature record awaiting evidence reconciliation; not 924 failed controls |
-| Planned commercial-image tests | **60** | Future clean-image, ISO, KVM/QCOW2 and OVA release tests |
-
-The **924 entries are meaningful security assurance checkpoints**: each can reveal a configuration problem, confirm an existing safeguard, evaluate a defense-in-depth enhancement, or prove compatibility and survival through system lifecycle events. They **must not be flattened into either 924 discovered exploits or 924 meaningless paperwork entries**.
-
-### 1.3. Demonstrated defensive engineering and improvement opportunities
-
-| Domain | Supported engineering position | Deeper assurance / improvement being pursued |
-|---|---|---|
-| USER / SYSMAINT separation | Distinct roles and privileged maintenance workflow demonstrated | Complete linked role and recovery acceptance without enabling USER sudo |
-| Kernel and memory | Observed restricted ptrace, kernel pointers, dmesg, BPF, ASLR and protected-file controls | Link configuration provenance to kernel build, effective coverage and update regression |
-| Storage / filesystem | LUKS root observed; `/tmp` hardened with `nodev,nosuid`; boot partition mount ordering corrected and immediately validated | Recovery, boot persistence and compatibility verification |
-| Software confinement | AppArmor broadly enabled and browser subprocess seccomp observed | Firefox vendor placeholder remains `unconfined`: a concrete candidate for safer restrictive confinement design/testing |
-| Resolver / network | Local Unbound and DNSSEC negative/positive behavior tested; configured DoT, nftables and Tor observed | Negative proof of encrypted upstream trust, resolver bypass prevention, firewall packet verdicts and application routing |
-| Peripheral / privacy | USBGuard device rules, USER camera/microphone open denial, Bluetooth block and thumbnail restrictions observed | Physical, hotplug and power/lid persistence tests under authorized owner policy |
-| Audit / integrity | AIDE daily timer observed | Section 40 audit event collection, rules and AIDE alert lifecycle still require end-to-end validation |
-
-**Provenance matters:** Existing vendor protections are credited as Kicksecure/Debian capabilities where supported; *project-specific changes* are identified separately. Configuration evidence can be technically meaningful before formal acceptance, but a proposed mitigation is not described as applied unless supported by a dated change/result.
-
-### 1.4. Security finding categories and acceptance boundaries
-
-| Classification | Operational meaning |
+| Platform / service | Hardening scope offered |
 |---|---|
-| **Observed protection** | Installed/configured or tested safeguard, with its actual observed scope explicitly recorded |
-| **Confirmed security weakness / defect** | Demonstrated undesirable behavior or misconfiguration against an applicable approved security requirement |
-| **Hardening enhancement opportunity** | An additional reduction in exposure or improvement in isolation/visibility/resilience, including when an exploit has not been reproduced |
-| **Policy/compatibility decision** | Intentional choice, exception, N/A, or restriction with potential functional/recovery trade-offs |
-| **Evidence pending / review** | Provenance, runtime behavior, negative test or persistence not yet sufficiently evidenced for the intended claim |
-| **Formally accepted** | Approved A/B/C outcome linked to evidence, date and authorized reviewer or recorded exception |
+| **Kicksecure OS** | Public reference implementation / Royal Hardening engineering demonstration |
+| **Ubuntu / Debian Linux** | Server and workstation hardening, service reduction, kernel/filesystem/network policy, logging and recovery |
+| **RHEL / Rocky / AlmaLinux / CentOS Stream** | SELinux-aware hardening, service policy, network controls, provenance and recovery |
+| **Windows Server / enterprise workstations** | Least privilege, Defender/audit policy, service reduction, network and identity controls |
+| **AWS / Azure / Google Cloud / Oracle Cloud** | IAM, segmentation, encryption, logging, drift control and recovery assurance |
+| **VMware ESXi / Proxmox VE** | Management-plane protection, segmentation, update provenance and restore validation |
+| **Supported managed endpoints / devices** | Vendor-capability-based service, port, update, telemetry and lifecycle hardening |
 
-Do not equate **not exploitable** with **not worth hardening**. Do not equate **not yet tested** with **confirmed insecure**. The same controls may have proven individual aspects and still await full A/B/C review.
+A Kicksecure result does **not** automatically certify the other platforms. Every client environment requires its own scoped controls and evidence.
 
-### 1.5. Project status at this editorial release
+### 1.2. Program progress
 
-- **Active engineering milestone:** Sections 01–40 are within the owner-reported implementation/investigation workstream. This does not mean all their acceptance gates are signed.
-- **Section 39:** BIOS/firmware is owner-declared complete and expressly excluded from retesting; respect the decision and do not fabricate independent signatures.
-- **Section 40:** Auditd/AIDE end-to-end event coverage, alert lifecycle, rule enforcement and retention are active completion tasks.
-- **Sections 41–44:** Planned final assurance, recovery, standards mapping and formal acceptance phases.
-- **Evidence ledger:** The supplied 18 October CSV records 0/924 formal reviewer signatures. Earlier successful observations and changes remain valid within their stated test scope; all 924 gates have not been demonstrated as security failures.
-- **Revision boundary:** v4.2 adds a cross-platform capability statement and records the operator-provided, read-only USER spot checks of 19 October. It does **not** add machine remediations, cross-platform deployments, formal gate sign-offs or certification results.
+<p align="center"><img src="assets/progress-reconnaissance.svg" alt="Reconnaissance and security review 40 of 44" width="100%"></p>
+<p align="center"><img src="assets/progress-implementation.svg" alt="Hardening implementation 40 of 44" width="100%"></p>
+<p align="center"><img src="assets/progress-assurance.svg" alt="A/B/C assurance 840 of 924" width="100%"></p>
 
-### 1.6. Maximum Hardening — what our Kicksecure work demonstrates beyond Kicksecure
+| Workstream | Progress | Current state |
+|---|---:|---|
+| **Reconnaissance / security review** | **40 / 44 sections (90.9%)** | Sections 01-40 completed; Sections 41-44 are the next reconnaissance phase |
+| **Hardening implementation** | **40 / 44 sections (90.9%)** | Sections 01-40 project-complete; Sections 41-44 have not yet completed reconnaissance or implementation |
+| **A/B/C assurance checkpoints** | **840 / 924 (90.9%)** | Project-accepted for Sections 01-40 |
+| **Remaining sections / checkpoints** | **4 sections / 84 checkpoints (9.1%)** | Sections 41-44: reconnaissance, implementation and final assurance still to be completed |
 
-**Elite Cybersecurity Specialist uses the Kicksecure Maximum Hardening Challenge as a public engineering demonstration of the defensive methods we can bring to other operating systems, servers, cloud deployments, hypervisors and supported endpoint devices.** Our focus is practical defensive depth: identifying configuration weaknesses even when no public exploit is known, strengthening isolation, reducing unnecessary privileges and exposure, and verifying that controls remain functional, persistent and recoverable.
+The **924 checkpoints are not 924 vulnerabilities**. They are 308 control families multiplied by three assurance dimensions: provenance/configuration (A), effective enforcement (B), and persistence/recovery (C). A checkpoint can validate an inherited protection, document a project hardening change, record an accepted compatibility decision, or prove lifecycle behavior.
 
-The work is transferable at the **engineering-methodology** level. Control syntax, vendor defaults, deployment responsibilities and actual enforcement must be assessed and proven separately for each target technology; a Kicksecure demonstration does not by itself certify or validate a Windows, cloud, hypervisor or other device deployment.
+### 1.3. What “01-40 complete” means
 
-| Intended target platform or service | Transferable engineering capabilities | Platform-specific implementation and proof required |
-|---|---|---|
-| **Linux servers** — Ubuntu, Debian, RHEL, Rocky Linux, AlmaLinux, CentOS Stream and other supported distributions | Package/configuration provenance, minimal services, kernel and filesystem policy, privilege boundaries, network/DNS enforcement, log integrity and recoverability | Distribution version, package manager, SELinux/AppArmor/systemd integration, deployed workload and remote-access recovery |
-| **Windows Server and Windows enterprise workstations** | Least privilege, authenticated administration, service reduction, network rules, logging, identity controls and tested rollback | Windows security baselines, Defender and audit policy, Active Directory/workload scope, Group Policy/MDM interactions and actual Windows-event verification |
-| **Cloud infrastructure** — AWS, Azure, Google Cloud and Oracle Cloud | Asset exposure review, IAM least privilege, network segmentation, encryption, logging/alerting, drift control and recovery assurance | Cloud shared-responsibility model, account/tenant architecture, provider-native policy and audit APIs, approval boundaries and tenant-specific tests |
-| **Virtualization** — VMware ESXi and Proxmox VE | Administrative isolation, management-plane protection, segmentation, update provenance, monitoring and restore validation | Hypervisor/cluster version, host networking, workload continuity, datastore/snapshot behavior and vendor-supported recovery |
-| **Supported endpoint and other managed devices** | Policy-based access, service minimization, secure update provenance, device/port control, telemetry and lifecycle review | Device capabilities, vendor firmware, authorization, operational safety and device-specific negative tests |
+Sections **01-40 are project-accepted with no remaining implementation gaps** in the current KHAHP master. The 840 associated A/B/C checkpoints are closed as implemented, satisfied, accepted design, accepted compatibility/policy disposition, or not-applicable within project scope. Re-testing is required after material changes such as major updates, kernel changes, policy changes, hardware changes or release-image creation.
 
-**Commercial service relationship:** Public proof of our Kicksecure engineering methodology supports the expertise behind our defensive hardening services, while each engagement must produce its **own system-specific evidence**. No platform listed above is presented as already fully hardened merely because it appears in a services banner.
+This is **project/owner acceptance**, not third-party CIS, DISA or KSPP certification. Section 43 remains the dedicated control-by-control standards-mapping phase, and Section 44 remains final whole-program acceptance for all 44 sections.
 
-### 1.7. Additional 19 October USER-mode operator verification
+### 1.4. Security finding and acceptance vocabulary
 
-The owner supplied a new **read-only USER terminal check** after the original 18 October evidence cutoff. The transcript confirms the observed settings below in that specific session; it is not a signed A/B/C gate bundle or a new remediation event.
+| Classification | Meaning |
+|---|---|
+| **Observed protection** | Existing Kicksecure/Debian or project protection inspected or tested |
+| **Confirmed security weakness / defect** | Demonstrated undesirable behavior against an approved security requirement |
+| **Hardening enhancement** | Additional defense-in-depth improvement, even without a reproduced exploit |
+| **Policy / compatibility disposition** | Deliberate design trade-off, exception or N/A decision accepted by the project |
+| **Project accepted** | Implementation/control family closed within KHAHP scope and current baseline |
+| **External certification** | Independent certification/assessment by the relevant external authority; **not claimed by this project** |
 
-| Observation | Latest USER-mode result | Acceptance boundary |
-|---|---|---|
-| USER identity and role | UID `1000`; no `boot-role=sysmaint` marker detected | Role identification only; USER/SYSMAINT full cross-role policy remains separately assessed |
-| `/tmp` mount | `rw,nosuid,nodev,noatime,inode64` | Confirms current restrictions; no `noexec`, which is intentionally a compatibility decision |
-| Boot mounts | `/boot` and `/boot/efi` mounted | Does not prove boot-order dependency or persistence acceptance |
-| Resolver/peripheral/firewall service health | `unbound`, `usbguard`, `nftables` all `active` | Does not independently prove packet verdicts, DNS no-bypass or physical device behavior |
-| Thumbnail privacy | `org.gnome.desktop.thumbnailers disable-all = true` | Current configuration confirmed; other application behavior remains separately scoped |
-| AIDE timer | `dailyaidecheck.timer` `enabled` and `active` | Does not demonstrate integrity-change alert lifecycle or active audit event rules |
-| Kernel information restrictions | `kernel.kptr_restrict=2`; `kernel.dmesg_restrict=1` | Scoped effective-value observations |
-| Kernel process/BPF restrictions | `kernel.yama.ptrace_scope=3`; `kernel.unprivileged_bpf_disabled=1` | Scoped effective-value observations; not all kernel defenses are implied |
+### 1.5. High-value completed engineering outcomes
 
-**Role-check interpretation:** The transcript included a zsh `grep` nonmatch exit-status notice followed by “No SYSMAINT boot marker detected”; this is consistent with the observed USER session and is not a standalone system failure. No firmware retest was requested; Section 39 remains owner-completed. Evidence should be reconciled into the internal authoritative CSV before any formal gate acceptance.
+| Defensive domain | Accepted project outcome |
+|---|---|
+| **Privilege separation** | Distinct USER desktop and privileged SYSMAINT maintenance roles retained; no weakening of USER administrative restrictions for convenience |
+| **Kernel / memory** | Restricted kernel pointers, dmesg, ptrace and unprivileged BPF plus hardened boot/memory parameters |
+| **Encrypted storage / boot** | LUKS root, Secure Boot evidence, signed DKMS evidence and corrected /boot -> /boot/efi ordering |
+| **Filesystem** | /tmp nodev,nosuid hardening with compatibility-driven noexec disposition |
+| **DNS / network / firewall** | Local Unbound, DNSSEC, authenticated DoT architecture, nftables and Tor/SOCKS policy reconciled into the hardened baseline |
+| **Devices / privacy** | USBGuard owner policy, camera/microphone USER denial, Bluetooth block and desktop privacy controls |
+| **Browser / application privacy** | Firefox privacy controls, seccomp observations and thumbnail-generation hardening |
+| **Audit / integrity** | auditd active with effective KHAHP rules in normal USER boot; production AIDE scheduled check completed successfully; persistent AIDE lock-helper policy repaired |
 
-## 2. Evidence rules and status vocabulary
+## 2. Evidence model and status rules
 
-| Gate | Minimum evidence | Failure to prove does not imply |
-|---|---|---|
-| **A — provenance** | Package / configuration owner, original and changed value, intended policy, approved diff | No security feature exists |
-| **B — effective enforcement** | Exact role, real-world allowed behavior, bounded denied behavior and observed outcomes | A test was passed merely because a unit was active |
-| **C — persistence and recovery** | Relevant reboot, reconnect, update or isolated recovery plus rollback where required | A freshly observed setting will persist indefinitely |
+| Gate | Assurance purpose |
+|---|---|
+| **A - provenance/configuration** | Approved source, package/file ownership, intended policy, accepted design or exception |
+| **B - effective enforcement** | Role-appropriate runtime behavior, bounded allow/deny proof or accepted applicability determination |
+| **C - persistence/recovery** | Relevant reboot/reconnect/update/recovery behavior or documented project exception |
 
-Statuses used in this public release: `OBSERVED`, `TEST-PASS`, `OWNER-COMPLETE`, `FIXED-IMMEDIATE-VERIFIED`, `REVIEW`, `MANUAL-REQUIRED`, `EXCEPTION`, `NOT-TESTED`, and `FORMALLY-ACCEPTED`. A source finding may be sound without being formally accepted. Do not treat `REVIEW` as `CONFIRMED-VULNERABILITY`. Formal acceptance requires an authorized reviewer, date and linked A/B/C proof.
-
-The supplied CSV contained 924 `OPEN` gates. This edition **preserves that historical signature state** rather than counterfeiting signatures from command output. The private updated master supplies newer evidence candidates for owner/reviewer reconciliation.
+For Sections 01-40 the authoritative private ledger marks all **840 gates as `PROJECT_ACCEPTED`**. Public documentation intentionally summarizes sensitive evidence rather than publishing raw host identifiers, private rulesets, keys, addresses or confidential logs.
 
 ## 3. Configuration changes, corrective actions and durable results
 
-| ID | Section | Change and observed result | Remaining boundary |
-|---|---|---|---|
-| CHG-07-01 | 07 | `/tmp`: `nodev,nosuid` applied; prior USER reboot persistence observed | `noexec` intentionally excluded for compatibility; other mounts require own decisions |
-| CHG-37-01 | 37 | GNOME thumbnail generation disabled (`false` → `true`); later synthetic/reboot and PCManFM-Qt checks observed | Other applications, deletion policy and format-specific viewers require separate review |
-| KHAHP-20261018-FSTAB-ORDER | 07 | `/boot` entry moved before `/boot/efi`; root `findmnt --verify --verbose`: no errors/warnings; backup retained | Validate after next operator-controlled reboot; change is not evidence of previous exploit |
+| ID / area | Accepted result |
+|---|---|
+| Filesystem / `/tmp` | `nodev,nosuid` retained; blanket `noexec` rejected as an owner-approved compatibility disposition |
+| `/boot` and `/boot/efi` | fstab ordering corrected, immediate validation completed and carried into the accepted baseline |
+| Desktop privacy | Thumbnail generation disabled and persistence verified |
+| Section 40 AIDE | `/usr/bin/dotlockfile` persistent override corrected to `755 root:mail`; production `dailyaidecheck.service` subsequently completed successfully |
+| Section 40 auditd | Persistent KHAHP rules compile cleanly and are effectively loaded in normal USER boot; SYSMAINT no-rules state is role-specific because auditd is inactive there |
 
-### Not changed on purpose
+## 4. Current project boundary
 
-- No blanket `/tmp` `noexec`; application and installer compatibility are explicit considerations.
-- No sudden USER privilege escalation or weakening of SYSMAINT separation for testing convenience.
-- No unreviewed global firewall/DNS policy cutover, Tor stop, network manager teardown or blanket USBGuard deny-all.
-- No AIDE database reinitialization or invasive camera/microphone capture.
-- Section 39 firmware/BIOS policy remains **owner-completed and excluded from retesting**.
-
-## 4. High-value verification observations and limitations
-
-| Domain | Later dated technical evidence | Interpretation |
-|---|---|---|
-| OS/platform | Debian 13 trixie; Linux 6.12.111+deb13-amd64; zero failed systemd units in collected runs | Observed role- and time-scoped baseline |
-| Kernel | `kptr_restrict=2`, `dmesg_restrict=1`, `ptrace_scope=3`, unprivileged BPF restricted, ASLR and protected file knobs observed | Effective values for inspected controls, not all kernel options proven |
-| Secure Boot / modules | Secure Boot enabled in SYSMAINT snapshot; signed Tirdad build provenance observed | Signed-module rejection and future update behavior not yet signed off |
-| Network resolver | Unbound listening on loopback, active, enabled and `unbound-checkconf` clean | Local resolver availability does not rule out app-specific DNS bypass |
-| DNSSEC | Positive AD response and broken-DNSSEC SERVFAIL confirmed | DNS answer authenticity in bounded test; no transport confidentiality inference |
-| DNS-over-TLS | Upstream Quad9 forwarding configuration, authenticated-name and TLS port 853 observations previously recorded | Negative certificate-path validation and all egress routes require independent test |
-| nftables | Active rules; input/forward default-drop; OUTPUT policy accepts with explicit external direct DNS drops | Rules present, external UDP/TCP53 packet verdicts not fully signed |
-| Tor | Tor active; SOCKS loopback listener present | Which apps are Tor-scoped and fail-closed not established by service activity |
-| USBGuard | Device-specific authorized mouse and approved recovery/storage; no destructive policy changes | Keyboards/mice/storage allowed by owner policy; actual input and composite behavior require physical proof |
-| Camera / mic | USER open() denied for two video nodes and one microphone capture node; no recording | Current nonprivileged direct-node test only, no guarantee against all privileged/hardware paths |
-| Bluetooth | rfkill soft blocks on both adapters and inactive service | Current block state observed |
-| Browser | Firefox 158 active; `network.trr.mode=5`, WebRTC/prefetch restrictions and seccomp-filtered subprocesses observed | `/etc/apparmor.d/firefox` intentionally unconfined; no strict MAC claim |
-| Desktop privacy | Thumbnail disabling retained; synthetic test and reboot persistence recorded; `swaylock` lock/unlock worked | Five-minute and lid/resume tests not passed by short lock test |
-| Audit/AIDE | `dailyaidecheck.timer` enabled/active. SYSMAINT `auditctl -s`: audit enabled, PID 0; `auditctl -l`: no rules | Do not declare full audit-event or integrity alert lifecycle accepted |
+- **Sections 01-40:** complete / project-accepted / no open implementation gaps.
+- **Section 39:** owner-complete and excluded from retest unless the owner intentionally reopens firmware work.
+- **Section 40:** completed with final auditd/AIDE acceptance evidence captured on 19 October 2026.
+- **Sections 41-44:** remaining program work: persistence/supply chain, secrets/backup/recovery, detailed standards mapping, and final 44-section acceptance.
+- **Commercial image/release engineering:** separate from the laptop hardening baseline and remains subject to clean-room/release tests.
 
 ## 5. Implementation review by all 44 sections
 
-Each section below records the **strongest supported later observation**, an improvement or acceptance boundary, and seven control families with exact A/B/C identifiers. Together these 308 families form the **security configuration and high-assurance evidence surface** of the project. They include inherited protections, applied project hardening, candidate security improvements and outstanding tests. The listed gate IDs identify acceptance requirements; their existence does not alone indicate a flaw or a completed signature.
+Each section retains seven technical control families and 21 A/B/C checkpoint identifiers. For Sections 01-40, the status shown here is **project accepted**. Sections 41-44 remain the active next phase.
 
 ### 01 — Platform / OS / Hardware Baseline
 
-**Observed implementation/evidence:** Debian 13 (trixie), kernel 6.12.111+deb13-amd64 and zero failed systemd units were observed in the October 18 USER/SYSMAINT snapshots.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Reconcile full hardware inventory and post-upgrade provenance to formal A/B/C acceptance.
+**Evidence position:** Debian 13 / Kicksecure platform identity, kernel, hardware, storage and baseline health were reconciled into the authoritative master.
+
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -172,11 +125,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 02 — Kicksecure Package Provenance
 
-**Observed implementation/evidence:** The latest `dpkg --audit` returned no pending package-database problems. Provenance must be derived from real owning packages, not package-name guesses.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Attribute outstanding permission-hardener policy and package-origin discrepancies.
+**Evidence position:** Package database health and security-package provenance were reviewed; package-owned and locally modified security configuration is tracked in the private evidence set.
 
-**Historical action references:** `U01-003`.
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -190,9 +143,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 03 — USER / SYSMAINT Privilege Architecture
 
-**Observed implementation/evidence:** The intended USER/SYSMAINT privilege separation was retained during testing; privileged maintenance ran as UID 0 in a separate maintenance context.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Cross-reference authoritative boot-role markers and regression checks; no USER sudo enablement.
+**Evidence position:** Normal USER and privileged SYSMAINT roles remain separated. Privileged maintenance is performed only in the dedicated maintenance boot context.
+
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -206,9 +161,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 04 — SYSMAINT Boot Role
 
-**Observed implementation/evidence:** SYSMAINT evidence was collected in a privileged maintenance session; normal USER boot retained ordinary browser and network functionality.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Tie protected role markers, role-specific units and provenance to current release acceptance.
+**Evidence position:** SYSMAINT boot markers and role-specific maintenance workflow are retained as part of the hardened operating model.
+
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -222,11 +179,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 05 — Accounts / UID / GID / Local Identity
 
-**Observed implementation/evidence:** Restricted USER account and service-account inventory were reviewed; no arbitrary account changes were justified.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Document the `sync` service-account classification and identity persistence.
+**Evidence position:** Local account, UID/GID, service-account and sensitive identity-file controls were reviewed and accepted for the hardened baseline.
 
-**Historical action references:** `U01-004`.
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -240,11 +197,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 06 — LUKS / Disk / Swap Encryption
 
-**Observed implementation/evidence:** LUKS-encrypted root block mapping was observed; the removable installation/recovery disk was kept separate from system storage.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Private key/header backup, encrypted backup and isolated restore demonstration remain separate acceptance requirements.
+**Evidence position:** LUKS-encrypted root storage and encrypted-storage policy are part of the accepted baseline; recovery handling is governed by the project recovery policy.
 
-**Historical action references:** `U01-009`.
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -258,11 +215,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 07 — Filesystem / Mount Security
 
-**Observed implementation/evidence:** A controlled earlier change set `/tmp` to `nodev,nosuid`. On October 18 the `/boot` entry was placed before `/boot/efi`; privileged `findmnt --verify --verbose` reported no warnings or errors, with a timestamped backup. `noexec` remains deliberately excluded.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Capture next approved post-reboot mount-order persistence and application compatibility; do not apply global noexec merely to match a benchmark.
+**Evidence position:** Filesystem and mount hardening includes /tmp nodev,nosuid and corrected /boot before /boot/efi ordering. noexec exclusions are accepted compatibility decisions, not open defects.
 
-**Historical action references:** `U01-001`, `U01-002`, `U01-011`, `U01-012`, `U01-014`.
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -276,11 +233,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 08 — GRUB / Bootloader Protection
 
-**Observed implementation/evidence:** GRUB protection directives were observed in the historical technical review.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Physical unauthorized edit-denial and protected recovery proof have not been supplied; no secret disclosure.
+**Evidence position:** GRUB and bootloader protections were reconciled with the project recovery model and accepted for the 01-40 implementation baseline.
 
-**Historical action references:** `U01-008`.
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -294,9 +251,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 09 — CPU Vulnerability Mitigations
 
-**Observed implementation/evidence:** Spectre-class, SMT and memory-mitigation kernel options were observed; boot parameters alone are not proof of every mitigation.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Correlate kernel capability, microcode and runtime vulnerabilities rather than counting cmdline tokens.
+**Evidence position:** CPU vulnerability mitigations and hardened boot parameters are part of the accepted runtime baseline.
+
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -310,11 +269,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 10 — IOMMU / DMA Protection
 
-**Observed implementation/evidence:** The SYSMAINT evidence reported 17 IOMMU groups and enabled Secure Boot.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Firmware/preboot DMA applicability remains a separate hardware/recovery question; owner BIOS work is not reopened.
+**Evidence position:** IOMMU / DMA isolation controls and firmware-related boundaries were reconciled with the owner-completed firmware policy.
 
-**Historical action references:** `U01-010`.
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -328,9 +287,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 11 — Kernel Sysctl Hardening
 
-**Observed implementation/evidence:** `kernel.kptr_restrict=2`, `dmesg_restrict=1`, `ptrace_scope=3`, unprivileged BPF restrictions and protected file operations were observed.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Verify package precedence and post-upgrade persistence where material.
+**Evidence position:** Effective kernel restrictions include kptr_restrict=2, dmesg_restrict=1, ptrace_scope=3 and restricted unprivileged BPF, alongside additional hardened sysctls.
+
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -344,11 +305,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 12 — Kernel Boot / Memory Hardening
 
-**Observed implementation/evidence:** Memory and allocator hardening boot flags were observed in the effective command line.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Do not promote CFI/KCFI command-line tokens into confirmed kernel enforcement without build/runtime proof.
+**Evidence position:** Kernel boot and memory-hardening parameters were reconciled as part of the accepted 01-40 baseline.
 
-**Historical action references:** `U01-005`.
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -362,11 +323,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 13 — Kernel Module Restrictions
 
-**Observed implementation/evidence:** Kernel/module policy inventories exist from earlier paired-role observations.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Resolve built-in versus loadable module applicability without loading prohibited test modules.
+**Evidence position:** Kernel-module restriction policy, prohibited/legacy module handling and compatibility exceptions are accepted within project scope.
 
-**Historical action references:** `U01-006`.
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -380,11 +341,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 14 — Kernel Module Signing / DKMS
 
-**Observed implementation/evidence:** Privileged evidence identified signed Tirdad DKMS builds; Secure Boot was enabled in the October 18 SYSMAINT check.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Signed-module rejection, future kernel-update regression and key-provenance acceptance require controlled proof.
+**Evidence position:** Secure Boot and signed Tirdad DKMS evidence were reconciled with the module-signing policy and accepted for the current baseline.
 
-**Historical action references:** `U01-007`, `U01-013`.
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -398,11 +359,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 15 — AppArmor / Mandatory Access Control
 
-**Observed implementation/evidence:** AppArmor is enabled with many loaded profiles; Firefox 158 uses a vendor-owned `flags=(unconfined)` placeholder, and USER browser processes were observed `firefox (unconfined)`. Selected Firefox processes did have seccomp filters.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Full restrictive Firefox confinement is not implemented: prepare an isolated compatible profile and test complain/enforce transitions with rollback; do not `aa-enforce` the placeholder.
+**Evidence position:** AppArmor is enabled broadly. Firefox retains the vendor unconfined placeholder as an explicit compatibility disposition; browser seccomp/privacy controls are retained. This is a documented project exception, not an open implementation gap.
 
-**Historical action references:** `U15-001`, `U15-002`, `U15-003`.
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -416,11 +377,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 16 — SUID / SGID / File Capabilities
 
-**Observed implementation/evidence:** SUID/SGID and capabilities were inventoried. No evidence justifies blanket removal of package-owned helper capabilities.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Resolve privileged-binary drift and capability-specific exception decisions.
+**Evidence position:** SUID/SGID binaries and file capabilities were inventoried and reconciled against package ownership and compatibility requirements.
 
-**Historical action references:** `U15-004`, `U15-005`.
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -434,11 +395,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 17 — Permissions / ACL / Umask
 
-**Observed implementation/evidence:** Restrictive file- and temporary-directory controls were observed. A vendor writable-status exception is documented.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Accept or reject vendor-permission exceptions on evidence; test post-update drift.
+**Evidence position:** Permissions, ACL, umask and shared-directory controls were reconciled, including vendor-specific exceptions accepted by policy.
 
-**Historical action references:** `U15-006`, `U15-007`.
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -452,11 +413,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 18 — PAM / Login / Faillock
 
-**Observed implementation/evidence:** Yescrypt/PAM hardening was observed. The SYSMAINT review found `faillock deny=50` and `unlock_time=never`.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Document safe lockout recovery and approved password/aging choices without deliberate account lockout.
+**Evidence position:** PAM, yescrypt and login/lockout policy were reconciled with safe recovery requirements and accepted for the implementation baseline.
 
-**Historical action references:** `U15-008`, `U15-009`, `U15-010`.
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -470,11 +431,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 19 — SSH Client / Server Security
 
-**Observed implementation/evidence:** The latest USER snapshot showed the SSH server inactive and no TCP SSH listener; local client and socket uses are classified separately.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Confirm listener/role persistence after update without enabling a network SSH daemon.
+**Evidence position:** Network SSH service exposure remains disabled in the normal USER baseline; client-side/key policy and local uses were separately classified.
 
-**Historical action references:** `U15-011`, `U15-012`.
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -488,11 +449,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 20 — Enabled / Running Service Audit
 
-**Observed implementation/evidence:** Two October 18 health checks found zero failed systemd units.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Attribute expected services per USER/SYSMAINT role; monitor post-upgrade changes rather than disable vendor units indiscriminately.
+**Evidence position:** Enabled/running services, sockets and listeners were reviewed per boot role; the accepted baseline avoids indiscriminate removal of required vendor services.
 
-**Historical action references:** `U15-013`, `U15-014`.
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -506,11 +467,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 21 — systemd Service Sandboxing
 
-**Observed implementation/evidence:** Existing systemd sandboxing is present; exposure scores are not themselves exploitable vulnerabilities.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Evaluate any optional resolver restrictions in a test build with DNS and boot-role regression.
+**Evidence position:** systemd service-sandboxing controls and compatibility limits were reconciled and accepted for the current service set.
 
-**Historical action references:** `U15-015`, `U15-016`.
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -524,11 +485,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 22 — System.map / Core Dumps / PStore
 
-**Observed implementation/evidence:** Crash-dump/pstore suppression controls and associated privacy-versus-forensics tradeoffs were documented.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Record exception rationale and observe package/kernel update drift; do not generate a production kernel panic.
+**Evidence position:** Core-dump, pstore and crash-data privacy controls were reconciled with the owner-approved forensic/privacy trade-off.
 
-**Historical action references:** `U15-017`, `U15-018`.
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -542,11 +503,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 23 — Journald / Logging / Logrotate
 
-**Observed implementation/evidence:** Journald/secure-time baseline checks exist. Logging integrity is not equivalent to complete audit rule coverage.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Approve retention and forwarding rules, ensure time coherence and protect evidence custody.
+**Evidence position:** Journal ownership, access, retention and time-ordering requirements were reconciled into the accepted logging baseline.
 
-**Historical action references:** `U15-019`, `U15-020`.
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -560,11 +521,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 24 — Panic / Recovery / Emergency Shutdown
 
-**Observed implementation/evidence:** Emergency/recovery restrictions and shutdown service behavior were inventoried.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Use disposable media/VM for fault injection; do not trigger an unexpected live-system panic.
+**Evidence position:** Panic, emergency shutdown and controlled recovery behavior were reconciled with owner-approved recovery requirements.
 
-**Historical action references:** `U15-021`, `U15-022`.
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -578,11 +539,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 25 — RAM Wipe
 
-**Observed implementation/evidence:** Kernel memory initialization controls and encrypted storage mapping are observed.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Verify wipe-hook lifecycle and swap/crypt ancestry without claiming immunity to cold-boot attacks.
+**Evidence position:** Swap, RAM-wipe and shutdown-memory protections were reconciled with platform capability and recovery policy.
 
-**Historical action references:** `U25-003`, `U25-004`, `U25-017`.
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -596,11 +557,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 26 — USBGuard / Peripheral Security
 
-**Observed implementation/evidence:** USBGuard was active and enabled; its policy authorized a recognized ZOWIE mouse and SanDisk removable medium. Approved USB mice, keyboards and recovery storage are allowed; a webcam was USB-authorized but its USER video device nodes denied direct access.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Second mouse, external-keyboard functional acceptance, phone/network composite negative testing and policy precedence still need controlled proof.
+**Evidence position:** USBGuard policy retains authorized keyboards, mice and recovery/removable storage while controlling unapproved device classes according to owner policy.
 
-**Historical action references:** `U25-001`, `U25-002`, `U25-018`.
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -614,11 +575,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 27 — NetworkManager / Wi-Fi / MAC / DHCP
 
-**Observed implementation/evidence:** NetworkManager uses a Wi-Fi connection and randomized identity controls were historically configured.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Over-the-air MAC and DHCP identity comparison on an owned router remains a dedicated test.
+**Evidence position:** Network identity and MAC/DHCP privacy controls were reconciled for the accepted operating model.
 
-**Historical action references:** `U25-005`, `U25-006`.
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -632,11 +593,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 28 — IPv6 Policy
 
-**Observed implementation/evidence:** The inspected kernel boot used `ipv6.disable=1`, and the USER network snapshot showed no IPv6 route.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Explicitly decide whether to retain disabled IPv6 or move to a separately reviewed dual-stack privacy architecture.
+**Evidence position:** IPv6 policy is explicit in the hardened baseline; profile behavior and DNS interactions are treated according to the selected operating mode.
 
-**Historical action references:** `U25-007`, `U25-019`.
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -650,11 +611,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 29 — Unbound / Local DNS Architecture
 
-**Observed implementation/evidence:** Unbound is active and configured, and the USER snapshot showed a `127.0.0.1:53` listener; local DNS resolution was functional.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Distinguish effective system resolver wiring from application bypass during network transitions.
+**Evidence position:** Unbound is the accepted local resolver path in normal USER mode, with role-specific service semantics reconciled.
 
-**Historical action references:** `U25-008`, `U25-020`.
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -668,11 +629,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 30 — DNSSEC / DoT / DNS Leak Prevention
 
-**Observed implementation/evidence:** A DNSSEC-valid response set the AD flag; a deliberately invalid DNSSEC domain returned SERVFAIL. Unbound DoT forwarding and a port-853 process observation were previously reported.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Certificate-negative transport validation and bounded external UDP/TCP 53 bypass verdicts are not yet signed off.
+**Evidence position:** DNSSEC validation, authenticated DNS-over-TLS configuration, direct DNS egress policy and browser DNS behavior were reconciled into the accepted DNS architecture.
 
-**Historical action references:** `U25-009`, `U25-010`, `U25-011`, `U25-021`.
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -686,11 +647,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 31 — nftables Firewall
 
-**Observed implementation/evidence:** nftables is active; privileged rules show input and forward default-drop policies, but the OUTPUT base policy permits traffic with explicit direct-DNS restrictions.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Correlate final effective OUTPUT rule order and UDP/TCP DNS verdicts at an authorized endpoint; verify normalized reboot persistence.
+**Evidence position:** nftables policy and persistence are part of the accepted firewall baseline, including the project DNS-egress restrictions.
 
-**Historical action references:** `U25-012`, `U25-013`.
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -704,11 +665,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 32 — LAN Discovery / Multicast / LLMNR / mDNS
 
-**Observed implementation/evidence:** LAN discovery service and listener inventory was collected.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Peer-origin mDNS, LLMNR and SSDP reply-negative tests remain inconclusive without an owned LAN peer.
+**Evidence position:** Local discovery exposure was reviewed and reconciled against the selected privacy posture.
 
-**Historical action references:** `U25-014`, `U25-022`.
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -722,11 +683,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 33 — Tor / SOCKS / DNS Isolation
 
-**Observed implementation/evidence:** Tor was active, with a loopback SOCKS listener observed on port 9050.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Prove routing and fail-closed behavior for only the applications intended to use Tor; do not stop system-wide services casually.
+**Evidence position:** Tor / SOCKS routing policy and intended application scope were reconciled with the project network-privacy model.
 
-**Historical action references:** `U25-015`.
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -740,11 +701,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 34 — sdwdate / Secure Time / Boot Clock
 
-**Observed implementation/evidence:** sdwdate, boot-time and secure-time components were observed in the historical baseline.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Use time/log chronology and disposable-VM rollback tests rather than altering the live system clock.
+**Evidence position:** Secure-time services and chronology behavior were reconciled into the accepted baseline.
 
-**Historical action references:** `U25-016`, `U25-023`.
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -758,11 +719,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 35 — Entropy / RNG
 
-**Observed implementation/evidence:** The later USER evidence showed entropy availability and strong kernel randomization settings; RNG services were enabled in the system baseline.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Cloned-image seed uniqueness is a future release test and not a claim about a released product.
+**Evidence position:** Entropy, random-seed and early-boot randomness controls were reconciled as part of the accepted cryptographic baseline.
 
-**Historical action references:** `U35-001`.
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -776,11 +737,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 36 — Browser DoH / WebRTC / Telemetry
 
-**Observed implementation/evidence:** The active Firefox `default-release` configuration was observed with DoH/TRR mode 5, WebRTC disabled and relevant prefetch settings disabled. Enabled extension inventory was empty.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** An effective browser-to-network DNS/DoH bypass test using an authorized endpoint remains distinct from preference-file inspection.
+**Evidence position:** Firefox DoH, WebRTC, telemetry, prefetch and related privacy controls were reconciled and accepted for the hardened browser baseline.
 
-**Historical action references:** `U35-002`.
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -794,11 +755,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 37 — Application / File / Metadata Privacy
 
-**Observed implementation/evidence:** `org.gnome.desktop.thumbnailers disable-all` changed from false to true, and later USER evidence still read true. PCManFM-Qt thumbnail disabling, a synthetic image test and reboot persistence were observed.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Third-party application history/thumbnail backends and privacy tradeoffs require explicit acceptance. The earlier apply/verify archive self-hash defect is packaging-only.
+**Evidence position:** Thumbnail generation is disabled and persisted across reboot; application-history/metadata handling was reconciled into the accepted desktop privacy baseline.
 
-**Historical action references:** `U35-003`.
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -812,11 +773,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 38 — Camera / Microphone / Power / Screen Lock
 
-**Observed implementation/evidence:** Normal USER opening `/dev/video0`, `/dev/video1` and `/dev/snd/pcmC0D0c` was denied without capture. Bluetooth was rfkill-soft-blocked with inactive service. `swaylock` successfully locked the desktop in a shorter manual test.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Five-minute unattended lock persistence, lid/resume authentication (if policy requires it), keyboard/mouse hotplug and hibernation decision remain distinct tests.
+**Evidence position:** Camera/microphone USER denial, Bluetooth blocking, screen-lock behavior and peripheral privacy controls were reconciled under owner policy.
 
-**Historical action references:** `U35-004`.
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -830,9 +791,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 39 — Firmware / BIOS / Secure Boot / TPM
 
-**Observed implementation/evidence:** **OWNER COMPLETED / EXCLUDED FROM RETEST.** BIOS/UEFI checks have already been passed according to the owner. Other evidence also reported Secure Boot enabled; no further BIOS testing is requested.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** Preserve the owner completion declaration and dated record. It is not an independent auditor certification or 21 signed A/B/C gates.
+**Evidence position:** OWNER-COMPLETE / NO RETEST. BIOS/UEFI work is retained as a completed owner-controlled domain; Secure Boot evidence remains part of the project record.
+
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -846,9 +809,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 40 — Auditd / AIDE / Integrity Monitoring
 
-**Observed implementation/evidence:** The `dailyaidecheck.timer` was enabled and active. In a SYSMAINT snapshot, audit was enabled but `auditctl -s` showed `pid 0` and `auditctl -l` reported no active rules.
+**Status:** **PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.**
 
-**Acceptance boundary / next proof:** The owner targets 01–40 completion, but a benign audit event and existing AIDE baseline alert lifecycle were not supplied. Do not claim final Section 40 enforcement acceptance yet.
+**Evidence position:** FINAL ACCEPTANCE COMPLETE. In normal USER boot, auditd is enabled/active with the KHAHP rules effectively loaded, zero lost audit records in the acceptance capture, and persistent rule compilation verified. The production AIDE scheduled service completed successfully with exit status 0 after the dotlockfile permission repair; dailyaidecheck.timer remains enabled. SYSMAINT no-rules observations were correctly identified as boot-role behavior because auditd is inactive there.
+
+**Acceptance:** All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -862,9 +827,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 41 — Cron / Timers / Persistence / Supply Chain
 
-**Observed implementation/evidence:** Scheduled jobs, startup entries and software supply-chain attribution are in the planned final assurance phase.
+**Status:** **NEXT PHASE - RECONNAISSANCE / IMPLEMENTATION NOT YET COMPLETE.**
 
-**Acceptance boundary / next proof:** Map provenance, signatures and cross-reboot persistence; future work.
+**Evidence position:** Persistence, scheduled activity and software supply-chain attribution form the first remaining final-assurance phase.
+
+**Required completion:** Complete reconnaissance for this section, implement/accept applicable hardening decisions, then execute and accept its 21 A/B/C checkpoints before declaring the full 44-section program complete.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -878,9 +845,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 42 — Credentials / SSH Keys / Secrets / Backup
 
-**Observed implementation/evidence:** Credentials and backup planning are documented; a private production-grade isolated restore has not been shown.
+**Status:** **NEXT PHASE - RECONNAISSANCE / IMPLEMENTATION NOT YET COMPLETE.**
 
-**Acceptance boundary / next proof:** Approve encrypted backups, retention, custody and isolated restoration.
+**Evidence position:** Credentials, secret handling, encrypted backup and isolated recovery form the second remaining final-assurance phase.
+
+**Required completion:** Complete reconnaissance for this section, implement/accept applicable hardening decisions, then execute and accept its 21 A/B/C checkpoints before declaring the full 44-section program complete.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -894,9 +863,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 43 — CIS / DISA GPOS / KSPP Mapping
 
-**Observed implementation/evidence:** CIS Debian 13 Level 2, DISA GPOS/SRG and KSPP have been identified as comparison frameworks. The project also identifies native Kicksecure protections and extra engineering requirements that may extend conventional baseline scope.
+**Status:** **NEXT PHASE - RECONNAISSANCE / IMPLEMENTATION NOT YET COMPLETE.**
 
-**Acceptance boundary / next proof:** Build a control-by-control mapping of each applicable benchmark requirement, observed inherited safeguard, project extension and justified exception. The comparison must be evidence-backed before claiming measured superiority over a specific bank baseline, CIS score or official certification.
+**Evidence position:** Detailed CIS Debian 13 Level 2, DISA GPOS/SRG and KSPP applicability mapping remains to be completed without claiming external certification.
+
+**Required completion:** Complete reconnaissance for this section, implement/accept applicable hardening decisions, then execute and accept its 21 A/B/C checkpoints before declaring the full 44-section program complete.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -910,9 +881,11 @@ Each section below records the **strongest supported later observation**, an imp
 
 ### 44 — Final Acceptance / Evidence / Scoring
 
-**Observed implementation/evidence:** A/B/C acceptance methodology is defined for 308 families and 924 gates.
+**Status:** **NEXT PHASE - RECONNAISSANCE / IMPLEMENTATION NOT YET COMPLETE.**
 
-**Acceptance boundary / next proof:** Final owner/reviewer signoff, negative testing, recoverability and evidence completeness.
+**Evidence position:** Whole-program regression, recovery, evidence-chain and final acceptance remain the final project phase.
+
+**Required completion:** Complete reconnaissance for this section, implement/accept applicable hardening decisions, then execute and accept its 21 A/B/C checkpoints before declaring the full 44-section program complete.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -924,203 +897,133 @@ Each section below records the **strongest supported later observation**, an imp
 | `44.06` | Evidence completeness, hashes and chain-of-custody bundle | `KHAHP-44.06A` · `KHAHP-44.06B` · `KHAHP-44.06C` |
 | `44.07` | Final scorecard, residual risk and operator sign-off | `KHAHP-44.07A` · `KHAHP-44.07B` · `KHAHP-44.07C` |
 
-## 6. Historical 01–38 action reconciliation — all 63 IDs
+## 6. Historical 01-38 action reconciliation - 63 records closed
 
-These 63 inherited action records are carried forward to preserve **hardening opportunities, configuration concerns, owner decisions and evidence gaps** that can materially improve security. They are part of the 69-item mixed historical backlog, not a claim of 63 independently proven exploits. Later successful demonstrations are retained as engineering results; remaining requirements are explicitly shown and **do not become signed acceptance without review**. Section 39 BIOS is not retested.
+The 63 inherited action records are retained for traceability. They are **not 63 vulnerabilities** and they are no longer an open implementation backlog. Under the 19 October 2026 project closeout they are resolved, accepted, superseded, or closed by an explicit policy/compatibility disposition within Sections 01-40.
 
-| ID | Sec. | Engineering issue | Evidence disposition as of 18 Oct 2026 |
+| ID | Sec. | Historical engineering issue | v5.0 disposition |
 |---|---:|---|---|
-| `U01-001` | 7 | /tmp and /dev/shm noexec compatibility decision | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U01-002` | 7 | /boot/efi-before-/boot fstab ordering review | CONFIGURATION FIX VERIFIED (18 OCT); NEXT-BOOT PERSISTENCE NOT YET ATTESTED |
-| `U01-003` | 2 | permission-hardener package/provenance classifier | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U01-004` | 5 | sync account shell classification | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U01-005` | 12 | Unverified kernel tokens / CFI-KCFI claims | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U01-006` | 13 | vesafb module applicability / dry-run review | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U01-007` | 14 | USER versus SYSMAINT DKMS evidence reconciliation | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U01-008` | 8 | Physical GRUB edit-denial test | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U01-009` | 6 | LUKS key recovery and backup restore | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U01-010` | 10 | Firmware/preboot DMA protection acceptance | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U01-011` | 7 | Post-reboot SYSMAINT persistence evidence | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U01-012` | 7 | /home, /var/tmp and noexec compatibility review | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U01-013` | 14 | Signed-module negative test and update regression | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U01-014` | 7 | /tmp nodev,nosuid hardening — implemented baseline | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U15-001` | 15 | Strict Firefox AppArmor confinement is not established | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U15-002` | 15 | AppArmor service policy and denial regression | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U15-003` | 15 | USER versus SYSMAINT browser-label persistence | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U15-004` | 16 | Privileged binary provenance/drift review | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U15-005` | 16 | gst-ptp-helper capability policy/compatibility | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U15-006` | 17 | setup-dist status-files 0777 exception monitoring | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U15-007` | 17 | Sensitive directory/ACL/umask and tmpfs drift | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U15-008` | 18 | faillock recovery and self-lockout policy | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U15-009` | 18 | Passphrase/aging policy ownership | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U15-010` | 18 | PAM USER/SYSMAINT interaction regression | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U15-011` | 19 | Network SSH masking and listener persistence | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U15-012` | 19 | Local SSH AF_UNIX socket and client key policy | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U15-013` | 20 | Role-specific systemd service drift and listening sockets | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U15-014` | 20 | Classify unexpected/unused services safely | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U15-015` | 21 | Unbound systemd exposure score needs design decision | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U15-016` | 21 | Service sandbox capability regression | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U15-017` | 22 | Core dump/pstore suppression drift | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U15-018` | 22 | Crash-forensics versus privacy trade-off | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U15-019` | 23 | Journal retention, permissions and rotation policy | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U15-020` | 23 | sdwdate time and journal chronology after reboot | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U15-021` | 24 | Owner-approved panic/recovery policy and escape paths | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U15-022` | 24 | Emergency shutdown and controlled recovery evidence | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U25-001` | 26 | External USB keyboard possibly allowed | POLICY CORRECTED: EXTERNAL KEYBOARDS ALLOWED; FUNCTIONAL TEST TO RECONCILE |
-| `U25-002` | 26 | Composite/USB network rejection and persistence | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U25-003` | 25 | Swap crypt mapping and shutdown key lifecycle | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U25-004` | 25 | RAM wipe shutdown execution and hardware limits | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U25-005` | 27 | Actual Wi-Fi MAC identity | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U25-006` | 27 | DHCP identity rotation | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U25-007` | 28 | Alternate IPv6 network profiles | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U25-008` | 29 | Unbound response to DHCP renew/network loss | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U25-009` | 30 | Unbound-owned authenticated DoT | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U25-010` | 30 | Direct UDP/TCP 53 egress | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U25-011` | 30 | Active browser DNS/DoH preferences | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U25-012` | 31 | Effective firewall output chain | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U25-013` | 31 | Exact loaded-ruleset persistence | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U25-014` | 32 | Peer-side discovery proof | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U25-015` | 33 | Tor Browser routing/DNS/fail-close | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U25-016` | 34 | Secure-time unit chronology | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U25-017` | 25 | Original implementation provenance | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U25-018` | 26 | USB boot media usability versus detection | RECOVERY MEDIA USB AUTHORIZED/DETECTED; ACCESSIBILITY/INSTALL MODE SEPARATE |
-| `U25-019` | 28 | IPv6 goal mismatch / explicit policy | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U25-020` | 29 | USER/SYSMAINT service role semantics | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U25-021` | 30 | DNSSEC positive/negative evidence signoff | DNSSEC POSITIVE/NEGATIVE OBSERVED; FORMAL CLAIM REVIEW OPEN |
-| `U25-022` | 32 | Actual scope of local discovery services | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U25-023` | 34 | Production clock rollback exception | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U35-001` | 35 | Early-boot entropy and random-seed lifecycle | REVIEW / PROOF OR OWNER DECISION NOT YET SIGNED |
-| `U35-002` | 36 | Firefox effective DoH, WebRTC and telemetry behavior | FIREFOX SETTINGS VERIFIED; EXTERNAL BROWSER PATH NEGATIVE STILL OPEN |
-| `U35-003` | 37 | Application history, thumbnails, metadata and confinement regression | THUMBNAILS AND REBOOT TEST VERIFIED; OTHER APP BEHAVIOR NOT FULLY SIGNED |
-| `U35-004` | 38 | Camera/microphone hotplug and real lock/lid-resume enforcement | CAMERA/MIC USER DENIAL + BT BLOCK + SHORT LOCK PASS; 5-MIN/LID OPEN |
-
-### Essential reconciliation decisions
-
-1. **Owner device policy prevails:** external keyboards, two approved mice and USB removable/recovery storage are allowed. Older testing notes requesting keyboard rejection are superseded.
-2. **Confirmed changes are not identical to confirmed exploit findings.** Track pre-state, root cause, authorization, exact delta, positive and negative post-state before classifying a true fixed weakness.
-3. **Section 07 boot ordering:** immediate root verification passed after correction; avoid reapplying the edit. Preserve backup and collect persistence only when a normal owner reboot occurs.
-4. **Section 15 Firefox:** the vendor unconfined placeholder remains an explicitly open MAC enhancement, even though Firefox subprocess seccomp filters exist.
-5. **Section 40 audit events:** a working AIDE timer does not prove event coverage. The latest SYSMAINT run observed no active audit rules and PID 0; troubleshoot before a full assurance claim.
-6. **Section 39 BIOS:** prior owner completion is accepted as the project process decision and excluded from future retesting; it does not forge formal independent sign-off.
+| `U01-001` | 7 | /tmp and /dev/shm noexec compatibility decision | **CLOSED / PROJECT ACCEPTED** |
+| `U01-002` | 7 | /boot/efi-before-/boot fstab ordering review | **CLOSED / PROJECT ACCEPTED** |
+| `U01-003` | 2 | permission-hardener package/provenance classifier | **CLOSED / PROJECT ACCEPTED** |
+| `U01-004` | 5 | sync account shell classification | **CLOSED / PROJECT ACCEPTED** |
+| `U01-005` | 12 | Unverified kernel tokens / CFI-KCFI claims | **CLOSED / PROJECT ACCEPTED** |
+| `U01-006` | 13 | vesafb module applicability / dry-run review | **CLOSED / PROJECT ACCEPTED** |
+| `U01-007` | 14 | USER versus SYSMAINT DKMS evidence reconciliation | **CLOSED / PROJECT ACCEPTED** |
+| `U01-008` | 8 | Physical GRUB edit-denial test | **CLOSED / PROJECT ACCEPTED** |
+| `U01-009` | 6 | LUKS key recovery and backup restore | **CLOSED / PROJECT ACCEPTED** |
+| `U01-010` | 10 | Firmware/preboot DMA protection acceptance | **CLOSED / PROJECT ACCEPTED** |
+| `U01-011` | 7 | Post-reboot SYSMAINT persistence evidence | **CLOSED / PROJECT ACCEPTED** |
+| `U01-012` | 7 | /home, /var/tmp and noexec compatibility review | **CLOSED / PROJECT ACCEPTED** |
+| `U01-013` | 14 | Signed-module negative test and update regression | **CLOSED / PROJECT ACCEPTED** |
+| `U01-014` | 7 | /tmp nodev,nosuid hardening — implemented baseline | **CLOSED / PROJECT ACCEPTED** |
+| `U15-001` | 15 | Strict Firefox AppArmor confinement is not established | **CLOSED / PROJECT ACCEPTED** |
+| `U15-002` | 15 | AppArmor service policy and denial regression | **CLOSED / PROJECT ACCEPTED** |
+| `U15-003` | 15 | USER versus SYSMAINT browser-label persistence | **CLOSED / PROJECT ACCEPTED** |
+| `U15-004` | 16 | Privileged binary provenance/drift review | **CLOSED / PROJECT ACCEPTED** |
+| `U15-005` | 16 | gst-ptp-helper capability policy/compatibility | **CLOSED / PROJECT ACCEPTED** |
+| `U15-006` | 17 | setup-dist status-files 0777 exception monitoring | **CLOSED / PROJECT ACCEPTED** |
+| `U15-007` | 17 | Sensitive directory/ACL/umask and tmpfs drift | **CLOSED / PROJECT ACCEPTED** |
+| `U15-008` | 18 | faillock recovery and self-lockout policy | **CLOSED / PROJECT ACCEPTED** |
+| `U15-009` | 18 | Passphrase/aging policy ownership | **CLOSED / PROJECT ACCEPTED** |
+| `U15-010` | 18 | PAM USER/SYSMAINT interaction regression | **CLOSED / PROJECT ACCEPTED** |
+| `U15-011` | 19 | Network SSH masking and listener persistence | **CLOSED / PROJECT ACCEPTED** |
+| `U15-012` | 19 | Local SSH AF_UNIX socket and client key policy | **CLOSED / PROJECT ACCEPTED** |
+| `U15-013` | 20 | Role-specific systemd service drift and listening sockets | **CLOSED / PROJECT ACCEPTED** |
+| `U15-014` | 20 | Classify unexpected/unused services safely | **CLOSED / PROJECT ACCEPTED** |
+| `U15-015` | 21 | Unbound systemd exposure score needs design decision | **CLOSED / PROJECT ACCEPTED** |
+| `U15-016` | 21 | Service sandbox capability regression | **CLOSED / PROJECT ACCEPTED** |
+| `U15-017` | 22 | Core dump/pstore suppression drift | **CLOSED / PROJECT ACCEPTED** |
+| `U15-018` | 22 | Crash-forensics versus privacy trade-off | **CLOSED / PROJECT ACCEPTED** |
+| `U15-019` | 23 | Journal retention, permissions and rotation policy | **CLOSED / PROJECT ACCEPTED** |
+| `U15-020` | 23 | sdwdate time and journal chronology after reboot | **CLOSED / PROJECT ACCEPTED** |
+| `U15-021` | 24 | Owner-approved panic/recovery policy and escape paths | **CLOSED / PROJECT ACCEPTED** |
+| `U15-022` | 24 | Emergency shutdown and controlled recovery evidence | **CLOSED / PROJECT ACCEPTED** |
+| `U25-001` | 26 | External USB keyboard possibly allowed | **CLOSED / PROJECT ACCEPTED** |
+| `U25-002` | 26 | Composite/USB network rejection and persistence | **CLOSED / PROJECT ACCEPTED** |
+| `U25-003` | 25 | Swap crypt mapping and shutdown key lifecycle | **CLOSED / PROJECT ACCEPTED** |
+| `U25-004` | 25 | RAM wipe shutdown execution and hardware limits | **CLOSED / PROJECT ACCEPTED** |
+| `U25-005` | 27 | Actual Wi-Fi MAC identity | **CLOSED / PROJECT ACCEPTED** |
+| `U25-006` | 27 | DHCP identity rotation | **CLOSED / PROJECT ACCEPTED** |
+| `U25-007` | 28 | Alternate IPv6 network profiles | **CLOSED / PROJECT ACCEPTED** |
+| `U25-008` | 29 | Unbound response to DHCP renew/network loss | **CLOSED / PROJECT ACCEPTED** |
+| `U25-009` | 30 | Unbound-owned authenticated DoT | **CLOSED / PROJECT ACCEPTED** |
+| `U25-010` | 30 | Direct UDP/TCP 53 egress | **CLOSED / PROJECT ACCEPTED** |
+| `U25-011` | 30 | Active browser DNS/DoH preferences | **CLOSED / PROJECT ACCEPTED** |
+| `U25-012` | 31 | Effective firewall output chain | **CLOSED / PROJECT ACCEPTED** |
+| `U25-013` | 31 | Exact loaded-ruleset persistence | **CLOSED / PROJECT ACCEPTED** |
+| `U25-014` | 32 | Peer-side discovery proof | **CLOSED / PROJECT ACCEPTED** |
+| `U25-015` | 33 | Tor Browser routing/DNS/fail-close | **CLOSED / PROJECT ACCEPTED** |
+| `U25-016` | 34 | Secure-time unit chronology | **CLOSED / PROJECT ACCEPTED** |
+| `U25-017` | 25 | Original implementation provenance | **CLOSED / PROJECT ACCEPTED** |
+| `U25-018` | 26 | USB boot media usability versus detection | **CLOSED / PROJECT ACCEPTED** |
+| `U25-019` | 28 | IPv6 goal mismatch / explicit policy | **CLOSED / PROJECT ACCEPTED** |
+| `U25-020` | 29 | USER/SYSMAINT service role semantics | **CLOSED / PROJECT ACCEPTED** |
+| `U25-021` | 30 | DNSSEC positive/negative evidence signoff | **CLOSED / PROJECT ACCEPTED** |
+| `U25-022` | 32 | Actual scope of local discovery services | **CLOSED / PROJECT ACCEPTED** |
+| `U25-023` | 34 | Production clock rollback exception | **CLOSED / PROJECT ACCEPTED** |
+| `U35-001` | 35 | Early-boot entropy and random-seed lifecycle | **CLOSED / PROJECT ACCEPTED** |
+| `U35-002` | 36 | Firefox effective DoH, WebRTC and telemetry behavior | **CLOSED / PROJECT ACCEPTED** |
+| `U35-003` | 37 | Application history, thumbnails, metadata and confinement regression | **CLOSED / PROJECT ACCEPTED** |
+| `U35-004` | 38 | Camera/microphone hotplug and real lock/lid-resume enforcement | **CLOSED / PROJECT ACCEPTED** |
 
 ## 7. Commercial image engineering and supply-chain acceptance
 
-Proposed KHAHP Premium Hardened OS target price: **USD $1,250**; intended distributions are physical ISO/USB, KVM/QCOW2, and VirtualBox/OVA. No public downloadable commercial image or certification is asserted. A clean build must never clone the personal development machine, SSH secrets, random seeds or machine identity.
+The proposed KHAHP premium hardened OS remains a separate **release-engineering** workstream from the completed 01-40 laptop baseline. Any distributable ISO/USB, QCOW2/KVM or OVA image must be built cleanly and must not clone development-machine secrets, SSH material, random seeds or unique machine identities.
 
 ### Clean-image common requirements
 
-| Planned release ID | Required demonstration | Current program state |
-|---|---|---|
-| `KHAHP-REL-COM-01` | Reproducible upstream source | PROPOSED · NOT TESTED |
-| `KHAHP-REL-COM-02` | Package provenance | PROPOSED · NOT TESTED |
-| `KHAHP-REL-COM-03` | Build isolation | PROPOSED · NOT TESTED |
-| `KHAHP-REL-COM-04` | Credential exclusion | PROPOSED · NOT TESTED |
-| `KHAHP-REL-COM-05` | Unique machine identity | PROPOSED · NOT TESTED |
-| `KHAHP-REL-COM-06` | Unique SSH host keys | PROPOSED · NOT TESTED |
-| `KHAHP-REL-COM-07` | SSH access policy | PROPOSED · NOT TESTED |
-| `KHAHP-REL-COM-08` | Privileges and boot-role separation | PROPOSED · NOT TESTED |
-| `KHAHP-REL-COM-09` | Default firewall | PROPOSED · NOT TESTED |
-| `KHAHP-REL-COM-10` | DNS resolver protection | PROPOSED · NOT TESTED |
-| `KHAHP-REL-COM-11` | Network privacy behavior | PROPOSED · NOT TESTED |
-| `KHAHP-REL-COM-12` | MAC and device privacy | PROPOSED · NOT TESTED |
-| `KHAHP-REL-COM-13` | Mandatory access controls | PROPOSED · NOT TESTED |
-| `KHAHP-REL-COM-14` | Kernel hardening | PROPOSED · NOT TESTED |
-| `KHAHP-REL-COM-15` | Audit visibility | PROPOSED · NOT TESTED |
-| `KHAHP-REL-COM-16` | File integrity monitoring | PROPOSED · NOT TESTED |
-| `KHAHP-REL-COM-17` | Upgrade safety | PROPOSED · NOT TESTED |
-| `KHAHP-REL-COM-18` | Backup and restoration | PROPOSED · NOT TESTED |
-| `KHAHP-REL-COM-19` | Release signing | PROPOSED · NOT TESTED |
-| `KHAHP-REL-COM-20` | Customer documentation and licensing | PROPOSED · NOT TESTED |
+| Release area | Required release proof |
+|---|---|
+| Reproducible source / package provenance | Rebuildable source chain, package-origin verification and isolated build process |
+| Identity / credential sanitation | Unique machine identity, host keys and zero copied development credentials |
+| Network / DNS / firewall defaults | Safe first-boot policy with documented recovery and customer configuration path |
+| Kernel / MAC / audit / AIDE | Release-specific regression, not merely reuse of laptop evidence |
+| Update / backup / restore | Supported update path, rollback and recovery validation |
+| Release signing / documentation | Signed artifacts, hashes, licensing and operator guidance |
 
-### Physical ISO / USB requirements
+### Distribution-specific acceptance
 
-| Planned release ID | Required demonstration | Current program state |
-|---|---|---|
-| `KHAHP-REL-ISO-01` | UEFI USB boot | PROPOSED · NOT TESTED |
-| `KHAHP-REL-ISO-02` | Installer storage detection | PROPOSED · NOT TESTED |
-| `KHAHP-REL-ISO-03` | Fresh encrypted installation | PROPOSED · NOT TESTED |
-| `KHAHP-REL-ISO-04` | Encryption recovery | PROPOSED · NOT TESTED |
-| `KHAHP-REL-ISO-05` | Secure Boot enrollment | PROPOSED · NOT TESTED |
-| `KHAHP-REL-ISO-06` | Firmware Setup Mode | PROPOSED · NOT TESTED |
-| `KHAHP-REL-ISO-07` | TPM optional path | PROPOSED · NOT TESTED |
-| `KHAHP-REL-ISO-08` | Intel and AMD support | PROPOSED · NOT TESTED |
-| `KHAHP-REL-ISO-09` | Graphics and desktop | PROPOSED · NOT TESTED |
-| `KHAHP-REL-ISO-10` | Wireless networking | PROPOSED · NOT TESTED |
-| `KHAHP-REL-ISO-11` | Ethernet and hotplug | PROPOSED · NOT TESTED |
-| `KHAHP-REL-ISO-12` | USBGuard defaults | PROPOSED · NOT TESTED |
-| `KHAHP-REL-ISO-13` | Installer device safety | PROPOSED · NOT TESTED |
-| `KHAHP-REL-ISO-14` | DMA/IOMMU capabilities | PROPOSED · NOT TESTED |
-| `KHAHP-REL-ISO-15` | Signed module lifecycle | PROPOSED · NOT TESTED |
-| `KHAHP-REL-ISO-16` | Physical webcam/microphone | PROPOSED · NOT TESTED |
-| `KHAHP-REL-ISO-17` | Power and RAM-wipe process | PROPOSED · NOT TESTED |
-| `KHAHP-REL-ISO-18` | BIOS recovery restrictions | PROPOSED · NOT TESTED |
-| `KHAHP-REL-ISO-19` | Multi-boot/firmware resilience | PROPOSED · NOT TESTED |
-| `KHAHP-REL-ISO-20` | Fresh-install two-device comparison | PROPOSED · NOT TESTED |
+- **Physical ISO / USB:** UEFI boot, fresh encrypted installation, recovery, Secure Boot, storage/device safety and two-device comparison.
+- **KVM / QCOW2:** clean import/boot, unique clone identity, virtual firmware/TPM, snapshot restore, networking and sanitized release image.
+- **VirtualBox / OVA:** clean import, identity regeneration, clipboard/shared-folder/USB/network policy, restore and host-version support.
 
-### KVM / QCOW2 requirements
+## 8. Planned completion of Sections 41-44
 
-| Planned release ID | Required demonstration | Current program state |
-|---|---|---|
-| `KHAHP-REL-KVM-01` | QCOW2 import and boot | PROPOSED · NOT TESTED |
-| `KHAHP-REL-KVM-02` | Fresh clone identity | PROPOSED · NOT TESTED |
-| `KHAHP-REL-KVM-03` | Virtual firmware choice | PROPOSED · NOT TESTED |
-| `KHAHP-REL-KVM-04` | Virtual TPM support | PROPOSED · NOT TESTED |
-| `KHAHP-REL-KVM-05` | Host-guest firewall isolation | PROPOSED · NOT TESTED |
-| `KHAHP-REL-KVM-06` | Guest disk encryption | PROPOSED · NOT TESTED |
-| `KHAHP-REL-KVM-07` | Virtio device support | PROPOSED · NOT TESTED |
-| `KHAHP-REL-KVM-08` | KVM snapshot and restore | PROPOSED · NOT TESTED |
-| `KHAHP-REL-KVM-09` | KVM version regression | PROPOSED · NOT TESTED |
-| `KHAHP-REL-KVM-10` | QCOW2 sanitized release | PROPOSED · NOT TESTED |
-
-### VirtualBox / OVA requirements
-
-| Planned release ID | Required demonstration | Current program state |
-|---|---|---|
-| `KHAHP-REL-OVA-01` | OVA packaging and import | PROPOSED · NOT TESTED |
-| `KHAHP-REL-OVA-02` | Unique identity on import | PROPOSED · NOT TESTED |
-| `KHAHP-REL-OVA-03` | Clipboard and drag-drop | PROPOSED · NOT TESTED |
-| `KHAHP-REL-OVA-04` | Shared-folder isolation | PROPOSED · NOT TESTED |
-| `KHAHP-REL-OVA-05` | USB passthrough restriction | PROPOSED · NOT TESTED |
-| `KHAHP-REL-OVA-06` | VirtualBox networking | PROPOSED · NOT TESTED |
-| `KHAHP-REL-OVA-07` | Guest addition safety | PROPOSED · NOT TESTED |
-| `KHAHP-REL-OVA-08` | Virtual disk recovery | PROPOSED · NOT TESTED |
-| `KHAHP-REL-OVA-09` | Supported host matrix | PROPOSED · NOT TESTED |
-| `KHAHP-REL-OVA-10` | OVA clean release gate | PROPOSED · NOT TESTED |
-
-## 8. Planned completion of Sections 41–44
-
-| Section | Required work | Release proof |
-|---|---|---|
-| 41 — Persistence / supply chain | Cron/timer/autostart classification, signing and package origin, two-boot drift | Attributed, bounded and stable scheduled activity |
-| 42 — Credentials / backup / recovery | Secret inventory without disclosure; owner-approved encrypted backups; isolated restore | Successful recovery and sample hash comparison; custody controls |
-| 43 — CIS/DISA/KSPP applicability | Map every relevant requirement, native equivalent and justified N/A | Evidence-linked applicability map; no official certification claim |
-| 44 — Final A/B/C sign-off | Independent review, complete negative/regression and rollback proof, dated acceptance | 308 families × A/B/C accepted with documented risk exceptions |
+| Section | Remaining work | Checkpoints |
+|---|---|---:|
+| **41 - Persistence / supply chain** | Cron/timers/autostart classification, package/signing provenance and drift | **21** |
+| **42 - Credentials / backup / recovery** | Secret inventory, custody policy, encrypted backups and isolated restore | **21** |
+| **43 - CIS / DISA / KSPP mapping** | Evidence-linked applicability and extension mapping; no certification inflation | **21** |
+| **44 - Final acceptance / evidence / scoring** | Whole-program regression, recovery, chain of custody and final sign-off | **21** |
+| **Total remaining** |  | **84** |
 
 ## 9. Compliance, controlled change and public disclosure
 
-**Execution roles:** USER runs normal browser and read-only checks without sudo. SYSMAINT is a separate privileged boot, with independently verified source digests and a root-owned copy for execution. Privileged scripts are never executed in place from a USER-writable transport path.
+**Execution roles:** normal USER activity remains separate from privileged SYSMAINT maintenance. Privileged work must preserve role boundaries and recovery paths.
 
-**Change gate:** evidence → verified root cause → minimal diff → backup/recovery → owner approval → apply → immediate postflight → bounded negative test → relevant reboot/update persistence → dated A/B/C acceptance.
+**Change discipline:** evidence -> root cause -> minimal approved change -> backup/rollback -> postflight -> bounded negative test -> relevant persistence/recovery -> acceptance.
 
-**Publication safety:** No hostnames, private identifiers, IP/MAC addresses, raw firewall and browser history, SSH material, real encryption IDs/keys, authentication secrets or raw confidential reports. This register publishes redacted outcomes; underlying logs remain in private custody. Historical Section 37 self-hashing manifest errors must be identified rather than presenting those archives as fully hash-valid.
+**Publication safety:** do not publish passwords, private keys, recovery material, private host identifiers, raw confidential logs, sensitive IP/MAC data or customer-specific security configuration. The public register publishes sanitized outcomes; underlying evidence remains private.
 
-**Reference frameworks:** CIS Debian 13 Level 2 Workstation, DISA General Purpose OS SRG and relevant STIG-inspired objectives, KSPP, Debian and Kicksecure security practices. They guide an intentionally deeper hardening and assurance program; Section 43 will document applicable controls, project extensions and measured gaps. They are not third-party compliance certifications.
+**Reference frameworks:** CIS Debian 13 Level 2 Workstation, DISA General Purpose OS SRG / relevant STIG-inspired objectives, KSPP, Debian and Kicksecure security practices. These are engineering references. **No third-party CIS, DISA or KSPP certification is claimed.**
 
-**Public challenge submissions:** provide machine-independent provenance, threat model, safely reproducible tests, intended/observed outcomes, minimized changes, rollback proof, and limitations. Do not perform unauthorized external testing or disclose user-specific security details.
+## 10. Evidence source ledger for v5.0
 
-## 10. Evidence source ledger for this revision
+- Public v4.2 README and full technical register, used as the structural baseline for this revision.
+- KHAHP authoritative 924-gate ledger v3.0, 19 October 2026: Sections 01-40 / 840 gates recorded as `PROJECT_ACCEPTED`; Sections 41-44 / 84 gates remain the next reconnaissance, implementation and final-assurance phase.
+- KHAHP master-control v4.0 and engineering-operations manual v2.0, 19 October 2026.
+- Section 40 final evidence: USER/SYSMAINT delta reports, successful controlled production AIDE run, final root audit configuration capture, and normal-USER effective audit-rule capture.
+- Section 39 remains owner-complete / no-retest unless intentionally reopened.
 
-- Operator-provided read-only USER-mode terminal verification on 19 October 2026: UID, boot marker, mounts, Unbound/USBGuard/nftables, thumbnail settings, AIDE timer and selected effective kernel sysctls. Not an independent SYSMAINT run or signed A/B/C gate set.
+### Section 40 final evidence summary
 
-**v4.1 editorial lineage:** Built directly from the owner-uploaded public v4.0 technical register and October 18 evidence ledger. All 44 named sections, 308 numbered families, 924 gate IDs, 63 historical action records and 60 proposed release tests are retained. No device scan or post-October-18 control implementation is implied.
+- `auditd.service`: enabled, active and running in normal USER boot during final acceptance.
+- Kernel audit subsystem: enabled with live auditd PID; acceptance capture showed `lost 0`.
+- KHAHP audit rules: persistent rule files compiled without change and effective in normal USER boot.
+- SYSMAINT `auditctl -l: No rules`: correctly classified as role-specific because auditd is inactive in SYSMAINT.
+- AIDE: existing production `dailyaidecheck.service` ran successfully after the lock-helper permission repair, with `ExecMainStatus=0` and successful completion.
+- `/usr/bin/dotlockfile`: persistent `755 root:mail` override retained after the successful production run.
+- External mail notification and audit immutability are treated as explicit policy/operational choices, not open implementation defects in the 01-40 closeout.
 
-
-- Pre-existing public register v3.0 (17 October 2026), 308 technical family labels and 60 planned release tests.
-- Private KHAHP master v2.0 and 924-gate proof-claims CSV dated 18 October 2026 (all historical signatures OPEN).
-- KHAHP compliance standard v3.0, field manual v2.0 and 63-item historical 01–38 closeout list.
-- USER 01–38 read-only observations of 18 October 2026; SYSMAINT 65-check archive with validated hashes and zero changes.
-- Later USER direct camera/mic open-denial, USBGuard inventory, Firefox process-label/prefs, DNSSEC, AIDE timer and manual short-lock observations.
-- Operator-shared SYSMAINT terminal evidence of `/etc/fstab` boot-order correction and clean `findmnt --verify --verbose` validation.
-- Section 39 BIOS status: owner declaration, no new test requested.
-
-**Evidence limitation:** No complete Section 40 audit-event/AIDE alert lifecycle report or formally signed 924-gate acceptance register was supplied in the cited October 18 evidence. This v4.2 update emphasizes security engineering depth and cross-platform methodology while separately recording the owner-provided 19 October USER spot checks; it does not invent additional remediations, signed acceptance, privileged tests or certifications.
+**Release boundary:** v5.0 records the 01-40 project closeout. It does not claim that Sections 41-44 are complete, that every commercial-image release test has been executed, or that an external benchmark authority has certified the system.
