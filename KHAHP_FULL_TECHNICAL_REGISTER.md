@@ -1,9 +1,9 @@
 # KHAHP — Full Technical Evidence & Engineering Register
 
-**Public Consolidated Release v4.1 · 19 October 2026 (editorial update)**  
+**Public Consolidated Release v4.2 · 19 October 2026 (cross-platform positioning and USER evidence update)**  
 **Elite Cybersecurity Specialist · Malaysia**  
 **200+ hours of owner-reported engineering · 44 sections · 308 control families · 924 A/B/C assurance checkpoints**  
-**Technical observations and outstanding decisions: through 18 October 2026**
+**Historical technical observations through 18 October 2026; operator USER spot checks on 19 October 2026**
 
 > **Engineering mission:** Go beyond a conventional baseline-only hardening exercise. Extend Kicksecure's existing defenses by identifying security configuration weaknesses, evaluating additional protective controls, reducing unnecessary attack surface and producing repeatable evidence of enforcement, persistence and recovery — whether or not a specific weakness has been exploited.
 
@@ -68,7 +68,40 @@ Do not equate **not exploitable** with **not worth hardening**. Do not equate **
 - **Section 40:** Auditd/AIDE end-to-end event coverage, alert lifecycle, rule enforcement and retention are active completion tasks.
 - **Sections 41–44:** Planned final assurance, recovery, standards mapping and formal acceptance phases.
 - **Evidence ledger:** The supplied 18 October CSV records 0/924 formal reviewer signatures. Earlier successful observations and changes remain valid within their stated test scope; all 924 gates have not been demonstrated as security failures.
-- **Revision boundary:** v4.1 updates explanatory language, organization and presentation only. It adds **no newly executed machine tests, remediations or certification results** beyond the cited October 18 records.
+- **Revision boundary:** v4.2 adds a cross-platform capability statement and records the operator-provided, read-only USER spot checks of 19 October. It does **not** add machine remediations, cross-platform deployments, formal gate sign-offs or certification results.
+
+### 1.6. Maximum Hardening — what our Kicksecure work demonstrates beyond Kicksecure
+
+**Elite Cybersecurity Specialist uses the Kicksecure Maximum Hardening Challenge as a public engineering demonstration of the defensive methods we can bring to other operating systems, servers, cloud deployments, hypervisors and supported endpoint devices.** Our focus is practical defensive depth: identifying configuration weaknesses even when no public exploit is known, strengthening isolation, reducing unnecessary privileges and exposure, and verifying that controls remain functional, persistent and recoverable.
+
+The work is transferable at the **engineering-methodology** level. Control syntax, vendor defaults, deployment responsibilities and actual enforcement must be assessed and proven separately for each target technology; a Kicksecure demonstration does not by itself certify or validate a Windows, cloud, hypervisor or other device deployment.
+
+| Intended target platform or service | Transferable engineering capabilities | Platform-specific implementation and proof required |
+|---|---|---|
+| **Linux servers** — Ubuntu, Debian, RHEL, Rocky Linux, AlmaLinux, CentOS Stream and other supported distributions | Package/configuration provenance, minimal services, kernel and filesystem policy, privilege boundaries, network/DNS enforcement, log integrity and recoverability | Distribution version, package manager, SELinux/AppArmor/systemd integration, deployed workload and remote-access recovery |
+| **Windows Server and Windows enterprise workstations** | Least privilege, authenticated administration, service reduction, network rules, logging, identity controls and tested rollback | Windows security baselines, Defender and audit policy, Active Directory/workload scope, Group Policy/MDM interactions and actual Windows-event verification |
+| **Cloud infrastructure** — AWS, Azure, Google Cloud and Oracle Cloud | Asset exposure review, IAM least privilege, network segmentation, encryption, logging/alerting, drift control and recovery assurance | Cloud shared-responsibility model, account/tenant architecture, provider-native policy and audit APIs, approval boundaries and tenant-specific tests |
+| **Virtualization** — VMware ESXi and Proxmox VE | Administrative isolation, management-plane protection, segmentation, update provenance, monitoring and restore validation | Hypervisor/cluster version, host networking, workload continuity, datastore/snapshot behavior and vendor-supported recovery |
+| **Supported endpoint and other managed devices** | Policy-based access, service minimization, secure update provenance, device/port control, telemetry and lifecycle review | Device capabilities, vendor firmware, authorization, operational safety and device-specific negative tests |
+
+**Commercial service relationship:** Public proof of our Kicksecure engineering methodology supports the expertise behind our defensive hardening services, while each engagement must produce its **own system-specific evidence**. No platform listed above is presented as already fully hardened merely because it appears in a services banner.
+
+### 1.7. Additional 19 October USER-mode operator verification
+
+The owner supplied a new **read-only USER terminal check** after the original 18 October evidence cutoff. The transcript confirms the observed settings below in that specific session; it is not a signed A/B/C gate bundle or a new remediation event.
+
+| Observation | Latest USER-mode result | Acceptance boundary |
+|---|---|---|
+| USER identity and role | UID `1000`; no `boot-role=sysmaint` marker detected | Role identification only; USER/SYSMAINT full cross-role policy remains separately assessed |
+| `/tmp` mount | `rw,nosuid,nodev,noatime,inode64` | Confirms current restrictions; no `noexec`, which is intentionally a compatibility decision |
+| Boot mounts | `/boot` and `/boot/efi` mounted | Does not prove boot-order dependency or persistence acceptance |
+| Resolver/peripheral/firewall service health | `unbound`, `usbguard`, `nftables` all `active` | Does not independently prove packet verdicts, DNS no-bypass or physical device behavior |
+| Thumbnail privacy | `org.gnome.desktop.thumbnailers disable-all = true` | Current configuration confirmed; other application behavior remains separately scoped |
+| AIDE timer | `dailyaidecheck.timer` `enabled` and `active` | Does not demonstrate integrity-change alert lifecycle or active audit event rules |
+| Kernel information restrictions | `kernel.kptr_restrict=2`; `kernel.dmesg_restrict=1` | Scoped effective-value observations |
+| Kernel process/BPF restrictions | `kernel.yama.ptrace_scope=3`; `kernel.unprivileged_bpf_disabled=1` | Scoped effective-value observations; not all kernel defenses are implied |
+
+**Role-check interpretation:** The transcript included a zsh `grep` nonmatch exit-status notice followed by “No SYSMAINT boot marker detected”; this is consistent with the observed USER session and is not a standalone system failure. No firmware retest was requested; Section 39 remains owner-completed. Evidence should be reconciled into the internal authoritative CSV before any formal gate acceptance.
 
 ## 2. Evidence rules and status vocabulary
 
@@ -1077,6 +1110,8 @@ Proposed KHAHP Premium Hardened OS target price: **USD $1,250**; intended distri
 
 ## 10. Evidence source ledger for this revision
 
+- Operator-provided read-only USER-mode terminal verification on 19 October 2026: UID, boot marker, mounts, Unbound/USBGuard/nftables, thumbnail settings, AIDE timer and selected effective kernel sysctls. Not an independent SYSMAINT run or signed A/B/C gate set.
+
 **v4.1 editorial lineage:** Built directly from the owner-uploaded public v4.0 technical register and October 18 evidence ledger. All 44 named sections, 308 numbered families, 924 gate IDs, 63 historical action records and 60 proposed release tests are retained. No device scan or post-October-18 control implementation is implied.
 
 
@@ -1088,4 +1123,4 @@ Proposed KHAHP Premium Hardened OS target price: **USD $1,250**; intended distri
 - Operator-shared SYSMAINT terminal evidence of `/etc/fstab` boot-order correction and clean `findmnt --verify --verbose` validation.
 - Section 39 BIOS status: owner declaration, no new test requested.
 
-**Evidence limitation:** No complete Section 40 audit-event/AIDE alert lifecycle report or formally signed 924-gate acceptance register was supplied in the cited October 18 evidence. This editorial update emphasizes security engineering depth and hardening opportunities without inventing test passes, certification, or more recent machine evidence.
+**Evidence limitation:** No complete Section 40 audit-event/AIDE alert lifecycle report or formally signed 924-gate acceptance register was supplied in the cited October 18 evidence. This v4.2 update emphasizes security engineering depth and cross-platform methodology while separately recording the owner-provided 19 October USER spot checks; it does not invent additional remediations, signed acceptance, privileged tests or certifications.

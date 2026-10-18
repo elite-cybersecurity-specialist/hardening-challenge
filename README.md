@@ -16,9 +16,19 @@
 
 **ELITE CYBERSECURITY SPECIALIST · MALAYSIA**  
 **200+ HOURS OF HANDS-ON HARDENING AND SECURITY VERIFICATION (OWNER-REPORTED)**  
-**Public documentation v4.1 · 19 October 2026 · Evidence observations through 18 October 2026**
+**Public documentation v4.2 · 19 October 2026 · Historical evidence through 18 October; additional USER spot checks on 19 October**
 
 > **The open challenge:** Can you engineer and demonstrate deeper, more reproducible operating-system defenses — with source evidence, functional security tests, and reliable recovery — than the controls shown here?
+
+## Kicksecure Maximum Hardening — proof of our security engineering capabilities
+
+**Our Kicksecure Maximum Hardening Challenge demonstrates the depth of defensive engineering we bring to other operating systems, servers, workstations, cloud infrastructure, virtualization hosts and supported devices.**
+
+We use a demanding Kicksecure/Debian test environment to investigate security configuration weaknesses, build additional defense-in-depth protections, reduce exposed attack surfaces and verify whether safeguards actually work and survive lifecycle changes. The program spans **44 security domains, 308 technical control families and 924 A/B/C assurance checkpoints** — an engineering methodology, not a claim of 924 exploitable vulnerabilities.
+
+**From Kicksecure engineering to professional defensive hardening:** We apply the same evidence-led principles — baseline assessment, source/configuration provenance, least privilege, service and kernel hardening, network controls, logging, authorized negative testing, safe remediation and recovery validation — to **Linux and Windows systems, AWS/Azure/Google Cloud/Oracle Cloud environments, VMware ESXi/Proxmox virtualization, and appropriately supported endpoint devices.**
+
+The Kicksecure project demonstrates our technical approach and selected protections on **Kicksecure**, not a completed independent test of every named platform. Each client environment receives its own platform-specific control selection, compatibility checks and verification. **Our mission is to maximize practical defenses, not just check boxes.**
 
 ## Why we go beyond standard hardening
 
@@ -56,6 +66,10 @@ KHAHP builds on the existing protections of [Kicksecure](https://www.kicksecure.
 
 **Corrective work is documented, not theoretical:** At least three distinct configuration-change events are supported by the October 18 records: `/tmp` hardening, privacy-thumbnail protection, and correction of the `/boot`/`/boot/efi` mount ordering. They are examples, **not a comprehensive historical count of every hardening action**.
 
+## Latest USER-mode verification — 19 October 2026
+
+Additional **operator-provided, read-only USER-mode observations** reconfirmed UID `1000` without a SYSMAINT boot marker; `/tmp` `nosuid,nodev`; running Unbound, USBGuard and nftables; thumbnail privacy `disable-all=true`; active/enabled AIDE timer; and kernel restrictions `kptr_restrict=2`, `dmesg_restrict=1`, `ptrace_scope=3`, `unprivileged_bpf_disabled=1`. `/boot` and `/boot/efi` were mounted. These are **current-state observations**, not substitutes for independently scoped DNS/firewall bypass, audit-event, reboot-persistence or recovery tests.
+
 ## How we classify a hardening finding
 
 | Classification | Meaning |
@@ -70,8 +84,8 @@ An incomplete verification gate is **not automatically a vulnerability**; equall
 
 ## Technical documentation — complete evidence scope
 
-- **[Full 44-section technical register — v4.1](KHAHP_FULL_TECHNICAL_REGISTER.md)** — 308 individual control families, all 924 A/B/C gate identifiers, observed protections, improvement decisions, full 63-item historic follow-up reconciliation, and 60 proposed image-release tests.
-- **[Public master technical evidence PDF — v4.1](docs/KHAHP_Public_Master_Evidence_Sections_01-44_v4.1.pdf)** — professionally formatted, complete portable publication of the updated register.
+- **[Full 44-section technical register — v4.2](KHAHP_FULL_TECHNICAL_REGISTER.md)** — 308 individual control families, all 924 A/B/C gate identifiers, observed protections, improvement decisions, full 63-item historic follow-up reconciliation, and 60 proposed image-release tests.
+- **[Public master technical evidence PDF — v4.2](docs/KHAHP_Public_Master_Evidence_Sections_01-44_v4.2.pdf)** — professionally formatted, complete portable publication of the updated register.
 
 **Evidence status:** The baseline formal sign-off ledger provided on 18 October still has **0 of 924 reviewer-signed gates**. This is a documentation/acceptance state, **not a statement that no defenses have been implemented or that 924 controls failed**. Some successful demonstrations remain to be linked to the correct signed A/B/C records. The owner reports Section 39 BIOS complete and has excluded it from retesting. Section 40 auditd/AIDE acceptance and specified earlier follow-ups remain open. The underlying evidence and its limitations are listed in the register.
 
@@ -86,4 +100,4 @@ An incomplete verification gate is **not automatically a vulnerability**; equall
 **Privacy and publication:** No passwords, private keys, personal device identifiers, private firewall rules, raw audit histories, or sensitive host evidence are published. Existing vendor protections are credited to Kicksecure/Debian; project changes and deeper enhancement objectives are differentiated in the technical register.
 
 **Project:** [Elite Cybersecurity Specialist](https://github.com/elite-cybersecurity-specialist) · Malaysia  
-**Version:** v4.1 editorial revision (19 October 2026); machine evidence remains dated to the observations cited in the register.
+**Version:** v4.2 cross-platform service positioning update (19 October 2026). Earlier machine evidence remains dated to its original observations; the additional 19 October USER spot-check results are operator-reported and scoped to their read-only checks.
