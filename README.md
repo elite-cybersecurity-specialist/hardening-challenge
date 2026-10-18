@@ -2,6 +2,14 @@
   <img src="assets/Hardening-Challenge.jpg" alt="KHAHP open defensive cybersecurity hardening challenge" width="100%">
 </p>
 
+<p align="center">
+  <img src="assets/ECS-Deep-Security-Hardening-Services.png" alt="ECS Deep Security Hardeni>
+</p>
+
+<p align="center">
+  <img src="assets/ECS-Defensive-Cloud-Hardening-Services.png" alt="ECS Defensive Cloud Har>
+</p>
+
 # KHAHP — Kicksecure High-Assurance Hardening Project
 
 **200+ HOURS OF HANDS-ON CYBERSECURITY ENGINEERING, SYSTEM HARDENING AND VERIFICATION**  
@@ -13,10 +21,6 @@
 KHAHP is an independently developed hardening and assurance project built on [Kicksecure](https://www.kicksecure.com/). It combines Debian-based security engineering, a distinct USER/SYSMAINT administrative boundary, hardware and boot assurance, kernel protections, network privacy, application isolation, logging, recovery and repeatable negative testing.
 
 **200+ hours** is the project owner's reported cumulative engineering effort, not an independently time-tracked metric.
-
-<p align="center">
-  <img src="assets/ECS-Deep-Security-Hardening-Services.png" alt="ECS Deep Security Hardening Services" width="100%">
-</p>
 
 ## Progress and scope
 
