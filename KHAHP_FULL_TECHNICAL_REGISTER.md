@@ -1,27 +1,74 @@
 # KHAHP — Full Technical Evidence & Engineering Register
 
-**Public Consolidated Release v4.0 · 18 October 2026**  
+**Public Consolidated Release v4.1 · 19 October 2026 (editorial update)**  
 **Elite Cybersecurity Specialist · Malaysia**  
-**200+ hours of engineering work (owner-reported) · 44 sections · 308 families · 924 evidence gates**
+**200+ hours of owner-reported engineering · 44 sections · 308 control families · 924 A/B/C assurance checkpoints**  
+**Technical observations and outstanding decisions: through 18 October 2026**
 
-> **Current milestone:** Sections 01–40 are the owner-reported engineering workstream; Sections 41–44 are the remaining planned assurance and commercialization workstreams. The original gate sheet still records **0/924 formally signed A/B/C gates**. This is not a claim that all applicable acceptance evidence is complete. Section 39 BIOS is owner-completed and excluded from further retests.
+> **Engineering mission:** Go beyond a conventional baseline-only hardening exercise. Extend Kicksecure's existing defenses by identifying security configuration weaknesses, evaluating additional protective controls, reducing unnecessary attack surface and producing repeatable evidence of enforcement, persistence and recovery — whether or not a specific weakness has been exploited.
 
-## 1. Executive research and integrity statement
+## 1. Executive engineering position and integrity statement
 
-The project evaluates a defensively hardened Kicksecure/Debian 13 laptop, with daily-use USER and privileged SYSMAINT maintenance roles kept distinct. It aims to verify source provenance, real enforcement and persistence/recovery in the intended threat model. It does not imply stock Kicksecure has 924 vulnerabilities, that an audit run fixes controls, that a command returning zero is necessarily an effective-negative-test PASS, or that current development images are commercially certified.
+KHAHP is a high-assurance defensive hardening and verification program for a Kicksecure / Debian 13 laptop. It is not a vulnerability-scanner scorecard. Its core objective is to **maximize practical defensive strength and operating-system resilience**, while respecting vendor safeguards, USER/SYSMAINT privilege separation and physical recovery.
 
-| Program measure | Number | Interpretation |
+### 1.1. What "beyond CIS Level 2" means in this project
+
+The engineering program takes **applicable CIS Debian Linux 13 Level 2 Workstation** recommendations as a reference point and investigates further isolation, kernel and boot controls, network and DNS path validation, device/privacy boundaries, supply-chain assurance, recovery and evidence-driven negative testing. **DISA General Purpose Operating System SRG / applicable STIG-inspired objectives**, **KSPP**, and Kicksecure-native safeguards are additional design references.
+
+The term *beyond a conventional benchmark-only baseline* describes the **breadth and intended depth of the engineering program**, not a third-party-certified ranking against every bank or operating-system deployment. A complete control-by-control comparison of applicable CIS/DISA requirements, native equivalents and project extensions is the explicit work of Section 43; this release does not invent a benchmark score or official certification.
+
+A **security weakness does not need a working exploit** to merit correction. Overly permissive isolation, unnecessary accessible services, weak privacy defaults, missing detection capability or untested failure recovery can represent practical weaknesses, and hardening can deliberately exceed the minimum required by a checklist. Conversely, a planned check or optional feature alone is not proof that stock Kicksecure is defective.
+
+### 1.2. Scope and significance of the 924 checkpoints
+
+| Program measure | Number | Engineering significance |
 |---|---:|---|
-| Domains / sections | 44 | Seven control families per section |
-| Control families | 308 | 01.01 to 44.07 |
-| Source / runtime / persistence gates | 924 | A, B, C for each family |
-| Historical mixed backlog | 69 | Review, manual, exception and change items |
-| Tracked 01–38 historical action records | 63 | Neither a vulnerability count nor an automatic patch queue |
-| Already supported configuration change events | At least 3 | See Section 3; not total discovered vulnerabilities |
-| Current formal signed gate total in provided register | 0 | Signature ledger has not been updated with newer tests |
-| Commercial-image acceptance tests | 60 | Proposed future release tests, not executed |
+| Hardening sections | **44** | Defense domains, including boot, kernel, filesystem, network, devices, monitoring and recovery |
+| Technical control families | **308** | Seven specific control families per section (`01.01` to `44.07`) |
+| A/B/C assurance checkpoints | **924** | Per-family provenance (A), runtime enforcement (B), persistence/recovery (C) |
+| Historical mixed backlog entries | **69** | Mixed review, manual, exception and implementation records, not 69 confirmed vulnerabilities |
+| Historical 01–38 action records | **63** | Tracked follow-up decisions, not automatically 63 pending patches |
+| Distinct supported change events | **At least 3** | Traceable corrective/hardening examples in Section 3, not a complete lifetime fix count |
+| Reviewer-signed A/B/C gates | **0** in the supplied 18 Oct ledger | Historical formal signature record awaiting evidence reconciliation; not 924 failed controls |
+| Planned commercial-image tests | **60** | Future clean-image, ISO, KVM/QCOW2 and OVA release tests |
 
-**Boundary:** The project owner reports more than 200 hours and considers Section 39 BIOS complete. This is an owner statement rather than an independently audited work-hour or firmware assertion. The 01–40 progress headline reports engineering scope, not universal A/B/C acceptance; Section 40 auditd/AIDE end-to-end testing has not been evidenced in the available reports.
+The **924 entries are meaningful security assurance checkpoints**: each can reveal a configuration problem, confirm an existing safeguard, evaluate a defense-in-depth enhancement, or prove compatibility and survival through system lifecycle events. They **must not be flattened into either 924 discovered exploits or 924 meaningless paperwork entries**.
+
+### 1.3. Demonstrated defensive engineering and improvement opportunities
+
+| Domain | Supported engineering position | Deeper assurance / improvement being pursued |
+|---|---|---|
+| USER / SYSMAINT separation | Distinct roles and privileged maintenance workflow demonstrated | Complete linked role and recovery acceptance without enabling USER sudo |
+| Kernel and memory | Observed restricted ptrace, kernel pointers, dmesg, BPF, ASLR and protected-file controls | Link configuration provenance to kernel build, effective coverage and update regression |
+| Storage / filesystem | LUKS root observed; `/tmp` hardened with `nodev,nosuid`; boot partition mount ordering corrected and immediately validated | Recovery, boot persistence and compatibility verification |
+| Software confinement | AppArmor broadly enabled and browser subprocess seccomp observed | Firefox vendor placeholder remains `unconfined`: a concrete candidate for safer restrictive confinement design/testing |
+| Resolver / network | Local Unbound and DNSSEC negative/positive behavior tested; configured DoT, nftables and Tor observed | Negative proof of encrypted upstream trust, resolver bypass prevention, firewall packet verdicts and application routing |
+| Peripheral / privacy | USBGuard device rules, USER camera/microphone open denial, Bluetooth block and thumbnail restrictions observed | Physical, hotplug and power/lid persistence tests under authorized owner policy |
+| Audit / integrity | AIDE daily timer observed | Section 40 audit event collection, rules and AIDE alert lifecycle still require end-to-end validation |
+
+**Provenance matters:** Existing vendor protections are credited as Kicksecure/Debian capabilities where supported; *project-specific changes* are identified separately. Configuration evidence can be technically meaningful before formal acceptance, but a proposed mitigation is not described as applied unless supported by a dated change/result.
+
+### 1.4. Security finding categories and acceptance boundaries
+
+| Classification | Operational meaning |
+|---|---|
+| **Observed protection** | Installed/configured or tested safeguard, with its actual observed scope explicitly recorded |
+| **Confirmed security weakness / defect** | Demonstrated undesirable behavior or misconfiguration against an applicable approved security requirement |
+| **Hardening enhancement opportunity** | An additional reduction in exposure or improvement in isolation/visibility/resilience, including when an exploit has not been reproduced |
+| **Policy/compatibility decision** | Intentional choice, exception, N/A, or restriction with potential functional/recovery trade-offs |
+| **Evidence pending / review** | Provenance, runtime behavior, negative test or persistence not yet sufficiently evidenced for the intended claim |
+| **Formally accepted** | Approved A/B/C outcome linked to evidence, date and authorized reviewer or recorded exception |
+
+Do not equate **not exploitable** with **not worth hardening**. Do not equate **not yet tested** with **confirmed insecure**. The same controls may have proven individual aspects and still await full A/B/C review.
+
+### 1.5. Project status at this editorial release
+
+- **Active engineering milestone:** Sections 01–40 are within the owner-reported implementation/investigation workstream. This does not mean all their acceptance gates are signed.
+- **Section 39:** BIOS/firmware is owner-declared complete and expressly excluded from retesting; respect the decision and do not fabricate independent signatures.
+- **Section 40:** Auditd/AIDE end-to-end event coverage, alert lifecycle, rule enforcement and retention are active completion tasks.
+- **Sections 41–44:** Planned final assurance, recovery, standards mapping and formal acceptance phases.
+- **Evidence ledger:** The supplied 18 October CSV records 0/924 formal reviewer signatures. Earlier successful observations and changes remain valid within their stated test scope; all 924 gates have not been demonstrated as security failures.
+- **Revision boundary:** v4.1 updates explanatory language, organization and presentation only. It adds **no newly executed machine tests, remediations or certification results** beyond the cited October 18 records.
 
 ## 2. Evidence rules and status vocabulary
 
@@ -72,7 +119,7 @@ The supplied CSV contained 924 `OPEN` gates. This edition **preserves that histo
 
 ## 5. Implementation review by all 44 sections
 
-Each section below states the **strongest supported later observation**, its limitation, and all seven control families with their exact A/B/C IDs. These compact tables replace the v3.0 boilerplate. The listed A/B/C identifiers are **acceptance requirements**, not assertions of signature or pass status.
+Each section below records the **strongest supported later observation**, an improvement or acceptance boundary, and seven control families with exact A/B/C identifiers. Together these 308 families form the **security configuration and high-assurance evidence surface** of the project. They include inherited protections, applied project hardening, candidate security improvements and outstanding tests. The listed gate IDs identify acceptance requirements; their existence does not alone indicate a flaw or a completed signature.
 
 ### 01 — Platform / OS / Hardware Baseline
 
@@ -814,9 +861,9 @@ Each section below states the **strongest supported later observation**, its lim
 
 ### 43 — CIS / DISA GPOS / KSPP Mapping
 
-**Observed implementation/evidence:** CIS Debian 13 L2, DISA GPOS/SRG and KSPP applicability references are established.
+**Observed implementation/evidence:** CIS Debian 13 Level 2, DISA GPOS/SRG and KSPP have been identified as comparison frameworks. The project also identifies native Kicksecure protections and extra engineering requirements that may extend conventional baseline scope.
 
-**Acceptance boundary / next proof:** Map each applicable requirement to evidence and exceptions; no external certification claim.
+**Acceptance boundary / next proof:** Build a control-by-control mapping of each applicable benchmark requirement, observed inherited safeguard, project extension and justified exception. The comparison must be evidence-backed before claiming measured superiority over a specific bank baseline, CIS score or official certification.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -846,7 +893,7 @@ Each section below states the **strongest supported later observation**, its lim
 
 ## 6. Historical 01–38 action reconciliation — all 63 IDs
 
-These inherited records were part of the 69-item mixed project backlog. Their existence is not evidence of 63 defects. The current working status below takes newer demonstrations into account but **does not create a formal reviewer signature**. Section 39 BIOS is not retested.
+These 63 inherited action records are carried forward to preserve **hardening opportunities, configuration concerns, owner decisions and evidence gaps** that can materially improve security. They are part of the 69-item mixed historical backlog, not a claim of 63 independently proven exploits. Later successful demonstrations are retained as engineering results; remaining requirements are explicitly shown and **do not become signed acceptance without review**. Section 39 BIOS is not retested.
 
 | ID | Sec. | Engineering issue | Evidence disposition as of 18 Oct 2026 |
 |---|---:|---|---|
@@ -1024,11 +1071,14 @@ Proposed KHAHP Premium Hardened OS target price: **USD $1,250**; intended distri
 
 **Publication safety:** No hostnames, private identifiers, IP/MAC addresses, raw firewall and browser history, SSH material, real encryption IDs/keys, authentication secrets or raw confidential reports. This register publishes redacted outcomes; underlying logs remain in private custody. Historical Section 37 self-hashing manifest errors must be identified rather than presenting those archives as fully hash-valid.
 
-**Reference frameworks:** CIS Debian 13 Level 2 Workstation, DISA GPOS SRG objectives, KSPP, Debian and Kicksecure security practices. These are engineering references rather than attestation of compliance or certification.
+**Reference frameworks:** CIS Debian 13 Level 2 Workstation, DISA General Purpose OS SRG and relevant STIG-inspired objectives, KSPP, Debian and Kicksecure security practices. They guide an intentionally deeper hardening and assurance program; Section 43 will document applicable controls, project extensions and measured gaps. They are not third-party compliance certifications.
 
 **Public challenge submissions:** provide machine-independent provenance, threat model, safely reproducible tests, intended/observed outcomes, minimized changes, rollback proof, and limitations. Do not perform unauthorized external testing or disclose user-specific security details.
 
 ## 10. Evidence source ledger for this revision
+
+**v4.1 editorial lineage:** Built directly from the owner-uploaded public v4.0 technical register and October 18 evidence ledger. All 44 named sections, 308 numbered families, 924 gate IDs, 63 historical action records and 60 proposed release tests are retained. No device scan or post-October-18 control implementation is implied.
+
 
 - Pre-existing public register v3.0 (17 October 2026), 308 technical family labels and 60 planned release tests.
 - Private KHAHP master v2.0 and 924-gate proof-claims CSV dated 18 October 2026 (all historical signatures OPEN).
@@ -1038,4 +1088,4 @@ Proposed KHAHP Premium Hardened OS target price: **USD $1,250**; intended distri
 - Operator-shared SYSMAINT terminal evidence of `/etc/fstab` boot-order correction and clean `findmnt --verify --verbose` validation.
 - Section 39 BIOS status: owner declaration, no new test requested.
 
-**Evidence limitation:** No complete Section 40 audit-event/AIDE alert lifecycle report or formally signed 924-gate acceptance register was supplied in this release; unsupported completion claims were intentionally not synthesized.
+**Evidence limitation:** No complete Section 40 audit-event/AIDE alert lifecycle report or formally signed 924-gate acceptance register was supplied in the cited October 18 evidence. This editorial update emphasizes security engineering depth and hardening opportunities without inventing test passes, certification, or more recent machine evidence.
