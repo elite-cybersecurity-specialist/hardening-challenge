@@ -14,6 +14,10 @@ KHAHP is an independently developed hardening and assurance project built on [Ki
 
 **200+ hours** is the project owner's reported cumulative engineering effort, not an independently time-tracked metric.
 
+<p align="center">
+  <img src="assets/ECS-Deep-Security-Hardening-Services.png" alt="ECS Deep Security Hardening Services" width="100%">
+</p>
+
 ## Progress and scope
 
 | Measure | Current position |
