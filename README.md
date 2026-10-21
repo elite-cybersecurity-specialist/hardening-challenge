@@ -119,4 +119,10 @@ KHAHP builds on Kicksecure and Debian 13 while using **applicable CIS Debian Lin
 **Privacy:** no passwords, private keys, personal device identifiers, confidential host rules, raw private audit history or recovery secrets should be published. Existing vendor protections are credited to Kicksecure/Debian; project changes and accepted design decisions are differentiated in the technical register.
 
 **Project:** [Elite Cybersecurity Specialist](https://github.com/elite-cybersecurity-specialist) · Malaysia  
+---
+
+<p align="center">
+  <img src="assets/name-card.png" alt="Elite Cybersecurity Specialist - Company Name Card" width="750">
+</p>
+
 **Version:** **v5.0 — Sections 01-40 project closeout, 840/924 checkpoints accepted (19 October 2026)**
