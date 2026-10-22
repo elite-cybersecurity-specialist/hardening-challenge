@@ -2,10 +2,6 @@
   <img src="assets/Hardening-Challenge.jpg" alt="KHAHP — Kicksecure High-Assurance Hardening Project by Elite Cybersecurity Specialist" width="100%">
 </p>
 
-<p align="center">
-  <img src="assets/name-card.png" alt="ELITE CYBERSECURITY SPECIALIST — Official ECS Digital Name Card" width="720">
-</p>
-
 <h1 align="center">KHAHP — KICKSECURE HIGH-ASSURANCE HARDENING PROJECT</h1>
 
 <h3 align="center">Kicksecure OS Royal Hardening | Beyond Conventional CIS Level 2 Baselines</h3>
