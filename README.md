@@ -55,7 +55,7 @@
 - [Full Technical Documentation and Evidence](#full-technical-documentation-and-evidence)
 - [Planned Premium Kicksecure Hardened OS](#planned-premium-kicksecure-hardened-os)
 - [Open Challenge and Responsible Publication](#open-challenge-and-responsible-publication)
-- [Company Information and Contact](#company-information-and-contact)
+- [Connect with Elite Cybersecurity Specialist](#connect-with-elite-cybersecurity-specialist)
 
 ---
 
@@ -296,18 +296,24 @@ The underlying private master, authoritative gate ledger, sensitive host evidenc
 
 ---
 
-## Company Information and Contact
+## Connect with Elite Cybersecurity Specialist
 
-| Detail | Information |
-|---|---|
-| **Company** | ELITE CYBERSECURITY SPECIALIST |
-| **Registered in** | Malaysia |
-| **Business Registration** | 202403184091 (MA0319303-P) |
-| **Founder / Contact** | Yuhisern Navaratnam |
-| **Email** | [Yuhisern@protonmail.com](mailto:Yuhisern@protonmail.com) |
-| **WhatsApp** | [+60 17-279 1717](https://wa.me/60172791717) |
-| **Company Profile** | [Download the ECS Company Profile (PDF)](https://github.com/elite-cybersecurity-specialist/company-profile/raw/refs/heads/main/pdf/ECS_Company_Profile.pdf) |
-| **Other Cybersecurity Subjects** | [ELITE CYBERSECURITY SPECIALIST on GitHub](https://github.com/elite-cybersecurity-specialist) |
+**Yuhisern Navaratnam** — Cybersecurity Engineer  
+**Elite Cybersecurity Specialist** | Malaysia  
+**SSM:** 202403184091 (MA0319303-P)
+
+[<img src="assets/name-card.png" alt="Elite Cybersecurity Specialist digital name card — Yuhisern Navaratnam" width="525">](assets/name-card.png)
+
+**Email:** [Yuhisern@protonmail.com](mailto:Yuhisern@protonmail.com)<br>
+**WhatsApp:** [+60 17-279 1717](https://wa.me/60172791717)<br>
+**GitHub — Hardening Challenge:** [Official repository](https://github.com/elite-cybersecurity-specialist/hardening-challenge)<br>
+**GitHub — Battle-Hardened AI:** [Official repository](https://github.com/elite-cybersecurity-specialist/battle-hardened-ai)<br>
+**GitHub — Other Cybersecurity Projects:** [Elite Cybersecurity Specialist](https://github.com/elite-cybersecurity-specialist)<br>
+**TikTok:** [@yuhisern](https://www.tiktok.com/@yuhisern)<br>
+**LinkedIn:** [linkedin.com/in/yuhisern](https://www.linkedin.com/in/yuhisern)<br>
+**X:** [x.com/yuhisern](https://x.com/yuhisern)
+
+**Company Profile:** [Download the ECS Company Profile (PDF)](https://github.com/elite-cybersecurity-specialist/company-profile/raw/refs/heads/main/pdf/ECS_Company_Profile.pdf)
 
 <p align="center"><strong>HARDEN. TEST. VERIFY. IMPROVE.</strong></p>
 <p align="center"><em>Security Engineering · Defensive Hardening · Evidence-Led Verification · Continuous Improvement</em></p>
