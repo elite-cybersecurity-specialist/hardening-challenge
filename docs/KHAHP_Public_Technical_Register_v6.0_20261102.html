@@ -1,0 +1,2826 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>KHAHP Full Technical Register v6.0</title><style>
+@page{size:A4;margin:19mm 16mm 18mm 16mm;@bottom-left{content:"KHAHP · Elite Cybersecurity Specialist";color:#5a7284;font:8px Arial;}@bottom-right{content:"PAGE " counter(page);color:#5a7284;font:8px Arial;}}
+@page:first{@bottom-left{content:"ELITE CYBERSECURITY SPECIALIST";}@bottom-right{content:"PUBLIC REFERENCE · 2026";}}
+*{box-sizing:border-box}body{font-family:DejaVu Sans,Arial,sans-serif;font-size:9.1pt;line-height:1.48;color:#263747}h1,h2,h3,h4{font-family:DejaVu Sans,Arial,sans-serif;color:#11314c;line-height:1.25;break-after:avoid}h1{font-size:21pt;border-bottom:2px solid #bd9d6a;padding-bottom:8px;margin:12px 0 16px}h2{font-size:15pt;padding-top:10px;color:#114765;margin:20px 0 12px;border-bottom:1px solid #b5c5d0;padding-bottom:6px}h3{font-size:11.3pt;color:#206080;margin:16px 0 8px}p{margin:6px 0 9px}a{color:#0c6492;text-decoration:none}table{width:100%;border-collapse:collapse;margin:11px 0 16px;font-size:8pt;table-layout:fixed}th{background:#15334d;color:white;font-weight:700;padding:7px 7px;text-align:left;vertical-align:top}td{padding:7px 7px;border-bottom:1px solid #d5dfe6;vertical-align:top;word-wrap:break-word}tr:nth-child(even) td{background:#f4f7f9}tbody tr{break-inside:avoid}blockquote{margin:11px 0 17px;background:#edf5f9;border-left:4px solid #b89d72;padding:10px 14px}blockquote p{margin:3px 0}code{font-family:DejaVu Sans Mono,monospace;font-size:8pt;background:#eef2f5;padding:1px 2px;overflow-wrap:anywhere}hr{border:0;border-top:1px solid #b6c7d3;margin:24px 0}ul{padding-left:20px}li{padding-bottom:4px}.front{height:250mm;display:flex;flex-direction:column;justify-content:center;page-break-after:always;padding:2mm 8mm;background:#0d2237;color:white}.front-rule{height:5px;background:#c6a772;width:100%;margin-bottom:36mm}.front .brand{color:#b4d3e4;letter-spacing:2.5px;font-size:12pt}.front h1{font-size:80pt;border:0;color:white;margin:9mm 0 4mm;padding:0}.front h2{font-size:23pt;border:0;color:#d3b783;line-height:1.4;margin:0}.front .eyebrow{font-size:12pt;color:#c3d5e2;margin-top:16mm;letter-spacing:.7px}.front .lead{font-size:12pt;margin-top:7mm}.front .front-line{height:1.5px;background:#72b7c4;margin:20mm 0 8mm}.front .status{font-weight:700;color:#e5c998;font-size:11pt}.front .small{font-size:9pt;color:#bbcedb;margin-top:6mm}blockquote,table{max-width:100%}
+</style></head><body><div class="front"><div class="front-rule"></div><p class="brand">ELITE CYBERSECURITY SPECIALIST · MALAYSIA</p><h1>KHAHP</h1><h2>KICKSECURE HIGH-ASSURANCE<br>HARDENING PROJECT</h2><p class="eyebrow">PUBLIC TECHNICAL EVIDENCE & ENGINEERING REGISTER</p><p class="lead">44 domains &nbsp; · &nbsp; 308 control families &nbsp; · &nbsp; 924 A/B/C assurance gates</p><p class="lead">350+ hours of owner-reported hands-on engineering and verification</p><div class="front-line"></div><p class="status">840 PROJECT-ACCEPTED &nbsp; | &nbsp; 84 UNDER REVIEW / UNASSESSED / PLANNED</p><p class="small">PUBLIC EDITORIAL EDITION v6.0 &nbsp; · &nbsp; 2 NOVEMBER 2026</p><p class="small">Historical owner/project acceptance, not external certification or new host attestation.</p></div><h1>KHAHP — Full Technical Evidence &amp; Engineering Register</h1>
+<p><strong>Elite Cybersecurity Specialist · Malaysia</strong><br />
+<strong>Public Editorial Edition v6.0 · 2 November 2026 · Sanitized documentary update</strong><br />
+<strong>44 sections · 308 named control families · 924 exact A/B/C gate identifiers</strong><br />
+<strong>350+ hours of hands-on hardening, testing and verification (owner-reported)</strong></p>
+<blockquote>
+<p><strong>PUBLIC ASSURANCE STATUS</strong>
+<strong>Formal owner/project acceptance remains 840/924.</strong> Section 41 contributes 21 <code>REVIEW_REQUIRED</code> gates; Section 42 has 21 <code>NOT_ASSESSED</code> gates; Sections 43–44 contain 42 <code>PLANNED</code> gates. These are <em>security-assurance checkpoints</em>, not claimed vulnerabilities or independently certified controls.</p>
+</blockquote>
+<p><strong>Public-source boundary:</strong> The updated classification derives from the internally maintained 1 November 2026 documentary snapshot while preserving the original v4 and v5 evidence authority. No private host reports, internal master workbooks, credentials or recovery material are published here. The historical 840 project-accepted gates have not been independently re-attested as part of this editorial release.</p>
+<p><a href="README.md">Project home</a> · <a href="docs/PUBLICATIONS.md">Publications and historical PDF editions</a></p>
+<hr />
+<h2>1. Executive engineering position</h2>
+<p>KHAHP is a high-assurance defensive hardening and verification program for a Kicksecure/Debian 13 operating environment. The project owner reports <strong>350+ hours of direct engineering effort</strong> across investigation, hardening, testing, controlled corrections, technical evidence and review. It documents appropriate security controls, their provenance, effective operating-role enforcement, compatibility/recovery decisions and historical acceptance in 44 defined domains. Kicksecure is the reference implementation for Elite Cybersecurity Specialist's defensive engineering method; other systems require separate assessment.</p>
+<h3>1.1. Assurance accounting</h3>
+<table>
+<thead>
+<tr>
+  <th>Program measure</th>
+  <th style="text-align:right">Count</th>
+  <th>Current meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Hardening sections</td>
+  <td style="text-align:right"><strong>44</strong></td>
+  <td>Seven precisely named control families each</td>
+</tr>
+<tr>
+  <td>Control families</td>
+  <td style="text-align:right"><strong>308</strong></td>
+  <td>Each has A, B and C gates</td>
+</tr>
+<tr>
+  <td>A/B/C assurance gates</td>
+  <td style="text-align:right"><strong>924</strong></td>
+  <td>44 × 7 × 3</td>
+</tr>
+<tr>
+  <td>Sections 01–40</td>
+  <td style="text-align:right"><strong>840</strong></td>
+  <td>PROJECT_ACCEPTED — carried-forward owner/project baseline</td>
+</tr>
+<tr>
+  <td>Section 41</td>
+  <td style="text-align:right"><strong>21</strong></td>
+  <td>REVIEW_REQUIRED — existing observations pending formal decisions</td>
+</tr>
+<tr>
+  <td>Section 42</td>
+  <td style="text-align:right"><strong>21</strong></td>
+  <td>NOT_ASSESSED — offline-tested collection is not target-machine verification</td>
+</tr>
+<tr>
+  <td>Sections 43–44</td>
+  <td style="text-align:right"><strong>42</strong></td>
+  <td>PLANNED — external mapping and final program assurance</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The 924 gates are not 924 security flaws.</strong> An A/B/C gate can validate an upstream safeguard, a project change, a compatible design disposition, runtime behavior or relevant persistence/recovery.</p>
+<h3>1.2. Gate evidence requirements</h3>
+<table>
+<thead>
+<tr>
+  <th>Gate</th>
+  <th>Question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><strong>A — Provenance / configuration</strong></td>
+  <td>Which trusted source and approved requirement support the setting or design?</td>
+</tr>
+<tr>
+  <td><strong>B — Runtime enforcement</strong></td>
+  <td>What allow/deny behavior is actually observed in the correct operating role?</td>
+</tr>
+<tr>
+  <td><strong>C — Persistence / recovery</strong></td>
+  <td>What lifecycle event, rollback or recovery result supports ongoing assurance?</td>
+</tr>
+</tbody>
+</table>
+<p>A successful script, a file checksum or a configured service is not by itself a passed gate. Historical project acceptance is distinguished from independently repeated November tests. The original v4 legacy <code>OPEN</code> status column is preserved in the private source; the owner/project accepted field is separate.</p>
+<h3>1.3. Engineering results and implementation boundaries</h3>
+<table>
+<thead>
+<tr>
+  <th>Defensive discipline</th>
+  <th>Publicly documented historical engineering position</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>USER / SYSMAINT separation</td>
+  <td>Restricted ordinary USER sessions and separately selected privileged maintenance context</td>
+</tr>
+<tr>
+  <td>Kernel and memory</td>
+  <td>Restricted kernel information, debugging and unprivileged interfaces plus relevant boot/memory parameters</td>
+</tr>
+<tr>
+  <td>Boot and storage</td>
+  <td>LUKS root, Secure Boot observations, module signing and corrected boot-mount ordering</td>
+</tr>
+<tr>
+  <td>Filesystem and software</td>
+  <td><code>/tmp</code> <code>nodev,nosuid</code> baseline; compatibility-based disposition for blanket <code>noexec</code></td>
+</tr>
+<tr>
+  <td>Resolver / network</td>
+  <td>Unbound, DNSSEC, DoT architecture, nftables and Tor/SOCKS policies documented within scope</td>
+</tr>
+<tr>
+  <td>Device privacy</td>
+  <td>USBGuard owner policy, microphone/camera restrictions, Bluetooth and desktop privacy controls</td>
+</tr>
+<tr>
+  <td>Audit / integrity</td>
+  <td>Section 40 acceptance included effective auditd rules in normal USER boot and a scheduled AIDE check at the time tested</td>
+</tr>
+</tbody>
+</table>
+<p>The underlying evidence, package-specific changes, device identifiers and potentially sensitive enforcement details remain in the private master and are not reproduced in this public text.</p>
+<hr />
+<h2>2. Current research and acceptance boundaries</h2>
+<h3>2.1. Section 41 — persistence, source provenance and drift</h3>
+<p>Seven families cover cron/anacron applicability, systemd timers, desktop autostart, source/repository signing, APT holds and update policy, unexpected startup services/modules and supply-chain drift. Dated technical observations exist, but all 21 A/B/C gates remain <strong>REVIEW_REQUIRED</strong>. Unresolved source-attribution, compatibility and owner decisions must not be silently reclassified as accepted.</p>
+<p>The historical successful AIDE check and later package-maintenance observations are distinct dated events. A prior success is not evidence that every subsequent configuration or hardener trigger passed. Any sensitive provenance questions are subject to the private evidence and owner risk-decision process.</p>
+<h3>2.2. Section 42 — credentials, backup and recovery</h3>
+<p>Seven families address SSH key security, tokens/secrets, password-vault policy, FIDO2 security-key readiness, offline recovery-code custody, encrypted backups and isolated restore. A localized metadata-only collector has synthetic offline test coverage, but the private snapshot does <strong>not</strong> contain accepted host results or actual encrypted backup/restore verification. All 21 Section 42 gates remain <strong>NOT_ASSESSED</strong>.</p>
+<h3>2.3. Section 43 — benchmark mapping</h3>
+<p>Applicable CIS Debian Linux Level 2, DISA General Purpose OS SRG / STIG-inspired requirements and KSPP guidance are engineering references. The 308 KHAHP family entries and 924 project gates are not benchmark rule counts. Exact external rule applicability, assessment methods, exceptions and reviewers remain <strong>PLANNED</strong>, not externally certified.</p>
+<h3>2.4. Section 44 — final controlled assurance</h3>
+<p>Final program acceptance requires suitable regression testing, recovery proof, evidence custody, controlled exception decisions, public-release sanitation and owner signoff. <strong>No Section 44 gates are accepted</strong> in this editorial release.</p>
+<hr />
+<h2>3. Implementation inventory — all 44 sections</h2>
+<p>Every section below lists <strong>seven families</strong>, each with its <strong>three exact A/B/C gate identifiers</strong>. For 01–40, <code>PROJECT_ACCEPTED</code> denotes historical owner/project baseline acceptance, not a 2 November retest.</p>
+<h3>01 — Platform / OS / Hardware Baseline</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> Debian 13 / Kicksecure platform identity, kernel, hardware, storage and baseline health were reconciled into the authoritative master.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>01.01</code></td>
+  <td>Operating-system identity and Debian/Kicksecure release baseline</td>
+  <td><code>KHAHP-01.01A</code> · <code>KHAHP-01.01B</code> · <code>KHAHP-01.01C</code></td>
+</tr>
+<tr>
+  <td><code>01.02</code></td>
+  <td>Kernel release, architecture and build identity</td>
+  <td><code>KHAHP-01.02A</code> · <code>KHAHP-01.02B</code> · <code>KHAHP-01.02C</code></td>
+</tr>
+<tr>
+  <td><code>01.03</code></td>
+  <td>CPU model, topology and virtualization capability</td>
+  <td><code>KHAHP-01.03A</code> · <code>KHAHP-01.03B</code> · <code>KHAHP-01.03C</code></td>
+</tr>
+<tr>
+  <td><code>01.04</code></td>
+  <td>Physical memory and swap capacity baseline</td>
+  <td><code>KHAHP-01.04A</code> · <code>KHAHP-01.04B</code> · <code>KHAHP-01.04C</code></td>
+</tr>
+<tr>
+  <td><code>01.05</code></td>
+  <td>Storage controller, disk and filesystem topology</td>
+  <td><code>KHAHP-01.05A</code> · <code>KHAHP-01.05B</code> · <code>KHAHP-01.05C</code></td>
+</tr>
+<tr>
+  <td><code>01.06</code></td>
+  <td>UEFI/bare-metal/virtualization platform state</td>
+  <td><code>KHAHP-01.06A</code> · <code>KHAHP-01.06B</code> · <code>KHAHP-01.06C</code></td>
+</tr>
+<tr>
+  <td><code>01.07</code></td>
+  <td>Failed-unit, uptime, boot-time and baseline health state</td>
+  <td><code>KHAHP-01.07A</code> · <code>KHAHP-01.07B</code> · <code>KHAHP-01.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>02 — Kicksecure Package Provenance</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> Package database health and security-package provenance were reviewed; package-owned and locally modified security configuration is tracked in the private evidence set.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>02.01</code></td>
+  <td>Core Kicksecure package installation and exact versions</td>
+  <td><code>KHAHP-02.01A</code> · <code>KHAHP-02.01B</code> · <code>KHAHP-02.01C</code></td>
+</tr>
+<tr>
+  <td><code>02.02</code></td>
+  <td>Supporting security-package installation and exact versions</td>
+  <td><code>KHAHP-02.02A</code> · <code>KHAHP-02.02B</code> · <code>KHAHP-02.02C</code></td>
+</tr>
+<tr>
+  <td><code>02.03</code></td>
+  <td>APT source files and repository configuration</td>
+  <td><code>KHAHP-02.03A</code> · <code>KHAHP-02.03B</code> · <code>KHAHP-02.03C</code></td>
+</tr>
+<tr>
+  <td><code>02.04</code></td>
+  <td>APT policy and repository origin attribution</td>
+  <td><code>KHAHP-02.04A</code> · <code>KHAHP-02.04B</code> · <code>KHAHP-02.04C</code></td>
+</tr>
+<tr>
+  <td><code>02.05</code></td>
+  <td>Package ownership of security-critical configuration files</td>
+  <td><code>KHAHP-02.05A</code> · <code>KHAHP-02.05B</code> · <code>KHAHP-02.05C</code></td>
+</tr>
+<tr>
+  <td><code>02.06</code></td>
+  <td>Package holds, partial installs and dpkg database health</td>
+  <td><code>KHAHP-02.06A</code> · <code>KHAHP-02.06B</code> · <code>KHAHP-02.06C</code></td>
+</tr>
+<tr>
+  <td><code>02.07</code></td>
+  <td>Local modifications versus package-owned baseline</td>
+  <td><code>KHAHP-02.07A</code> · <code>KHAHP-02.07B</code> · <code>KHAHP-02.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>03 — USER / SYSMAINT Privilege Architecture</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> Normal USER and privileged SYSMAINT roles remain separated. Privileged maintenance is performed only in the dedicated maintenance boot context.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>03.01</code></td>
+  <td>USER, SYSMAINT and root account separation</td>
+  <td><code>KHAHP-03.01A</code> · <code>KHAHP-03.01B</code> · <code>KHAHP-03.01C</code></td>
+</tr>
+<tr>
+  <td><code>03.02</code></td>
+  <td>Distinct UID/GID and home-directory boundaries</td>
+  <td><code>KHAHP-03.02A</code> · <code>KHAHP-03.02B</code> · <code>KHAHP-03.02C</code></td>
+</tr>
+<tr>
+  <td><code>03.03</code></td>
+  <td>user-sysmaint-split package and owned policy files</td>
+  <td><code>KHAHP-03.03A</code> · <code>KHAHP-03.03B</code> · <code>KHAHP-03.03C</code></td>
+</tr>
+<tr>
+  <td><code>03.04</code></td>
+  <td>sudo binary ownership, mode and SYSMAINT-only execution</td>
+  <td><code>KHAHP-03.04A</code> · <code>KHAHP-03.04B</code> · <code>KHAHP-03.04C</code></td>
+</tr>
+<tr>
+  <td><code>03.05</code></td>
+  <td>sudoers syntax and user-sysmaint- split policy</td>
+  <td><code>KHAHP-03.05A</code> · <code>KHAHP-03.05B</code> · <code>KHAHP-03.05C</code></td>
+</tr>
+<tr>
+  <td><code>03.06</code></td>
+  <td>USER negative sudo/root acquisition probe</td>
+  <td><code>KHAHP-03.06A</code> · <code>KHAHP-03.06B</code> · <code>KHAHP-03.06C</code></td>
+</tr>
+<tr>
+  <td><code>03.07</code></td>
+  <td>Login-shell and boot-role separation behavior</td>
+  <td><code>KHAHP-03.07A</code> · <code>KHAHP-03.07B</code> · <code>KHAHP-03.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>04 — SYSMAINT Boot Role</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> SYSMAINT boot markers and role-specific maintenance workflow are retained as part of the hardened operating model.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>04.01</code></td>
+  <td>boot-role=sysmaint kernel marker</td>
+  <td><code>KHAHP-04.01A</code> · <code>KHAHP-04.01B</code> · <code>KHAHP-04.01C</code></td>
+</tr>
+<tr>
+  <td><code>04.02</code></td>
+  <td>systemd.unit=sysmaint-boot.target marker</td>
+  <td><code>KHAHP-04.02A</code> · <code>KHAHP-04.02B</code> · <code>KHAHP-04.02C</code></td>
+</tr>
+<tr>
+  <td><code>04.03</code></td>
+  <td>sysmaint-boot.target package provenance and unit content</td>
+  <td><code>KHAHP-04.03A</code> · <code>KHAHP-04.03B</code> · <code>KHAHP-04.03C</code></td>
+</tr>
+<tr>
+  <td><code>04.04</code></td>
+  <td>Required SYSMAINT dependencies and wanted units</td>
+  <td><code>KHAHP-04.04A</code> · <code>KHAHP-04.04B</code> · <code>KHAHP-04.04C</code></td>
+</tr>
+<tr>
+  <td><code>04.05</code></td>
+  <td>Intentionally omitted USER-only or incompatible hardeners</td>
+  <td><code>KHAHP-04.05A</code> · <code>KHAHP-04.05B</code> · <code>KHAHP-04.05C</code></td>
+</tr>
+<tr>
+  <td><code>04.06</code></td>
+  <td>Conflicting USER/graphical boot-role negative checks</td>
+  <td><code>KHAHP-04.06A</code> · <code>KHAHP-04.06B</code> · <code>KHAHP-04.06C</code></td>
+</tr>
+<tr>
+  <td><code>04.07</code></td>
+  <td>Failed units and SYSMAINT boot health</td>
+  <td><code>KHAHP-04.07A</code> · <code>KHAHP-04.07B</code> · <code>KHAHP-04.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>05 — Accounts / UID / GID / Local Identity</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> Local account, UID/GID, service-account and sensitive identity-file controls were reviewed and accepted for the hardened baseline.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>05.01</code></td>
+  <td>root, USER and SYSMAINT account identity</td>
+  <td><code>KHAHP-05.01A</code> · <code>KHAHP-05.01B</code> · <code>KHAHP-05.01C</code></td>
+</tr>
+<tr>
+  <td><code>05.02</code></td>
+  <td>Duplicate UID and duplicate GID detection</td>
+  <td><code>KHAHP-05.02A</code> · <code>KHAHP-05.02B</code> · <code>KHAHP-05.02C</code></td>
+</tr>
+<tr>
+  <td><code>05.03</code></td>
+  <td>UID 0 exclusivity and privileged- account review</td>
+  <td><code>KHAHP-05.03A</code> · <code>KHAHP-05.03B</code> · <code>KHAHP-05.03C</code></td>
+</tr>
+<tr>
+  <td><code>05.04</code></td>
+  <td>Low-UID service-account shell classification</td>
+  <td><code>KHAHP-05.04A</code> · <code>KHAHP-05.04B</code> · <code>KHAHP-05.04C</code></td>
+</tr>
+<tr>
+  <td><code>05.05</code></td>
+  <td>Home-directory ownership and permissions</td>
+  <td><code>KHAHP-05.05A</code> · <code>KHAHP-05.05B</code> · <code>KHAHP-05.05C</code></td>
+</tr>
+<tr>
+  <td><code>05.06</code></td>
+  <td>shadow/gshadow/passwd/group ownership and modes</td>
+  <td><code>KHAHP-05.06A</code> · <code>KHAHP-05.06B</code> · <code>KHAHP-05.06C</code></td>
+</tr>
+<tr>
+  <td><code>05.07</code></td>
+  <td>NSS identity source configuration and root lock state</td>
+  <td><code>KHAHP-05.07A</code> · <code>KHAHP-05.07B</code> · <code>KHAHP-05.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>06 — LUKS / Disk / Swap Encryption</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> LUKS-encrypted root storage and encrypted-storage policy are part of the accepted baseline; recovery handling is governed by the project recovery policy.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>06.01</code></td>
+  <td>Root filesystem source and dm-crypt mapping</td>
+  <td><code>KHAHP-06.01A</code> · <code>KHAHP-06.01B</code> · <code>KHAHP-06.01C</code></td>
+</tr>
+<tr>
+  <td><code>06.02</code></td>
+  <td>LUKS2 backing partition and cryptsetup status</td>
+  <td><code>KHAHP-06.02A</code> · <code>KHAHP-06.02B</code> · <code>KHAHP-06.02C</code></td>
+</tr>
+<tr>
+  <td><code>06.03</code></td>
+  <td>LUKS header metadata without key- material disclosure</td>
+  <td><code>KHAHP-06.03A</code> · <code>KHAHP-06.03B</code> · <code>KHAHP-06.03C</code></td>
+</tr>
+<tr>
+  <td><code>06.04</code></td>
+  <td>Root encryption chain from block device to mountpoint</td>
+  <td><code>KHAHP-06.04A</code> · <code>KHAHP-06.04B</code> · <code>KHAHP-06.04C</code></td>
+</tr>
+<tr>
+  <td><code>06.05</code></td>
+  <td>Active swap inventory and encrypted placement</td>
+  <td><code>KHAHP-06.05A</code> · <code>KHAHP-06.05B</code> · <code>KHAHP-06.05C</code></td>
+</tr>
+<tr>
+  <td><code>06.06</code></td>
+  <td>swapfile ownership, mode and containing filesystem</td>
+  <td><code>KHAHP-06.06A</code> · <code>KHAHP-06.06B</code> · <code>KHAHP-06.06C</code></td>
+</tr>
+<tr>
+  <td><code>06.07</code></td>
+  <td>crypttab/fstab encryption persistence and boot mapping</td>
+  <td><code>KHAHP-06.07A</code> · <code>KHAHP-06.07B</code> · <code>KHAHP-06.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>07 — Filesystem / Mount Security</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> Filesystem and mount hardening includes /tmp nodev,nosuid and corrected /boot before /boot/efi ordering. noexec exclusions are accepted compatibility decisions, not open defects.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>07.01</code></td>
+  <td>Effective mount table and filesystem inventory</td>
+  <td><code>KHAHP-07.01A</code> · <code>KHAHP-07.01B</code> · <code>KHAHP-07.01C</code></td>
+</tr>
+<tr>
+  <td><code>07.02</code></td>
+  <td>Root mount source, filesystem and options</td>
+  <td><code>KHAHP-07.02A</code> · <code>KHAHP-07.02B</code> · <code>KHAHP-07.02C</code></td>
+</tr>
+<tr>
+  <td><code>07.03</code></td>
+  <td>/boot and /boot/efi separation, ownership and exposure</td>
+  <td><code>KHAHP-07.03A</code> · <code>KHAHP-07.03B</code> · <code>KHAHP-07.03C</code></td>
+</tr>
+<tr>
+  <td><code>07.04</code></td>
+  <td>/tmp tmpfs, sticky bit and mount- option review</td>
+  <td><code>KHAHP-07.04A</code> · <code>KHAHP-07.04B</code> · <code>KHAHP-07.04C</code></td>
+</tr>
+<tr>
+  <td><code>07.05</code></td>
+  <td>/var/tmp sticky-bit and separate- mount review</td>
+  <td><code>KHAHP-07.05A</code> · <code>KHAHP-07.05B</code> · <code>KHAHP-07.05C</code></td>
+</tr>
+<tr>
+  <td><code>07.06</code></td>
+  <td>/home containment, ownership and inherited options</td>
+  <td><code>KHAHP-07.06A</code> · <code>KHAHP-07.06B</code> · <code>KHAHP-07.06C</code></td>
+</tr>
+<tr>
+  <td><code>07.07</code></td>
+  <td>Writable mountpoints, fstab and remount-secure review</td>
+  <td><code>KHAHP-07.07A</code> · <code>KHAHP-07.07B</code> · <code>KHAHP-07.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>08 — GRUB / Bootloader Protection</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> GRUB and bootloader protections were reconciled with the project recovery model and accepted for the 01-40 implementation baseline.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>08.01</code></td>
+  <td>GRUB package baseline and generated grub.cfg</td>
+  <td><code>KHAHP-08.01A</code> · <code>KHAHP-08.01B</code> · <code>KHAHP-08.01C</code></td>
+</tr>
+<tr>
+  <td><code>08.02</code></td>
+  <td>grub.cfg ownership, permissions and menu entries</td>
+  <td><code>KHAHP-08.02A</code> · <code>KHAHP-08.02B</code> · <code>KHAHP-08.02C</code></td>
+</tr>
+<tr>
+  <td><code>08.03</code></td>
+  <td>GRUB password_pbkdf2 and superusers directives</td>
+  <td><code>KHAHP-08.03A</code> · <code>KHAHP-08.03B</code> · <code>KHAHP-08.03C</code></td>
+</tr>
+<tr>
+  <td><code>08.04</code></td>
+  <td>Kicksecure CPU/kernel/ram-wipe/remount/signed -module fragments</td>
+  <td><code>KHAHP-08.04A</code> · <code>KHAHP-08.04B</code> · <code>KHAHP-08.04C</code></td>
+</tr>
+<tr>
+  <td><code>08.05</code></td>
+  <td>Quiet-boot and recovery-restriction fragments</td>
+  <td><code>KHAHP-08.05A</code> · <code>KHAHP-08.05B</code> · <code>KHAHP-08.05C</code></td>
+</tr>
+<tr>
+  <td><code>08.06</code></td>
+  <td>Effective boot command-line correlation</td>
+  <td><code>KHAHP-08.06A</code> · <code>KHAHP-08.06B</code> · <code>KHAHP-08.06C</code></td>
+</tr>
+<tr>
+  <td><code>08.07</code></td>
+  <td>/boot and EFI exposure versus cryptographic integrity limits</td>
+  <td><code>KHAHP-08.07A</code> · <code>KHAHP-08.07B</code> · <code>KHAHP-08.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>09 — CPU Vulnerability Mitigations</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> CPU vulnerability mitigations and hardened boot parameters are part of the accepted runtime baseline.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>09.01</code></td>
+  <td>CPU identity, vendor and mitigation- capability baseline</td>
+  <td><code>KHAHP-09.01A</code> · <code>KHAHP-09.01B</code> · <code>KHAHP-09.01C</code></td>
+</tr>
+<tr>
+  <td><code>09.02</code></td>
+  <td>SMT/Hyper-Threading disablement and topology</td>
+  <td><code>KHAHP-09.02A</code> · <code>KHAHP-09.02B</code> · <code>KHAHP-09.02C</code></td>
+</tr>
+<tr>
+  <td><code>09.03</code></td>
+  <td>Runtime microcode revision and package baseline</td>
+  <td><code>KHAHP-09.03A</code> · <code>KHAHP-09.03B</code> · <code>KHAHP-09.03C</code></td>
+</tr>
+<tr>
+  <td><code>09.04</code></td>
+  <td>Kernel vulnerability-interface enumeration</td>
+  <td><code>KHAHP-09.04A</code> · <code>KHAHP-09.04B</code> · <code>KHAHP-09.04C</code></td>
+</tr>
+<tr>
+  <td><code>09.05</code></td>
+  <td>Spectre/Meltdown/L1TF/MDS/ Retbleed/BHI/SSB/TAA/GDS mitigations</td>
+  <td><code>KHAHP-09.05A</code> · <code>KHAHP-09.05B</code> · <code>KHAHP-09.05C</code></td>
+</tr>
+<tr>
+  <td><code>09.06</code></td>
+  <td>Mitigation-related kernel command- line parameters</td>
+  <td><code>KHAHP-09.06A</code> · <code>KHAHP-09.06B</code> · <code>KHAHP-09.06C</code></td>
+</tr>
+<tr>
+  <td><code>09.07</code></td>
+  <td>CPU mitigation flags and kernel-log confirmation</td>
+  <td><code>KHAHP-09.07A</code> · <code>KHAHP-09.07B</code> · <code>KHAHP-09.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>10 — IOMMU / DMA Protection</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> IOMMU / DMA isolation controls and firmware-related boundaries were reconciled with the owner-completed firmware policy.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>10.01</code></td>
+  <td>CPU virtualization/VT-d capability baseline</td>
+  <td><code>KHAHP-10.01A</code> · <code>KHAHP-10.01B</code> · <code>KHAHP-10.01C</code></td>
+</tr>
+<tr>
+  <td><code>10.02</code></td>
+  <td>IOMMU kernel parameters and passthrough policy</td>
+  <td><code>KHAHP-10.02A</code> · <code>KHAHP-10.02B</code> · <code>KHAHP-10.02C</code></td>
+</tr>
+<tr>
+  <td><code>10.03</code></td>
+  <td>DMAR/IOMMU runtime enablement</td>
+  <td><code>KHAHP-10.03A</code> · <code>KHAHP-10.03B</code> · <code>KHAHP-10.03C</code></td>
+</tr>
+<tr>
+  <td><code>10.04</code></td>
+  <td>Translated default domain and strict invalidation</td>
+  <td><code>KHAHP-10.04A</code> · <code>KHAHP-10.04B</code> · <code>KHAHP-10.04C</code></td>
+</tr>
+<tr>
+  <td><code>10.05</code></td>
+  <td>IRQ/interrupt remapping</td>
+  <td><code>KHAHP-10.05A</code> · <code>KHAHP-10.05B</code> · <code>KHAHP-10.05C</code></td>
+</tr>
+<tr>
+  <td><code>10.06</code></td>
+  <td>IOMMU group topology and full PCI membership</td>
+  <td><code>KHAHP-10.06A</code> · <code>KHAHP-10.06B</code> · <code>KHAHP-10.06C</code></td>
+</tr>
+<tr>
+  <td><code>10.07</code></td>
+  <td>Early PCI DMA restriction and firmware WSMT evidence</td>
+  <td><code>KHAHP-10.07A</code> · <code>KHAHP-10.07B</code> · <code>KHAHP-10.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>11 — Kernel Sysctl Hardening</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> Effective kernel restrictions include kptr_restrict=2, dmesg_restrict=1, ptrace_scope=3 and restricted unprivileged BPF, alongside additional hardened sysctls.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>11.01</code></td>
+  <td>Sysctl source-tree inventory and precedence</td>
+  <td><code>KHAHP-11.01A</code> · <code>KHAHP-11.01B</code> · <code>KHAHP-11.01C</code></td>
+</tr>
+<tr>
+  <td><code>11.02</code></td>
+  <td>Kicksecure security-misc sysctl source files</td>
+  <td><code>KHAHP-11.02A</code> · <code>KHAHP-11.02B</code> · <code>KHAHP-11.02C</code></td>
+</tr>
+<tr>
+  <td><code>11.03</code></td>
+  <td>Kernel information-leak restrictions</td>
+  <td><code>KHAHP-11.03A</code> · <code>KHAHP-11.03B</code> · <code>KHAHP-11.03C</code></td>
+</tr>
+<tr>
+  <td><code>11.04</code></td>
+  <td>ASLR, mmap, kexec and privileged- coredump controls</td>
+  <td><code>KHAHP-11.04A</code> · <code>KHAHP-11.04B</code> · <code>KHAHP-11.04C</code></td>
+</tr>
+<tr>
+  <td><code>11.05</code></td>
+  <td>BPF, ptrace, perf and TTY line- discipline restrictions</td>
+  <td><code>KHAHP-11.05A</code> · <code>KHAHP-11.05B</code> · <code>KHAHP-11.05C</code></td>
+</tr>
+<tr>
+  <td><code>11.06</code></td>
+  <td>Protected links/FIFOs/regular-file controls</td>
+  <td><code>KHAHP-11.06A</code> · <code>KHAHP-11.06B</code> · <code>KHAHP-11.06C</code></td>
+</tr>
+<tr>
+  <td><code>11.07</code></td>
+  <td>Network-stack sysctl hardening observations</td>
+  <td><code>KHAHP-11.07A</code> · <code>KHAHP-11.07B</code> · <code>KHAHP-11.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>12 — Kernel Boot / Memory Hardening</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> Kernel boot and memory-hardening parameters were reconciled as part of the accepted 01-40 baseline.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>12.01</code></td>
+  <td>Slab allocator hardening and slab_nomerge</td>
+  <td><code>KHAHP-12.01A</code> · <code>KHAHP-12.01B</code> · <code>KHAHP-12.01C</code></td>
+</tr>
+<tr>
+  <td><code>12.02</code></td>
+  <td>init_on_alloc and init_on_free memory initialization</td>
+  <td><code>KHAHP-12.02A</code> · <code>KHAHP-12.02B</code> · <code>KHAHP-12.02C</code></td>
+</tr>
+<tr>
+  <td><code>12.03</code></td>
+  <td>page allocator shuffle and stack randomization</td>
+  <td><code>KHAHP-12.03A</code> · <code>KHAHP-12.03B</code> · <code>KHAHP-12.03C</code></td>
+</tr>
+<tr>
+  <td><code>12.04</code></td>
+  <td>vsyscall, vdso32 and 32-bit compatibility restrictions</td>
+  <td><code>KHAHP-12.04A</code> · <code>KHAHP-12.04B</code> · <code>KHAHP-12.04C</code></td>
+</tr>
+<tr>
+  <td><code>12.05</code></td>
+  <td>debugfs, KFENCE and kernel debug- surface controls</td>
+  <td><code>KHAHP-12.05A</code> · <code>KHAHP-12.05B</code> · <code>KHAHP-12.05C</code></td>
+</tr>
+<tr>
+  <td><code>12.06</code></td>
+  <td>CFI/KCFI and boot-time control acceptance</td>
+  <td><code>KHAHP-12.06A</code> · <code>KHAHP-12.06B</code> · <code>KHAHP-12.06C</code></td>
+</tr>
+<tr>
+  <td><code>12.07</code></td>
+  <td>pstore/ERST/proc_mem/entropy trust boot parameters</td>
+  <td><code>KHAHP-12.07A</code> · <code>KHAHP-12.07B</code> · <code>KHAHP-12.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>13 — Kernel Module Restrictions</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> Kernel-module restriction policy, prohibited/legacy module handling and compatibility exceptions are accepted within project scope.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>13.01</code></td>
+  <td>security-misc module blacklist configuration</td>
+  <td><code>KHAHP-13.01A</code> · <code>KHAHP-13.01B</code> · <code>KHAHP-13.01C</code></td>
+</tr>
+<tr>
+  <td><code>13.02</code></td>
+  <td>Hard-disable install rules for risky modules</td>
+  <td><code>KHAHP-13.02A</code> · <code>KHAHP-13.02B</code> · <code>KHAHP-13.02C</code></td>
+</tr>
+<tr>
+  <td><code>13.03</code></td>
+  <td>Loaded-module inventory versus policy</td>
+  <td><code>KHAHP-13.03A</code> · <code>KHAHP-13.03B</code> · <code>KHAHP-13.03C</code></td>
+</tr>
+<tr>
+  <td><code>13.04</code></td>
+  <td>Legacy filesystem module restrictions</td>
+  <td><code>KHAHP-13.04A</code> · <code>KHAHP-13.04B</code> · <code>KHAHP-13.04C</code></td>
+</tr>
+<tr>
+  <td><code>13.05</code></td>
+  <td>Legacy network/protocol module restrictions</td>
+  <td><code>KHAHP-13.05A</code> · <code>KHAHP-13.05B</code> · <code>KHAHP-13.05C</code></td>
+</tr>
+<tr>
+  <td><code>13.06</code></td>
+  <td>USB/storage/media module restriction exceptions</td>
+  <td><code>KHAHP-13.06A</code> · <code>KHAHP-13.06B</code> · <code>KHAHP-13.06C</code></td>
+</tr>
+<tr>
+  <td><code>13.07</code></td>
+  <td>Module-load negative tests and compatibility exceptions</td>
+  <td><code>KHAHP-13.07A</code> · <code>KHAHP-13.07B</code> · <code>KHAHP-13.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>14 — Kernel Module Signing / DKMS</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> Secure Boot and signed Tirdad DKMS evidence were reconciled with the module-signing policy and accepted for the current baseline.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>14.01</code></td>
+  <td>Loaded-module signer inventory</td>
+  <td><code>KHAHP-14.01A</code> · <code>KHAHP-14.01B</code> · <code>KHAHP-14.01C</code></td>
+</tr>
+<tr>
+  <td><code>14.02</code></td>
+  <td>DKMS package and built-module inventory</td>
+  <td><code>KHAHP-14.02A</code> · <code>KHAHP-14.02B</code> · <code>KHAHP-14.02C</code></td>
+</tr>
+<tr>
+  <td><code>14.03</code></td>
+  <td>tirdad DKMS build, signer and runtime state</td>
+  <td><code>KHAHP-14.03A</code> · <code>KHAHP-14.03B</code> · <code>KHAHP-14.03C</code></td>
+</tr>
+<tr>
+  <td><code>14.04</code></td>
+  <td>NVIDIA/other third-party module signer state</td>
+  <td><code>KHAHP-14.04A</code> · <code>KHAHP-14.04B</code> · <code>KHAHP-14.04C</code></td>
+</tr>
+<tr>
+  <td><code>14.05</code></td>
+  <td>Kernel module signature enforcement capability</td>
+  <td><code>KHAHP-14.05A</code> · <code>KHAHP-14.05B</code> · <code>KHAHP-14.05C</code></td>
+</tr>
+<tr>
+  <td><code>14.06</code></td>
+  <td>MOK/enrolled certificate readiness</td>
+  <td><code>KHAHP-14.06A</code> · <code>KHAHP-14.06B</code> · <code>KHAHP-14.06C</code></td>
+</tr>
+<tr>
+  <td><code>14.07</code></td>
+  <td>Secure-Boot compatibility and unsigned-module exceptions</td>
+  <td><code>KHAHP-14.07A</code> · <code>KHAHP-14.07B</code> · <code>KHAHP-14.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>15 — AppArmor / Mandatory Access Control</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> AppArmor is enabled broadly. Firefox retains the vendor unconfined placeholder as an explicit compatibility disposition; browser seccomp/privacy controls are retained. This is a documented project exception, not an open implementation gap.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>15.01</code></td>
+  <td>AppArmor kernel/module enablement</td>
+  <td><code>KHAHP-15.01A</code> · <code>KHAHP-15.01B</code> · <code>KHAHP-15.01C</code></td>
+</tr>
+<tr>
+  <td><code>15.02</code></td>
+  <td>Profile inventory and parser status</td>
+  <td><code>KHAHP-15.02A</code> · <code>KHAHP-15.02B</code> · <code>KHAHP-15.02C</code></td>
+</tr>
+<tr>
+  <td><code>15.03</code></td>
+  <td>Enforce/complain/unconfined process counts</td>
+  <td><code>KHAHP-15.03A</code> · <code>KHAHP-15.03B</code> · <code>KHAHP-15.03C</code></td>
+</tr>
+<tr>
+  <td><code>15.04</code></td>
+  <td>Tor and network-service profile enforcement</td>
+  <td><code>KHAHP-15.04A</code> · <code>KHAHP-15.04B</code> · <code>KHAHP-15.04C</code></td>
+</tr>
+<tr>
+  <td><code>15.05</code></td>
+  <td>Browser/application profile coverage</td>
+  <td><code>KHAHP-15.05A</code> · <code>KHAHP-15.05B</code> · <code>KHAHP-15.05C</code></td>
+</tr>
+<tr>
+  <td><code>15.06</code></td>
+  <td>Denied-event review and false-positive handling</td>
+  <td><code>KHAHP-15.06A</code> · <code>KHAHP-15.06B</code> · <code>KHAHP-15.06C</code></td>
+</tr>
+<tr>
+  <td><code>15.07</code></td>
+  <td>USER versus SYSMAINT AppArmor behavior</td>
+  <td><code>KHAHP-15.07A</code> · <code>KHAHP-15.07B</code> · <code>KHAHP-15.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>16 — SUID / SGID / File Capabilities</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> SUID/SGID binaries and file capabilities were inventoried and reconciled against package ownership and compatibility requirements.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>16.01</code></td>
+  <td>Complete SUID file inventory</td>
+  <td><code>KHAHP-16.01A</code> · <code>KHAHP-16.01B</code> · <code>KHAHP-16.01C</code></td>
+</tr>
+<tr>
+  <td><code>16.02</code></td>
+  <td>Complete SGID file inventory</td>
+  <td><code>KHAHP-16.02A</code> · <code>KHAHP-16.02B</code> · <code>KHAHP-16.02C</code></td>
+</tr>
+<tr>
+  <td><code>16.03</code></td>
+  <td>Package ownership of privileged binaries</td>
+  <td><code>KHAHP-16.03A</code> · <code>KHAHP-16.03B</code> · <code>KHAHP-16.03C</code></td>
+</tr>
+<tr>
+  <td><code>16.04</code></td>
+  <td>permission-hardener expected mode validation</td>
+  <td><code>KHAHP-16.04A</code> · <code>KHAHP-16.04B</code> · <code>KHAHP-16.04C</code></td>
+</tr>
+<tr>
+  <td><code>16.05</code></td>
+  <td>File-capability inventory and package attribution</td>
+  <td><code>KHAHP-16.05A</code> · <code>KHAHP-16.05B</code> · <code>KHAHP-16.05C</code></td>
+</tr>
+<tr>
+  <td><code>16.06</code></td>
+  <td>Unexpected privileged executable detection</td>
+  <td><code>KHAHP-16.06A</code> · <code>KHAHP-16.06B</code> · <code>KHAHP-16.06C</code></td>
+</tr>
+<tr>
+  <td><code>16.07</code></td>
+  <td>Privilege-binary negative/compatibility review</td>
+  <td><code>KHAHP-16.07A</code> · <code>KHAHP-16.07B</code> · <code>KHAHP-16.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>17 — Permissions / ACL / Umask</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> Permissions, ACL, umask and shared-directory controls were reconciled, including vendor-specific exceptions accepted by policy.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>17.01</code></td>
+  <td>System file ownership baseline</td>
+  <td><code>KHAHP-17.01A</code> · <code>KHAHP-17.01B</code> · <code>KHAHP-17.01C</code></td>
+</tr>
+<tr>
+  <td><code>17.02</code></td>
+  <td>World-writable system path inventory</td>
+  <td><code>KHAHP-17.02A</code> · <code>KHAHP-17.02B</code> · <code>KHAHP-17.02C</code></td>
+</tr>
+<tr>
+  <td><code>17.03</code></td>
+  <td>Unexpected group-writable sensitive paths</td>
+  <td><code>KHAHP-17.03A</code> · <code>KHAHP-17.03B</code> · <code>KHAHP-17.03C</code></td>
+</tr>
+<tr>
+  <td><code>17.04</code></td>
+  <td>ACL inventory on sensitive configuration</td>
+  <td><code>KHAHP-17.04A</code> · <code>KHAHP-17.04B</code> · <code>KHAHP-17.04C</code></td>
+</tr>
+<tr>
+  <td><code>17.05</code></td>
+  <td>Root and user umask policy</td>
+  <td><code>KHAHP-17.05A</code> · <code>KHAHP-17.05B</code> · <code>KHAHP-17.05C</code></td>
+</tr>
+<tr>
+  <td><code>17.06</code></td>
+  <td>Home and evidence-directory permissions</td>
+  <td><code>KHAHP-17.06A</code> · <code>KHAHP-17.06B</code> · <code>KHAHP-17.06C</code></td>
+</tr>
+<tr>
+  <td><code>17.07</code></td>
+  <td>Sticky-bit and shared-directory permission policy</td>
+  <td><code>KHAHP-17.07A</code> · <code>KHAHP-17.07B</code> · <code>KHAHP-17.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>18 — PAM / Login / Faillock</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> PAM, yescrypt and login/lockout policy were reconciled with safe recovery requirements and accepted for the implementation baseline.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>18.01</code></td>
+  <td>PAM stack package provenance</td>
+  <td><code>KHAHP-18.01A</code> · <code>KHAHP-18.01B</code> · <code>KHAHP-18.01C</code></td>
+</tr>
+<tr>
+  <td><code>18.02</code></td>
+  <td>password quality and hashing policy</td>
+  <td><code>KHAHP-18.02A</code> · <code>KHAHP-18.02B</code> · <code>KHAHP-18.02C</code></td>
+</tr>
+<tr>
+  <td><code>18.03</code></td>
+  <td>faillock/brute-force lockout policy</td>
+  <td><code>KHAHP-18.03A</code> · <code>KHAHP-18.03B</code> · <code>KHAHP-18.03C</code></td>
+</tr>
+<tr>
+  <td><code>18.04</code></td>
+  <td>login delay and retry controls</td>
+  <td><code>KHAHP-18.04A</code> · <code>KHAHP-18.04B</code> · <code>KHAHP-18.04C</code></td>
+</tr>
+<tr>
+  <td><code>18.05</code></td>
+  <td>su/sudo/polkit PAM interaction</td>
+  <td><code>KHAHP-18.05A</code> · <code>KHAHP-18.05B</code> · <code>KHAHP-18.05C</code></td>
+</tr>
+<tr>
+  <td><code>18.06</code></td>
+  <td>account aging and inactive-account policy</td>
+  <td><code>KHAHP-18.06A</code> · <code>KHAHP-18.06B</code> · <code>KHAHP-18.06C</code></td>
+</tr>
+<tr>
+  <td><code>18.07</code></td>
+  <td>USER/SYSMAINT login regression tests</td>
+  <td><code>KHAHP-18.07A</code> · <code>KHAHP-18.07B</code> · <code>KHAHP-18.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>19 — SSH Client / Server Security</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> Network SSH service exposure remains disabled in the normal USER baseline; client-side/key policy and local uses were separately classified.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>19.01</code></td>
+  <td>Local SSH server service/socket state</td>
+  <td><code>KHAHP-19.01A</code> · <code>KHAHP-19.01B</code> · <code>KHAHP-19.01C</code></td>
+</tr>
+<tr>
+  <td><code>19.02</code></td>
+  <td>sshd listener and inbound port absence</td>
+  <td><code>KHAHP-19.02A</code> · <code>KHAHP-19.02B</code> · <code>KHAHP-19.02C</code></td>
+</tr>
+<tr>
+  <td><code>19.03</code></td>
+  <td>sshd_config security-misc policy if installed</td>
+  <td><code>KHAHP-19.03A</code> · <code>KHAHP-19.03B</code> · <code>KHAHP-19.03C</code></td>
+</tr>
+<tr>
+  <td><code>19.04</code></td>
+  <td>SSH client configuration and host-key verification</td>
+  <td><code>KHAHP-19.04A</code> · <code>KHAHP-19.04B</code> · <code>KHAHP-19.04C</code></td>
+</tr>
+<tr>
+  <td><code>19.05</code></td>
+  <td>Private-key ownership and permission baseline</td>
+  <td><code>KHAHP-19.05A</code> · <code>KHAHP-19.05B</code> · <code>KHAHP-19.05C</code></td>
+</tr>
+<tr>
+  <td><code>19.06</code></td>
+  <td>Password-authentication and root-login policy for future server use</td>
+  <td><code>KHAHP-19.06A</code> · <code>KHAHP-19.06B</code> · <code>KHAHP-19.06C</code></td>
+</tr>
+<tr>
+  <td><code>19.07</code></td>
+  <td>Known-hosts/key algorithm and crypto-policy review</td>
+  <td><code>KHAHP-19.07A</code> · <code>KHAHP-19.07B</code> · <code>KHAHP-19.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>20 — Enabled / Running Service Audit</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> Enabled/running services, sockets and listeners were reviewed per boot role; the accepted baseline avoids indiscriminate removal of required vendor services.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>20.01</code></td>
+  <td>Enabled systemd service inventory</td>
+  <td><code>KHAHP-20.01A</code> · <code>KHAHP-20.01B</code> · <code>KHAHP-20.01C</code></td>
+</tr>
+<tr>
+  <td><code>20.02</code></td>
+  <td>Running systemd service inventory</td>
+  <td><code>KHAHP-20.02A</code> · <code>KHAHP-20.02B</code> · <code>KHAHP-20.02C</code></td>
+</tr>
+<tr>
+  <td><code>20.03</code></td>
+  <td>Socket/path/timer activated service inventory</td>
+  <td><code>KHAHP-20.03A</code> · <code>KHAHP-20.03B</code> · <code>KHAHP-20.03C</code></td>
+</tr>
+<tr>
+  <td><code>20.04</code></td>
+  <td>Kicksecure-required service attribution</td>
+  <td><code>KHAHP-20.04A</code> · <code>KHAHP-20.04B</code> · <code>KHAHP-20.04C</code></td>
+</tr>
+<tr>
+  <td><code>20.05</code></td>
+  <td>Unexpected or unnecessary service classification</td>
+  <td><code>KHAHP-20.05A</code> · <code>KHAHP-20.05B</code> · <code>KHAHP-20.05C</code></td>
+</tr>
+<tr>
+  <td><code>20.06</code></td>
+  <td>Listener-to-service ownership correlation</td>
+  <td><code>KHAHP-20.06A</code> · <code>KHAHP-20.06B</code> · <code>KHAHP-20.06C</code></td>
+</tr>
+<tr>
+  <td><code>20.07</code></td>
+  <td>Reboot persistence and failed-service review</td>
+  <td><code>KHAHP-20.07A</code> · <code>KHAHP-20.07B</code> · <code>KHAHP-20.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>21 — systemd Service Sandboxing</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> systemd service-sandboxing controls and compatibility limits were reconciled and accepted for the current service set.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>21.01</code></td>
+  <td>systemd-analyze security baseline</td>
+  <td><code>KHAHP-21.01A</code> · <code>KHAHP-21.01B</code> · <code>KHAHP-21.01C</code></td>
+</tr>
+<tr>
+  <td><code>21.02</code></td>
+  <td>NoNewPrivileges adoption</td>
+  <td><code>KHAHP-21.02A</code> · <code>KHAHP-21.02B</code> · <code>KHAHP-21.02C</code></td>
+</tr>
+<tr>
+  <td><code>21.03</code></td>
+  <td>ProtectSystem/ProtectHome restrictions</td>
+  <td><code>KHAHP-21.03A</code> · <code>KHAHP-21.03B</code> · <code>KHAHP-21.03C</code></td>
+</tr>
+<tr>
+  <td><code>21.04</code></td>
+  <td>PrivateTmp/PrivateDevices isolation</td>
+  <td><code>KHAHP-21.04A</code> · <code>KHAHP-21.04B</code> · <code>KHAHP-21.04C</code></td>
+</tr>
+<tr>
+  <td><code>21.05</code></td>
+  <td>CapabilityBoundingSet and ambient capabilities</td>
+  <td><code>KHAHP-21.05A</code> · <code>KHAHP-21.05B</code> · <code>KHAHP-21.05C</code></td>
+</tr>
+<tr>
+  <td><code>21.06</code></td>
+  <td>RestrictNamespaces/SystemCallFilter/address-family controls</td>
+  <td><code>KHAHP-21.06A</code> · <code>KHAHP-21.06B</code> · <code>KHAHP-21.06C</code></td>
+</tr>
+<tr>
+  <td><code>21.07</code></td>
+  <td>Service-specific compatibility exceptions and regressions</td>
+  <td><code>KHAHP-21.07A</code> · <code>KHAHP-21.07B</code> · <code>KHAHP-21.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>22 — System.map / Core Dumps / PStore</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> Core-dump, pstore and crash-data privacy controls were reconciled with the owner-approved forensic/privacy trade-off.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>22.01</code></td>
+  <td>System.map exposure and removal policy</td>
+  <td><code>KHAHP-22.01A</code> · <code>KHAHP-22.01B</code> · <code>KHAHP-22.01C</code></td>
+</tr>
+<tr>
+  <td><code>22.02</code></td>
+  <td>systemd-coredump configuration</td>
+  <td><code>KHAHP-22.02A</code> · <code>KHAHP-22.02B</code> · <code>KHAHP-22.02C</code></td>
+</tr>
+<tr>
+  <td><code>22.03</code></td>
+  <td>kernel.core_pattern effective state</td>
+  <td><code>KHAHP-22.03A</code> · <code>KHAHP-22.03B</code> · <code>KHAHP-22.03C</code></td>
+</tr>
+<tr>
+  <td><code>22.04</code></td>
+  <td>fs.suid_dumpable effective state</td>
+  <td><code>KHAHP-22.04A</code> · <code>KHAHP-22.04B</code> · <code>KHAHP-22.04C</code></td>
+</tr>
+<tr>
+  <td><code>22.05</code></td>
+  <td>pstore retention/disable policy</td>
+  <td><code>KHAHP-22.05A</code> · <code>KHAHP-22.05B</code> · <code>KHAHP-22.05C</code></td>
+</tr>
+<tr>
+  <td><code>22.06</code></td>
+  <td>EFI pstore and ERST boot controls</td>
+  <td><code>KHAHP-22.06A</code> · <code>KHAHP-22.06B</code> · <code>KHAHP-22.06C</code></td>
+</tr>
+<tr>
+  <td><code>22.07</code></td>
+  <td>Crash-evidence privacy versus diagnostic requirements</td>
+  <td><code>KHAHP-22.07A</code> · <code>KHAHP-22.07B</code> · <code>KHAHP-22.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>23 — Journald / Logging / Logrotate</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> Journal ownership, access, retention and time-ordering requirements were reconciled into the accepted logging baseline.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>23.01</code></td>
+  <td>journald security-misc configuration</td>
+  <td><code>KHAHP-23.01A</code> · <code>KHAHP-23.01B</code> · <code>KHAHP-23.01C</code></td>
+</tr>
+<tr>
+  <td><code>23.02</code></td>
+  <td>Persistent versus volatile journal storage</td>
+  <td><code>KHAHP-23.02A</code> · <code>KHAHP-23.02B</code> · <code>KHAHP-23.02C</code></td>
+</tr>
+<tr>
+  <td><code>23.03</code></td>
+  <td>Journal file permissions and ownership</td>
+  <td><code>KHAHP-23.03A</code> · <code>KHAHP-23.03B</code> · <code>KHAHP-23.03C</code></td>
+</tr>
+<tr>
+  <td><code>23.04</code></td>
+  <td>Rate limiting and size/retention policy</td>
+  <td><code>KHAHP-23.04A</code> · <code>KHAHP-23.04B</code> · <code>KHAHP-23.04C</code></td>
+</tr>
+<tr>
+  <td><code>23.05</code></td>
+  <td>Forwarding/syslog integration state</td>
+  <td><code>KHAHP-23.05A</code> · <code>KHAHP-23.05B</code> · <code>KHAHP-23.05C</code></td>
+</tr>
+<tr>
+  <td><code>23.06</code></td>
+  <td>logrotate configuration and sensitive-log modes</td>
+  <td><code>KHAHP-23.06A</code> · <code>KHAHP-23.06B</code> · <code>KHAHP-23.06C</code></td>
+</tr>
+<tr>
+  <td><code>23.07</code></td>
+  <td>Log integrity, time coherence and reboot persistence</td>
+  <td><code>KHAHP-23.07A</code> · <code>KHAHP-23.07B</code> · <code>KHAHP-23.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>24 — Panic / Recovery / Emergency Shutdown</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> Panic, emergency shutdown and controlled recovery behavior were reconciled with owner-approved recovery requirements.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>24.01</code></td>
+  <td>kernel panic-on-oops policy</td>
+  <td><code>KHAHP-24.01A</code> · <code>KHAHP-24.01B</code> · <code>KHAHP-24.01C</code></td>
+</tr>
+<tr>
+  <td><code>24.02</code></td>
+  <td>panic timeout and fail-closed behavior</td>
+  <td><code>KHAHP-24.02A</code> · <code>KHAHP-24.02B</code> · <code>KHAHP-24.02C</code></td>
+</tr>
+<tr>
+  <td><code>24.03</code></td>
+  <td>emerg-shutdown.service provenance and state</td>
+  <td><code>KHAHP-24.03A</code> · <code>KHAHP-24.03B</code> · <code>KHAHP-24.03C</code></td>
+</tr>
+<tr>
+  <td><code>24.04</code></td>
+  <td>rescue/emergency target restrictions</td>
+  <td><code>KHAHP-24.04A</code> · <code>KHAHP-24.04B</code> · <code>KHAHP-24.04C</code></td>
+</tr>
+<tr>
+  <td><code>24.05</code></td>
+  <td>rd.emergency=halt and rd.shell=0 behavior</td>
+  <td><code>KHAHP-24.05A</code> · <code>KHAHP-24.05B</code> · <code>KHAHP-24.05C</code></td>
+</tr>
+<tr>
+  <td><code>24.06</code></td>
+  <td>Magic SysRq and recovery-surface policy</td>
+  <td><code>KHAHP-24.06A</code> · <code>KHAHP-24.06B</code> · <code>KHAHP-24.06C</code></td>
+</tr>
+<tr>
+  <td><code>24.07</code></td>
+  <td>Controlled failure/recovery evidence and rollback</td>
+  <td><code>KHAHP-24.07A</code> · <code>KHAHP-24.07B</code> · <code>KHAHP-24.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>25 — RAM Wipe</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> Swap, RAM-wipe and shutdown-memory protections were reconciled with platform capability and recovery policy.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>25.01</code></td>
+  <td>ram-wipe package provenance and version</td>
+  <td><code>KHAHP-25.01A</code> · <code>KHAHP-25.01B</code> · <code>KHAHP-25.01C</code></td>
+</tr>
+<tr>
+  <td><code>25.02</code></td>
+  <td>GRUB/package RAM-wipe source presence</td>
+  <td><code>KHAHP-25.02A</code> · <code>KHAHP-25.02B</code> · <code>KHAHP-25.02C</code></td>
+</tr>
+<tr>
+  <td><code>25.03</code></td>
+  <td>init_on_alloc/init_on_free live correlation</td>
+  <td><code>KHAHP-25.03A</code> · <code>KHAHP-25.03B</code> · <code>KHAHP-25.03C</code></td>
+</tr>
+<tr>
+  <td><code>25.04</code></td>
+  <td>Shutdown/reboot wipe hook inventory</td>
+  <td><code>KHAHP-25.04A</code> · <code>KHAHP-25.04B</code> · <code>KHAHP-25.04C</code></td>
+</tr>
+<tr>
+  <td><code>25.05</code></td>
+  <td>Swap/LUKS interaction during shutdown</td>
+  <td><code>KHAHP-25.05A</code> · <code>KHAHP-25.05B</code> · <code>KHAHP-25.05C</code></td>
+</tr>
+<tr>
+  <td><code>25.06</code></td>
+  <td>Controlled reboot/shutdown persistence test</td>
+  <td><code>KHAHP-25.06A</code> · <code>KHAHP-25.06B</code> · <code>KHAHP-25.06C</code></td>
+</tr>
+<tr>
+  <td><code>25.07</code></td>
+  <td>Limitations of software RAM wiping and cold-boot scope</td>
+  <td><code>KHAHP-25.07A</code> · <code>KHAHP-25.07B</code> · <code>KHAHP-25.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>26 — USBGuard / Peripheral Security</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> USBGuard policy retains authorized keyboards, mice and recovery/removable storage while controlling unapproved device classes according to owner policy.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>26.01</code></td>
+  <td>usbguard daemon and DBus service state</td>
+  <td><code>KHAHP-26.01A</code> · <code>KHAHP-26.01B</code> · <code>KHAHP-26.01C</code></td>
+</tr>
+<tr>
+  <td><code>26.02</code></td>
+  <td>Policy files and rule provenance</td>
+  <td><code>KHAHP-26.02A</code> · <code>KHAHP-26.02B</code> · <code>KHAHP-26.02C</code></td>
+</tr>
+<tr>
+  <td><code>26.03</code></td>
+  <td>ImplicitPolicyTarget and device-policy settings</td>
+  <td><code>KHAHP-26.03A</code> · <code>KHAHP-26.03B</code> · <code>KHAHP-26.03C</code></td>
+</tr>
+<tr>
+  <td><code>26.04</code></td>
+  <td>Allowed keyboard/mouse/audio/video/storage classes</td>
+  <td><code>KHAHP-26.04A</code> · <code>KHAHP-26.04B</code> · <code>KHAHP-26.04C</code></td>
+</tr>
+<tr>
+  <td><code>26.05</code></td>
+  <td>Rejected HID+extra and RNDIS/network-device patterns</td>
+  <td><code>KHAHP-26.05A</code> · <code>KHAHP-26.05B</code> · <code>KHAHP-26.05C</code></td>
+</tr>
+<tr>
+  <td><code>26.06</code></td>
+  <td>IPC authorization/notifier behavior</td>
+  <td><code>KHAHP-26.06A</code> · <code>KHAHP-26.06B</code> · <code>KHAHP-26.06C</code></td>
+</tr>
+<tr>
+  <td><code>26.07</code></td>
+  <td>Hot-plug negative tests and reboot persistence</td>
+  <td><code>KHAHP-26.07A</code> · <code>KHAHP-26.07B</code> · <code>KHAHP-26.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>27 — NetworkManager / Wi-Fi / MAC / DHCP</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> Network identity and MAC/DHCP privacy controls were reconciled for the accepted operating model.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>27.01</code></td>
+  <td>NetworkManager package/service state</td>
+  <td><code>KHAHP-27.01A</code> · <code>KHAHP-27.01B</code> · <code>KHAHP-27.01C</code></td>
+</tr>
+<tr>
+  <td><code>27.02</code></td>
+  <td>Saved Wi-Fi profile inventory and autoconnect</td>
+  <td><code>KHAHP-27.02A</code> · <code>KHAHP-27.02B</code> · <code>KHAHP-27.02C</code></td>
+</tr>
+<tr>
+  <td><code>27.03</code></td>
+  <td>Active-profile cloned-MAC and DHCP privacy settings</td>
+  <td><code>KHAHP-27.03A</code> · <code>KHAHP-27.03B</code> · <code>KHAHP-27.03C</code></td>
+</tr>
+<tr>
+  <td><code>27.04</code></td>
+  <td>Scan MAC randomization</td>
+  <td><code>KHAHP-27.04A</code> · <code>KHAHP-27.04B</code> · <code>KHAHP-27.04C</code></td>
+</tr>
+<tr>
+  <td><code>27.05</code></td>
+  <td>Ethernet MAC randomization policy</td>
+  <td><code>KHAHP-27.05A</code> · <code>KHAHP-27.05B</code> · <code>KHAHP-27.05C</code></td>
+</tr>
+<tr>
+  <td><code>27.06</code></td>
+  <td>Runtime MAC versus permanent hardware MAC</td>
+  <td><code>KHAHP-27.06A</code> · <code>KHAHP-27.06B</code> · <code>KHAHP-27.06C</code></td>
+</tr>
+<tr>
+  <td><code>27.07</code></td>
+  <td>DHCP client identifier and profile persistence</td>
+  <td><code>KHAHP-27.07A</code> · <code>KHAHP-27.07B</code> · <code>KHAHP-27.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>28 — IPv6 Policy</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> IPv6 policy is explicit in the hardened baseline; profile behavior and DNS interactions are treated according to the selected operating mode.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>28.01</code></td>
+  <td>ipv6.disable=1 boot parameter</td>
+  <td><code>KHAHP-28.01A</code> · <code>KHAHP-28.01B</code> · <code>KHAHP-28.01C</code></td>
+</tr>
+<tr>
+  <td><code>28.02</code></td>
+  <td>Absence of IPv6 addresses</td>
+  <td><code>KHAHP-28.02A</code> · <code>KHAHP-28.02B</code> · <code>KHAHP-28.02C</code></td>
+</tr>
+<tr>
+  <td><code>28.03</code></td>
+  <td>Absence of IPv6 routes</td>
+  <td><code>KHAHP-28.03A</code> · <code>KHAHP-28.03B</code> · <code>KHAHP-28.03C</code></td>
+</tr>
+<tr>
+  <td><code>28.04</code></td>
+  <td>NetworkManager IPv6 method/state</td>
+  <td><code>KHAHP-28.04A</code> · <code>KHAHP-28.04B</code> · <code>KHAHP-28.04C</code></td>
+</tr>
+<tr>
+  <td><code>28.05</code></td>
+  <td>Resolver absence of IPv6 nameservers</td>
+  <td><code>KHAHP-28.05A</code> · <code>KHAHP-28.05B</code> · <code>KHAHP-28.05C</code></td>
+</tr>
+<tr>
+  <td><code>28.06</code></td>
+  <td>IPv6 TCP/UDP listener exposure</td>
+  <td><code>KHAHP-28.06A</code> · <code>KHAHP-28.06B</code> · <code>KHAHP-28.06C</code></td>
+</tr>
+<tr>
+  <td><code>28.07</code></td>
+  <td>Reboot persistence and DNS/HTTPS regression test</td>
+  <td><code>KHAHP-28.07A</code> · <code>KHAHP-28.07B</code> · <code>KHAHP-28.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>29 — Unbound / Local DNS Architecture</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> Unbound is the accepted local resolver path in normal USER mode, with role-specific service semantics reconciled.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>29.01</code></td>
+  <td>Unbound package/service state</td>
+  <td><code>KHAHP-29.01A</code> · <code>KHAHP-29.01B</code> · <code>KHAHP-29.01C</code></td>
+</tr>
+<tr>
+  <td><code>29.02</code></td>
+  <td>127.0.0.1:53 UDP/TCP listener and non-loopback absence</td>
+  <td><code>KHAHP-29.02A</code> · <code>KHAHP-29.02B</code> · <code>KHAHP-29.02C</code></td>
+</tr>
+<tr>
+  <td><code>29.03</code></td>
+  <td>resolv.conf local-resolver wiring</td>
+  <td><code>KHAHP-29.03A</code> · <code>KHAHP-29.03B</code> · <code>KHAHP-29.03C</code></td>
+</tr>
+<tr>
+  <td><code>29.04</code></td>
+  <td>NetworkManager effective DNS assignment</td>
+  <td><code>KHAHP-29.04A</code> · <code>KHAHP-29.04B</code> · <code>KHAHP-29.04C</code></td>
+</tr>
+<tr>
+  <td><code>29.05</code></td>
+  <td>Unbound configuration include tree validation</td>
+  <td><code>KHAHP-29.05A</code> · <code>KHAHP-29.05B</code> · <code>KHAHP-29.05C</code></td>
+</tr>
+<tr>
+  <td><code>29.06</code></td>
+  <td>DoT forward-zone and IPv6 source policy</td>
+  <td><code>KHAHP-29.06A</code> · <code>KHAHP-29.06B</code> · <code>KHAHP-29.06C</code></td>
+</tr>
+<tr>
+  <td><code>29.07</code></td>
+  <td>USER/SYSMAINT service behavior and persistence</td>
+  <td><code>KHAHP-29.07A</code> · <code>KHAHP-29.07B</code> · <code>KHAHP-29.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>30 — DNSSEC / DoT / DNS Leak Prevention</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> DNSSEC validation, authenticated DNS-over-TLS configuration, direct DNS egress policy and browser DNS behavior were reconciled into the accepted DNS architecture.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>30.01</code></td>
+  <td>DNSSEC positive validation test</td>
+  <td><code>KHAHP-30.01A</code> · <code>KHAHP-30.01B</code> · <code>KHAHP-30.01C</code></td>
+</tr>
+<tr>
+  <td><code>30.02</code></td>
+  <td>Broken-DNSSEC negative test</td>
+  <td><code>KHAHP-30.02A</code> · <code>KHAHP-30.02B</code> · <code>KHAHP-30.02C</code></td>
+</tr>
+<tr>
+  <td><code>30.03</code></td>
+  <td>DoT forwarding configuration and reachability scope</td>
+  <td><code>KHAHP-30.03A</code> · <code>KHAHP-30.03B</code> · <code>KHAHP-30.03C</code></td>
+</tr>
+<tr>
+  <td><code>30.04</code></td>
+  <td>Plaintext external UDP/53 block</td>
+  <td><code>KHAHP-30.04A</code> · <code>KHAHP-30.04B</code> · <code>KHAHP-30.04C</code></td>
+</tr>
+<tr>
+  <td><code>30.05</code></td>
+  <td>Plaintext external TCP/53 block</td>
+  <td><code>KHAHP-30.05A</code> · <code>KHAHP-30.05B</code> · <code>KHAHP-30.05C</code></td>
+</tr>
+<tr>
+  <td><code>30.06</code></td>
+  <td>Local DNS functionality after firewall enforcement</td>
+  <td><code>KHAHP-30.06A</code> · <code>KHAHP-30.06B</code> · <code>KHAHP-30.06C</code></td>
+</tr>
+<tr>
+  <td><code>30.07</code></td>
+  <td>DNS leak/bypass and reboot-persistence testing</td>
+  <td><code>KHAHP-30.07A</code> · <code>KHAHP-30.07B</code> · <code>KHAHP-30.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>31 — nftables Firewall</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> nftables policy and persistence are part of the accepted firewall baseline, including the project DNS-egress restrictions.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>31.01</code></td>
+  <td>nftables package/service/runtime ruleset state</td>
+  <td><code>KHAHP-31.01A</code> · <code>KHAHP-31.01B</code> · <code>KHAHP-31.01C</code></td>
+</tr>
+<tr>
+  <td><code>31.02</code></td>
+  <td>Dedicated inet kicksecure_hardening table</td>
+  <td><code>KHAHP-31.02A</code> · <code>KHAHP-31.02B</code> · <code>KHAHP-31.02C</code></td>
+</tr>
+<tr>
+  <td><code>31.03</code></td>
+  <td>Input default-drop policy</td>
+  <td><code>KHAHP-31.03A</code> · <code>KHAHP-31.03B</code> · <code>KHAHP-31.03C</code></td>
+</tr>
+<tr>
+  <td><code>31.04</code></td>
+  <td>Forward default-drop policy</td>
+  <td><code>KHAHP-31.04A</code> · <code>KHAHP-31.04B</code> · <code>KHAHP-31.04C</code></td>
+</tr>
+<tr>
+  <td><code>31.05</code></td>
+  <td>Loopback, established/related and invalid handling</td>
+  <td><code>KHAHP-31.05A</code> · <code>KHAHP-31.05B</code> · <code>KHAHP-31.05C</code></td>
+</tr>
+<tr>
+  <td><code>31.06</code></td>
+  <td>DHCP/ICMP and required inbound exceptions</td>
+  <td><code>KHAHP-31.06A</code> · <code>KHAHP-31.06B</code> · <code>KHAHP-31.06C</code></td>
+</tr>
+<tr>
+  <td><code>31.07</code></td>
+  <td>Static syntax, reload safety and reboot persistence</td>
+  <td><code>KHAHP-31.07A</code> · <code>KHAHP-31.07B</code> · <code>KHAHP-31.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>32 — LAN Discovery / Multicast / LLMNR / mDNS</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> Local discovery exposure was reviewed and reconciled against the selected privacy posture.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>32.01</code></td>
+  <td>Avahi/mDNS daemon state</td>
+  <td><code>KHAHP-32.01A</code> · <code>KHAHP-32.01B</code> · <code>KHAHP-32.01C</code></td>
+</tr>
+<tr>
+  <td><code>32.02</code></td>
+  <td>LLMNR/resolved multicast name-resolution state</td>
+  <td><code>KHAHP-32.02A</code> · <code>KHAHP-32.02B</code> · <code>KHAHP-32.02C</code></td>
+</tr>
+<tr>
+  <td><code>32.03</code></td>
+  <td>wsdd/Samba discovery state</td>
+  <td><code>KHAHP-32.03A</code> · <code>KHAHP-32.03B</code> · <code>KHAHP-32.03C</code></td>
+</tr>
+<tr>
+  <td><code>32.04</code></td>
+  <td>rpcbind/minidlna/UPnP service state</td>
+  <td><code>KHAHP-32.04A</code> · <code>KHAHP-32.04B</code> · <code>KHAHP-32.04C</code></td>
+</tr>
+<tr>
+  <td><code>32.05</code></td>
+  <td>Multicast/discovery TCP+UDP listener inventory</td>
+  <td><code>KHAHP-32.05A</code> · <code>KHAHP-32.05B</code> · <code>KHAHP-32.05C</code></td>
+</tr>
+<tr>
+  <td><code>32.06</code></td>
+  <td>Firewall exposure of discovery ports</td>
+  <td><code>KHAHP-32.06A</code> · <code>KHAHP-32.06B</code> · <code>KHAHP-32.06C</code></td>
+</tr>
+<tr>
+  <td><code>32.07</code></td>
+  <td>Negative LAN discovery and reboot-persistence test</td>
+  <td><code>KHAHP-32.07A</code> · <code>KHAHP-32.07B</code> · <code>KHAHP-32.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>33 — Tor / SOCKS / DNS Isolation</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> Tor / SOCKS routing policy and intended application scope were reconciled with the project network-privacy model.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>33.01</code></td>
+  <td>Tor package/service state</td>
+  <td><code>KHAHP-33.01A</code> · <code>KHAHP-33.01B</code> · <code>KHAHP-33.01C</code></td>
+</tr>
+<tr>
+  <td><code>33.02</code></td>
+  <td>SOCKS listener 127.0.0.1:9050 and non-loopback absence</td>
+  <td><code>KHAHP-33.02A</code> · <code>KHAHP-33.02B</code> · <code>KHAHP-33.02C</code></td>
+</tr>
+<tr>
+  <td><code>33.03</code></td>
+  <td>Tor configuration provenance and syntax validation</td>
+  <td><code>KHAHP-33.03A</code> · <code>KHAHP-33.03B</code> · <code>KHAHP-33.03C</code></td>
+</tr>
+<tr>
+  <td><code>33.04</code></td>
+  <td>Application proxy routing where intended</td>
+  <td><code>KHAHP-33.04A</code> · <code>KHAHP-33.04B</code> · <code>KHAHP-33.04C</code></td>
+</tr>
+<tr>
+  <td><code>33.05</code></td>
+  <td>Tor DNS isolation behavior</td>
+  <td><code>KHAHP-33.05A</code> · <code>KHAHP-33.05B</code> · <code>KHAHP-33.05C</code></td>
+</tr>
+<tr>
+  <td><code>33.06</code></td>
+  <td>Clearnet bypass classification for Tor-mode applications</td>
+  <td><code>KHAHP-33.06A</code> · <code>KHAHP-33.06B</code> · <code>KHAHP-33.06C</code></td>
+</tr>
+<tr>
+  <td><code>33.07</code></td>
+  <td>Bootstrap, circuit, restart and failure-mode behavior</td>
+  <td><code>KHAHP-33.07A</code> · <code>KHAHP-33.07B</code> · <code>KHAHP-33.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>34 — sdwdate / Secure Time / Boot Clock</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> Secure-time services and chronology behavior were reconciled into the accepted baseline.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>34.01</code></td>
+  <td>sdwdate package/service state</td>
+  <td><code>KHAHP-34.01A</code> · <code>KHAHP-34.01B</code> · <code>KHAHP-34.01C</code></td>
+</tr>
+<tr>
+  <td><code>34.02</code></td>
+  <td>timesanitycheck execution state</td>
+  <td><code>KHAHP-34.02A</code> · <code>KHAHP-34.02B</code> · <code>KHAHP-34.02C</code></td>
+</tr>
+<tr>
+  <td><code>34.03</code></td>
+  <td>bootclockrandomization execution state</td>
+  <td><code>KHAHP-34.03A</code> · <code>KHAHP-34.03B</code> · <code>KHAHP-34.03C</code></td>
+</tr>
+<tr>
+  <td><code>34.04</code></td>
+  <td>System clock sanity metadata</td>
+  <td><code>KHAHP-34.04A</code> · <code>KHAHP-34.04B</code> · <code>KHAHP-34.04C</code></td>
+</tr>
+<tr>
+  <td><code>34.05</code></td>
+  <td>NTP/systemd-timesyncd conflicts</td>
+  <td><code>KHAHP-34.05A</code> · <code>KHAHP-34.05B</code> · <code>KHAHP-34.05C</code></td>
+</tr>
+<tr>
+  <td><code>34.06</code></td>
+  <td>USER versus SYSMAINT time-source behavior</td>
+  <td><code>KHAHP-34.06A</code> · <code>KHAHP-34.06B</code> · <code>KHAHP-34.06C</code></td>
+</tr>
+<tr>
+  <td><code>34.07</code></td>
+  <td>Time rollback/jump detection and log coherence</td>
+  <td><code>KHAHP-34.07A</code> · <code>KHAHP-34.07B</code> · <code>KHAHP-34.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>35 — Entropy / RNG</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> Entropy, random-seed and early-boot randomness controls were reconciled as part of the accepted cryptographic baseline.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>35.01</code></td>
+  <td>Kernel RNG readiness at boot</td>
+  <td><code>KHAHP-35.01A</code> · <code>KHAHP-35.01B</code> · <code>KHAHP-35.01C</code></td>
+</tr>
+<tr>
+  <td><code>35.02</code></td>
+  <td>haveged package/service state</td>
+  <td><code>KHAHP-35.02A</code> · <code>KHAHP-35.02B</code> · <code>KHAHP-35.02C</code></td>
+</tr>
+<tr>
+  <td><code>35.03</code></td>
+  <td>jitterentropy-rngd package/service state</td>
+  <td><code>KHAHP-35.03A</code> · <code>KHAHP-35.03B</code> · <code>KHAHP-35.03C</code></td>
+</tr>
+<tr>
+  <td><code>35.04</code></td>
+  <td>random.trust_cpu boot policy</td>
+  <td><code>KHAHP-35.04A</code> · <code>KHAHP-35.04B</code> · <code>KHAHP-35.04C</code></td>
+</tr>
+<tr>
+  <td><code>35.05</code></td>
+  <td>random.trust_bootloader boot policy</td>
+  <td><code>KHAHP-35.05A</code> · <code>KHAHP-35.05B</code> · <code>KHAHP-35.05C</code></td>
+</tr>
+<tr>
+  <td><code>35.06</code></td>
+  <td>Entropy source and /dev/random behavior</td>
+  <td><code>KHAHP-35.06A</code> · <code>KHAHP-35.06B</code> · <code>KHAHP-35.06C</code></td>
+</tr>
+<tr>
+  <td><code>35.07</code></td>
+  <td>Early-boot entropy persistence and regression evidence</td>
+  <td><code>KHAHP-35.07A</code> · <code>KHAHP-35.07B</code> · <code>KHAHP-35.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>36 — Browser DoH / WebRTC / Telemetry</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> Firefox DoH, WebRTC, telemetry, prefetch and related privacy controls were reconciled and accepted for the hardened browser baseline.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>36.01</code></td>
+  <td>Browser DNS-over-HTTPS/TRR setting</td>
+  <td><code>KHAHP-36.01A</code> · <code>KHAHP-36.01B</code> · <code>KHAHP-36.01C</code></td>
+</tr>
+<tr>
+  <td><code>36.02</code></td>
+  <td>Browser proxy DNS routing behavior</td>
+  <td><code>KHAHP-36.02A</code> · <code>KHAHP-36.02B</code> · <code>KHAHP-36.02C</code></td>
+</tr>
+<tr>
+  <td><code>36.03</code></td>
+  <td>WebRTC/STUN local/public IP exposure</td>
+  <td><code>KHAHP-36.03A</code> · <code>KHAHP-36.03B</code> · <code>KHAHP-36.03C</code></td>
+</tr>
+<tr>
+  <td><code>36.04</code></td>
+  <td>Telemetry and crash-report settings</td>
+  <td><code>KHAHP-36.04A</code> · <code>KHAHP-36.04B</code> · <code>KHAHP-36.04C</code></td>
+</tr>
+<tr>
+  <td><code>36.05</code></td>
+  <td>Safe browsing/prediction/background network features</td>
+  <td><code>KHAHP-36.05A</code> · <code>KHAHP-36.05B</code> · <code>KHAHP-36.05C</code></td>
+</tr>
+<tr>
+  <td><code>36.06</code></td>
+  <td>Extension/add-on inventory and trust</td>
+  <td><code>KHAHP-36.06A</code> · <code>KHAHP-36.06B</code> · <code>KHAHP-36.06C</code></td>
+</tr>
+<tr>
+  <td><code>36.07</code></td>
+  <td>Browser update, profile persistence and leak tests</td>
+  <td><code>KHAHP-36.07A</code> · <code>KHAHP-36.07B</code> · <code>KHAHP-36.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>37 — Application / File / Metadata Privacy</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> Thumbnail generation is disabled and persisted across reboot; application-history/metadata handling was reconciled into the accepted desktop privacy baseline.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>37.01</code></td>
+  <td>Desktop search/indexing services</td>
+  <td><code>KHAHP-37.01A</code> · <code>KHAHP-37.01B</code> · <code>KHAHP-37.01C</code></td>
+</tr>
+<tr>
+  <td><code>37.02</code></td>
+  <td>Thumbnail and preview cache behavior</td>
+  <td><code>KHAHP-37.02A</code> · <code>KHAHP-37.02B</code> · <code>KHAHP-37.02C</code></td>
+</tr>
+<tr>
+  <td><code>37.03</code></td>
+  <td>Recent-files/history and clipboard retention</td>
+  <td><code>KHAHP-37.03A</code> · <code>KHAHP-37.03B</code> · <code>KHAHP-37.03C</code></td>
+</tr>
+<tr>
+  <td><code>37.04</code></td>
+  <td>Document/image metadata handling</td>
+  <td><code>KHAHP-37.04A</code> · <code>KHAHP-37.04B</code> · <code>KHAHP-37.04C</code></td>
+</tr>
+<tr>
+  <td><code>37.05</code></td>
+  <td>Temporary-file and application-cache exposure</td>
+  <td><code>KHAHP-37.05A</code> · <code>KHAHP-37.05B</code> · <code>KHAHP-37.05C</code></td>
+</tr>
+<tr>
+  <td><code>37.06</code></td>
+  <td>Sandboxed versus unsandboxed application inventory</td>
+  <td><code>KHAHP-37.06A</code> · <code>KHAHP-37.06B</code> · <code>KHAHP-37.06C</code></td>
+</tr>
+<tr>
+  <td><code>37.07</code></td>
+  <td>Metadata-removal workflow and regression testing</td>
+  <td><code>KHAHP-37.07A</code> · <code>KHAHP-37.07B</code> · <code>KHAHP-37.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>38 — Camera / Microphone / Power / Screen Lock</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> Camera/microphone USER denial, Bluetooth blocking, screen-lock behavior and peripheral privacy controls were reconciled under owner policy.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>38.01</code></td>
+  <td>Camera hardware/device exposure</td>
+  <td><code>KHAHP-38.01A</code> · <code>KHAHP-38.01B</code> · <code>KHAHP-38.01C</code></td>
+</tr>
+<tr>
+  <td><code>38.02</code></td>
+  <td>Microphone hardware/device exposure</td>
+  <td><code>KHAHP-38.02A</code> · <code>KHAHP-38.02B</code> · <code>KHAHP-38.02C</code></td>
+</tr>
+<tr>
+  <td><code>38.03</code></td>
+  <td>Bluetooth/rfkill interaction with peripherals</td>
+  <td><code>KHAHP-38.03A</code> · <code>KHAHP-38.03B</code> · <code>KHAHP-38.03C</code></td>
+</tr>
+<tr>
+  <td><code>38.04</code></td>
+  <td>Screen-lock timeout and authentication</td>
+  <td><code>KHAHP-38.04A</code> · <code>KHAHP-38.04B</code> · <code>KHAHP-38.04C</code></td>
+</tr>
+<tr>
+  <td><code>38.05</code></td>
+  <td>Suspend/lock-on-lid and idle behavior</td>
+  <td><code>KHAHP-38.05A</code> · <code>KHAHP-38.05B</code> · <code>KHAHP-38.05C</code></td>
+</tr>
+<tr>
+  <td><code>38.06</code></td>
+  <td>Hibernation configuration and encrypted-swap implications</td>
+  <td><code>KHAHP-38.06A</code> · <code>KHAHP-38.06B</code> · <code>KHAHP-38.06C</code></td>
+</tr>
+<tr>
+  <td><code>38.07</code></td>
+  <td>Shutdown-versus-suspend operational policy</td>
+  <td><code>KHAHP-38.07A</code> · <code>KHAHP-38.07B</code> · <code>KHAHP-38.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>39 — Firmware / BIOS / Secure Boot / TPM</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> OWNER-COMPLETE / NO RETEST. BIOS/UEFI work is retained as a completed owner-controlled domain; Secure Boot evidence remains part of the project record.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>39.01</code></td>
+  <td>BIOS/UEFI vendor, model and firmware version</td>
+  <td><code>KHAHP-39.01A</code> · <code>KHAHP-39.01B</code> · <code>KHAHP-39.01C</code></td>
+</tr>
+<tr>
+  <td><code>39.02</code></td>
+  <td>fwupd device/security-attribute inventory</td>
+  <td><code>KHAHP-39.02A</code> · <code>KHAHP-39.02B</code> · <code>KHAHP-39.02C</code></td>
+</tr>
+<tr>
+  <td><code>39.03</code></td>
+  <td>Secure Boot state and Setup Mode</td>
+  <td><code>KHAHP-39.03A</code> · <code>KHAHP-39.03B</code> · <code>KHAHP-39.03C</code></td>
+</tr>
+<tr>
+  <td><code>39.04</code></td>
+  <td>TPM presence, version and ownership state</td>
+  <td><code>KHAHP-39.04A</code> · <code>KHAHP-39.04B</code> · <code>KHAHP-39.04C</code></td>
+</tr>
+<tr>
+  <td><code>39.05</code></td>
+  <td>BIOS/UEFI administrator password manual check</td>
+  <td><code>KHAHP-39.05A</code> · <code>KHAHP-39.05B</code> · <code>KHAHP-39.05C</code></td>
+</tr>
+<tr>
+  <td><code>39.06</code></td>
+  <td>PXE/CSM/external-boot/manual boot- order policy</td>
+  <td><code>KHAHP-39.06A</code> · <code>KHAHP-39.06B</code> · <code>KHAHP-39.06C</code></td>
+</tr>
+<tr>
+  <td><code>39.07</code></td>
+  <td>Firmware update, DKMS/MOK and Secure-Boot readiness</td>
+  <td><code>KHAHP-39.07A</code> · <code>KHAHP-39.07B</code> · <code>KHAHP-39.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>40 — Auditd / AIDE / Integrity Monitoring</h3>
+<p><strong>Status:</strong> <strong>PROJECT ACCEPTED - COMPLETE / NO OPEN IMPLEMENTATION GAP.</strong></p>
+<p><strong>Evidence position:</strong> FINAL ACCEPTANCE COMPLETE. In normal USER boot, auditd is enabled/active with the KHAHP rules effectively loaded, zero lost audit records in the acceptance capture, and persistent rule compilation verified. The production AIDE scheduled service completed successfully with exit status 0 after the dotlockfile permission repair; dailyaidecheck.timer remains enabled. SYSMAINT no-rules observations were correctly identified as boot-role behavior because auditd is inactive there.</p>
+<p><strong>Acceptance:</strong> All 21 A/B/C checkpoints for this section are accepted within the KHAHP 01-40 closeout. Re-test after material change; this does not imply third-party certification.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>40.01</code></td>
+  <td>auditd package/service state</td>
+  <td><code>KHAHP-40.01A</code> · <code>KHAHP-40.01B</code> · <code>KHAHP-40.01C</code></td>
+</tr>
+<tr>
+  <td><code>40.02</code></td>
+  <td>Audit rule inventory and immutable/finalize policy</td>
+  <td><code>KHAHP-40.02A</code> · <code>KHAHP-40.02B</code> · <code>KHAHP-40.02C</code></td>
+</tr>
+<tr>
+  <td><code>40.03</code></td>
+  <td>Privileged-command and identity- change audit coverage</td>
+  <td><code>KHAHP-40.03A</code> · <code>KHAHP-40.03B</code> · <code>KHAHP-40.03C</code></td>
+</tr>
+<tr>
+  <td><code>40.04</code></td>
+  <td>AIDE package/database/configuration state</td>
+  <td><code>KHAHP-40.04A</code> · <code>KHAHP-40.04B</code> · <code>KHAHP-40.04C</code></td>
+</tr>
+<tr>
+  <td><code>40.05</code></td>
+  <td>File-integrity baseline and scheduled checks</td>
+  <td><code>KHAHP-40.05A</code> · <code>KHAHP-40.05B</code> · <code>KHAHP-40.05C</code></td>
+</tr>
+<tr>
+  <td><code>40.06</code></td>
+  <td>Audit-log ownership, rotation and tamper resistance</td>
+  <td><code>KHAHP-40.06A</code> · <code>KHAHP-40.06B</code> · <code>KHAHP-40.06C</code></td>
+</tr>
+<tr>
+  <td><code>40.07</code></td>
+  <td>CIS/DISA accountability-gap analysis</td>
+  <td><code>KHAHP-40.07A</code> · <code>KHAHP-40.07B</code> · <code>KHAHP-40.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>41 — Cron / Timers / Persistence / Supply Chain</h3>
+<p><strong>Status:</strong> <strong>REVIEW_REQUIRED — formal owner/project acceptance pending for all 21 gates.</strong></p>
+<p><strong>Evidence position:</strong> Persistence, scheduled activity and software supply-chain attribution form the first remaining final-assurance phase.</p>
+<p><strong>Required completion:</strong> Complete reconnaissance for this section, implement/accept applicable hardening decisions, then execute and accept its 21 A/B/C checkpoints before declaring the full 44-section program complete.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>41.01</code></td>
+  <td>cron/anacron job inventory</td>
+  <td><code>KHAHP-41.01A</code> · <code>KHAHP-41.01B</code> · <code>KHAHP-41.01C</code></td>
+</tr>
+<tr>
+  <td><code>41.02</code></td>
+  <td>systemd timer inventory</td>
+  <td><code>KHAHP-41.02A</code> · <code>KHAHP-41.02B</code> · <code>KHAHP-41.02C</code></td>
+</tr>
+<tr>
+  <td><code>41.03</code></td>
+  <td>User autostart and desktop persistence inventory</td>
+  <td><code>KHAHP-41.03A</code> · <code>KHAHP-41.03B</code> · <code>KHAHP-41.03C</code></td>
+</tr>
+<tr>
+  <td><code>41.04</code></td>
+  <td>Package repository and signing-key provenance</td>
+  <td><code>KHAHP-41.04A</code> · <code>KHAHP-41.04B</code> · <code>KHAHP-41.04C</code></td>
+</tr>
+<tr>
+  <td><code>41.05</code></td>
+  <td>APT pinning/holds and update-policy review</td>
+  <td><code>KHAHP-41.05A</code> · <code>KHAHP-41.05B</code> · <code>KHAHP-41.05C</code></td>
+</tr>
+<tr>
+  <td><code>41.06</code></td>
+  <td>Unexpected startup scripts/services/modules</td>
+  <td><code>KHAHP-41.06A</code> · <code>KHAHP-41.06B</code> · <code>KHAHP-41.06C</code></td>
+</tr>
+<tr>
+  <td><code>41.07</code></td>
+  <td>Supply-chain drift and reboot- persistence evidence</td>
+  <td><code>KHAHP-41.07A</code> · <code>KHAHP-41.07B</code> · <code>KHAHP-41.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>42 — Credentials / SSH Keys / Secrets / Backup</h3>
+<p><strong>Status:</strong> <strong>NOT_ASSESSED — formal owner/project acceptance pending for all 21 gates.</strong></p>
+<p><strong>Evidence position:</strong> Credentials, secret handling, encrypted backup and isolated recovery form the second remaining final-assurance phase.</p>
+<p><strong>Required completion:</strong> Complete reconnaissance for this section, implement/accept applicable hardening decisions, then execute and accept its 21 A/B/C checkpoints before declaring the full 44-section program complete.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>42.01</code></td>
+  <td>SSH private-key inventory and permissions</td>
+  <td><code>KHAHP-42.01A</code> · <code>KHAHP-42.01B</code> · <code>KHAHP-42.01C</code></td>
+</tr>
+<tr>
+  <td><code>42.02</code></td>
+  <td>API/token/secret storage locations</td>
+  <td><code>KHAHP-42.02A</code> · <code>KHAHP-42.02B</code> · <code>KHAHP-42.02C</code></td>
+</tr>
+<tr>
+  <td><code>42.03</code></td>
+  <td>Password-manager selection and vault policy</td>
+  <td><code>KHAHP-42.03A</code> · <code>KHAHP-42.03B</code> · <code>KHAHP-42.03C</code></td>
+</tr>
+<tr>
+  <td><code>42.04</code></td>
+  <td>FIDO2/YubiKey readiness and hardware-backed keys</td>
+  <td><code>KHAHP-42.04A</code> · <code>KHAHP-42.04B</code> · <code>KHAHP-42.04C</code></td>
+</tr>
+<tr>
+  <td><code>42.05</code></td>
+  <td>Recovery-code generation and offline storage</td>
+  <td><code>KHAHP-42.05A</code> · <code>KHAHP-42.05B</code> · <code>KHAHP-42.05C</code></td>
+</tr>
+<tr>
+  <td><code>42.06</code></td>
+  <td>Encrypted backup creation and retention</td>
+  <td><code>KHAHP-42.06A</code> · <code>KHAHP-42.06B</code> · <code>KHAHP-42.06C</code></td>
+</tr>
+<tr>
+  <td><code>42.07</code></td>
+  <td>Restore test, key recovery and disaster-recovery evidence</td>
+  <td><code>KHAHP-42.07A</code> · <code>KHAHP-42.07B</code> · <code>KHAHP-42.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>43 — CIS / DISA GPOS / KSPP Mapping</h3>
+<p><strong>Status:</strong> <strong>PLANNED — formal owner/project acceptance pending for all 21 gates.</strong></p>
+<p><strong>Evidence position:</strong> Detailed CIS Debian 13 Level 2, DISA GPOS/SRG and KSPP applicability mapping remains to be completed without claiming external certification.</p>
+<p><strong>Required completion:</strong> Complete reconnaissance for this section, implement/accept applicable hardening decisions, then execute and accept its 21 A/B/C checkpoints before declaring the full 44-section program complete.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>43.01</code></td>
+  <td>CIS Debian 13 Level 2 applicability mapping</td>
+  <td><code>KHAHP-43.01A</code> · <code>KHAHP-43.01B</code> · <code>KHAHP-43.01C</code></td>
+</tr>
+<tr>
+  <td><code>43.02</code></td>
+  <td>DISA GPOS/SRG objective mapping</td>
+  <td><code>KHAHP-43.02A</code> · <code>KHAHP-43.02B</code> · <code>KHAHP-43.02C</code></td>
+</tr>
+<tr>
+  <td><code>43.03</code></td>
+  <td>KSPP/kernel-self-protection mapping</td>
+  <td><code>KHAHP-43.03A</code> · <code>KHAHP-43.03B</code> · <code>KHAHP-43.03C</code></td>
+</tr>
+<tr>
+  <td><code>43.04</code></td>
+  <td>Kicksecure-native equivalent control mapping</td>
+  <td><code>KHAHP-43.04A</code> · <code>KHAHP-43.04B</code> · <code>KHAHP-43.04C</code></td>
+</tr>
+<tr>
+  <td><code>43.05</code></td>
+  <td>Project-extension control mapping</td>
+  <td><code>KHAHP-43.05A</code> · <code>KHAHP-43.05B</code> · <code>KHAHP-43.05C</code></td>
+</tr>
+<tr>
+  <td><code>43.06</code></td>
+  <td>Exception/N-A/manual-control rationale</td>
+  <td><code>KHAHP-43.06A</code> · <code>KHAHP-43.06B</code> · <code>KHAHP-43.06C</code></td>
+</tr>
+<tr>
+  <td><code>43.07</code></td>
+  <td>Evidence citation and no-certification disclaimer</td>
+  <td><code>KHAHP-43.07A</code> · <code>KHAHP-43.07B</code> · <code>KHAHP-43.07C</code></td>
+</tr>
+</tbody>
+</table>
+<h3>44 — Final Acceptance / Evidence / Scoring</h3>
+<p><strong>Status:</strong> <strong>PLANNED — formal owner/project acceptance pending for all 21 gates.</strong></p>
+<p><strong>Evidence position:</strong> Whole-program regression, recovery, evidence-chain and final acceptance remain the final project phase.</p>
+<p><strong>Required completion:</strong> Complete reconnaissance for this section, implement/accept applicable hardening decisions, then execute and accept its 21 A/B/C checkpoints before declaring the full 44-section program complete.</p>
+<table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Exact technical scope</th>
+  <th>A/B/C evidence IDs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>44.01</code></td>
+  <td>Full reboot persistence acceptance</td>
+  <td><code>KHAHP-44.01A</code> · <code>KHAHP-44.01B</code> · <code>KHAHP-44.01C</code></td>
+</tr>
+<tr>
+  <td><code>44.02</code></td>
+  <td>USER-mode regression acceptance</td>
+  <td><code>KHAHP-44.02A</code> · <code>KHAHP-44.02B</code> · <code>KHAHP-44.02C</code></td>
+</tr>
+<tr>
+  <td><code>44.03</code></td>
+  <td>SYSMAINT-mode regression acceptance</td>
+  <td><code>KHAHP-44.03A</code> · <code>KHAHP-44.03B</code> · <code>KHAHP-44.03C</code></td>
+</tr>
+<tr>
+  <td><code>44.04</code></td>
+  <td>Network/DNS/firewall/Tor/USB negative-test acceptance</td>
+  <td><code>KHAHP-44.04A</code> · <code>KHAHP-44.04B</code> · <code>KHAHP-44.04C</code></td>
+</tr>
+<tr>
+  <td><code>44.05</code></td>
+  <td>Recovery/rollback/backup acceptance</td>
+  <td><code>KHAHP-44.05A</code> · <code>KHAHP-44.05B</code> · <code>KHAHP-44.05C</code></td>
+</tr>
+<tr>
+  <td><code>44.06</code></td>
+  <td>Evidence completeness, hashes and chain-of-custody bundle</td>
+  <td><code>KHAHP-44.06A</code> · <code>KHAHP-44.06B</code> · <code>KHAHP-44.06C</code></td>
+</tr>
+<tr>
+  <td><code>44.07</code></td>
+  <td>Final scorecard, residual risk and operator sign-off</td>
+  <td><code>KHAHP-44.07A</code> · <code>KHAHP-44.07B</code> · <code>KHAHP-44.07C</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. Historical 01–38 decisions — 63 documented action records</h2>
+<h3>Historical engineering decision ledger</h3>
+<p>The 63 inherited action records are retained for traceability. They are <strong>not 63 vulnerabilities</strong> and they are no longer an open implementation backlog. Under the 19 October 2026 project closeout they are resolved, accepted, superseded, or closed by an explicit policy/compatibility disposition within Sections 01-40.</p>
+<table>
+<thead>
+<tr>
+  <th>ID</th>
+  <th style="text-align:right">Sec.</th>
+  <th>Historical engineering issue</th>
+  <th>v5.0 disposition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>U01-001</code></td>
+  <td style="text-align:right">7</td>
+  <td>/tmp and /dev/shm noexec compatibility decision</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U01-002</code></td>
+  <td style="text-align:right">7</td>
+  <td>/boot/efi-before-/boot fstab ordering review</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U01-003</code></td>
+  <td style="text-align:right">2</td>
+  <td>permission-hardener package/provenance classifier</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U01-004</code></td>
+  <td style="text-align:right">5</td>
+  <td>sync account shell classification</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U01-005</code></td>
+  <td style="text-align:right">12</td>
+  <td>Unverified kernel tokens / CFI-KCFI claims</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U01-006</code></td>
+  <td style="text-align:right">13</td>
+  <td>vesafb module applicability / dry-run review</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U01-007</code></td>
+  <td style="text-align:right">14</td>
+  <td>USER versus SYSMAINT DKMS evidence reconciliation</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U01-008</code></td>
+  <td style="text-align:right">8</td>
+  <td>Physical GRUB edit-denial test</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U01-009</code></td>
+  <td style="text-align:right">6</td>
+  <td>LUKS key recovery and backup restore</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U01-010</code></td>
+  <td style="text-align:right">10</td>
+  <td>Firmware/preboot DMA protection acceptance</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U01-011</code></td>
+  <td style="text-align:right">7</td>
+  <td>Post-reboot SYSMAINT persistence evidence</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U01-012</code></td>
+  <td style="text-align:right">7</td>
+  <td>/home, /var/tmp and noexec compatibility review</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U01-013</code></td>
+  <td style="text-align:right">14</td>
+  <td>Signed-module negative test and update regression</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U01-014</code></td>
+  <td style="text-align:right">7</td>
+  <td>/tmp nodev,nosuid hardening — implemented baseline</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U15-001</code></td>
+  <td style="text-align:right">15</td>
+  <td>Strict Firefox AppArmor confinement is not established</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U15-002</code></td>
+  <td style="text-align:right">15</td>
+  <td>AppArmor service policy and denial regression</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U15-003</code></td>
+  <td style="text-align:right">15</td>
+  <td>USER versus SYSMAINT browser-label persistence</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U15-004</code></td>
+  <td style="text-align:right">16</td>
+  <td>Privileged binary provenance/drift review</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U15-005</code></td>
+  <td style="text-align:right">16</td>
+  <td>gst-ptp-helper capability policy/compatibility</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U15-006</code></td>
+  <td style="text-align:right">17</td>
+  <td>setup-dist status-files 0777 exception monitoring</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U15-007</code></td>
+  <td style="text-align:right">17</td>
+  <td>Sensitive directory/ACL/umask and tmpfs drift</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U15-008</code></td>
+  <td style="text-align:right">18</td>
+  <td>faillock recovery and self-lockout policy</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U15-009</code></td>
+  <td style="text-align:right">18</td>
+  <td>Passphrase/aging policy ownership</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U15-010</code></td>
+  <td style="text-align:right">18</td>
+  <td>PAM USER/SYSMAINT interaction regression</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U15-011</code></td>
+  <td style="text-align:right">19</td>
+  <td>Network SSH masking and listener persistence</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U15-012</code></td>
+  <td style="text-align:right">19</td>
+  <td>Local SSH AF_UNIX socket and client key policy</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U15-013</code></td>
+  <td style="text-align:right">20</td>
+  <td>Role-specific systemd service drift and listening sockets</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U15-014</code></td>
+  <td style="text-align:right">20</td>
+  <td>Classify unexpected/unused services safely</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U15-015</code></td>
+  <td style="text-align:right">21</td>
+  <td>Unbound systemd exposure score needs design decision</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U15-016</code></td>
+  <td style="text-align:right">21</td>
+  <td>Service sandbox capability regression</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U15-017</code></td>
+  <td style="text-align:right">22</td>
+  <td>Core dump/pstore suppression drift</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U15-018</code></td>
+  <td style="text-align:right">22</td>
+  <td>Crash-forensics versus privacy trade-off</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U15-019</code></td>
+  <td style="text-align:right">23</td>
+  <td>Journal retention, permissions and rotation policy</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U15-020</code></td>
+  <td style="text-align:right">23</td>
+  <td>sdwdate time and journal chronology after reboot</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U15-021</code></td>
+  <td style="text-align:right">24</td>
+  <td>Owner-approved panic/recovery policy and escape paths</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U15-022</code></td>
+  <td style="text-align:right">24</td>
+  <td>Emergency shutdown and controlled recovery evidence</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U25-001</code></td>
+  <td style="text-align:right">26</td>
+  <td>External USB keyboard possibly allowed</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U25-002</code></td>
+  <td style="text-align:right">26</td>
+  <td>Composite/USB network rejection and persistence</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U25-003</code></td>
+  <td style="text-align:right">25</td>
+  <td>Swap crypt mapping and shutdown key lifecycle</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U25-004</code></td>
+  <td style="text-align:right">25</td>
+  <td>RAM wipe shutdown execution and hardware limits</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U25-005</code></td>
+  <td style="text-align:right">27</td>
+  <td>Actual Wi-Fi MAC identity</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U25-006</code></td>
+  <td style="text-align:right">27</td>
+  <td>DHCP identity rotation</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U25-007</code></td>
+  <td style="text-align:right">28</td>
+  <td>Alternate IPv6 network profiles</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U25-008</code></td>
+  <td style="text-align:right">29</td>
+  <td>Unbound response to DHCP renew/network loss</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U25-009</code></td>
+  <td style="text-align:right">30</td>
+  <td>Unbound-owned authenticated DoT</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U25-010</code></td>
+  <td style="text-align:right">30</td>
+  <td>Direct UDP/TCP 53 egress</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U25-011</code></td>
+  <td style="text-align:right">30</td>
+  <td>Active browser DNS/DoH preferences</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U25-012</code></td>
+  <td style="text-align:right">31</td>
+  <td>Effective firewall output chain</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U25-013</code></td>
+  <td style="text-align:right">31</td>
+  <td>Exact loaded-ruleset persistence</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U25-014</code></td>
+  <td style="text-align:right">32</td>
+  <td>Peer-side discovery proof</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U25-015</code></td>
+  <td style="text-align:right">33</td>
+  <td>Tor Browser routing/DNS/fail-close</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U25-016</code></td>
+  <td style="text-align:right">34</td>
+  <td>Secure-time unit chronology</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U25-017</code></td>
+  <td style="text-align:right">25</td>
+  <td>Original implementation provenance</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U25-018</code></td>
+  <td style="text-align:right">26</td>
+  <td>USB boot media usability versus detection</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U25-019</code></td>
+  <td style="text-align:right">28</td>
+  <td>IPv6 goal mismatch / explicit policy</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U25-020</code></td>
+  <td style="text-align:right">29</td>
+  <td>USER/SYSMAINT service role semantics</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U25-021</code></td>
+  <td style="text-align:right">30</td>
+  <td>DNSSEC positive/negative evidence signoff</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U25-022</code></td>
+  <td style="text-align:right">32</td>
+  <td>Actual scope of local discovery services</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U25-023</code></td>
+  <td style="text-align:right">34</td>
+  <td>Production clock rollback exception</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U35-001</code></td>
+  <td style="text-align:right">35</td>
+  <td>Early-boot entropy and random-seed lifecycle</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U35-002</code></td>
+  <td style="text-align:right">36</td>
+  <td>Firefox effective DoH, WebRTC and telemetry behavior</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U35-003</code></td>
+  <td style="text-align:right">37</td>
+  <td>Application history, thumbnails, metadata and confinement regression</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+<tr>
+  <td><code>U35-004</code></td>
+  <td style="text-align:right">38</td>
+  <td>Camera/microphone hotplug and real lock/lid-resume enforcement</td>
+  <td><strong>CLOSED / PROJECT ACCEPTED</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>5. Commercial image release engineering</h2>
+<h3>Release engineering requirements</h3>
+<p>The proposed KHAHP premium hardened OS remains a separate <strong>release-engineering</strong> workstream from the completed 01-40 laptop baseline. Any distributable ISO/USB, QCOW2/KVM or OVA image must be built cleanly and must not clone development-machine secrets, SSH material, random seeds or unique machine identities.</p>
+<h3>Clean-image common requirements</h3>
+<table>
+<thead>
+<tr>
+  <th>Release area</th>
+  <th>Required release proof</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Reproducible source / package provenance</td>
+  <td>Rebuildable source chain, package-origin verification and isolated build process</td>
+</tr>
+<tr>
+  <td>Identity / credential sanitation</td>
+  <td>Unique machine identity, host keys and zero copied development credentials</td>
+</tr>
+<tr>
+  <td>Network / DNS / firewall defaults</td>
+  <td>Safe first-boot policy with documented recovery and customer configuration path</td>
+</tr>
+<tr>
+  <td>Kernel / MAC / audit / AIDE</td>
+  <td>Release-specific regression, not merely reuse of laptop evidence</td>
+</tr>
+<tr>
+  <td>Update / backup / restore</td>
+  <td>Supported update path, rollback and recovery validation</td>
+</tr>
+<tr>
+  <td>Release signing / documentation</td>
+  <td>Signed artifacts, hashes, licensing and operator guidance</td>
+</tr>
+</tbody>
+</table>
+<h3>Distribution-specific acceptance</h3>
+<ul>
+<li><strong>Physical ISO / USB:</strong> UEFI boot, fresh encrypted installation, recovery, Secure Boot, storage/device safety and two-device comparison.</li>
+<li><strong>KVM / QCOW2:</strong> clean import/boot, unique clone identity, virtual firmware/TPM, snapshot restore, networking and sanitized release image.</li>
+<li><strong>VirtualBox / OVA:</strong> clean import, identity regeneration, clipboard/shared-folder/USB/network policy, restore and host-version support.</li>
+</ul>
+<hr />
+<h2>6. Controlled roadmap</h2>
+<table>
+<thead>
+<tr>
+  <th>Section</th>
+  <th>Next evidence stage</th>
+  <th style="text-align:right">Formal A/B/C gates</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><strong>41 — Persistence and supply chain</strong></td>
+  <td>Provenance reconciliation, bounded lifecycle checks, explicit owner decisions</td>
+  <td style="text-align:right">21 REVIEW_REQUIRED</td>
+</tr>
+<tr>
+  <td><strong>42 — Secrets, backup and restore</strong></td>
+  <td>Real-device assessment, custody and actual isolated restore evidence</td>
+  <td style="text-align:right">21 NOT_ASSESSED</td>
+</tr>
+<tr>
+  <td><strong>43 — CIS / DISA / KSPP mapping</strong></td>
+  <td>Obtain and assess applicable versioned rule bodies; signed applicability decisions</td>
+  <td style="text-align:right">21 PLANNED</td>
+</tr>
+<tr>
+  <td><strong>44 — Final assurance</strong></td>
+  <td>Cross-domain regression, evidence chain, rollback and release approval</td>
+  <td style="text-align:right">21 PLANNED</td>
+</tr>
+</tbody>
+</table>
+<h2>7. Public provenance and publication limitations</h2>
+<ul>
+<li>The original historical v4 technical editions were dated 18–19 October 2026 and retain their original acceptance vocabulary.</li>
+<li>The v5.0 public project-closeout release dated 19 October documented the Sections 01–40 owner/project-accepted 840-gate milestone.</li>
+<li>The separately maintained private v6.0 documentary source was dated 1 November 2026; this public editorial register extracts sanitized high-level status, not confidential machine evidence.</li>
+<li>The 2 November 2026 public text revision does not assert fresh machine attestation, 924 vulnerabilities, external CIS/DISA/KSPP certification or a completed commercial image.</li>
+<li>Any future public detailed evidence release requires separate privacy review and owner authorization.</li>
+</ul>
+<p>See <a href="README.md">KHAHP project home</a> and <a href="docs/PUBLICATIONS.md">Publications</a> for dated PDF history.</p>
+</body></html>

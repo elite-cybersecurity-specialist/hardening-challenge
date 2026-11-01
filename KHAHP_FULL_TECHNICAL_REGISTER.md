@@ -1,109 +1,88 @@
 # KHAHP — Full Technical Evidence & Engineering Register
 
-**Public Consolidated Release v5.0 · 19 October 2026 · Sections 01-40 project closeout**  
 **Elite Cybersecurity Specialist · Malaysia**  
-**200+ hours of owner-reported engineering · 44 security domains · 308 control families · 924 A/B/C assurance checkpoints**
+**Public Editorial Edition v6.0 · 2 November 2026 · Sanitized documentary update**  
+**44 sections · 308 named control families · 924 exact A/B/C gate identifiers**  
+**350+ hours of hands-on hardening, testing and verification (owner-reported)**
 
-> **Engineering mission:** expose enough real implementation detail to demonstrate the quality of our defensive hardening methodology while keeping private host identifiers, secrets and sensitive operational evidence out of the public repository.
+> [!IMPORTANT]
+> **Formal owner/project acceptance remains 840/924.** Section 41 contributes 21 `REVIEW_REQUIRED` gates; Section 42 has 21 `NOT_ASSESSED` gates; Sections 43–44 contain 42 `PLANNED` gates. These are *security-assurance checkpoints*, not claimed vulnerabilities or independently certified controls.
 
-## 1. Executive engineering position and integrity statement
+**Public-source boundary:** The updated classification derives from the internally maintained 1 November 2026 documentary snapshot while preserving the original v4 and v5 evidence authority. No private host reports, internal master workbooks, credentials or recovery material are published here. The historical 840 project-accepted gates have not been independently re-attested as part of this editorial release.
 
-KHAHP is a high-assurance defensive hardening and verification program for a Kicksecure / Debian 13 laptop. The project uses Kicksecure as a **public reference implementation** for the engineering discipline behind Elite Cybersecurity Specialist hardening services.
+[Project home](README.md) · [Publications and historical PDF editions](docs/PUBLICATIONS.md)
 
-### 1.1. Kicksecure OS Royal Hardening — public reference implementation
+---
 
-**Kicksecure OS Royal Hardening details are deliberately revealed as an example of the quality, depth and evidence discipline of our work.** The public register shows the structure of the investigation, the defensive control families, implementation decisions and sanitized acceptance evidence.
+## 1. Executive engineering position
 
-The same evidence-led method is offered for other supported environments, but each target requires its own platform-specific implementation and validation:
+KHAHP is a high-assurance defensive hardening and verification program for a Kicksecure/Debian 13 operating environment. The project owner reports **350+ hours of direct engineering effort** across investigation, hardening, testing, controlled corrections, technical evidence and review. It documents appropriate security controls, their provenance, effective operating-role enforcement, compatibility/recovery decisions and historical acceptance in 44 defined domains. Kicksecure is the reference implementation for Elite Cybersecurity Specialist's defensive engineering method; other systems require separate assessment.
 
-| Platform / service | Hardening scope offered |
-|---|---|
-| **Kicksecure OS** | Public reference implementation / Royal Hardening engineering demonstration |
-| **Ubuntu / Debian Linux** | Server and workstation hardening, service reduction, kernel/filesystem/network policy, logging and recovery |
-| **RHEL / Rocky / AlmaLinux / CentOS Stream** | SELinux-aware hardening, service policy, network controls, provenance and recovery |
-| **Windows Server / enterprise workstations** | Least privilege, Defender/audit policy, service reduction, network and identity controls |
-| **AWS / Azure / Google Cloud / Oracle Cloud** | IAM, segmentation, encryption, logging, drift control and recovery assurance |
-| **VMware ESXi / Proxmox VE** | Management-plane protection, segmentation, update provenance and restore validation |
-| **Supported managed endpoints / devices** | Vendor-capability-based service, port, update, telemetry and lifecycle hardening |
+### 1.1. Assurance accounting
 
-A Kicksecure result does **not** automatically certify the other platforms. Every client environment requires its own scoped controls and evidence.
-
-### 1.2. Program progress
-
-<p align="center"><img src="assets/progress-reconnaissance.svg" alt="Reconnaissance and security review 40 of 44" width="100%"></p>
-<p align="center"><img src="assets/progress-implementation.svg" alt="Hardening implementation 40 of 44" width="100%"></p>
-<p align="center"><img src="assets/progress-assurance.svg" alt="A/B/C assurance 840 of 924" width="100%"></p>
-
-| Workstream | Progress | Current state |
+| Program measure | Count | Current meaning |
 |---|---:|---|
-| **Reconnaissance / security review** | **40 / 44 sections (90.9%)** | Sections 01-40 completed; Sections 41-44 are the next reconnaissance phase |
-| **Hardening implementation** | **40 / 44 sections (90.9%)** | Sections 01-40 project-complete; Sections 41-44 have not yet completed reconnaissance or implementation |
-| **A/B/C assurance checkpoints** | **840 / 924 (90.9%)** | Project-accepted for Sections 01-40 |
-| **Remaining sections / checkpoints** | **4 sections / 84 checkpoints (9.1%)** | Sections 41-44: reconnaissance, implementation and final assurance still to be completed |
+| Hardening sections | **44** | Seven precisely named control families each |
+| Control families | **308** | Each has A, B and C gates |
+| A/B/C assurance gates | **924** | 44 × 7 × 3 |
+| Sections 01–40 | **840** | PROJECT_ACCEPTED — carried-forward owner/project baseline |
+| Section 41 | **21** | REVIEW_REQUIRED — existing observations pending formal decisions |
+| Section 42 | **21** | NOT_ASSESSED — offline-tested collection is not target-machine verification |
+| Sections 43–44 | **42** | PLANNED — external mapping and final program assurance |
 
-The **924 checkpoints are not 924 vulnerabilities**. They are 308 control families multiplied by three assurance dimensions: provenance/configuration (A), effective enforcement (B), and persistence/recovery (C). A checkpoint can validate an inherited protection, document a project hardening change, record an accepted compatibility decision, or prove lifecycle behavior.
+**The 924 gates are not 924 security flaws.** An A/B/C gate can validate an upstream safeguard, a project change, a compatible design disposition, runtime behavior or relevant persistence/recovery.
 
-### 1.3. What “01-40 complete” means
+### 1.2. Gate evidence requirements
 
-Sections **01-40 are project-accepted with no remaining implementation gaps** in the current KHAHP master. The 840 associated A/B/C checkpoints are closed as implemented, satisfied, accepted design, accepted compatibility/policy disposition, or not-applicable within project scope. Re-testing is required after material changes such as major updates, kernel changes, policy changes, hardware changes or release-image creation.
-
-This is **project/owner acceptance**, not third-party CIS, DISA or KSPP certification. Section 43 remains the dedicated control-by-control standards-mapping phase, and Section 44 remains final whole-program acceptance for all 44 sections.
-
-### 1.4. Security finding and acceptance vocabulary
-
-| Classification | Meaning |
+| Gate | Question |
 |---|---|
-| **Observed protection** | Existing Kicksecure/Debian or project protection inspected or tested |
-| **Confirmed security weakness / defect** | Demonstrated undesirable behavior against an approved security requirement |
-| **Hardening enhancement** | Additional defense-in-depth improvement, even without a reproduced exploit |
-| **Policy / compatibility disposition** | Deliberate design trade-off, exception or N/A decision accepted by the project |
-| **Project accepted** | Implementation/control family closed within KHAHP scope and current baseline |
-| **External certification** | Independent certification/assessment by the relevant external authority; **not claimed by this project** |
+| **A — Provenance / configuration** | Which trusted source and approved requirement support the setting or design? |
+| **B — Runtime enforcement** | What allow/deny behavior is actually observed in the correct operating role? |
+| **C — Persistence / recovery** | What lifecycle event, rollback or recovery result supports ongoing assurance? |
 
-### 1.5. High-value completed engineering outcomes
+A successful script, a file checksum or a configured service is not by itself a passed gate. Historical project acceptance is distinguished from independently repeated November tests. The original v4 legacy `OPEN` status column is preserved in the private source; the owner/project accepted field is separate.
 
-| Defensive domain | Accepted project outcome |
+### 1.3. Engineering results and implementation boundaries
+
+| Defensive discipline | Publicly documented historical engineering position |
 |---|---|
-| **Privilege separation** | Distinct USER desktop and privileged SYSMAINT maintenance roles retained; no weakening of USER administrative restrictions for convenience |
-| **Kernel / memory** | Restricted kernel pointers, dmesg, ptrace and unprivileged BPF plus hardened boot/memory parameters |
-| **Encrypted storage / boot** | LUKS root, Secure Boot evidence, signed DKMS evidence and corrected /boot -> /boot/efi ordering |
-| **Filesystem** | /tmp nodev,nosuid hardening with compatibility-driven noexec disposition |
-| **DNS / network / firewall** | Local Unbound, DNSSEC, authenticated DoT architecture, nftables and Tor/SOCKS policy reconciled into the hardened baseline |
-| **Devices / privacy** | USBGuard owner policy, camera/microphone USER denial, Bluetooth block and desktop privacy controls |
-| **Browser / application privacy** | Firefox privacy controls, seccomp observations and thumbnail-generation hardening |
-| **Audit / integrity** | auditd active with effective KHAHP rules in normal USER boot; production AIDE scheduled check completed successfully; persistent AIDE lock-helper policy repaired |
+| USER / SYSMAINT separation | Restricted ordinary USER sessions and separately selected privileged maintenance context |
+| Kernel and memory | Restricted kernel information, debugging and unprivileged interfaces plus relevant boot/memory parameters |
+| Boot and storage | LUKS root, Secure Boot observations, module signing and corrected boot-mount ordering |
+| Filesystem and software | `/tmp` `nodev,nosuid` baseline; compatibility-based disposition for blanket `noexec` |
+| Resolver / network | Unbound, DNSSEC, DoT architecture, nftables and Tor/SOCKS policies documented within scope |
+| Device privacy | USBGuard owner policy, microphone/camera restrictions, Bluetooth and desktop privacy controls |
+| Audit / integrity | Section 40 acceptance included effective auditd rules in normal USER boot and a scheduled AIDE check at the time tested |
 
-## 2. Evidence model and status rules
+The underlying evidence, package-specific changes, device identifiers and potentially sensitive enforcement details remain in the private master and are not reproduced in this public text.
 
-| Gate | Assurance purpose |
-|---|---|
-| **A - provenance/configuration** | Approved source, package/file ownership, intended policy, accepted design or exception |
-| **B - effective enforcement** | Role-appropriate runtime behavior, bounded allow/deny proof or accepted applicability determination |
-| **C - persistence/recovery** | Relevant reboot/reconnect/update/recovery behavior or documented project exception |
+---
 
-For Sections 01-40 the authoritative private ledger marks all **840 gates as `PROJECT_ACCEPTED`**. Public documentation intentionally summarizes sensitive evidence rather than publishing raw host identifiers, private rulesets, keys, addresses or confidential logs.
+## 2. Current research and acceptance boundaries
 
-## 3. Configuration changes, corrective actions and durable results
+### 2.1. Section 41 — persistence, source provenance and drift
 
-| ID / area | Accepted result |
-|---|---|
-| Filesystem / `/tmp` | `nodev,nosuid` retained; blanket `noexec` rejected as an owner-approved compatibility disposition |
-| `/boot` and `/boot/efi` | fstab ordering corrected, immediate validation completed and carried into the accepted baseline |
-| Desktop privacy | Thumbnail generation disabled and persistence verified |
-| Section 40 AIDE | `/usr/bin/dotlockfile` persistent override corrected to `755 root:mail`; production `dailyaidecheck.service` subsequently completed successfully |
-| Section 40 auditd | Persistent KHAHP rules compile cleanly and are effectively loaded in normal USER boot; SYSMAINT no-rules state is role-specific because auditd is inactive there |
+Seven families cover cron/anacron applicability, systemd timers, desktop autostart, source/repository signing, APT holds and update policy, unexpected startup services/modules and supply-chain drift. Dated technical observations exist, but all 21 A/B/C gates remain **REVIEW_REQUIRED**. Unresolved source-attribution, compatibility and owner decisions must not be silently reclassified as accepted.
 
-## 4. Current project boundary
+The historical successful AIDE check and later package-maintenance observations are distinct dated events. A prior success is not evidence that every subsequent configuration or hardener trigger passed. Any sensitive provenance questions are subject to the private evidence and owner risk-decision process.
 
-- **Sections 01-40:** complete / project-accepted / no open implementation gaps.
-- **Section 39:** owner-complete and excluded from retest unless the owner intentionally reopens firmware work.
-- **Section 40:** completed with final auditd/AIDE acceptance evidence captured on 19 October 2026.
-- **Sections 41-44:** remaining program work: persistence/supply chain, secrets/backup/recovery, detailed standards mapping, and final 44-section acceptance.
-- **Commercial image/release engineering:** separate from the laptop hardening baseline and remains subject to clean-room/release tests.
+### 2.2. Section 42 — credentials, backup and recovery
 
-## 5. Implementation review by all 44 sections
+Seven families address SSH key security, tokens/secrets, password-vault policy, FIDO2 security-key readiness, offline recovery-code custody, encrypted backups and isolated restore. A localized metadata-only collector has synthetic offline test coverage, but the private snapshot does **not** contain accepted host results or actual encrypted backup/restore verification. All 21 Section 42 gates remain **NOT_ASSESSED**.
 
-Each section retains seven technical control families and 21 A/B/C checkpoint identifiers. For Sections 01-40, the status shown here is **project accepted**. Sections 41-44 remain the active next phase.
+### 2.3. Section 43 — benchmark mapping
+
+Applicable CIS Debian Linux Level 2, DISA General Purpose OS SRG / STIG-inspired requirements and KSPP guidance are engineering references. The 308 KHAHP family entries and 924 project gates are not benchmark rule counts. Exact external rule applicability, assessment methods, exceptions and reviewers remain **PLANNED**, not externally certified.
+
+### 2.4. Section 44 — final controlled assurance
+
+Final program acceptance requires suitable regression testing, recovery proof, evidence custody, controlled exception decisions, public-release sanitation and owner signoff. **No Section 44 gates are accepted** in this editorial release.
+
+---
+
+## 3. Implementation inventory — all 44 sections
+
+Every section below lists **seven families**, each with its **three exact A/B/C gate identifiers**. For 01–40, `PROJECT_ACCEPTED` denotes historical owner/project baseline acceptance, not a 2 November retest.
 
 ### 01 — Platform / OS / Hardware Baseline
 
@@ -827,7 +806,7 @@ Each section retains seven technical control families and 21 A/B/C checkpoint id
 
 ### 41 — Cron / Timers / Persistence / Supply Chain
 
-**Status:** **NEXT PHASE - RECONNAISSANCE / IMPLEMENTATION NOT YET COMPLETE.**
+**Status:** **REVIEW_REQUIRED — formal owner/project acceptance pending for all 21 gates.**
 
 **Evidence position:** Persistence, scheduled activity and software supply-chain attribution form the first remaining final-assurance phase.
 
@@ -845,7 +824,7 @@ Each section retains seven technical control families and 21 A/B/C checkpoint id
 
 ### 42 — Credentials / SSH Keys / Secrets / Backup
 
-**Status:** **NEXT PHASE - RECONNAISSANCE / IMPLEMENTATION NOT YET COMPLETE.**
+**Status:** **NOT_ASSESSED — formal owner/project acceptance pending for all 21 gates.**
 
 **Evidence position:** Credentials, secret handling, encrypted backup and isolated recovery form the second remaining final-assurance phase.
 
@@ -863,7 +842,7 @@ Each section retains seven technical control families and 21 A/B/C checkpoint id
 
 ### 43 — CIS / DISA GPOS / KSPP Mapping
 
-**Status:** **NEXT PHASE - RECONNAISSANCE / IMPLEMENTATION NOT YET COMPLETE.**
+**Status:** **PLANNED — formal owner/project acceptance pending for all 21 gates.**
 
 **Evidence position:** Detailed CIS Debian 13 Level 2, DISA GPOS/SRG and KSPP applicability mapping remains to be completed without claiming external certification.
 
@@ -881,7 +860,7 @@ Each section retains seven technical control families and 21 A/B/C checkpoint id
 
 ### 44 — Final Acceptance / Evidence / Scoring
 
-**Status:** **NEXT PHASE - RECONNAISSANCE / IMPLEMENTATION NOT YET COMPLETE.**
+**Status:** **PLANNED — formal owner/project acceptance pending for all 21 gates.**
 
 **Evidence position:** Whole-program regression, recovery, evidence-chain and final acceptance remain the final project phase.
 
@@ -897,7 +876,12 @@ Each section retains seven technical control families and 21 A/B/C checkpoint id
 | `44.06` | Evidence completeness, hashes and chain-of-custody bundle | `KHAHP-44.06A` · `KHAHP-44.06B` · `KHAHP-44.06C` |
 | `44.07` | Final scorecard, residual risk and operator sign-off | `KHAHP-44.07A` · `KHAHP-44.07B` · `KHAHP-44.07C` |
 
-## 6. Historical 01-38 action reconciliation - 63 records closed
+
+---
+
+## 4. Historical 01–38 decisions — 63 documented action records
+
+### Historical engineering decision ledger
 
 The 63 inherited action records are retained for traceability. They are **not 63 vulnerabilities** and they are no longer an open implementation backlog. Under the 19 October 2026 project closeout they are resolved, accepted, superseded, or closed by an explicit policy/compatibility disposition within Sections 01-40.
 
@@ -967,7 +951,12 @@ The 63 inherited action records are retained for traceability. They are **not 63
 | `U35-003` | 37 | Application history, thumbnails, metadata and confinement regression | **CLOSED / PROJECT ACCEPTED** |
 | `U35-004` | 38 | Camera/microphone hotplug and real lock/lid-resume enforcement | **CLOSED / PROJECT ACCEPTED** |
 
-## 7. Commercial image engineering and supply-chain acceptance
+
+---
+
+## 5. Commercial image release engineering
+
+### Release engineering requirements
 
 The proposed KHAHP premium hardened OS remains a separate **release-engineering** workstream from the completed 01-40 laptop baseline. Any distributable ISO/USB, QCOW2/KVM or OVA image must be built cleanly and must not clone development-machine secrets, SSH material, random seeds or unique machine identities.
 
@@ -988,42 +977,24 @@ The proposed KHAHP premium hardened OS remains a separate **release-engineering*
 - **KVM / QCOW2:** clean import/boot, unique clone identity, virtual firmware/TPM, snapshot restore, networking and sanitized release image.
 - **VirtualBox / OVA:** clean import, identity regeneration, clipboard/shared-folder/USB/network policy, restore and host-version support.
 
-## 8. Planned completion of Sections 41-44
 
-| Section | Remaining work | Checkpoints |
+---
+
+## 6. Controlled roadmap
+
+| Section | Next evidence stage | Formal A/B/C gates |
 |---|---|---:|
-| **41 - Persistence / supply chain** | Cron/timers/autostart classification, package/signing provenance and drift | **21** |
-| **42 - Credentials / backup / recovery** | Secret inventory, custody policy, encrypted backups and isolated restore | **21** |
-| **43 - CIS / DISA / KSPP mapping** | Evidence-linked applicability and extension mapping; no certification inflation | **21** |
-| **44 - Final acceptance / evidence / scoring** | Whole-program regression, recovery, chain of custody and final sign-off | **21** |
-| **Total remaining** |  | **84** |
+| **41 — Persistence and supply chain** | Provenance reconciliation, bounded lifecycle checks, explicit owner decisions | 21 REVIEW_REQUIRED |
+| **42 — Secrets, backup and restore** | Real-device assessment, custody and actual isolated restore evidence | 21 NOT_ASSESSED |
+| **43 — CIS / DISA / KSPP mapping** | Obtain and assess applicable versioned rule bodies; signed applicability decisions | 21 PLANNED |
+| **44 — Final assurance** | Cross-domain regression, evidence chain, rollback and release approval | 21 PLANNED |
 
-## 9. Compliance, controlled change and public disclosure
+## 7. Public provenance and publication limitations
 
-**Execution roles:** normal USER activity remains separate from privileged SYSMAINT maintenance. Privileged work must preserve role boundaries and recovery paths.
+- The original historical v4 technical editions were dated 18–19 October 2026 and retain their original acceptance vocabulary.
+- The v5.0 public project-closeout release dated 19 October documented the Sections 01–40 owner/project-accepted 840-gate milestone.
+- The separately maintained private v6.0 documentary source was dated 1 November 2026; this public editorial register extracts sanitized high-level status, not confidential machine evidence.
+- The 2 November 2026 public text revision does not assert fresh machine attestation, 924 vulnerabilities, external CIS/DISA/KSPP certification or a completed commercial image.
+- Any future public detailed evidence release requires separate privacy review and owner authorization.
 
-**Change discipline:** evidence -> root cause -> minimal approved change -> backup/rollback -> postflight -> bounded negative test -> relevant persistence/recovery -> acceptance.
-
-**Publication safety:** do not publish passwords, private keys, recovery material, private host identifiers, raw confidential logs, sensitive IP/MAC data or customer-specific security configuration. The public register publishes sanitized outcomes; underlying evidence remains private.
-
-**Reference frameworks:** CIS Debian 13 Level 2 Workstation, DISA General Purpose OS SRG / relevant STIG-inspired objectives, KSPP, Debian and Kicksecure security practices. These are engineering references. **No third-party CIS, DISA or KSPP certification is claimed.**
-
-## 10. Evidence source ledger for v5.0
-
-- Public v4.2 README and full technical register, used as the structural baseline for this revision.
-- KHAHP authoritative 924-gate ledger v3.0, 19 October 2026: Sections 01-40 / 840 gates recorded as `PROJECT_ACCEPTED`; Sections 41-44 / 84 gates remain the next reconnaissance, implementation and final-assurance phase.
-- KHAHP master-control v4.0 and engineering-operations manual v2.0, 19 October 2026.
-- Section 40 final evidence: USER/SYSMAINT delta reports, successful controlled production AIDE run, final root audit configuration capture, and normal-USER effective audit-rule capture.
-- Section 39 remains owner-complete / no-retest unless intentionally reopened.
-
-### Section 40 final evidence summary
-
-- `auditd.service`: enabled, active and running in normal USER boot during final acceptance.
-- Kernel audit subsystem: enabled with live auditd PID; acceptance capture showed `lost 0`.
-- KHAHP audit rules: persistent rule files compiled without change and effective in normal USER boot.
-- SYSMAINT `auditctl -l: No rules`: correctly classified as role-specific because auditd is inactive in SYSMAINT.
-- AIDE: existing production `dailyaidecheck.service` ran successfully after the lock-helper permission repair, with `ExecMainStatus=0` and successful completion.
-- `/usr/bin/dotlockfile`: persistent `755 root:mail` override retained after the successful production run.
-- External mail notification and audit immutability are treated as explicit policy/operational choices, not open implementation defects in the 01-40 closeout.
-
-**Release boundary:** v5.0 records the 01-40 project closeout. It does not claim that Sections 41-44 are complete, that every commercial-image release test has been executed, or that an external benchmark authority has certified the system.
+See [KHAHP project home](README.md) and [Publications](docs/PUBLICATIONS.md) for dated PDF history.
