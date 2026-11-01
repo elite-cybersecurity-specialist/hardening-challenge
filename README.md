@@ -1,44 +1,59 @@
 <p align="center">
-  <img src="assets/Hardening-Challenge.jpg" alt="KHAHP — Kicksecure High-Assurance Hardening Project by Elite Cybersecurity Specialist" width="100%">
+  <img src="assets/Hardening-Challenge.jpg" alt="Kicksecure High-Assurance Hardening Project — Elite Cybersecurity Specialist" width="100%">
 </p>
 
-<h1 align="center">KHAHP — KICKSECURE HIGH-ASSURANCE HARDENING PROJECT</h1>
+<h1 align="center">KHAHP · KICKSECURE HIGH-ASSURANCE HARDENING PROJECT</h1>
 
-<h3 align="center">Kicksecure OS Royal Hardening | Beyond Conventional CIS Level 2 Baselines</h3>
-
-<p align="center"><strong>ELITE CYBERSECURITY SPECIALIST · MALAYSIA</strong></p>
-
-<p align="center"><strong>HARDEN. TEST. VERIFY. IMPROVE.</strong></p>
-
-<p align="center">Business Registration: <strong>202403184091 (MA0319303-P)</strong></p>
+<p align="center"><strong>ROYAL HARDENING · ENGINEERING-LED DEFENCE · VERIFIABLE ASSURANCE</strong></p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Public_Engineering_Register-v5.0-0969da?style=for-the-badge" alt="Public engineering register v5.0">
-  <img src="https://img.shields.io/badge/Sections_Accepted-40%2F44-0969da?style=for-the-badge" alt="40 of 44 sections accepted">
-  <img src="https://img.shields.io/badge/Assurance_Accepted-840%2F924-0969da?style=for-the-badge" alt="840 of 924 checkpoints project accepted">
+  <strong>ELITE CYBERSECURITY SPECIALIST · MALAYSIA</strong><br>
+  <sub>Beyond conventional hardening baselines · HARDEN. TEST. VERIFY. IMPROVE.</sub>
 </p>
 
 <p align="center">
-  <a href="https://github.com/elite-cybersecurity-specialist/company-profile/raw/refs/heads/main/pdf/ECS_Company_Profile.pdf"><strong>Download Company Profile (PDF)</strong></a>
-  &nbsp;·&nbsp;
-  <a href="https://github.com/elite-cybersecurity-specialist/company-profile"><strong>View Company Profile</strong></a>
-  &nbsp;·&nbsp;
-  <a href="https://github.com/elite-cybersecurity-specialist"><strong>Other Cybersecurity Subjects</strong></a>
-  &nbsp;·&nbsp;
-  <a href="https://www.linkedin.com/company/elite-cybersecurity-specialist/">LinkedIn Company Page</a>
-  &nbsp;·&nbsp;
-  <a href="https://elite-cybersecurity-specialist.blogspot.com">Official ECS Blog</a>
-  &nbsp;·&nbsp;
-  <a href="mailto:Yuhisern@protonmail.com"><strong>Contact ECS</strong></a>
+  <a href="KHAHP_FULL_TECHNICAL_REGISTER.md"><img alt="44 security domains" src="https://img.shields.io/badge/SECURITY_DOMAINS-44-12314f?style=for-the-badge"></a>
+  <a href="KHAHP_FULL_TECHNICAL_REGISTER.md"><img alt="308 technical control families" src="https://img.shields.io/badge/CONTROL_FAMILIES-308-12314f?style=for-the-badge"></a>
+  <a href="KHAHP_FULL_TECHNICAL_REGISTER.md"><img alt="924 A B C assurance gates" src="https://img.shields.io/badge/ASSURANCE_GATES-924-0969da?style=for-the-badge"></a>
 </p>
+
+<p align="center">
+  <img alt="840 of 924 formally project accepted" src="https://img.shields.io/badge/PROJECT_ACCEPTED-840%2F924-137c62?style=for-the-badge">
+  <img alt="40 of 44 sections project accepted" src="https://img.shields.io/badge/SECTIONS_ACCEPTED-40%2F44-137c62?style=for-the-badge">
+  <img alt="Public register version 5.0" src="https://img.shields.io/badge/PUBLIC_REGISTER-v5.0-0969da?style=for-the-badge">
+</p>
+
+<p align="center">
+  <a href="KHAHP_FULL_TECHNICAL_REGISTER.md"><strong>FULL TECHNICAL REGISTER</strong></a>
+  &nbsp;·&nbsp;
+  <a href="docs/KHAHP_Public_Master_Evidence_Sections_01-44_v5.0.pdf"><strong>PUBLIC EVIDENCE PDF</strong></a>
+  &nbsp;·&nbsp;
+  <a href="https://elite-cybersecurity-specialist.blogspot.com/2026/10/khahp-kicksecure-high-assurance.html"><strong>PROJECT ARTICLE</strong></a>
+  &nbsp;·&nbsp;
+  <a href="https://github.com/elite-cybersecurity-specialist/company-profile"><strong>COMPANY PROFILE</strong></a>
+  &nbsp;·&nbsp;
+  <a href="mailto:Yuhisern@protonmail.com"><strong>CONTACT ECS</strong></a>
+</p>
+
+---
 
 > [!IMPORTANT]
-> **KICKSECURE OS ROYAL HARDENING — PUBLIC ENGINEERING REFERENCE**  
-> **40 of 44 sections** and **840 of 924 A/B/C assurance checkpoints** are **project-accepted** under public documentation **v5.0 (19 October 2026)**. Sections **41–44** are the remaining engineering, mapping and final-acceptance work. This is the published owner/project acceptance milestone, not a third-party certification.
+> **The challenge: demonstrate the defence.** This project documents real defensive controls with provenance, role-appropriate enforcement, persistence and recovery. Its **924 assurance checkpoints are not 924 vulnerabilities**. The accepted figure is an **owner/project engineering milestone**, not third-party CIS, DISA or KSPP certification.
 
-> [!NOTE]
-> **THE OPEN HARDENING CHALLENGE**  
-> Can you engineer and demonstrate deeper, more reproducible operating-system defenses—with provenance, effective runtime tests, recovery proof and traceable evidence—than the controls demonstrated here? **Show the engineering.**
+## Explore the engineering
+
+| **44 security domains** | **308 control families** | **924 A/B/C gates** | **840 project-accepted** |
+|:---:|:---:|:---:|:---:|
+| Full technical scope | Seven families per domain | Three assurance dimensions per family | Sections 01–40 |
+
+| Begin here | Explore |
+|---|---|
+| **[The 44-domain security atlas](#the-44-domain-security-atlas)** | Understand the entire architecture from platform trust to final assurance. |
+| **[Full technical register](KHAHP_FULL_TECHNICAL_REGISTER.md)** | Inspect every domain, all 308 control families and 924 gate identifiers. |
+| **[Engineering methodology](#the-khahp-engineering-method)** | See how provenance, runtime enforcement and persistence are assessed. |
+| **[Defensive engineering outcomes](#demonstrated-defensive-engineering)** | Review the accepted security disciplines and real implementation work. |
+| **[Current program position](#program-progress--44-sections-and-924-checkpoints)** | Understand acceptance, Section 41 review and the remaining work. |
+| **[Evidence and publication](#full-technical-documentation-and-evidence)** | Read the public register and portable evidence publication. |
 
 ---
 
@@ -47,6 +62,7 @@
 - [About KHAHP and Royal Hardening](#about-khahp-and-royal-hardening)
 - [The KHAHP Engineering Method](#the-khahp-engineering-method)
 - [Program Progress — 44 Sections and 924 Checkpoints](#program-progress--44-sections-and-924-checkpoints)
+- [The 44-domain security atlas](#the-44-domain-security-atlas)
 - [Demonstrated Defensive Engineering](#demonstrated-defensive-engineering)
 - [Section 40 Final Closeout — auditd and AIDE](#section-40-final-closeout--auditd-and-aide)
 - [Remaining Engineering — Sections 41–44](#remaining-engineering--sections-4144)
@@ -123,6 +139,18 @@ KHAHP's implementation decisions additionally follow an evidence-led engineering
 | **A/B/C assurance** | **840 / 924 · 90.9%** | 840 checkpoints project-accepted |
 | **Remaining work** | **4 sections · 84 checkpoints** | Sections 41–44 |
 
+### Current program position
+
+| Section range | Gates | Current engineering position |
+|---|---:|---|
+| **01–40** | **840** | **PROJECT_ACCEPTED** — established owner/project baseline |
+| **41 — Persistence / supply chain** | **21** | **REVIEW_REQUIRED** — evidence reconciliation and owner decisions remain |
+| **42 — Credentials / recovery** | **21** | **NOT_ASSESSED** — verification toolkit is not target-machine acceptance |
+| **43–44 — Framework mapping / final assurance** | **42** | **PLANNED** — rule-level assessment, regression and sign-off |
+| **TOTAL** | **924** | **840 project-accepted; 84 not yet accepted** |
+
+The newer internal engineering program is maintained separately from the public **v5.0 register and evidence PDF**. Public-facing figures above reflect the current recorded owner/project acceptance boundary; no private machine records or release secrets are published here.
+
 ### What the 924 checkpoints mean
 
 The program contains **44 security sections**, each with **7 technical control families**:
@@ -147,6 +175,90 @@ Under the 19 October 2026 v5.0 project register, **Sections 01–40 are closed w
 **Section 40 — auditd/AIDE:** final evidence accepted, including the effective USER-mode audit-rule state and successful production integrity check.
 
 Material changes—including significant package, kernel, policy, firmware, hardware or image-release changes—can require relevant regression tests without resetting the historical acceptance record.
+
+---
+
+## The 44-domain security atlas
+
+Every domain below has **seven control families** and **21 A/B/C assurance checkpoints**. The [public technical register](KHAHP_FULL_TECHNICAL_REGISTER.md) identifies every control family and all **924 unique gate identifiers**, including domains not yet accepted.
+
+<details>
+<summary><strong>01–14 · PLATFORM & ROOT OF TRUST</strong> · 14 engineering domains</summary>
+
+| No. | Security engineering domain |
+|:---:|---|
+| **01** | Platform / OS / Hardware Baseline |
+| **02** | Kicksecure Package Provenance |
+| **03** | USER / SYSMAINT Privilege Architecture |
+| **04** | SYSMAINT Boot Role |
+| **05** | Accounts / UID / GID / Local Identity |
+| **06** | LUKS / Disk / Swap Encryption |
+| **07** | Filesystem / Mount Security |
+| **08** | GRUB / Bootloader Protection |
+| **09** | CPU Vulnerability Mitigations |
+| **10** | IOMMU / DMA Protection |
+| **11** | Kernel Sysctl Hardening |
+| **12** | Kernel Boot / Memory Hardening |
+| **13** | Kernel Module Restrictions |
+| **14** | Kernel Module Signing / DKMS |
+
+</details>
+
+<details>
+<summary><strong>15–25 · HOST DEFENCES & IDENTITY</strong> · 11 engineering domains</summary>
+
+| No. | Security engineering domain |
+|:---:|---|
+| **15** | AppArmor / Mandatory Access Control |
+| **16** | SUID / SGID / File Capabilities |
+| **17** | Permissions / ACL / Umask |
+| **18** | PAM / Login / Faillock |
+| **19** | SSH Client / Server Security |
+| **20** | Enabled / Running Service Audit |
+| **21** | systemd Service Sandboxing |
+| **22** | System.map / Core Dumps / PStore |
+| **23** | Journald / Logging / Logrotate |
+| **24** | Panic / Recovery / Emergency Shutdown |
+| **25** | RAM Wipe |
+
+</details>
+
+<details>
+<summary><strong>26–34 · NETWORK, PERIPHERALS & ISOLATION</strong> · 9 engineering domains</summary>
+
+| No. | Security engineering domain |
+|:---:|---|
+| **26** | USBGuard / Peripheral Security |
+| **27** | NetworkManager / Wi-Fi / MAC / DHCP |
+| **28** | IPv6 Policy |
+| **29** | Unbound / Local DNS Architecture |
+| **30** | DNSSEC / DoT / DNS Leak Prevention |
+| **31** | nftables Firewall |
+| **32** | LAN Discovery / Multicast / LLMNR / mDNS |
+| **33** | Tor / SOCKS / DNS Isolation |
+| **34** | sdwdate / Secure Time / Boot Clock |
+
+</details>
+
+<details>
+<summary><strong>35–44 · PRIVACY, INTEGRITY & ASSURANCE</strong> · 10 engineering domains</summary>
+
+| No. | Security engineering domain |
+|:---:|---|
+| **35** | Entropy / RNG |
+| **36** | Browser DoH / WebRTC / Telemetry |
+| **37** | Application / File / Metadata Privacy |
+| **38** | Camera / Microphone / Power / Screen Lock |
+| **39** | Firmware / BIOS / Secure Boot / TPM |
+| **40** | Auditd / AIDE / Integrity Monitoring |
+| **41** | Cron / Timers / Persistence / Supply Chain |
+| **42** | Credentials / SSH Keys / Secrets / Backup |
+| **43** | CIS / DISA GPOS / KSPP Mapping |
+| **44** | Final Acceptance / Evidence / Scoring |
+
+</details>
+
+<p align="center"><a href="KHAHP_FULL_TECHNICAL_REGISTER.md"><strong>EXPLORE THE COMPLETE 44-SECTION / 308-FAMILY / 924-GATE TECHNICAL REGISTER</strong></a></p>
 
 ---
 
@@ -189,19 +301,19 @@ Section 40 was accepted with final evidence captured on **19 October 2026**:
 
 ## Remaining Engineering — Sections 41–44
 
-The remaining work is already defined in the 44-section register. The following are **planned phases**, not completed milestones.
+The remaining work is defined in the 44-section technical register. The listed scopes are engineering requirements, not newly accepted results. Section 41 has evidence under review; the remaining sections require their own assessment and acceptance.
 
-| Section | Seven technical control families | Remaining A/B/C gates |
-|---|---|---:|
-| **41 — Cron / Timers / Persistence / Supply Chain** | Cron/anacron jobs; systemd timers; desktop/user autostart; repository and signing-key provenance; APT pinning/holds; unexpected startup scripts/services/modules; reboot and supply-chain drift evidence. | **21** |
-| **42 — Credentials / SSH Keys / Secrets / Backup** | SSH private keys; token/secret storage; password-manager policy; FIDO2/YubiKey readiness; offline recovery-code handling; encrypted backups; isolated restore/disaster recovery. | **21** |
-| **43 — CIS / DISA GPOS / KSPP Mapping** | CIS Debian 13 L2 mapping; DISA GPOS/SRG mapping; KSPP alignment; Kicksecure-native equivalents; KHAHP extensions; exceptions/N-A rationale; evidence citations. | **21** |
-| **44 — Final Acceptance / Evidence / Scoring** | Reboot persistence; USER regression; SYSMAINT regression; network/DNS/firewall/Tor/USB negative tests; rollback and recovery; evidence hashes/chain of custody; final scorecard/sign-off. | **21** |
-| **TOTAL REMAINING** | **28 control families** | **84** |
+| Section | Seven technical control families | Gates | Current position |
+|---|---|---:|---|
+| **41 — Cron / Timers / Persistence / Supply Chain** | Cron/anacron jobs; systemd timers; desktop/user autostart; repository and signing-key provenance; APT pinning/holds; unexpected startup scripts/services/modules; reboot and supply-chain drift evidence. | **21** | Review required |
+| **42 — Credentials / SSH Keys / Secrets / Backup** | SSH private keys; token/secret storage; password-manager policy; FIDO2/YubiKey readiness; offline recovery-code handling; encrypted backups; isolated restore/disaster recovery. | **21** | Not assessed |
+| **43 — CIS / DISA GPOS / KSPP Mapping** | CIS Debian 13 L2 mapping; DISA GPOS/SRG mapping; KSPP alignment; Kicksecure-native equivalents; KHAHP extensions; exceptions/N-A rationale; evidence citations. | **21** | Planned |
+| **44 — Final Acceptance / Evidence / Scoring** | Reboot persistence; USER regression; SYSMAINT regression; network/DNS/firewall/Tor/USB negative tests; rollback and recovery; evidence hashes/chain of custody; final scorecard/sign-off. | **21** | Planned |
+| **TOTAL REMAINING** | **28 control families** | **84** | Not accepted |
 
 > [!NOTE]
 > **CONTINUATION BOUNDARY**  
-> Sections **01–40** remain accepted in the current baseline. Section **41** is the next reconnaissance and implementation phase, followed by 42, 43 and 44. Future acceptance requires actual role-appropriate evidence and controlled recovery testing.
+> Sections **01–40** remain accepted in the current baseline. Section **41** is under engineering review; Sections **42–44** remain subject to further assessment and acceptance. Future acceptance requires actual role-appropriate evidence and controlled recovery testing.
 
 ---
 
@@ -282,6 +394,8 @@ The underlying private master, authoritative gate ledger, sensitive host evidenc
 
 ## Open Challenge and Responsible Publication
 
+<p align="center"><img src="assets/open-hardening-challenge.png" alt="Open defensive security hardening challenge — demonstrate verification and recovery" width="100%"></p>
+
 **The challenge:** Demonstrate a reproducible hardening implementation with a clear threat model, approved scope, defensible package/configuration provenance, before-and-after evidence, effective security tests, reboot persistence, rollback/recovery and a verifiable evidence trail.
 
 | Evidence expected | Why it matters |
@@ -320,4 +434,4 @@ The underlying private master, authoritative gate ledger, sensitive host evidenc
 
 <p align="center"><strong>HARDEN. TEST. VERIFY. IMPROVE.</strong></p>
 <p align="center"><em>Security Engineering · Defensive Hardening · Evidence-Led Verification · Continuous Improvement</em></p>
-<p align="center"><sub>KHAHP Public Documentation v5.0 · 19 October 2026 · Sections 01–40 project-accepted · 840/924 checkpoints · ELITE CYBERSECURITY SPECIALIST, MALAYSIA.</sub></p>
+<p align="center"><sub>KHAHP public engineering reference · v5.0 evidence register · 40/44 sections and 840/924 gates project-accepted · ELITE CYBERSECURITY SPECIALIST, MALAYSIA.</sub></p>
