@@ -4,7 +4,7 @@
 <p align="center"><strong>Royal Hardening · Defensive Engineering · Reproducible Assurance</strong></p>
 <p align="center"><strong>ELITE CYBERSECURITY SPECIALIST · MALAYSIA</strong></p>
 <p align="center"><sub>HARDEN. TEST. VERIFY. IMPROVE.</sub></p>
-<p align="center"><img src="assets/khahp-450-hours.svg" alt="450+ HOURS OF WORK — 41 OF 44 SECTIONS OWNER-ACCEPTED — 861 OF 924 ASSURANCE GATES" width="100%"></p>
+<p align="center"><img src="assets/khahp-450-hours.png" alt="450+ HOURS OF WORK — 41 OF 44 SECTIONS OWNER-ACCEPTED — 861 OF 924 ASSURANCE GATES" width="100%"></p>
 
 <p align="center"><strong>450+ HOURS OF HANDS-ON HARDENING, TESTING &amp; VERIFICATION (OWNER-REPORTED)</strong></p>
 
