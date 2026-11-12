@@ -1,20 +1,22 @@
 # KHAHP — Full Technical Evidence & Engineering Register
 
 **Elite Cybersecurity Specialist · Malaysia**  
-**Public Editorial Edition v6.0 · 2 November 2026 · Sanitized documentary update**  
+**Public Editorial Edition v6.1 · 13 November 2026 · Sanitized status reconciliation**  
 **44 sections · 308 named control families · 924 exact A/B/C gate identifiers**  
 **350+ hours of hands-on hardening, testing and verification (owner-reported)**
 
 > [!IMPORTANT]
-> **Formal owner/project acceptance remains 840/924.** Section 41 contributes 21 `REVIEW_REQUIRED` gates; Section 42 has 21 `NOT_ASSESSED` gates; Sections 43–44 contain 42 `PLANNED` gates. These are *security-assurance checkpoints*, not claimed vulnerabilities or independently certified controls.
+> **Internal owner-scope milestone: 861/924 accepted gates.** Sections 01–40 preserve 840 historically owner/project-accepted gates; Section 41 adds 21 **owner-accepted, risk-dispositioned gates**. Sections 42–44 remain outstanding (63 gates). This is neither third-party certification nor an independently verified comparative ranking. See the [dated public assurance statement](docs/PROJECT_STATUS_20261113.md).
 
-**Public-source boundary:** The updated classification derives from the internally maintained 1 November 2026 documentary snapshot while preserving the original v4 and v5 evidence authority. No private host reports, internal master workbooks, credentials or recovery material are published here. The historical 840 project-accepted gates have not been independently re-attested as part of this editorial release.
+**Public-source boundary:** The revised status incorporates the 12–13 November 2026 owner-accepted Section 41 closeout, preserving historical v4/v5 and v6.0 evidence authority. No private host reports, internal master workbooks, credentials or recovery material are published here. The historically accepted gates were not independently re-attested in full in this editorial update; Section 41 includes owner-approved exceptions and stated residual risks.
 
 [Project home](README.md) · [Publications and historical PDF editions](docs/PUBLICATIONS.md)
 
 ---
 
 ## 1. Executive engineering position
+
+**Current ambition:** work toward one of the most security-hardened Kicksecure installations ever documented, with reproducible evidence and independent scrutiny. This is a **research and engineering goal**, not a comparative security ranking.
 
 KHAHP is a high-assurance defensive hardening and verification program for a Kicksecure/Debian 13 operating environment. The project owner reports **350+ hours of direct engineering effort** across investigation, hardening, testing, controlled corrections, technical evidence and review. It documents appropriate security controls, their provenance, effective operating-role enforcement, compatibility/recovery decisions and historical acceptance in 44 defined domains. Kicksecure is the reference implementation for Elite Cybersecurity Specialist's defensive engineering method; other systems require separate assessment.
 
@@ -26,8 +28,9 @@ KHAHP is a high-assurance defensive hardening and verification program for a Kic
 | Control families | **308** | Each has A, B and C gates |
 | A/B/C assurance gates | **924** | 44 × 7 × 3 |
 | Sections 01–40 | **840** | PROJECT_ACCEPTED — carried-forward owner/project baseline |
-| Section 41 | **21** | REVIEW_REQUIRED — existing observations pending formal decisions |
-| Section 42 | **21** | NOT_ASSESSED — offline-tested collection is not target-machine verification |
+| Section 41 | **21** | OWNER_SCOPE_ACCEPTED — 12–13 November closeout, limited exceptions and residual-risk dispositions |
+| **Owner-accepted total** | **861 / 924** | **Internal owner scope**, not external certification |
+| Section 42 | **21** | NOT_ASSESSED — offline collector results are not target-machine acceptance |
 | Sections 43–44 | **42** | PLANNED — external mapping and final program assurance |
 
 **The 924 gates are not 924 security flaws.** An A/B/C gate can validate an upstream safeguard, a project change, a compatible design disposition, runtime behavior or relevant persistence/recovery.
@@ -62,9 +65,9 @@ The underlying evidence, package-specific changes, device identifiers and potent
 
 ### 2.1. Section 41 — persistence, source provenance and drift
 
-Seven families cover cron/anacron applicability, systemd timers, desktop autostart, source/repository signing, APT holds and update policy, unexpected startup services/modules and supply-chain drift. Dated technical observations exist, but all 21 A/B/C gates remain **REVIEW_REQUIRED**. Unresolved source-attribution, compatibility and owner decisions must not be silently reclassified as accepted.
+**Owner-scope closed 12–13 November 2026 (21/21 internal gates), with explicit limitations.** The seven families cover scheduled jobs, timers, desktop autostart, source/repository signing, APT update policy, startup services/modules and supply-chain drift. Existing USER/SYSMAINT observations, file-hash checks, owner decisions and the limited recovery rehearsal informed closure. The original source provenance for seven stable customized PAM/GRUB artifacts and full destructive recovery were accepted via narrow owner-approved exceptions; older AIDE source attribution remains recorded as residual risk.
 
-The historical successful AIDE check and later package-maintenance observations are distinct dated events. A prior success is not evidence that every subsequent configuration or hardener trigger passed. Any sensitive provenance questions are subject to the private evidence and owner risk-decision process.
+Two November maintenance operations updated **25 packages (8 + 17)**; that dated postflight evidence does not imply the entire host is free of vulnerabilities. A then-available kernel-security candidate required separate controlled maintenance planning. No raw private evidence or sensitive host details are published. The 21 gate decisions constitute internal scope acceptance, not independent technical certification.
 
 ### 2.2. Section 42 — credentials, backup and recovery
 
@@ -806,11 +809,11 @@ Every section below lists **seven families**, each with its **three exact A/B/C 
 
 ### 41 — Cron / Timers / Persistence / Supply Chain
 
-**Status:** **REVIEW_REQUIRED — formal owner/project acceptance pending for all 21 gates.**
+**Status:** **OWNER SCOPE ACCEPTED — 21/21 A/B/C gates recorded in the November 12–13 closeout.**
 
-**Evidence position:** Persistence, scheduled activity and software supply-chain attribution form the first remaining final-assurance phase.
+**Evidence position:** Timers, scheduled tasks, autostart, signed sources, update policy, protected-file integrity and role-specific persistence were reconciled against historical records. Owner-approved narrow source-provenance and recovery-scope exceptions remain explicit; selected AIDE source attribution remains an accepted limitation.
 
-**Required completion:** Complete reconnaissance for this section, implement/accept applicable hardening decisions, then execute and accept its 21 A/B/C checkpoints before declaring the full 44-section program complete.
+**Acceptance boundary:** This closes the internal Section 41 scope only. It does not claim independent source-code provenance, an exhaustive vulnerability-free host, external certification or completion of Sections 42–44.
 
 | Family | Exact technical scope | A/B/C evidence IDs |
 |---|---|---|
@@ -984,7 +987,7 @@ The proposed KHAHP premium hardened OS remains a separate **release-engineering*
 
 | Section | Next evidence stage | Formal A/B/C gates |
 |---|---|---:|
-| **41 — Persistence and supply chain** | Provenance reconciliation, bounded lifecycle checks, explicit owner decisions | 21 REVIEW_REQUIRED |
+| **41 — Persistence and supply chain** | **Owner-scope closed** 12–13 Nov; limited exceptions and residual risks disclosed | **21 OWNER_SCOPE_ACCEPTED** |
 | **42 — Secrets, backup and restore** | Real-device assessment, custody and actual isolated restore evidence | 21 NOT_ASSESSED |
 | **43 — CIS / DISA / KSPP mapping** | Obtain and assess applicable versioned rule bodies; signed applicability decisions | 21 PLANNED |
 | **44 — Final assurance** | Cross-domain regression, evidence chain, rollback and release approval | 21 PLANNED |
@@ -994,7 +997,7 @@ The proposed KHAHP premium hardened OS remains a separate **release-engineering*
 - The original historical v4 technical editions were dated 18–19 October 2026 and retain their original acceptance vocabulary.
 - The v5.0 public project-closeout release dated 19 October documented the Sections 01–40 owner/project-accepted 840-gate milestone.
 - The separately maintained private v6.0 documentary source was dated 1 November 2026; this public editorial register extracts sanitized high-level status, not confidential machine evidence.
-- The 2 November 2026 public text revision does not assert fresh machine attestation, 924 vulnerabilities, external CIS/DISA/KSPP certification or a completed commercial image.
+- The 13 November 2026 revision incorporates the owner-accepted Section 41 milestone and dated November maintenance evidence; it does not assert fresh complete-machine attestation, 924 vulnerabilities, external CIS/DISA/KSPP certification or a completed commercial image.
 - Any future public detailed evidence release requires separate privacy review and owner authorization.
 
-See [KHAHP project home](README.md) and [Publications](docs/PUBLICATIONS.md) for dated PDF history.
+See [KHAHP project home](README.md), [current public assurance statement](docs/PROJECT_STATUS_20261113.md), and [Publications](docs/PUBLICATIONS.md) for dated PDF history.
