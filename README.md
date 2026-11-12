@@ -4,7 +4,9 @@
 <p align="center"><strong>Royal Hardening · Defensive Engineering · Reproducible Assurance</strong></p>
 <p align="center"><strong>ELITE CYBERSECURITY SPECIALIST · MALAYSIA</strong></p>
 <p align="center"><sub>HARDEN. TEST. VERIFY. IMPROVE.</sub></p>
-<p align="center"><strong>350+ HOURS OF HANDS-ON HARDENING, TESTING &amp; VERIFICATION (OWNER-REPORTED)</strong></p>
+<p align="center"><img src="assets/khahp-450-hours.svg" alt="450+ HOURS OF WORK — 41 OF 44 SECTIONS OWNER-ACCEPTED — 861 OF 924 ASSURANCE GATES" width="100%"></p>
+
+<p align="center"><strong>450+ HOURS OF HANDS-ON HARDENING, TESTING &amp; VERIFICATION (OWNER-REPORTED)</strong></p>
 
 <p align="center">
 <img src="https://img.shields.io/badge/SECURITY%20DOMAINS-44-17334b?style=flat-square" alt="44 security domains">
@@ -43,7 +45,7 @@ The engineering program is organized around **44 domains**, each with **7 named 
 | **308** technical control families | **B — Role-specific runtime enforcement** |
 | **924** uniquely identified checkpoints | **C — Lifecycle persistence, rollback and recovery** |
 
-**More than 350 hours of hands-on effort (owner-reported)** underpin this engineering program, including systematic investigation, controlled hardening decisions, corrective action, cross-boot observations, technical reconciliation and evidence documentation. The accepted Sections 01–40 record work completed against the project's applicable requirements; each A/B/C gate is an assurance checkpoint, not necessarily a defect requiring a patch.
+**More than 450 hours of hands-on effort (owner-reported)** underpin this engineering program, including systematic investigation, controlled hardening decisions, corrective action, cross-boot observations, technical reconciliation and evidence documentation. The accepted Sections 01–40 record work completed against the project's applicable requirements; each A/B/C gate is an assurance checkpoint, not necessarily a defect requiring a patch.
 
 ### Documented corrective engineering
 
